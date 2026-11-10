@@ -23,6 +23,23 @@ python darshita/step3_evaluate_ranking.py
 
 Pictures go to `darshita/outputs/`. The image is saved in `data/darshita/` (not on GitHub).
 
+## Demo for the teacher
+
+```bash
+python darshita/demo.py
+```
+
+Five screens open one after another (close a window to get the next). The terminal prints
+what to say for each screen. The same pictures are saved as `darshita/outputs/demo_*.png`.
+
+1. The image: one place, 200 channels (grey pictures)
+2. Why channels can be dropped: neighbouring channels are copies
+3. Which 10 channels each method sends
+4. Before vs after: original vs rebuilt from 10 channels, with error maps
+5. Scoreboard: PSNR and how repetitive the sent channels are
+
+Interactive version (K slider): `pip install streamlit`, then `streamlit run darshita/app.py`.
+
 ## What Part 1 shows (Indian Pines, K = 10 of 200 bands)
 
 | Method | PSNR (dB) | SAM (deg) | Redundancy |
