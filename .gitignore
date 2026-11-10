@@ -1,0 +1,21 @@
+# Satellite data and generated products are far too large for GitHub.
+# See docs/DATA_ACCESS_GUIDE.md for how to get them.
+data/
+*.SAFE/
+*.SAFE.zip
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Temporary files
+*.tmp
+
+# Old root-level experiments, superseded by scripts/main.py
+/.py
+/generate_rgb.py
+/raichur_ndvi.png
+/raichur_rgb.png
+/scene_overview.png
