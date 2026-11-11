@@ -11,7 +11,7 @@ Assigned techniques, in the order we will build them:
 
 | # | Technique | Status |
 |---|---|---|
-| 1 | Isomap | in progress |
+| 1 | Isomap | Stages 1-5 done on synthetic data; real-data run pending |
 | 2 | Isomap with SMACOF | not started |
 | 3 | Kernel PCA | not started |
 | 4 | Locally Linear Embedding (LLE) | not started |
@@ -126,9 +126,102 @@ need a `src/data_loader.py` that reads that Parquet file and reconstructs the
 `(H, W, 7)` cube for a given date (LST is currently all-null upstream, so we will flag
 that explicitly rather than silently drop or fabricate it, until it is integrated there).
 
+### Isomap: Stage 1 (maths) and Stage 2 (basic example) — done
+
+- `documentation/02_isomap.md` - full write-up: algorithm steps, objective
+  function, hyperparameters, advantages/limitations, citation.
+- `experiments/02_isomap_basic_example.py` - runs on the textbook Swiss roll
+  (`sklearn.datasets.make_swiss_roll`), producing:
+  - `visualisations/02a_isomap_vs_pca_swissroll.png` - Isomap unrolls the roll
+    cleanly (Spearman correlation with true position: 1.000) where PCA loops it
+    into a spiral (0.221).
+  - `visualisations/02b_neighbor_graph.png` - the actual k-NN graph Isomap builds,
+    shown hugging the roll's surface.
+  - `visualisations/02c_short_circuit_failure.png` - `n_neighbors` swept over
+    6/10/30/80, concretely reproducing the "short-circuit" failure mode (the
+    embedding curls back into a loop once neighbours start jumping across
+    windings of the roll).
+
+```bash
+python experiments/02_isomap_basic_example.py
+```
+
+### Isomap: Stage 3 (module), Stage 4 (applied to synthetic cube), Stage 5 (evaluation) — done
+
+- `src/preprocessing.py` - shared cube<->pixel flattening, validation, standardising;
+  used by every technique module so preprocessing stays identical across the
+  whole comparison (Section 5 requirement).
+- `src/isomap.py` - `fit_isomap_pixels` / `fit_isomap_cube`: a thin, validated,
+  documented wrapper around `sklearn.manifold.Isomap` (exact reproduction, not a
+  reimplementation - see module docstring), with timing/memory diagnostics and
+  an explicit warning if the k-NN graph is disconnected.
+- `src/evaluation.py` - shared metrics for all techniques: trustworthiness,
+  continuity, neighbourhood preservation (Jaccard), reconstruction error (only
+  when defined), explained-variance ratio (only when defined), timing, memory.
+- `experiments/03_isomap_on_synthetic_cube.py` - applies Isomap to
+  `data/synthetic_v1/cube.npy` (7 -> 3 components, `n_neighbors=12`, seed=42) and:
+  - **Proves, not just asserts, that pixel-wise Isomap is spatially blind:**
+    `visualisations/03c_spectral_vs_spatial_neighbors.png` shows a concrete
+    example pixel whose 10 spectral nearest neighbours (what Isomap's graph
+    actually uses) share **zero** overlap with its immediate 3x3 spatial
+    neighbourhood.
+  - Checks recovery of the known-ground-truth latents
+    (`visualisations/03b_latent_recovery.png`) and catches a real subtlety: one
+    true latent is cyclic (an angle), so it only shows up correctly across two
+    embedding dimensions *jointly* (`cos`/`sin` correlation 0.94), not in either
+    dimension's raw Spearman correlation (0.25) - documented honestly in
+    `documentation/02_isomap_stage4_5.md` rather than reported as a failure.
+  - Runs the full evaluation suite and saves `results/isomap_synthetic_v1.json`.
+- `documentation/02_isomap_stage4_5.md` - full write-up of the above, plus
+  computational-complexity/scalability discussion for a real satellite tile and
+  a flagged research-gap note (spatially-weighted k-NN graph as a possible
+  modified-Isomap extension, to be clearly labelled as a modification if built).
+
+```bash
+python experiments/03_isomap_on_synthetic_cube.py
+```
+
+**Isomap is now fully validated on synthetic data.** Per the "Commitment: real
+data" section above, the version of this result that will actually go in the
+Section-5 comparison table is the one run on real Raichur Sentinel-2 data - not
+this synthetic run, which exists only to build and check our understanding.
+
+### Real-data loader — built and schema-tested (not yet run on the real file)
+
+- `src/data_loader.py` - reads the real Raichur Parquet dataset per
+  `docs/DATA_ACCESS_GUIDE.md`'s documented schema. Returns valid pixels as a
+  flat array (real tiles have partial, irregular coverage - not a clean
+  rectangle like our synthetic cube) plus `(row, col)` grid positions;
+  `reconstruct_grid()` scatters any per-pixel array back into a grid (NaN
+  where uncovered) for visualisation. `get_grid_reference()` fixes a real bug
+  our own test caught: deriving grid shape from a partial-coverage date's own
+  extent silently under-sizes it - full details in
+  `documentation/03_real_data_loader.md`.
+- **The real 808 MB Parquet file is not available in this development
+  environment** (gitignored; shared-folder link in `DATA_ACCESS_GUIDE.md` not
+  yet filled in). So `data_loader.py` is verified here only against a mock
+  Parquet file built to match the documented schema exactly
+  (`experiments/04_test_data_loader_with_mock.py`, 6/6 checks pass) - running
+  it against the real file is still an open step, to be done on a machine
+  that has the data.
+- `experiments/05_isomap_on_real_data.py` - ready to run once the data is in
+  place (loads `2026-09-27`, subsamples 8,000 pixels - exact Isomap cannot run
+  on a full ~10.9M-pixel date, see the complexity note above - and runs the
+  same Isomap/evaluation code used throughout). Confirmed in this environment
+  only that it fails gracefully with clear instructions when the data file is
+  absent.
+- Known, explicitly-flagged limitations carried into this first real-data
+  pass: no cloud masking (none exists in the dataset), LST unavailable (6 of
+  7 channels used), and random (not spatially stratified) subsampling.
+
+```bash
+# once docs/DATA_ACCESS_GUIDE.md's data is downloaded and in place:
+python experiments/04_test_data_loader_with_mock.py   # schema self-test (no real data needed)
+python experiments/05_isomap_on_real_data.py           # the real run
+```
+
 ## Next step
 
-Stage 1 of **Isomap**: the mathematics (geodesic distance via a k-NN graph,
-classical MDS on the geodesic distance matrix, the stress function being
-minimised, key hyperparameters `n_neighbors` and `n_components`), then a basic
-synthetic example, before writing `src/isomap.py`.
+Run `experiments/05_isomap_on_real_data.py` on a machine with the real Parquet
+file in place, confirm the results look sane, then move to Technique 2 (Isomap
+with SMACOF) using the same `src/` structure and evaluation suite.
