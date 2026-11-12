@@ -12,10 +12,3 @@ venv/
 
 # Temporary files
 *.tmp
-
-# Old root-level experiments, superseded by scripts/main.py
-/.py
-/generate_rgb.py
-/raichur_ndvi.png
-/raichur_rgb.png
-/scene_overview.png

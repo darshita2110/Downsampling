@@ -14,21 +14,21 @@ Scores:
   PSNR (dB)     - overall pixel accuracy. Higher is better. +3 dB = half the error.
   SAM (degrees) - how much each pixel's spectrum curve is bent out of shape. Lower is better.
 
-Run (after step 2):
-    python darshita/step3_evaluate_ranking.py
+Run (after step 2, with the same dataset name):
+    python darshita/step3_evaluate_ranking.py                   # practice image (Indian Pines)
+    python darshita/step3_evaluate_ranking.py raichur           # our real Sentinel-2 data
 """
 import json
+import sys
 
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy.io import loadmat
 
-from ranking import entropy_scores, mvpca_scores, top_k, variance_scores   # our own file
+from common import OUT_DIR, k_values as k_values_for, load_dataset           # our own files
+from ranking import entropy_scores, mvpca_scores, top_k, variance_scores
 
-IMAGE_FILE = "data/darshita/Indian_pines_corrected.mat"
-OUT_DIR = "darshita/outputs"
-
-image = loadmat(IMAGE_FILE)["indian_pines_corrected"].astype(np.float32)
+DATASET = sys.argv[1] if len(sys.argv) > 1 else "indian_pines"
+image, names = load_dataset(DATASET)
 height, width, n_bands = image.shape
 raw_pixels = image.reshape(-1, n_bands)
 
@@ -62,7 +62,7 @@ def sam_degrees(original, rebuilt):
 
 
 # ------------------------------------------------ part A: the K bands from step 2
-with open(f"{OUT_DIR}/step2_selected_bands.json") as f:
+with open(f"{OUT_DIR}/step2_selected_bands_{DATASET}.json") as f:
     saved = json.load(f)
 K, selected = saved["K"], saved["selected"]
 
@@ -75,25 +75,25 @@ for name, bands in selected.items():
     print(f"  {name:9s} {psnr(pixels[test], rebuilt[test]):10.2f} {sam_degrees(pixels[test], rebuilt[test]):10.2f}")
 
 # Picture: one band that was NOT sent, original vs rebuilt by each method, plus error
-band = 99
+band = n_bands // 2 - 1                        # a band in the middle (99 of 200, B06 of 12)
 fig, axes = plt.subplots(2, len(selected) + 1, figsize=(3 * (len(selected) + 1), 6))
 axes[0, 0].imshow(pixels[:, band].reshape(height, width), cmap="gray", vmin=0, vmax=1)
-axes[0, 0].set_title(f"Original band {band}")
+axes[0, 0].set_title(f"Original {names[band]}")
 axes[1, 0].axis("off")
 for i, (name, rebuilt) in enumerate(rebuilt_images.items(), start=1):
     axes[0, i].imshow(rebuilt[:, band].reshape(height, width), cmap="gray", vmin=0, vmax=1)
-    axes[0, i].set_title(f"Rebuilt: {name}")
+    axes[0, i].set_title(f"Rebuilt: {name}" + (" (sent)" if band in selected[name] else ""))
     error = np.abs(pixels[:, band] - rebuilt[:, band]).reshape(height, width)
     axes[1, i].imshow(error, cmap="magma", vmin=0, vmax=0.3)
     axes[1, i].set_title("Error (brighter = worse)")
 for ax in axes.ravel():
     ax.set_xticks([]), ax.set_yticks([])
 plt.tight_layout()
-plt.savefig(f"{OUT_DIR}/step3_rebuilt_band.png", dpi=120)
-print(f"\nSaved {OUT_DIR}/step3_rebuilt_band.png")
+plt.savefig(f"{OUT_DIR}/step3_rebuilt_band_{DATASET}.png", dpi=120)
+print(f"\nSaved {OUT_DIR}/step3_rebuilt_band_{DATASET}.png")
 
 # ------------------------------------------------ part B: what if we send more bands?
-k_values = [5, 10, 15, 20, 25, 30]
+k_values = k_values_for(n_bands)              # 5..30 for 200 bands, 2..8 for 12 bands
 results = {name: [] for name in ["Variance", "Entropy", "MVPCA", "Uniform"]}
 var_s, ent_s = variance_scores(raw_pixels), entropy_scores(raw_pixels)  # these don't depend on k
 for k in k_values:
@@ -111,12 +111,12 @@ for name, values in results.items():
     plt.plot(k_values, values, marker="o", lw=2, ls="--" if name == "Uniform" else "-", label=name)
 plt.xlabel("Number of bands sent (K)")
 plt.ylabel("PSNR of rebuilt image (dB)  - higher is better")
-plt.title("Ranking methods vs simply taking evenly spaced bands")
+plt.title(f"Ranking methods vs evenly spaced bands ({DATASET})")
 plt.legend()
 plt.grid(alpha=0.3)
 plt.tight_layout()
-plt.savefig(f"{OUT_DIR}/step3_psnr_vs_k.png", dpi=120)
-print(f"Saved {OUT_DIR}/step3_psnr_vs_k.png")
+plt.savefig(f"{OUT_DIR}/step3_psnr_vs_k_{DATASET}.png", dpi=120)
+print(f"Saved {OUT_DIR}/step3_psnr_vs_k_{DATASET}.png")
 
 print("\nPSNR (dB) for each K:")
 print(f"  {'K':>3s} " + " ".join(f"{n:>9s}" for n in results))
