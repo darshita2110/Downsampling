@@ -64,17 +64,17 @@
   },
   "timing_memory": {
     "load_and_preprocess": {
-      "seconds": 6.642286753999997,
-      "peak_python_mb": 523.123428,
-      "rss_after_mb": 279.855104
+      "seconds": 10.933100261999925,
+      "peak_python_mb": 523.123315,
+      "rss_after_mb": 280.055808
     },
     "pca_fit": {
-      "seconds": 0.0219348660000378,
+      "seconds": 0.032901102999971954,
       "peak_python_mb": 34.734696,
-      "rss_after_mb": 349.802496
+      "rss_after_mb": 350.048256
     }
   },
-  "process_rss_mb_end": 531.091456,
-  "total_seconds": 8.905823854999994,
+  "process_rss_mb_end": 531.546112,
+  "total_seconds": 14.770020313000032,
   "model_file": "/home/claude/Downsampling/Kartavya/outputs/models/pca/png/pca_model.npz"
 }

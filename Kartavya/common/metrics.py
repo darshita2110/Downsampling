@@ -63,3 +63,30 @@ def all_metrics(orig_img, recon_img, valid, names, groups=None):
                                "MAE": mae(xo[:, idx], xr[:, idx]), "PSNR_dB": psnr(xo[:, idx], xr[:, idx]),
                                "SSIM": float(np.mean([ssims[i] for i in idx]))}
     return out
+
+
+# ------------------------------------------------------------- component statistics
+def component_statistics(s):
+    """
+    How independent are the columns of s (N samples x K components)?
+
+    mean_abs_excess_kurtosis : average |kurtosis - 3|. A Gaussian has 0; larger = less Gaussian.
+                               ICA maximises non-Gaussianity, so this should rise vs PCA.
+    mean_abs_linear_corr     : average |corr(s_i, s_j)|, i != j. Both PCA and ICA make this ~0.
+    mean_abs_square_corr     : average |corr(s_i^2, s_j^2)|, i != j. A NON-linear dependence
+                               measure: uncorrelated-but-dependent components (typical for PCA)
+                               show up here. Independent components give ~0.
+    """
+    s = np.asarray(s, dtype=np.float64)
+    z = (s - s.mean(0)) / np.maximum(s.std(0), 1e-12)
+    kurt = (z ** 4).mean(0) - 3.0
+    out = {"excess_kurtosis": kurt.tolist(), "mean_abs_excess_kurtosis": float(np.abs(kurt).mean())}
+    k = s.shape[1]
+    if k > 1:
+        off = ~np.eye(k, dtype=bool)
+        out["mean_abs_linear_corr"] = float(np.abs(np.corrcoef(z.T))[off].mean())
+        out["mean_abs_square_corr"] = float(np.abs(np.corrcoef((z ** 2).T))[off].mean())
+    else:
+        out["mean_abs_linear_corr"] = float("nan")
+        out["mean_abs_square_corr"] = float("nan")
+    return out

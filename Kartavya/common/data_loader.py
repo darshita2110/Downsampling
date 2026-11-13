@@ -397,3 +397,43 @@ def rows_slice(height, rows, fraction):
     """Row range for 'all', 'top' (training part) or 'bottom' (test part) of a spatial split."""
     cut = int(round(height * fraction))
     return {"all": slice(0, height), "top": slice(0, cut), "bottom": slice(cut, height)}[rows]
+
+
+def load_split_pixels(experiment, mapping, entries, cfg, fraction, logger=None, with_alignment=True):
+    """
+    Load the samples listed in `entries` (train or test part of a split), normalised to [0, 1], and
+    return the stacked feature matrix of their valid pixels plus an inspection report per date.
+    Only the rows belonging to each entry ('all' / 'top' / 'bottom') are used.
+    """
+    from Kartavya.common.preprocessing import image_to_matrix
+    blocks, inspection, names = [], {}, None
+    for entry in entries:
+        s = mapping["samples"][entry["index"]]
+        data = load_normalized_sample(experiment, s, cfg)
+        names = data["names"]
+        align = alignment_check(data) if (experiment == "png" and with_alignment) else {}
+        rs = rows_slice(data["valid"].shape[0], entry["rows"], fraction)
+        valid = data["valid"].copy()
+        valid[:rs.start] = False
+        valid[rs.stop:] = False
+        blocks.append(image_to_matrix(data["channels"], valid))
+        inspection[s["date"]] = {"files": data["inspection"], "common_grid_hw": data["grid_hw"],
+                                 "valid_pct_on_grid": float(100 * data["valid"].mean()),
+                                 "channel_natural_range": dict(zip(names, data["channels_natural_range"])),
+                                 "normalization": data["normalization"], "alignment": align,
+                                 "rows_used": (rs.start, rs.stop), "pixels_used": int(blocks[-1].shape[0])}
+        if logger:
+            logger.info(f"  loaded {s['date']}: grid {data['grid_hw']}, valid {100 * data['valid'].mean():.3f}%, "
+                        f"pixels used {blocks[-1].shape[0]:,} (rows {rs.start}-{rs.stop})")
+            for f, info in data["inspection"].items():
+                extra = ""
+                if "colormap_decode" in info:
+                    d = info["colormap_decode"]
+                    extra = (f", decoded range {info['value_range_decoded']}, exact colour match "
+                             f"{d['exact_match_pct']:.1f}%, no-data {d['white_nodata_pct']:.3f}%")
+                logger.info(f"    {f}: {info.get('mode', '')} {info.get('shape')} {info.get('dtype')} "
+                            f"min {info.get('min')} max {info.get('max')}"
+                            + (f", map panel {info['map_panel_hw']}" if "map_panel_hw" in info else "") + extra)
+            for pair, r in align.items():
+                logger.info(f"    alignment {pair}: best shift {r['best_shift_dy_dx']}, r={r['corr_at_best']:.4f}")
+    return np.concatenate(blocks), names, inspection

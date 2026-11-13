@@ -1,0 +1,15 @@
+2026-11-13 09:08:42 | INFO    | Experiment 'png_nostd': loaded saved models for K = [1, 2, 3, 4, 5, 6]; standardiser enabled=False
+2026-11-13 09:08:42 | INFO    |   K=1: trained with 1 iterations, converged=True, tol=0.0001, alpha=1.0, seed=42
+2026-11-13 09:08:42 | INFO    |   K=2: trained with 16 iterations, converged=True, tol=0.0001, alpha=1.0, seed=42
+2026-11-13 09:08:42 | INFO    |   K=3: trained with 20 iterations, converged=True, tol=0.0001, alpha=1.0, seed=42
+2026-11-13 09:08:42 | INFO    |   K=4: trained with 14 iterations, converged=True, tol=0.0001, alpha=1.0, seed=42
+2026-11-13 09:08:42 | INFO    |   K=5: trained with 1000 iterations, converged=False, tol=0.0001, alpha=1.0, seed=42
+2026-11-13 09:08:42 | INFO    |   K=6: trained with 8 iterations, converged=True, tol=0.0001, alpha=1.0, seed=42
+2026-11-13 09:08:47 | INFO    | 00_2026-09-17_bottom: test image 529 x 1024, 541,531 valid pixels, loaded in 5.8 s
+2026-11-13 09:08:49 | INFO    |   K=1: reduction  87.5% | RMSE 0.0756 MAE 0.0473 PSNR  22.43 dB SSIM 0.8207 | 16.53 MB -> 2.07 MB | fwd 15.8 ms inv 38.9 ms | |kurt| ICA 0.46 vs PCA 0.46 | sq-corr ICA nan vs PCA nan | vs PCA recon 4.4e-16
+2026-11-13 09:08:51 | INFO    |   K=2: reduction  75.0% | RMSE 0.0344 MAE 0.0215 PSNR  29.28 dB SSIM 0.9650 | 16.53 MB -> 4.13 MB | fwd 20.9 ms inv 50.3 ms | |kurt| ICA 0.34 vs PCA 0.36 | sq-corr ICA 0.016 vs PCA 0.053 | vs PCA recon 1.0e-15
+2026-11-13 09:08:53 | INFO    |   K=3: reduction  62.5% | RMSE 0.0127 MAE 0.0085 PSNR  37.93 dB SSIM 0.9827 | 16.53 MB -> 6.20 MB | fwd 16.3 ms inv 39.5 ms | |kurt| ICA 0.81 vs PCA 0.77 | sq-corr ICA 0.133 vs PCA 0.083 | vs PCA recon 1.3e-15
+2026-11-13 09:08:56 | INFO    |   K=4: reduction  50.0% | RMSE 0.0088 MAE 0.0054 PSNR  41.10 dB SSIM 0.9875 | 16.53 MB -> 8.26 MB | fwd 22.2 ms inv 52.1 ms | |kurt| ICA 3.05 vs PCA 2.17 | sq-corr ICA 0.125 vs PCA 0.121 | vs PCA recon 9.1e-15
+2026-11-13 09:08:58 | INFO    |   K=5: reduction  37.5% | RMSE 0.0027 MAE 0.0013 PSNR  51.46 dB SSIM 0.9984 | 16.53 MB -> 10.33 MB | fwd 16.4 ms inv 41.8 ms | |kurt| ICA 5.39 vs PCA 2.40 | sq-corr ICA 0.065 vs PCA 0.155 | vs PCA recon 8.7e-15
+2026-11-13 09:09:00 | INFO    |   K=6: reduction  25.0% | RMSE 0.0000 MAE 0.0000 PSNR 322.15 dB SSIM 1.0000 | 16.53 MB -> 12.39 MB | fwd 27.1 ms inv 47.3 ms | |kurt| ICA 5.67 vs PCA 2.28 | sq-corr ICA 0.071 vs PCA 0.165 | vs PCA recon 3.0e-14
+2026-11-13 09:09:06 | INFO    | Testing finished in 24.8 s. Metrics: /home/claude/Downsampling/Kartavya/outputs/metrics/ica/png_nostd

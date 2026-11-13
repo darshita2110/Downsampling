@@ -20,11 +20,9 @@ Downsampling/                         (repository root)
 │   └── raw/sentinel2_l1c/*.nc                             original bands (input of the raw experiment)
 └── Kartavya/                         this project
     ├── algorithms/
-    │   └── linear/pca/
-    │       ├── config.py             every setting (paths, split, K values, normalisation)
-    │       ├── pca.py                PCA implemented from scratch in NumPy
-    │       ├── train.py              inspect data, fit PCA, save the model
-    │       └── test.py               reduce + reconstruct for every K, metrics, graphs
+    │   └── linear/
+    │       ├── pca/                  config.py, pca.py (NumPy PCA), train.py, test.py
+    │       └── ica/                  config.py, ica.py (NumPy FastICA), train.py, test.py
     ├── common/                       shared by all future algorithms (ICA, LDA, GA, PSO ...)
     │   ├── data_loader.py            sorted loading, index mapping, figure-panel cropping,
     │   │                             colour-map inversion, alignment check, raw NetCDF loading
@@ -33,7 +31,7 @@ Downsampling/                         (repository root)
     │   ├── evaluation.py             dimensionality reduction %, storage sizes
     │   ├── visualization.py          all graphs
     │   └── utils.py                  logging, timing + memory measurement, JSON
-    ├── documentation/PCA.md          PCA from the basics, design decisions, results
+    ├── documentation/PCA.md, ICA.md  each method from the basics, design decisions, results
     ├── outputs/                      everything the scripts produce (see section 4)
     └── requirements.txt
 ```
@@ -87,12 +85,25 @@ python Kartavya/algorithms/linear/pca/train.py --dataset raw
 python Kartavya/algorithms/linear/pca/test.py  --dataset raw
 ```
 
+ICA uses the same commands with `ica` in place of `pca`:
+
+```bash
+python Kartavya/algorithms/linear/ica/train.py      # fits one FastICA model per K on TRAINING pixels only
+python Kartavya/algorithms/linear/ica/test.py       # loads the saved models; nothing is re-fitted
+python Kartavya/algorithms/linear/ica/train.py --no-standardize
+python Kartavya/algorithms/linear/ica/test.py  --no-standardize
+```
+
+ICA also writes `metrics/convergence.csv` (iterations, converged flag, final change, scikit-learn match),
+`metrics/test_independence.csv`, and the graphs `convergence.png`, `independence_ica_vs_pca.png`
+and `ica_mixing_K6.png`. Its models are `models/ica/<experiment>/ica_K{k}.npz`, one per K.
+
 Use the same options for `train.py` and `test.py`. A run of both takes about 25 seconds at the
 default 1024-pixel width. Settings (split, K values, resolution) are in `config.py`.
 
 ## 4. Where results go
 
-Each experiment (`png`, `png_nostd`, `raw`) writes to `Kartavya/outputs/<category>/pca/<experiment>/`:
+Each experiment (`png`, `png_nostd`, `raw`) writes to `Kartavya/outputs/<category>/<pca|ica>/<experiment>/`:
 
 | Folder | Contents |
 |---|---|

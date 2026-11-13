@@ -135,7 +135,8 @@ def plot_correlation(corr, names, path, title="Channel correlation (training pix
     return _save(fig, path)
 
 
-def plot_loadings(components, names, path, n_show=4, title="PCA loadings (what each component is made of)"):
+def plot_loadings(components, names, path, n_show=4, title="PCA loadings (what each component is made of)",
+                  prefix="PC"):
     """Bar chart of the weight of every input channel in the first components (one panel each)."""
     n_show = min(n_show, components.shape[0])
     fig, axes = plt.subplots(1, n_show, figsize=(3.3 * n_show, 3.6), sharey=True)
@@ -145,7 +146,7 @@ def plot_loadings(components, names, path, n_show=4, title="PCA loadings (what e
         w = components[i]
         ax.barh(y, w, color=[SERIES[0] if v >= 0 else SERIES[1] for v in w], height=0.6)
         ax.axvline(0, color=TEXT2, lw=0.8)
-        ax.set_title(f"PC{i + 1}", loc="left")
+        ax.set_title(f"{prefix}{i + 1}", loc="left")
         ax.set_xlim(-1, 1)
     axes[0].set_yticks(y, names)
     axes[0].invert_yaxis()
@@ -165,7 +166,7 @@ def _stretch(img, valid, lo=2, hi=98):
     return out
 
 
-def plot_component_images(reduced, valid, path, title, n_show=3):
+def plot_component_images(reduced, valid, path, title, n_show=3, prefix="PC"):
     """Each principal-component image in grey, plus PC1-PC3 as a colour composite."""
     n_show = min(n_show, reduced.shape[-1])
     panels = n_show + (1 if reduced.shape[-1] >= 3 else 0)
@@ -173,10 +174,10 @@ def plot_component_images(reduced, valid, path, title, n_show=3):
     axes = np.atleast_1d(axes)
     for i in range(n_show):
         axes[i].imshow(_stretch(reduced[..., i:i + 1], valid)[..., 0], cmap="gray")
-        axes[i].set_title(f"PC{i + 1}", loc="left")
+        axes[i].set_title(f"{prefix}{i + 1}", loc="left")
     if reduced.shape[-1] >= 3:
         axes[-1].imshow(_stretch(reduced[..., :3], valid))
-        axes[-1].set_title("PC1-PC3 as RGB", loc="left")
+        axes[-1].set_title(f"{prefix}1-{prefix}3 as RGB", loc="left")
     for ax in axes:
         ax.axis("off")
     fig.suptitle(title, x=0.01, ha="left", fontsize=12, fontweight="bold", color=TEXT)
@@ -241,4 +242,42 @@ def plot_reconstruction_gallery(original, recons, valid, names, path, title):
     fig.colorbar(im, ax=axes[:, -1].tolist(), fraction=0.05, pad=0.02, shrink=0.35, anchor=(0, 0),
                  label="|error| (0-1 scale)")
     fig.suptitle(title, x=0.01, ha="left", fontsize=12, fontweight="bold", color=TEXT)
+    return _save(fig, path)
+
+
+def plot_convergence(histories, tol, path, title="FastICA convergence"):
+    """One line per model: rotation change after each iteration (log scale), with the tolerance."""
+    fig, ax = plt.subplots(figsize=(7.5, 4.2))
+    for i, (label, h) in enumerate(histories.items()):
+        h = np.maximum(np.asarray(h, dtype=float), 1e-8)        # exact zeros (e.g. K=1) drawn at 1e-8 on the log axis
+        ax.plot(np.arange(1, len(h) + 1), h, color=SERIES[i % len(SERIES)], marker="o", label=label)
+    ax.axhline(tol, color=TEXT2, lw=0.9, ls=":")
+    ax.text(ax.get_xlim()[1], tol, f" tol = {tol:g}", va="bottom", ha="right", fontsize=8, color=TEXT2)
+    ax.set_yscale("log")
+    ax.set_xlabel("Iteration")
+    ax.set_ylabel("Max rotation change  |1 - |<w_new, w_old>||")
+    ax.set_title(title, loc="left")
+    ax.legend(title="Components", ncol=2)
+    return _save(fig, path)
+
+
+def plot_paired_bars(table, x_col, labels, panels, path, title, x_label="Retained components (K)"):
+    """
+    Small multiples of grouped bars, e.g. ICA vs PCA for several statistics.
+    panels: list of (panel title, [column for series 1, column for series 2, ...]).
+    """
+    n = len(panels)
+    fig, axes = plt.subplots(1, n, figsize=(4.4 * n, 3.6), squeeze=False)
+    xs = np.arange(len(table))
+    width = 0.8 / len(labels)
+    for ax, (ptitle, pcols) in zip(axes.flat, panels):
+        for i, (c, lab) in enumerate(zip(pcols, labels)):
+            ax.bar(xs + (i - (len(labels) - 1) / 2) * width, table[c], width=width * 0.92,
+                   color=SERIES[i], label=lab, zorder=2)
+        ax.set_xticks(xs, table[x_col].astype(int))
+        ax.set_xlabel(x_label)
+        ax.set_title(ptitle, loc="left")
+    axes.flat[0].legend()
+    fig.suptitle(title, x=0.01, ha="left", fontsize=12, fontweight="bold", color=TEXT)
+    fig.tight_layout()
     return _save(fig, path)
