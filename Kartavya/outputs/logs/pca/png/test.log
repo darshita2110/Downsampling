@@ -1,0 +1,11 @@
+2026-11-11 19:02:26 | INFO    | Experiment 'png': model with 8 channels ['RGB:R(B04)', 'RGB:G(B03)', 'RGB:B(B02)', 'False_Color:R(B08)', 'False_Color:G(B04)', 'False_Color:B(B03)', 'NDVI', 'NDWI']; testing K = [1, 2, 3, 4, 5, 6, 7, 8]
+2026-11-11 19:02:30 | INFO    | 00_2026-09-17_bottom: test image 529 x 1024, 541,531 valid pixels (99.97%), loaded in 4.0 s
+2026-11-11 19:02:31 | INFO    |   K=1: reduction  87.5% | RMSE 0.0856 MAE 0.0539 PSNR  21.36 dB SSIM 0.8128 | 16.53 MB -> 2.07 MB | fwd 9.3 ms inv 25.9 ms
+2026-11-11 19:02:32 | INFO    |   K=2: reduction  75.0% | RMSE 0.0360 MAE 0.0231 PSNR  28.88 dB SSIM 0.9679 | 16.53 MB -> 4.13 MB | fwd 10.4 ms inv 21.4 ms
+2026-11-11 19:02:32 | INFO    |   K=3: reduction  62.5% | RMSE 0.0173 MAE 0.0108 PSNR  35.23 dB SSIM 0.9847 | 16.53 MB -> 6.20 MB | fwd 9.4 ms inv 21.9 ms
+2026-11-11 19:02:33 | INFO    |   K=4: reduction  50.0% | RMSE 0.0101 MAE 0.0064 PSNR  39.91 dB SSIM 0.9950 | 16.53 MB -> 8.26 MB | fwd 15.0 ms inv 29.2 ms
+2026-11-11 19:02:34 | INFO    |   K=5: reduction  37.5% | RMSE 0.0054 MAE 0.0036 PSNR  45.29 dB SSIM 0.9973 | 16.53 MB -> 10.33 MB | fwd 11.1 ms inv 22.6 ms
+2026-11-11 19:02:35 | INFO    |   K=6: reduction  25.0% | RMSE 0.0000 MAE 0.0000 PSNR 326.22 dB SSIM 1.0000 | 16.53 MB -> 12.39 MB | fwd 13.5 ms inv 27.8 ms
+2026-11-11 19:02:36 | INFO    |   K=7: reduction  12.5% | RMSE 0.0000 MAE 0.0000 PSNR 326.53 dB SSIM 1.0000 | 16.53 MB -> 14.46 MB | fwd 13.8 ms inv 24.8 ms
+2026-11-11 19:02:37 | INFO    |   K=8: reduction   0.0% | RMSE 0.0000 MAE 0.0000 PSNR 334.16 dB SSIM 1.0000 | 16.53 MB -> 16.53 MB | fwd 12.5 ms inv 23.0 ms
+2026-11-11 19:02:41 | INFO    | Testing finished in 15.0 s. Metrics: /home/claude/Downsampling/Kartavya/outputs/metrics/pca/png

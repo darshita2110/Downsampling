@@ -1,0 +1,4 @@
+# Large generated arrays (re-create with train.py / test.py). Metrics, graphs, logs and models are kept.
+outputs/reduced_data/**/*.npy
+outputs/reconstructed_data/**/*.npy
+__pycache__/

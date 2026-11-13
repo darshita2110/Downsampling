@@ -1,0 +1,16 @@
+{
+  "mode": "spatial",
+  "spatial_train_fraction": 0.5,
+  "train": [
+    {
+      "index": 0,
+      "rows": "top"
+    }
+  ],
+  "test": [
+    {
+      "index": 0,
+      "rows": "bottom"
+    }
+  ]
+}

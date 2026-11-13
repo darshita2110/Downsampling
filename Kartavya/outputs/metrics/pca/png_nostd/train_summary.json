@@ -1,0 +1,80 @@
+{
+  "experiment": "png_nostd",
+  "dataset": "png",
+  "standardize": false,
+  "channels": [
+    "RGB:R(B04)",
+    "RGB:G(B03)",
+    "RGB:B(B02)",
+    "False_Color:R(B08)",
+    "False_Color:G(B04)",
+    "False_Color:B(B03)",
+    "NDVI",
+    "NDWI"
+  ],
+  "n_channels": 8,
+  "split": {
+    "mode": "spatial",
+    "spatial_train_fraction": 0.5,
+    "train": [
+      {
+        "index": 0,
+        "rows": "top"
+      }
+    ],
+    "test": [
+      {
+        "index": 0,
+        "rows": "bottom"
+      }
+    ]
+  },
+  "n_training_pixels_total": 541696,
+  "n_pixels_used_for_fit": 541696,
+  "explained_variance_ratio": [
+    0.8670074779403313,
+    0.11111671832420462,
+    0.018862268558788732,
+    0.001531762528790621,
+    0.0013450363001781048,
+    0.00013673634770662246,
+    2.2468904673894034e-18,
+    0.0
+  ],
+  "cumulative_explained_variance": [
+    0.8670074779403313,
+    0.978124196264536,
+    0.9969864648233246,
+    0.9985182273521153,
+    0.9998632636522934,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "components_for_variance": {
+    "90%": 2,
+    "95%": 2,
+    "99%": 3
+  },
+  "sklearn_check": {
+    "max_abs_diff_explained_variance_ratio": 1.4432899320127035e-15,
+    "n_zero_variance_components": 2,
+    "min_abs_cosine_nonzero_components": 0.9999999999999998,
+    "max_abs_diff_reconstruction_k2": 8.881784197001252e-16
+  },
+  "timing_memory": {
+    "load_and_preprocess": {
+      "seconds": 6.460425003999944,
+      "peak_python_mb": 523.123356,
+      "rss_after_mb": 279.81824
+    },
+    "pca_fit": {
+      "seconds": 0.02619409200008249,
+      "peak_python_mb": 34.734696,
+      "rss_after_mb": 349.773824
+    }
+  },
+  "process_rss_mb_end": 531.177472,
+  "total_seconds": 8.648742459999994,
+  "model_file": "/home/claude/Downsampling/Kartavya/outputs/models/pca/png_nostd/pca_model.npz"
+}

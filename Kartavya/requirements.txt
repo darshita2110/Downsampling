@@ -1,0 +1,10 @@
+# Kartavya experiments (tested with Python 3.13)
+numpy>=2.0
+pandas>=2.2
+matplotlib>=3.9
+pillow>=10.0
+scikit-image>=0.24
+scikit-learn>=1.5        # only for the PCA cross-check in train.py
+psutil>=5.9              # process memory (optional; memory columns are NaN without it)
+xarray>=2024.1           # only for --dataset raw (original Sentinel-2 bands)
+netCDF4>=1.6             # only for --dataset raw

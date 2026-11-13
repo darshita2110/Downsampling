@@ -1,0 +1,31 @@
+2026-11-11 19:01:22 | INFO    | Experiment 'png_nostd' | dataset=png | standardize=False | seed=42
+2026-11-11 19:01:22 | WARNING | RGB/ has 1 PNG files, expected 5. Continuing with the files that exist.
+2026-11-11 19:01:22 | WARNING | False_Color/ has 1 PNG files, expected 5. Continuing with the files that exist.
+2026-11-11 19:01:22 | WARNING | NDVI/ has 1 PNG files, expected 5. Continuing with the files that exist.
+2026-11-11 19:01:22 | WARNING | NDWI/ has 1 PNG files, expected 5. Continuing with the files that exist.
+2026-11-11 19:01:22 | INFO    |   index 0: date 2026-09-17 -> {'RGB': 'raichur_rgb_2026-09-17.png', 'False_Color': 'raichur_false_color_2026-09-17.png', 'NDVI': 'raichur_ndvi_2026-09-17.png', 'NDWI': 'raichur_ndwi_2026-09-17.png'}
+2026-11-11 19:01:22 | INFO    | Split mode: spatial | train [{'index': 0, 'rows': 'top'}] | test [{'index': 0, 'rows': 'bottom'}]
+2026-11-11 19:01:22 | WARNING | Only ONE date is available: fitting on the top half of the image and testing on the bottom half. With all five dates, earlier dates train and later dates test.
+2026-11-11 19:01:28 | INFO    |   loaded 2026-09-17: grid (1058, 1024), valid 99.985%, training pixels 541,696 (rows 0-529)
+2026-11-11 19:01:28 | INFO    |     RGB: RGBA (3024, 2852, 4) uint8 min 0 max 255, map panel (2887, 2793)
+2026-11-11 19:01:28 | INFO    |     False_Color: RGBA (3024, 2852, 4) uint8 min 0 max 255, map panel (2887, 2793)
+2026-11-11 19:01:28 | INFO    |     NDVI: RGBA (2962, 3181, 4) uint8 min 0 max 255, map panel (2825, 2732), decoded range (-0.35546875, 0.80078125), exact colour match 23.2%, no-data 0.015%
+2026-11-11 19:01:28 | INFO    |     NDWI: RGBA (2962, 3181, 4) uint8 min 0 max 255, map panel (2825, 2732), decoded range (-0.69140625, 0.48046875), exact colour match 16.1%, no-data 0.015%
+2026-11-11 19:01:28 | INFO    |     alignment RGB:R(B04) vs False_Color:G(B04): best shift (0, 0), r=1.0000
+2026-11-11 19:01:28 | INFO    |     alignment RGB:G(B03) vs False_Color:B(B03): best shift (0, 0), r=1.0000
+2026-11-11 19:01:28 | INFO    |     alignment NDVI vs pseudo-NDVI(False_Color): best shift (0, 0), r=0.8912
+2026-11-11 19:01:28 | INFO    | Feature matrix: 541,696 pixels x 8 channels; fitting on 541,696 sampled pixels
+2026-11-11 19:01:28 | INFO    | Channels: ['RGB:R(B04)', 'RGB:G(B03)', 'RGB:B(B02)', 'False_Color:R(B08)', 'False_Color:G(B04)', 'False_Color:B(B03)', 'NDVI', 'NDWI']
+2026-11-11 19:01:28 | INFO    | PCA fit in 0.026 s, peak 34.7 MB
+2026-11-11 19:01:28 | INFO    |   PC1:  86.70%  cumulative  86.70%
+2026-11-11 19:01:28 | INFO    |   PC2:  11.11%  cumulative  97.81%
+2026-11-11 19:01:28 | INFO    |   PC3:   1.89%  cumulative  99.70%
+2026-11-11 19:01:28 | INFO    |   PC4:   0.15%  cumulative  99.85%
+2026-11-11 19:01:28 | INFO    |   PC5:   0.13%  cumulative  99.99%
+2026-11-11 19:01:28 | INFO    |   PC6:   0.01%  cumulative 100.00%
+2026-11-11 19:01:28 | INFO    |   PC7:   0.00%  cumulative 100.00%
+2026-11-11 19:01:28 | INFO    |   PC8:   0.00%  cumulative 100.00%
+2026-11-11 19:01:28 | INFO    | Components needed: {'90%': 2, '95%': 2, '99%': 3}
+2026-11-11 19:01:29 | INFO    | scikit-learn cross-check: {'max_abs_diff_explained_variance_ratio': 1.4432899320127035e-15, 'n_zero_variance_components': 2, 'min_abs_cosine_nonzero_components': 0.9999999999999998, 'max_abs_diff_reconstruction_k2': 8.881784197001252e-16}
+2026-11-11 19:01:30 | INFO    | Saved model -> /home/claude/Downsampling/Kartavya/outputs/models/pca/png_nostd/pca_model.npz
+2026-11-11 19:01:30 | INFO    | Training finished in 8.6 s. Outputs in Kartavya/outputs/*/pca/png_nostd/
