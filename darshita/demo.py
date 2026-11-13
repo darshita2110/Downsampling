@@ -3,6 +3,7 @@ DEMO for the teacher - channel selection with all three families, told as a stor
 
 Run from the repo folder:
     python darshita/demo.py raichur          # our real Sentinel-2 satellite data (12 bands)
+    python darshita/demo.py raichur_2026-09-27   # one particular date
     python darshita/demo.py                  # practice image Indian Pines (200 channels)
 
 Each screen opens in a window. Explain it, close the window, and the next one opens.
@@ -55,7 +56,7 @@ raw = to_table(cube)
 p01 = scale_01(raw)
 calib, test = split_pixels(len(p01))
 size_mb = cube.astype(np.int16).nbytes / 1e6           # satellites store 16-bit numbers
-if DATASET == "raichur":
+if DATASET.startswith("raichur"):                     # "raichur" or one date, "raichur_<date>"
     RGB = [names.index("B04"), names.index("B03"), names.index("B02")]
     place = "Raichur, Karnataka (Sentinel-2 satellite, 20 m pixels)"
 else:

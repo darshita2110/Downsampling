@@ -44,7 +44,16 @@ python darshita/step5_clustering_selection.py raichur
 # final comparison and the demo
 python darshita/step6_compare_all.py raichur
 python darshita/demo.py raichur
+
+# the same comparison on each of the 4 dates, then one summary across dates
+python darshita/step6_compare_all.py raichur_2026-09-27
+python darshita/step6_compare_all.py raichur_2026-10-09
+python darshita/step6_compare_all.py raichur_2026-10-12
+python darshita/step6_compare_all.py raichur_2026-10-27
+python darshita/step7_all_dates.py
 ```
+
+`raichur` is the cleanest date (named in `data/darshita/raichur_best.txt`); `raichur_<date>` loads that date's crop.
 
 `step1_load_and_look.py` and `app.py` are the earlier Indian Pines-only introduction and slider app.
 
@@ -60,6 +69,8 @@ python darshita/demo.py raichur
 | `step4_search_selection.py` | SFS, GA, PSO (+ exhaustive on 12 bands); convergence graph |
 | `step5_clustering_selection.py` | WaLuDi, WaLuMI, Affinity Propagation; tree and similarity map |
 | `step6_compare_all.py` | All methods × all K: `final_results_*.csv`, graphs, `final_summary_*.md` |
+| `step7_all_dates.py` | Combines step 6 of every Raichur date: `final_all_dates_raichur.md/.csv/.png` |
+| `step8_classification.py` | Indian Pines only: crop classification (SVM) from the chosen bands; needs `Indian_pines_gt.mat` and scikit-learn |
 | `demo.py` | 6-screen demo for the teacher; terminal prints what to say on each screen |
 
 All pictures and tables go to `darshita/outputs/`; data goes to `data/darshita/` (not on GitHub).
@@ -115,4 +126,58 @@ Best PSNR (dB) of each family at every K:
 - **Search wins.** GA and PSO find B01 B07 B09 B12, the same group as the exhaustive search over all 495 groups, so they reach the true optimum (35.83 dB) on every one of 5 seeds.
 - **Clustering is a close second** and stays within 0.91 dB of search at every K, while choosing in milliseconds.
 - **Ranking is unreliable.** MVPCA comes close at K = 4 (0.81 dB behind), but Variance and Entropy fall below uniform spacing because they send near-copies (redundancy 0.59–0.61). At K = 8, ranking is 4.15 dB behind search.
-- **The best PSNR doesn't always give the best-looking colours.** PSNR averages all 12 bands, and the search group contains none of the true-colour bands (B02, B03, B04), so its true-colour rebuild looks less faithful than MVPCA's (demo screen 4). One date and one 512 × 512 crop were tested; times depend on the machine.
+- **The best PSNR doesn't always give the best-looking colours.** PSNR averages all 12 bands, and the search group contains none of the true-colour bands (B02, B03, B04), so its true-colour rebuild looks less faithful than MVPCA's (demo screen 4). Times depend on the machine.
+
+## Results on all 4 Raichur dates (K = 4 of 12 bands)
+
+From `python darshita/step7_all_dates.py`. PSNR (dB), sorted by the mean over the dates:
+
+| Method | Family | 2026-09-27 | 2026-10-09 | 2026-10-12 | 2026-10-27 | Mean | Std |
+|---|---|---|---|---|---|---|---|
+| Exhaustive | Best possible | 36.33 | 34.75 | 35.83 | 35.85 | 35.69 | 0.67 |
+| GA | Search | 36.33 | 34.75 | 35.83 | 35.85 | 35.69 | 0.67 |
+| PSO | Search | 36.33 | 34.75 | 35.83 | 35.50 | 35.60 | 0.66 |
+| SFS | Search | 35.85 | 34.70 | 35.12 | 35.43 | 35.28 | 0.48 |
+| AffinityProp | Clustering | 35.06 | 34.45 | 34.92 | 35.50 | 34.98 | 0.44 |
+| WaLuMI | Clustering | 36.16 | 34.61 | 33.12 | 35.19 | 34.77 | 1.27 |
+| WaLuDi | Clustering | 34.31 | 34.61 | 34.64 | 35.50 | 34.76 | 0.51 |
+| MVPCA | Ranking | 31.80 | 34.75 | 35.02 | 31.08 | 33.16 | 2.01 |
+| Uniform | Baseline | 32.90 | 32.45 | 32.57 | 33.30 | 32.81 | 0.38 |
+| Variance | Ranking | 33.23 | 30.81 | 30.04 | 30.82 | 31.22 | 1.39 |
+| Entropy | Ranking | 25.40 | 24.50 | 31.91 | 26.52 | 27.08 | 3.32 |
+
+**Findings**
+
+- **The order holds on every date.** Search is best or tied best in all 24 cases (4 dates × 6 values of K), clustering in 7 and ranking in only 1.
+- **GA reaches the true best on all 4 dates.** PSO does on 3 of 4: on 2026-10-27 it settles 0.35 dB lower. SFS is close but never reaches it.
+- **Clustering is the steady runner-up**, 0.14–0.91 dB behind search at K = 4. Ranking depends on the day: MVPCA ties search on 2026-10-09 but is 4.77 dB behind on 2026-10-27, below the uniform baseline. Entropy is last on 3 of 4 dates.
+- **Caveat:** each date's 512 × 512 window was chosen separately as its cleanest area (`data_2_check_s2.py`). The windows overlap but are shifted by up to 224 columns and 64 rows (about 4.5 km), so the dates also differ slightly in area, not only in time.
+
+## Classification test (Indian Pines)
+
+Can a computer still tell the 16 crop types apart using only the K channels that were sent?
+`python darshita/step8_classification.py` (needs `data/darshita/Indian_pines_gt.mat` and
+`pip install scikit-learn`) uses the same band choices as step 6. It trains an SVM (RBF kernel,
+standardised channels, C = 100 for every method) on 10% of the labelled pixels and tests on the
+other 90%, using one stratified split with seed 0.
+
+| Method | Family | OA (%) | Kappa | OA behind all 200 bands (points) |
+|---|---|---|---|---|
+| All 200 bands | Reference | 81.98 | 0.794 | 0.00 |
+| WaLuDi | Clustering | 76.02 | 0.725 | 5.96 |
+| WaLuMI | Clustering | 75.60 | 0.721 | 6.38 |
+| PSO | Search | 72.26 | 0.681 | 9.72 |
+| Uniform | Baseline | 69.38 | 0.649 | 12.61 |
+| GA | Search | 68.10 | 0.636 | 13.89 |
+| AffinityProp | Clustering | 66.48 | 0.615 | 15.50 |
+| SFS | Search | 63.08 | 0.577 | 18.91 |
+| Variance | Ranking | 58.93 | 0.517 | 23.06 |
+| MVPCA | Ranking | 58.17 | 0.503 | 23.82 |
+| Entropy | Ranking | 56.34 | 0.490 | 25.65 |
+
+**Findings**
+
+- **Clustering gives the best accuracy.** With 10 bands (5% of the data), WaLuDi reaches 76.0% OA, 6.0 points below all 200 bands (82.0%). Clustering is best at every K from 5 to 25.
+- **Rebuilding and classifying reward different bands.** Search wins on PSNR (rebuilding the image), but for telling crops apart, clustering's one-band-per-group spread works better.
+- **Ranking is worst at small K** (56–59% OA at K = 10), because its bands are near-copies of each other.
+- **Uniform spacing is a strong baseline when many bands are sent.** At K = 25 it reaches 77.9%, ahead of every selected set, and accuracy doesn't always rise with K. This is one split with a fixed SVM setting, so gaps of a few points shouldn't be over-read.

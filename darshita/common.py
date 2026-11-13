@@ -33,16 +33,24 @@ def load_dataset(name):
     """
     name = "indian_pines" -> practice image, 200 channels (aircraft, real)
     name = "raichur"      -> our real Sentinel-2 satellite data, 12 bands (run data steps 1 and 2 first)
+    name = "raichur_2026-09-27" (or any downloaded date) -> the clean crop of that one date
     Returns (cube, channel_names).
     """
     if name == "indian_pines":
         cube = load_image()
         return cube, [f"ch {i}" for i in range(cube.shape[2])]
-    if name == "raichur":
-        best = os.path.join("data/darshita", "raichur_best.txt")
-        if not os.path.exists(best):
-            raise SystemExit("No Raichur data yet. Run data_1_download_s2.py, then data_2_check_s2.py")
-        crop = open(best).read().strip()
+    if name == "raichur" or name.startswith("raichur_"):
+        if name == "raichur":                      # the cleanest date, chosen by data_2_check_s2.py
+            best = os.path.join("data/darshita", "raichur_best.txt")
+            if not os.path.exists(best):
+                raise SystemExit("No Raichur data yet. Run data_1_download_s2.py, then data_2_check_s2.py")
+            crop = open(best).read().strip()
+        else:                                      # one date, e.g. "raichur_2026-09-27"
+            crop = f"{name}_crop.npy"
+            if not os.path.exists(os.path.join("data/darshita", crop)):
+                dates = sorted(f[len("raichur_"):-len("_crop.npy")] for f in os.listdir("data/darshita")
+                               if f.startswith("raichur_") and f.endswith("_crop.npy"))
+                raise SystemExit(f"No data/darshita/{crop}. Dates available: {', '.join(dates)}")
         cube = np.load(os.path.join("data/darshita", crop)).astype(np.float32)
         info = json.load(open("data/darshita/raichur_bands.json"))
         print(f"Raichur data: {crop}")
