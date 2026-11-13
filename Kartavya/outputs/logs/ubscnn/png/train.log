@@ -1,0 +1,62 @@
+2026-11-13 10:48:14 | INFO    | Experiment 'png' | {'method': 'BS-Net-Conv (Cai et al., IEEE TGRS 2020, arXiv:1904.08269) used as UBS-CNN', 'patch_size': 16, 'patch_stride': 16, 'l1_lambda': 0.01, 'learning_rate': 0.0001, 'batch_size': 32, 'epochs': 100, 'seeds': [42, 43, 44], 'optimizer': 'Adam', 'val_patch_fraction': 0.1, 'torch': '2.15.0+cu132', 'threads': 2}
+2026-11-13 10:48:14 | WARNING | RGB/ has 1 PNG files, expected 5. Continuing with the files that exist.
+2026-11-13 10:48:14 | WARNING | False_Color/ has 1 PNG files, expected 5. Continuing with the files that exist.
+2026-11-13 10:48:14 | WARNING | NDVI/ has 1 PNG files, expected 5. Continuing with the files that exist.
+2026-11-13 10:48:14 | WARNING | NDWI/ has 1 PNG files, expected 5. Continuing with the files that exist.
+2026-11-13 10:48:14 | INFO    | Split mode: spatial | train [{'index': 0, 'rows': 'top'}] | test [{'index': 0, 'rows': 'bottom'}]
+2026-11-13 10:48:14 | WARNING | Only ONE date is available: training on the top half of the image, testing on the bottom half.
+2026-11-13 10:48:22 | INFO    |   loaded 2026-09-17: grid (1058, 1024), valid 99.985%, pixels used 541,696 (rows 0-529)
+2026-11-13 10:48:22 | INFO    |     RGB: RGBA (3024, 2852, 4) uint8 min 0 max 255, map panel (2887, 2793)
+2026-11-13 10:48:22 | INFO    |     False_Color: RGBA (3024, 2852, 4) uint8 min 0 max 255, map panel (2887, 2793)
+2026-11-13 10:48:22 | INFO    |     NDVI: RGBA (2962, 3181, 4) uint8 min 0 max 255, map panel (2825, 2732), decoded range (-0.35546875, 0.80078125), exact colour match 23.2%, no-data 0.015%
+2026-11-13 10:48:22 | INFO    |     NDWI: RGBA (2962, 3181, 4) uint8 min 0 max 255, map panel (2825, 2732), decoded range (-0.69140625, 0.48046875), exact colour match 16.1%, no-data 0.015%
+2026-11-13 10:48:22 | INFO    |     alignment RGB:R(B04) vs False_Color:G(B04): best shift (0, 0), r=1.0000
+2026-11-13 10:48:22 | INFO    |     alignment RGB:G(B03) vs False_Color:B(B03): best shift (0, 0), r=1.0000
+2026-11-13 10:48:22 | INFO    |     alignment NDVI vs pseudo-NDVI(False_Color): best shift (0, 0), r=0.8912
+2026-11-13 10:48:27 | INFO    |   2026-09-17: rows 0-529 -> 2,112 patches of 16x16x8 (stride 16)
+2026-11-13 10:48:27 | INFO    | Patches: 2,112 -> train 1,901 / held-out 211; BSNetConv has 209,888 trainable parameters
+2026-11-13 10:48:38 | INFO    |   seed 42 epoch   1: loss 1.2295 (MSE 0.03517 + L1 1.1943), val MSE 0.02263, 4.6 s | weights [0.4429999887943268, 0.4320000112056732, 0.4180000126361847, 0.40700000524520874, 0.35100001096725464, 0.4690000116825104, 0.41999998688697815, 0.5099999904632568]
+2026-11-13 10:49:14 | INFO    |   seed 42 epoch  10: loss 0.0245 (MSE 0.00541 + L1 0.0191), val MSE 0.00620, 3.9 s | weights [0.007000000216066837, 0.004999999888241291, 0.004000000189989805, 0.006000000052154064, 0.004000000189989805, 0.007000000216066837, 0.006000000052154064, 0.008999999612569809]
+2026-11-13 10:49:51 | INFO    |   seed 42 epoch  20: loss 0.0078 (MSE 0.00439 + L1 0.0035), val MSE 0.02172, 3.5 s | weights [0.0020000000949949026, 0.0010000000474974513, 0.0010000000474974513, 0.0010000000474974513, 0.0010000000474974513, 0.0020000000949949026, 0.0010000000474974513, 0.0020000000949949026]
+2026-11-13 10:50:29 | INFO    |   seed 42 epoch  30: loss 0.0051 (MSE 0.00357 + L1 0.0015), val MSE 0.02073, 3.7 s | weights [0.0010000000474974513, 0.0, 0.0, 0.0010000000474974513, 0.0, 0.0010000000474974513, 0.0, 0.0010000000474974513]
+2026-11-13 10:51:06 | INFO    |   seed 42 epoch  40: loss 0.0042 (MSE 0.00323 + L1 0.0010), val MSE 0.04099, 3.7 s | weights [0.0010000000474974513, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+2026-11-13 10:51:45 | INFO    |   seed 42 epoch  50: loss 0.0036 (MSE 0.00288 + L1 0.0007), val MSE 0.04640, 4.0 s | weights [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+2026-11-13 10:52:26 | INFO    |   seed 42 epoch  60: loss 0.0035 (MSE 0.00298 + L1 0.0006), val MSE 0.07757, 4.4 s | weights [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+2026-11-13 10:53:05 | INFO    |   seed 42 epoch  70: loss 0.0030 (MSE 0.00250 + L1 0.0005), val MSE 0.02523, 3.7 s | weights [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+2026-11-13 10:53:42 | INFO    |   seed 42 epoch  80: loss 0.0027 (MSE 0.00236 + L1 0.0004), val MSE 0.02191, 3.7 s | weights [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+2026-11-13 10:54:17 | INFO    |   seed 42 epoch  90: loss 0.0025 (MSE 0.00215 + L1 0.0003), val MSE 0.05136, 3.4 s | weights [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+2026-11-13 10:54:53 | INFO    |   seed 42 epoch 100: loss 0.0025 (MSE 0.00220 + L1 0.0003), val MSE 0.02229, 3.6 s | weights [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+2026-11-13 10:54:53 | INFO    | seed 42: trained in 387 s (process peak RSS 1321 MB); ranking RGB:R(B04) > False_Color:B(B03) > NDWI > False_Color:R(B08) > NDVI > RGB:B(B02) > False_Color:G(B04) > RGB:G(B03)
+2026-11-13 10:54:57 | INFO    |   seed 43 epoch   1: loss 1.2390 (MSE 0.03679 + L1 1.2022), val MSE 0.02337, 3.5 s | weights [0.39800000190734863, 0.42399999499320984, 0.4399999976158142, 0.460999995470047, 0.48100000619888306, 0.42500001192092896, 0.4269999861717224, 0.4189999997615814]
+2026-11-13 10:55:30 | INFO    |   seed 43 epoch  10: loss 0.0252 (MSE 0.00509 + L1 0.0202), val MSE 0.00609, 3.5 s | weights [0.004999999888241291, 0.006000000052154064, 0.006000000052154064, 0.00800000037997961, 0.009999999776482582, 0.006000000052154064, 0.006000000052154064, 0.004999999888241291]
+2026-11-13 10:56:05 | INFO    |   seed 43 epoch  20: loss 0.0079 (MSE 0.00427 + L1 0.0036), val MSE 0.02008, 3.6 s | weights [0.0010000000474974513, 0.0010000000474974513, 0.0010000000474974513, 0.0020000000949949026, 0.0020000000949949026, 0.0010000000474974513, 0.0010000000474974513, 0.0010000000474974513]
+2026-11-13 10:56:41 | INFO    |   seed 43 epoch  30: loss 0.0050 (MSE 0.00339 + L1 0.0016), val MSE 0.02710, 3.4 s | weights [0.0, 0.0, 0.0010000000474974513, 0.0010000000474974513, 0.0010000000474974513, 0.0010000000474974513, 0.0010000000474974513, 0.0010000000474974513]
+2026-11-13 10:57:17 | INFO    |   seed 43 epoch  40: loss 0.0039 (MSE 0.00293 + L1 0.0010), val MSE 0.03126, 3.9 s | weights [0.0, 0.0, 0.0, 0.0, 0.0010000000474974513, 0.0, 0.0, 0.0]
+2026-11-13 10:57:54 | INFO    |   seed 43 epoch  50: loss 0.0035 (MSE 0.00282 + L1 0.0007), val MSE 0.03350, 3.7 s | weights [0.0, 0.0, 0.0, 0.0, 0.0010000000474974513, 0.0, 0.0, 0.0]
+2026-11-13 10:58:32 | INFO    |   seed 43 epoch  60: loss 0.0030 (MSE 0.00244 + L1 0.0006), val MSE 0.03952, 3.9 s | weights [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+2026-11-13 10:59:10 | INFO    |   seed 43 epoch  70: loss 0.0031 (MSE 0.00262 + L1 0.0005), val MSE 0.06479, 3.7 s | weights [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+2026-11-13 10:59:48 | INFO    |   seed 43 epoch  80: loss 0.0024 (MSE 0.00201 + L1 0.0004), val MSE 0.15677, 3.6 s | weights [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+2026-11-13 11:00:26 | INFO    |   seed 43 epoch  90: loss 0.0023 (MSE 0.00201 + L1 0.0003), val MSE 0.12984, 3.6 s | weights [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+2026-11-13 11:01:03 | INFO    |   seed 43 epoch 100: loss 0.0023 (MSE 0.00203 + L1 0.0003), val MSE 0.10973, 3.5 s | weights [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+2026-11-13 11:01:03 | INFO    | seed 43: trained in 370 s (process peak RSS 1322 MB); ranking False_Color:G(B04) > False_Color:R(B08) > NDWI > False_Color:B(B03) > RGB:B(B02) > NDVI > RGB:R(B04) > RGB:G(B03)
+2026-11-13 11:01:06 | INFO    |   seed 44 epoch   1: loss 1.2674 (MSE 0.03825 + L1 1.2291), val MSE 0.02486, 3.5 s | weights [0.4339999854564667, 0.4569999873638153, 0.4569999873638153, 0.4320000112056732, 0.4729999899864197, 0.44699999690055847, 0.4000000059604645, 0.460999995470047]
+2026-11-13 11:01:39 | INFO    |   seed 44 epoch  10: loss 0.0262 (MSE 0.00512 + L1 0.0211), val MSE 0.00403, 3.8 s | weights [0.00800000037997961, 0.006000000052154064, 0.007000000216066837, 0.008999999612569809, 0.007000000216066837, 0.004999999888241291, 0.004999999888241291, 0.007000000216066837]
+2026-11-13 11:02:16 | INFO    |   seed 44 epoch  20: loss 0.0081 (MSE 0.00451 + L1 0.0036), val MSE 0.01716, 3.6 s | weights [0.0020000000949949026, 0.0010000000474974513, 0.0010000000474974513, 0.0020000000949949026, 0.0010000000474974513, 0.0010000000474974513, 0.0010000000474974513, 0.0010000000474974513]
+2026-11-13 11:02:51 | INFO    |   seed 44 epoch  30: loss 0.0045 (MSE 0.00298 + L1 0.0015), val MSE 0.02033, 3.4 s | weights [0.0010000000474974513, 0.0010000000474974513, 0.0010000000474974513, 0.0010000000474974513, 0.0010000000474974513, 0.0, 0.0, 0.0010000000474974513]
+2026-11-13 11:03:28 | INFO    |   seed 44 epoch  40: loss 0.0041 (MSE 0.00312 + L1 0.0010), val MSE 0.02580, 3.5 s | weights [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+2026-11-13 11:04:04 | INFO    |   seed 44 epoch  50: loss 0.0033 (MSE 0.00266 + L1 0.0007), val MSE 0.03321, 3.8 s | weights [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+2026-11-13 11:04:40 | INFO    |   seed 44 epoch  60: loss 0.0032 (MSE 0.00269 + L1 0.0005), val MSE 0.02584, 3.8 s | weights [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+2026-11-13 11:05:17 | INFO    |   seed 44 epoch  70: loss 0.0026 (MSE 0.00211 + L1 0.0004), val MSE 0.13636, 3.6 s | weights [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+2026-11-13 11:05:54 | INFO    |   seed 44 epoch  80: loss 0.0036 (MSE 0.00322 + L1 0.0004), val MSE 0.01548, 3.6 s | weights [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+2026-11-13 11:06:30 | INFO    |   seed 44 epoch  90: loss 0.0022 (MSE 0.00190 + L1 0.0003), val MSE 0.13894, 3.6 s | weights [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+2026-11-13 11:07:08 | INFO    |   seed 44 epoch 100: loss 0.0020 (MSE 0.00174 + L1 0.0003), val MSE 0.16604, 3.8 s | weights [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+2026-11-13 11:07:08 | INFO    | seed 44: trained in 365 s (process peak RSS 1322 MB); ranking RGB:R(B04) > False_Color:R(B08) > RGB:B(B02) > RGB:G(B03) > NDWI > False_Color:G(B04) > NDVI > False_Color:B(B03)
+2026-11-13 11:07:08 | INFO    | Consensus channel ranking (mean weight over 3 seeds): RGB:R(B04) 0.000, False_Color:G(B04) 0.000, False_Color:R(B08) 0.000, NDWI 0.000, False_Color:B(B03) 0.000, RGB:B(B02) 0.000, NDVI 0.000, RGB:G(B03) 0.000
+2026-11-13 11:07:08 | INFO    | K=1: select ['RGB:R(B04)'] | objective 0.79721 (optimum 0.81424, rank 4/8) | same top-1 in 2/3 seeds
+2026-11-13 11:07:09 | INFO    | K=2: select ['RGB:R(B04)', 'False_Color:G(B04)'] | objective 0.69721 (optimum 1.37072, rank 28/28) | same top-2 in 0/3 seeds
+2026-11-13 11:07:13 | INFO    | K=3: select ['RGB:R(B04)', 'False_Color:R(B08)', 'False_Color:G(B04)'] | objective 1.28080 (optimum 1.40792, rank 46/56) | same top-3 in 0/3 seeds
+2026-11-13 11:07:17 | INFO    | K=4: select ['RGB:R(B04)', 'False_Color:R(B08)', 'False_Color:G(B04)', 'NDWI'] | objective 1.38651 (optimum 1.43186, rank 31/70) | same top-4 in 0/3 seeds
+2026-11-13 11:07:20 | INFO    | K=5: select ['RGB:R(B04)', 'False_Color:R(B08)', 'False_Color:G(B04)', 'False_Color:B(B03)', 'NDWI'] | objective 1.42096 (optimum 1.43641, rank 15/56) | same top-5 in 0/3 seeds
+2026-11-13 11:07:22 | INFO    | K=6: select ['RGB:R(B04)', 'RGB:B(B02)', 'False_Color:R(B08)', 'False_Color:G(B04)', 'False_Color:B(B03)', 'NDWI'] | objective 1.42235 (optimum 1.43758, rank 11/28) | same top-6 in 0/3 seeds
+2026-11-13 11:07:23 | INFO    | K=7: select ['RGB:R(B04)', 'RGB:B(B02)', 'False_Color:R(B08)', 'False_Color:G(B04)', 'False_Color:B(B03)', 'NDVI', 'NDWI'] | objective 1.43380 (optimum 1.43380, rank 1/8) | same top-7 in 2/3 seeds
+2026-11-13 11:07:24 | INFO    | Training finished in 1151 s. Models: /home/claude/Downsampling/Kartavya/outputs/models/ubscnn/png

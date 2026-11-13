@@ -423,3 +423,55 @@ def plot_sa_temperature(histories, path, title, window=20):
     fig.suptitle(title, x=0.01, ha="left", fontsize=12, fontweight="bold", color=TEXT)
     fig.tight_layout()
     return _save(fig, path)
+
+
+def plot_training_curves(hist, path, title):
+    """
+    Neural-network training history, small multiples (one metric per panel, one line per seed).
+    hist: DataFrame with seed, epoch, train_loss, train_mse, train_l1_term, val_mse.
+    """
+    panels = [("train_loss", "Total loss (MSE + L1)", False), ("train_mse", "Training MSE (log)", True),
+              ("val_mse", "Held-out patch MSE (log)", True), ("train_l1_term", "L1 term: λ·Σ|w| per batch", False)]
+    fig, axes = plt.subplots(1, 4, figsize=(15, 3.6))
+    for ax, (col, label, logy) in zip(axes, panels):
+        for i, s in enumerate(dict.fromkeys(hist["seed"])):
+            t = hist[hist.seed == s]
+            ax.plot(t["epoch"], t[col], color=SERIES[i % len(SERIES)], lw=1.6, label=f"seed {s}")
+        if logy:
+            ax.set_yscale("log")
+        ax.set_title(label, loc="left")
+        ax.set_xlabel("Epoch")
+    axes[0].legend()
+    fig.suptitle(title, x=0.01, ha="left", fontsize=12, fontweight="bold", color=TEXT)
+    fig.tight_layout()
+    return _save(fig, path)
+
+
+def plot_weight_evolution(w_hist, names, path, title):
+    """Average attention weight of every channel after each epoch (one line per channel, fixed palette)."""
+    fig, ax = plt.subplots(figsize=(8.5, 4.3))
+    ep = np.arange(1, len(w_hist) + 1)
+    for j, n in enumerate(names):
+        ax.plot(ep, w_hist[:, j], color=SERIES[j % len(SERIES)], lw=1.6, label=n)
+    ax.set_xlabel("Epoch")
+    ax.set_ylabel("Mean band weight w (0-1)")
+    ax.set_title(title, loc="left")
+    ax.legend(ncol=2, fontsize=8)
+    return _save(fig, path)
+
+
+def plot_seed_weights(final_w, names, path, title):
+    """Grouped bars: channels on the x-axis, one bar per seed, final mean weight."""
+    seeds = list(final_w)
+    fig, ax = plt.subplots(figsize=(9.5, 4.0))
+    xs = np.arange(len(names))
+    width = 0.8 / len(seeds)
+    for i, s in enumerate(seeds):
+        ax.bar(xs + (i - (len(seeds) - 1) / 2) * width, final_w[s], width=width * 0.92, color=SERIES[i],
+               label=f"seed {s}", zorder=2)
+    ax.set_xticks(xs, names, rotation=35, ha="right")
+    ax.set_ylabel("Mean band weight w")
+    ax.set_title(title, loc="left")
+    ax.legend()
+    fig.tight_layout()
+    return _save(fig, path)

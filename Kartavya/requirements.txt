@@ -8,3 +8,4 @@ scikit-learn>=1.5        # only for the PCA cross-check in train.py
 psutil>=5.9              # process memory (optional; memory columns are NaN without it)
 xarray>=2024.1           # only for --dataset raw (original Sentinel-2 bands)
 netCDF4>=1.6             # only for --dataset raw
+torch>=2.0            # UBS-CNN (BS-Net-Conv) only

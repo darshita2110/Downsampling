@@ -106,3 +106,23 @@ def spatial_split(valid, train_fraction=0.5):
     train[cut:] = False
     test[:cut] = False
     return train, test, cut
+
+
+def extract_patches(img, valid, size, stride, row_range=None):
+    """
+    Cut an (H, W, C) image into square patches for a CNN.
+    Only patches whose pixels are ALL valid are kept (no-data pixels would teach the network nonsense).
+    row_range: (start, stop) rows a patch must lie within entirely (e.g. the training half only).
+    Returns (patches as float32 (N, C, size, size), top-left corners (N, 2)).
+    """
+    h, w, _ = img.shape
+    r0, r1 = row_range if row_range else (0, h)
+    out, corners = [], []
+    for r in range(r0, r1 - size + 1, stride):
+        for c in range(0, w - size + 1, stride):
+            if valid[r:r + size, c:c + size].all():
+                out.append(img[r:r + size, c:c + size].transpose(2, 0, 1))
+                corners.append((r, c))
+    if not out:
+        return np.zeros((0, img.shape[2], size, size), np.float32), np.zeros((0, 2), int)
+    return np.stack(out).astype(np.float32), np.array(corners)

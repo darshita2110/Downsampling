@@ -28,7 +28,8 @@ Downsampling/                         (repository root)
     │       ├── ga/                   config.py, ga.py (NumPy genetic algorithm), train.py, test.py
     │       ├── pso/                  config.py, pso.py (NumPy particle swarm), train.py, test.py
     │       ├── aco/                  config.py, aco.py (NumPy ant colony), train.py, test.py
-    │       └── sa/                   config.py, sa.py (NumPy simulated annealing), train.py, test.py
+    │       ├── sa/                   config.py, sa.py (NumPy simulated annealing), train.py, test.py
+    │       └── ubscnn/               config.py, model.py (PyTorch BS-Net-Conv), train.py, test.py
     ├── common/                       shared by all future algorithms (ICA, LDA, GA, PSO ...)
     │   ├── data_loader.py            sorted loading, index mapping, figure-panel cropping,
     │   │                             colour-map inversion, alignment check, raw NetCDF loading
@@ -37,7 +38,7 @@ Downsampling/                         (repository root)
     │   ├── evaluation.py             dimensionality reduction %, storage sizes
     │   ├── visualization.py          all graphs
     │   └── utils.py                  logging, timing + memory measurement, JSON
-    ├── documentation/            PCA.md, ICA.md, LDA.md, GA.md, PSO.md, ACO.md, SA.md: each method from the basics, decisions, results
+    ├── documentation/            PCA.md, ICA.md, LDA.md, GA.md, PSO.md, ACO.md, SA.md, UBSCNN.md: each method from the basics, decisions, results
     ├── outputs/                      everything the scripts produce (see section 4)
     └── requirements.txt
 ```
@@ -148,12 +149,20 @@ python Kartavya/algorithms/combinatorial/sa/train.py   # SA on TRAINING pixels, 
 python Kartavya/algorithms/combinatorial/sa/test.py    # evaluation only: applies the saved subsets (~15 s)
 ```
 
+UBS-CNN is implemented as BS-Net-Conv (Cai et al., IEEE TGRS 2020), see `documentation/UBSCNN.md`.
+It needs PyTorch (`pip install torch`, CPU is enough):
+
+```bash
+python Kartavya/algorithms/combinatorial/ubscnn/train.py   # trains 3 networks x 100 epochs (~20 min on 2 CPU cores)
+python Kartavya/algorithms/combinatorial/ubscnn/test.py    # no training: applies the saved selection to the test region
+```
+
 Use the same options for `train.py` and `test.py`. A run of both takes about 25 seconds at the
 default 1024-pixel width. Settings (split, K values, resolution) are in `config.py`.
 
 ## 4. Where results go
 
-Each experiment (`png`, `png_nostd`, `raw`) writes to `Kartavya/outputs/<category>/<pca|ica|lda|ga|pso|aco|sa>/<experiment>/`:
+Each experiment (`png`, `png_nostd`, `raw`) writes to `Kartavya/outputs/<category>/<pca|ica|lda|ga|pso|aco|sa|ubscnn>/<experiment>/`:
 
 | Folder | Contents |
 |---|---|

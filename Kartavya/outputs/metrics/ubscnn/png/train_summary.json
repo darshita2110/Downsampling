@@ -1,0 +1,205 @@
+{
+  "experiment": "png",
+  "hyperparameters": {
+    "method": "BS-Net-Conv (Cai et al., IEEE TGRS 2020, arXiv:1904.08269) used as UBS-CNN",
+    "patch_size": 16,
+    "patch_stride": 16,
+    "l1_lambda": 0.01,
+    "learning_rate": 0.0001,
+    "batch_size": 32,
+    "epochs": 100,
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "optimizer": "Adam",
+    "val_patch_fraction": 0.1,
+    "torch": "2.15.0+cu132",
+    "threads": 2
+  },
+  "channels": [
+    "RGB:R(B04)",
+    "RGB:G(B03)",
+    "RGB:B(B02)",
+    "False_Color:R(B08)",
+    "False_Color:G(B04)",
+    "False_Color:B(B03)",
+    "NDVI",
+    "NDWI"
+  ],
+  "split": {
+    "mode": "spatial",
+    "spatial_train_fraction": 0.5,
+    "train": [
+      {
+        "index": 0,
+        "rows": "top"
+      }
+    ],
+    "test": [
+      {
+        "index": 0,
+        "rows": "bottom"
+      }
+    ]
+  },
+  "n_patches": 2112,
+  "n_train_patches": 1901,
+  "n_heldout_patches": 211,
+  "n_parameters": 209888,
+  "seeds": [
+    {
+      "seed": 42,
+      "train_seconds": 386.53577332400005,
+      "train_peak_python_mb": 81.968881,
+      "rss_after_mb": 1385.320448,
+      "process_peak_rss_mb": 1321.13671875,
+      "final_train_mse": 0.0021977796637595204,
+      "final_val_mse": 0.02229355183822849,
+      "weights_file_bytes": 859297,
+      "ranking": "RGB:R(B04) > False_Color:B(B03) > NDWI > False_Color:R(B08) > NDVI > RGB:B(B02) > False_Color:G(B04) > RGB:G(B03)",
+      "w_RGB:R(B04)": 0.00020606047473847866,
+      "w_RGB:G(B03)": 4.0274149796459824e-05,
+      "w_RGB:B(B02)": 5.869045708095655e-05,
+      "w_False_Color:R(B08)": 0.00011709819955285639,
+      "w_False_Color:G(B04)": 4.409233952173963e-05,
+      "w_False_Color:B(B03)": 0.000147949336678721,
+      "w_NDVI": 6.695916090393439e-05,
+      "w_NDWI": 0.00012620438064914197
+    },
+    {
+      "seed": 43,
+      "train_seconds": 369.56708915600007,
+      "train_peak_python_mb": 0.611857,
+      "rss_after_mb": 1385.82016,
+      "process_peak_rss_mb": 1321.51171875,
+      "final_train_mse": 0.002032652213159254,
+      "final_val_mse": 0.1097281397236467,
+      "weights_file_bytes": 859297,
+      "ranking": "False_Color:G(B04) > False_Color:R(B08) > NDWI > False_Color:B(B03) > RGB:B(B02) > NDVI > RGB:R(B04) > RGB:G(B03)",
+      "w_RGB:R(B04)": 5.665203570970334e-05,
+      "w_RGB:G(B03)": 4.219340917188674e-05,
+      "w_RGB:B(B02)": 7.998138607945293e-05,
+      "w_False_Color:R(B08)": 0.00012842284922953695,
+      "w_False_Color:G(B04)": 0.00025094024022109807,
+      "w_False_Color:B(B03)": 8.421689562965184e-05,
+      "w_NDVI": 6.975204451009631e-05,
+      "w_NDWI": 9.497209975961596e-05
+    },
+    {
+      "seed": 44,
+      "train_seconds": 364.701337857,
+      "train_peak_python_mb": 0.293293,
+      "rss_after_mb": 1385.988096,
+      "process_peak_rss_mb": 1321.76171875,
+      "final_train_mse": 0.0017378381946739757,
+      "final_val_mse": 0.1660399956725785,
+      "weights_file_bytes": 859297,
+      "ranking": "RGB:R(B04) > False_Color:R(B08) > RGB:B(B02) > RGB:G(B03) > NDWI > False_Color:G(B04) > NDVI > False_Color:B(B03)",
+      "w_RGB:R(B04)": 0.00017375450988765806,
+      "w_RGB:G(B03)": 9.789394971448928e-05,
+      "w_RGB:B(B02)": 0.00011283769708825275,
+      "w_False_Color:R(B08)": 0.00013005426444578916,
+      "w_False_Color:G(B04)": 9.019693970913067e-05,
+      "w_False_Color:B(B03)": 4.661210914491676e-05,
+      "w_NDVI": 5.295440132613294e-05,
+      "w_NDWI": 9.078173752641305e-05
+    }
+  ],
+  "consensus_mean_weight": {
+    "RGB:R(B04)": 0.00014548900071531534,
+    "RGB:G(B03)": 6.012049925629981e-05,
+    "RGB:B(B02)": 8.383651584153995e-05,
+    "False_Color:R(B08)": 0.00012519177107606083,
+    "False_Color:G(B04)": 0.0001284098398173228,
+    "False_Color:B(B03)": 9.29261150304228e-05,
+    "NDVI": 6.322186527540907e-05,
+    "NDWI": 0.00010398607264505699
+  },
+  "consensus_ranking": [
+    "RGB:R(B04)",
+    "False_Color:G(B04)",
+    "False_Color:R(B08)",
+    "NDWI",
+    "False_Color:B(B03)",
+    "RGB:B(B02)",
+    "NDVI",
+    "RGB:G(B03)"
+  ],
+  "top3_per_seed": {
+    "42": [
+      "False_Color:B(B03)",
+      "NDWI",
+      "RGB:R(B04)"
+    ],
+    "43": [
+      "False_Color:G(B04)",
+      "False_Color:R(B08)",
+      "NDWI"
+    ],
+    "44": [
+      "False_Color:R(B08)",
+      "RGB:B(B02)",
+      "RGB:R(B04)"
+    ]
+  },
+  "selected": {
+    "1": [
+      "RGB:R(B04)"
+    ],
+    "2": [
+      "RGB:R(B04)",
+      "False_Color:G(B04)"
+    ],
+    "3": [
+      "RGB:R(B04)",
+      "False_Color:R(B08)",
+      "False_Color:G(B04)"
+    ],
+    "4": [
+      "RGB:R(B04)",
+      "False_Color:R(B08)",
+      "False_Color:G(B04)",
+      "NDWI"
+    ],
+    "5": [
+      "RGB:R(B04)",
+      "False_Color:R(B08)",
+      "False_Color:G(B04)",
+      "False_Color:B(B03)",
+      "NDWI"
+    ],
+    "6": [
+      "RGB:R(B04)",
+      "RGB:B(B02)",
+      "False_Color:R(B08)",
+      "False_Color:G(B04)",
+      "False_Color:B(B03)",
+      "NDWI"
+    ],
+    "7": [
+      "RGB:R(B04)",
+      "RGB:B(B02)",
+      "False_Color:R(B08)",
+      "False_Color:G(B04)",
+      "False_Color:B(B03)",
+      "NDVI",
+      "NDWI"
+    ]
+  },
+  "timing_memory": {
+    "load_pixels": {
+      "seconds": 8.038723430000005,
+      "peak_python_mb": 523.123666,
+      "rss_after_mb": 859.213824
+    },
+    "make_patches": {
+      "seconds": 4.604472184999963,
+      "peak_python_mb": 523.112427,
+      "rss_after_mb": 841.27744
+    }
+  },
+  "process_rss_mb_end": 1398.5792,
+  "total_seconds": 1150.534558969
+}

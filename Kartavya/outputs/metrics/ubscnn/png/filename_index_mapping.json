@@ -1,0 +1,46 @@
+{
+  "dataset_dir": "/home/claude/Downsampling/data/processed/sentinel2",
+  "sort_rule": "ascending lexicographic order of full filename",
+  "folders": {
+    "RGB": [
+      {
+        "index": 0,
+        "filename": "raichur_rgb_2026-09-17.png",
+        "date": "2026-09-17"
+      }
+    ],
+    "False_Color": [
+      {
+        "index": 0,
+        "filename": "raichur_false_color_2026-09-17.png",
+        "date": "2026-09-17"
+      }
+    ],
+    "NDVI": [
+      {
+        "index": 0,
+        "filename": "raichur_ndvi_2026-09-17.png",
+        "date": "2026-09-17"
+      }
+    ],
+    "NDWI": [
+      {
+        "index": 0,
+        "filename": "raichur_ndwi_2026-09-17.png",
+        "date": "2026-09-17"
+      }
+    ]
+  },
+  "samples": [
+    {
+      "index": 0,
+      "date": "2026-09-17",
+      "files": {
+        "RGB": "raichur_rgb_2026-09-17.png",
+        "False_Color": "raichur_false_color_2026-09-17.png",
+        "NDVI": "raichur_ndvi_2026-09-17.png",
+        "NDWI": "raichur_ndwi_2026-09-17.png"
+      }
+    }
+  ]
+}
