@@ -329,6 +329,7 @@ def plot_ga_convergence(runs, optimum, path, title, x_key="generation", best_key
             ax.axhline(optimum[k], color=TEXT2, lw=0.9, ls=":")
         last = max(r[x_key] for h in runs[k].values() for r in h)
         ax.set_xlim(-0.5, max(last, 1) + 0.5)
+        ax.ticklabel_format(axis="y", useOffset=False)
         ax.xaxis.set_major_locator(matplotlib.ticker.MaxNLocator(integer=True))
         if last == 0:
             ax.text(0.5, 0.35, f"every subset fits in the\ninitial {'swarm' if unit == 'Iteration' else 'population'}: done at {unit.lower()} 0",
@@ -361,5 +362,64 @@ def plot_selection_matrix(selected, names, ks, path, title):
     ax.grid(which="minor", color=GRID, lw=2)
     ax.tick_params(which="minor", length=0)
     ax.set_title(title, loc="left")
+    fig.tight_layout()
+    return _save(fig, path)
+
+
+def plot_pheromone(histories, names, path, title):
+    """
+    ACO pheromone per channel across iterations, one panel per K (small multiples).
+    histories: {k: history list with "iteration" and "pheromone" (one value per channel)}.
+    One line per channel in fixed palette order (8 channels = 8 categorical colours), legend below.
+    """
+    ks = sorted(histories)
+    cols = min(len(ks), 4)
+    rows = int(np.ceil(len(ks) / cols))
+    fig, axes = plt.subplots(rows, cols, figsize=(3.6 * cols, 2.9 * rows), squeeze=False, sharey=True)
+    for ax, k in zip(axes.flat, ks):
+        h = histories[k]
+        it = [r["iteration"] for r in h]
+        tau = np.array([r["pheromone"] for r in h])
+        for j, n in enumerate(names):
+            ax.plot(it, tau[:, j], color=SERIES[j % len(SERIES)], lw=1.6, marker="o", markersize=2.5, label=n)
+        ax.set_title(f"K = {k}", loc="left")
+        ax.set_xlabel("Iteration")
+        ax.set_xlim(-0.5, max(max(it), 1) + 0.5)
+        ax.xaxis.set_major_locator(matplotlib.ticker.MaxNLocator(integer=True))
+    for ax in list(axes.flat)[len(ks):]:
+        ax.set_visible(False)
+    axes[0, 0].set_ylabel("Pheromone τ (after update)")
+    handles, labels = axes[0, 0].get_legend_handles_labels()
+    fig.legend(handles, labels, loc="lower center", ncol=4, bbox_to_anchor=(0.5, -0.01))
+    fig.suptitle(title, x=0.01, ha="left", fontsize=12, fontweight="bold", color=TEXT)
+    fig.tight_layout(rect=(0, 0.1, 1, 1))
+    return _save(fig, path)
+
+
+def plot_sa_temperature(histories, path, title, window=20):
+    """
+    Two panels (one y-axis each): temperature per move (log scale) and the rolling share of proposed
+    moves that were accepted. One line per K, fixed palette order.
+    histories: {k: history list with "iteration", "temperature", "accepted"}.
+    """
+    fig, axes = plt.subplots(1, 2, figsize=(11, 3.9))
+    for i, (k, h) in enumerate(sorted(histories.items())):
+        it = np.array([r["iteration"] for r in h])
+        T = np.array([r["temperature"] for r in h])
+        acc = np.array([float(r["accepted"]) for r in h])
+        roll = np.convolve(acc, np.ones(window) / window, mode="valid") if len(acc) >= window else acc
+        color = SERIES[i % len(SERIES)]
+        axes[0].plot(it, T, color=color, lw=1.6, label=f"K = {k}")
+        axes[1].plot(it[len(it) - len(roll):], roll, color=color, lw=1.6, label=f"K = {k}")
+    axes[0].set_yscale("log")
+    axes[0].set_title("Temperature (geometric cooling)", loc="left")
+    axes[0].set_xlabel("Move")
+    axes[0].set_ylabel("T")
+    axes[1].set_title(f"Accepted moves (rolling mean over {window})", loc="left")
+    axes[1].set_xlabel("Move")
+    axes[1].set_ylabel("Share accepted")
+    axes[1].set_ylim(0, 1.05)
+    axes[1].legend(ncol=2)
+    fig.suptitle(title, x=0.01, ha="left", fontsize=12, fontweight="bold", color=TEXT)
     fig.tight_layout()
     return _save(fig, path)

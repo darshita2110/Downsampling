@@ -1,0 +1,6 @@
+k,seed,fitness,selected,selected_idx,iterations,stop_reason,evaluations,search_space,seconds,peak_python_mb
+4,42,1.4319746367407369,RGB:B(B02)+False_Color:R(B08)+False_Color:G(B04)+NDWI,2 3 4 7,10,no improvement for 10 iterations,14,70,1.1467983240000024,58.2801
+4,43,1.4319746367407369,RGB:B(B02)+False_Color:R(B08)+False_Color:G(B04)+NDWI,2 3 4 7,10,no improvement for 10 iterations,13,70,1.0278002729999969,58.275182
+4,44,1.4319746367407369,RGB:R(B04)+RGB:B(B02)+False_Color:R(B08)+NDWI,0 2 3 7,10,no improvement for 10 iterations,12,70,0.96764137400001,58.271241
+4,45,1.4319746367407369,RGB:R(B04)+RGB:B(B02)+False_Color:R(B08)+NDWI,0 2 3 7,10,no improvement for 10 iterations,13,70,1.0489647800000057,58.271801
+4,46,1.4319746367407369,RGB:B(B02)+False_Color:R(B08)+False_Color:G(B04)+NDWI,2 3 4 7,10,no improvement for 10 iterations,16,70,1.2114752070000065,58.277171

@@ -26,7 +26,9 @@ Downsampling/                         (repository root)
     │       └── lda/                  config.py, lda.py (NumPy Fisher LDA), train.py, test.py (needs labels)
     │   └── combinatorial/
     │       ├── ga/                   config.py, ga.py (NumPy genetic algorithm), train.py, test.py
-    │       └── pso/                  config.py, pso.py (NumPy particle swarm), train.py, test.py
+    │       ├── pso/                  config.py, pso.py (NumPy particle swarm), train.py, test.py
+    │       ├── aco/                  config.py, aco.py (NumPy ant colony), train.py, test.py
+    │       └── sa/                   config.py, sa.py (NumPy simulated annealing), train.py, test.py
     ├── common/                       shared by all future algorithms (ICA, LDA, GA, PSO ...)
     │   ├── data_loader.py            sorted loading, index mapping, figure-panel cropping,
     │   │                             colour-map inversion, alignment check, raw NetCDF loading
@@ -35,7 +37,7 @@ Downsampling/                         (repository root)
     │   ├── evaluation.py             dimensionality reduction %, storage sizes
     │   ├── visualization.py          all graphs
     │   └── utils.py                  logging, timing + memory measurement, JSON
-    ├── documentation/            PCA.md, ICA.md, LDA.md, GA.md, PSO.md: each method from the basics, decisions, results
+    ├── documentation/            PCA.md, ICA.md, LDA.md, GA.md, PSO.md, ACO.md, SA.md: each method from the basics, decisions, results
     ├── outputs/                      everything the scripts produce (see section 4)
     └── requirements.txt
 ```
@@ -132,12 +134,26 @@ python Kartavya/algorithms/combinatorial/pso/train.py  # PSO on TRAINING pixels,
 python Kartavya/algorithms/combinatorial/pso/test.py   # applies the saved subsets to the test region (~20 s)
 ```
 
+Ant Colony Optimization uses the same fitness function as the GA and PSO (see `documentation/ACO.md`):
+
+```bash
+python Kartavya/algorithms/combinatorial/aco/train.py  # ACO on TRAINING pixels, K = 1..7, 5 colonies each (~60 s)
+python Kartavya/algorithms/combinatorial/aco/test.py   # applies the saved subsets to the test region (~20 s)
+```
+
+Simulated Annealing uses the same objective as the GA, PSO and ACO (see `documentation/SA.md`):
+
+```bash
+python Kartavya/algorithms/combinatorial/sa/train.py   # SA on TRAINING pixels, K = 1..7, 5 starts each (~90 s)
+python Kartavya/algorithms/combinatorial/sa/test.py    # evaluation only: applies the saved subsets (~15 s)
+```
+
 Use the same options for `train.py` and `test.py`. A run of both takes about 25 seconds at the
 default 1024-pixel width. Settings (split, K values, resolution) are in `config.py`.
 
 ## 4. Where results go
 
-Each experiment (`png`, `png_nostd`, `raw`) writes to `Kartavya/outputs/<category>/<pca|ica|lda|ga|pso>/<experiment>/`:
+Each experiment (`png`, `png_nostd`, `raw`) writes to `Kartavya/outputs/<category>/<pca|ica|lda|ga|pso|aco|sa>/<experiment>/`:
 
 | Folder | Contents |
 |---|---|
