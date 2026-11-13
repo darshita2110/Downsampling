@@ -437,3 +437,66 @@ def load_split_pixels(experiment, mapping, entries, cfg, fraction, logger=None, 
             for pair, r in align.items():
                 logger.info(f"    alignment {pair}: best shift {r['best_shift_dy_dx']}, r={r['corr_at_best']:.4f}")
     return np.concatenate(blocks), names, inspection
+
+
+# ----------------------------------------------------------------- ground-truth labels
+def find_label_file(label_dir, date, patterns):
+    """Label raster for one date: the first existing file among the configured name patterns."""
+    for pat in patterns:
+        p = Path(label_dir) / pat.format(date=date)
+        if p.is_file():
+            return p
+    return None
+
+
+def load_label_raster(path, grid_hw, max_aspect_error=0.02):
+    """
+    Read an integer class raster (.npy, or single-band .png/.tif readable by PIL) and put it on the
+    common grid with NEAREST-neighbour resampling (class ids must never be averaged).
+    The raster must cover the same ground area as the images; its aspect ratio is checked as a guard.
+    """
+    path = Path(path)
+    if path.suffix == ".npy":
+        lab = np.load(path)
+    else:
+        with Image.open(path) as im:
+            if im.mode not in ("L", "P", "I", "I;16", "I;16B", "I;16L"):
+                raise ValueError(f"{path.name}: mode {im.mode}; a label raster must be single-band integer")
+            lab = np.asarray(im)
+    if lab.ndim != 2 or not np.issubdtype(lab.dtype, np.integer):
+        raise ValueError(f"{path.name}: expected a 2-D integer array, got {lab.shape} {lab.dtype}")
+    h, w = grid_hw
+    err = abs(lab.shape[0] / lab.shape[1] - h / w) / (h / w)
+    if err > max_aspect_error:
+        raise ValueError(f"{path.name}: aspect {lab.shape} does not match image grid {grid_hw} "
+                         f"({100 * err:.1f}% off) - it probably covers a different area")
+    if lab.shape != (h, w):
+        lab = np.asarray(Image.fromarray(lab.astype(np.int32), mode="I").resize((w, h), Image.Resampling.NEAREST))
+    return lab.astype(np.int32)
+
+
+def label_availability(mapping, label_dir, patterns, ignore_label, min_pixels_per_class, min_classes=2):
+    """
+    Decide whether supervised evaluation is possible. Returns a report dict with "usable" True/False
+    and the reasons. Labels must come from an INDEPENDENT source (field survey, an existing land-cover
+    map, manual annotation); this function can check files and counts, not provenance, which is
+    therefore also written into the report as a requirement.
+    """
+    report = {"label_dir": str(label_dir), "patterns": patterns, "ignore_label": ignore_label,
+              "min_pixels_per_class": min_pixels_per_class, "per_date": {}, "usable": False, "reasons": [],
+              "requirement": "Class ids per pixel from a source independent of the input images "
+                             "(field data, an external land-cover map, or manual annotation). Labels made by "
+                             "thresholding NDVI/NDWI or clustering these same pixels are circular: LDA would just "
+                             "recover the rule used to create them, so accuracy would be meaningless."}
+    if not Path(label_dir).is_dir():
+        report["reasons"].append(f"Label folder {label_dir} does not exist.")
+    found = 0
+    for s in mapping["samples"]:
+        f = find_label_file(label_dir, s["date"], patterns) if Path(label_dir).is_dir() else None
+        report["per_date"][s["date"]] = {"file": None if f is None else f.name}
+        found += f is not None
+    if found == 0:
+        report["reasons"].append("No label raster found for any date.")
+    report["n_dates_with_labels"] = found
+    report["usable"] = found > 0 and not report["reasons"]
+    return report

@@ -281,3 +281,23 @@ def plot_paired_bars(table, x_col, labels, panels, path, title, x_label="Retaine
     fig.suptitle(title, x=0.01, ha="left", fontsize=12, fontweight="bold", color=TEXT)
     fig.tight_layout()
     return _save(fig, path)
+
+
+def plot_confusion_matrix(cm, classes, path, title):
+    """Row-normalised confusion matrix (sequential single hue) with raw counts printed in each cell."""
+    cm = np.asarray(cm, dtype=float)
+    norm = cm / np.maximum(cm.sum(1, keepdims=True), 1)
+    fig, ax = plt.subplots(figsize=(1.0 * len(classes) + 3, 0.9 * len(classes) + 2.4))
+    im = ax.imshow(norm, cmap="Blues", vmin=0, vmax=1)
+    ax.set_xticks(range(len(classes)), classes, rotation=45, ha="right")
+    ax.set_yticks(range(len(classes)), classes)
+    ax.set_xlabel("Predicted class")
+    ax.set_ylabel("True class")
+    ax.grid(False)
+    for i in range(len(classes)):
+        for j in range(len(classes)):
+            ax.text(j, i, f"{int(cm[i, j])}\n{100 * norm[i, j]:.0f}%", ha="center", va="center", fontsize=7.5,
+                    color="white" if norm[i, j] > 0.6 else TEXT)
+    fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04, label="Share of true class")
+    ax.set_title(title, loc="left")
+    return _save(fig, path)

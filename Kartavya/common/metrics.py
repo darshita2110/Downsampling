@@ -90,3 +90,47 @@ def component_statistics(s):
         out["mean_abs_linear_corr"] = float("nan")
         out["mean_abs_square_corr"] = float("nan")
     return out
+
+
+# ------------------------------------------------------------- classification metrics
+def classification_report(y_true, y_pred, classes):
+    """
+    Accuracy, per-class precision/recall/F1, their macro and support-weighted averages, and the
+    confusion matrix (rows = true class, columns = predicted class), computed from scratch.
+        precision_c = TP / (TP + FP)   of pixels predicted c, how many really are c
+        recall_c    = TP / (TP + FN)   of pixels that are c, how many were found
+        F1_c        = 2 P R / (P + R)
+    A class with no predictions (or no true pixels) gets 0 for the undefined ratio.
+    """
+    classes = list(classes)
+    idx = {c: i for i, c in enumerate(classes)}
+    cm = np.zeros((len(classes), len(classes)), dtype=np.int64)
+    np.add.at(cm, (np.vectorize(idx.get)(y_true), np.vectorize(idx.get)(y_pred)), 1)
+    tp = np.diag(cm).astype(float)
+    pred_tot, true_tot = cm.sum(0).astype(float), cm.sum(1).astype(float)
+    prec = np.divide(tp, pred_tot, out=np.zeros_like(tp), where=pred_tot > 0)
+    rec = np.divide(tp, true_tot, out=np.zeros_like(tp), where=true_tot > 0)
+    f1 = np.divide(2 * prec * rec, prec + rec, out=np.zeros_like(tp), where=(prec + rec) > 0)
+    w = true_tot / true_tot.sum()
+    return {"accuracy": float(tp.sum() / cm.sum()),
+            "precision_macro": float(prec.mean()), "recall_macro": float(rec.mean()), "f1_macro": float(f1.mean()),
+            "precision_weighted": float((prec * w).sum()), "recall_weighted": float((rec * w).sum()),
+            "f1_weighted": float((f1 * w).sum()),
+            "per_class": {str(c): {"precision": float(prec[i]), "recall": float(rec[i]), "f1": float(f1[i]),
+                                   "support": int(true_tot[i])} for i, c in enumerate(classes)},
+            "confusion_matrix": cm.tolist(), "classes": [str(c) for c in classes]}
+
+
+def fisher_ratio(z, y):
+    """
+    Class separability of a feature space: trace(S_between) / trace(S_within) (higher = classes further
+    apart relative to their spread). Used to compare the original channels with LDA components.
+    """
+    z = np.asarray(z, dtype=np.float64)
+    mu = z.mean(0)
+    sb = sw = 0.0
+    for c in np.unique(y):
+        zc = z[y == c]
+        sb += len(zc) * ((zc.mean(0) - mu) ** 2).sum()
+        sw += ((zc - zc.mean(0)) ** 2).sum()
+    return float(sb / sw) if sw > 0 else float("inf")

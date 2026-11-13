@@ -1,0 +1,34 @@
+{
+  "experiment": "png",
+  "status": "not_trained_no_labels",
+  "label_report": {
+    "label_dir": "/home/claude/Downsampling/data/labels/sentinel2",
+    "patterns": [
+      "raichur_labels_{date}.npy",
+      "raichur_labels_{date}.png"
+    ],
+    "ignore_label": 0,
+    "min_pixels_per_class": 50,
+    "per_date": {
+      "2026-09-17": {
+        "file": null
+      }
+    },
+    "usable": false,
+    "reasons": [
+      "Label folder /home/claude/Downsampling/data/labels/sentinel2 does not exist.",
+      "No label raster found for any date."
+    ],
+    "requirement": "Class ids per pixel from a source independent of the input images (field data, an external land-cover map, or manual annotation). Labels made by thresholding NDVI/NDWI or clustering these same pixels are circular: LDA would just recover the rule used to create them, so accuracy would be meaningless.",
+    "n_dates_with_labels": 0,
+    "searched_also": "Repository files, data/processed/sentinel2 (only RGB/False_Color/NDVI/NDWI renderings), the Parquet/CSV schema in docs/DATA_ACCESS_GUIDE.md (x, y, lat, lon, date, B02-B08, NDVI, NDWI, empty LST/population/infrastructure: no class column)."
+  },
+  "timing_memory": {
+    "load_and_inspect": {
+      "seconds": 8.431793200000016,
+      "peak_python_mb": 523.123835,
+      "rss_after_mb": 279.666688
+    }
+  },
+  "total_seconds": 8.435351865000001
+}

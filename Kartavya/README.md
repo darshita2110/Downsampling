@@ -22,7 +22,8 @@ Downsampling/                         (repository root)
     ├── algorithms/
     │   └── linear/
     │       ├── pca/                  config.py, pca.py (NumPy PCA), train.py, test.py
-    │       └── ica/                  config.py, ica.py (NumPy FastICA), train.py, test.py
+    │       ├── ica/                  config.py, ica.py (NumPy FastICA), train.py, test.py
+    │       └── lda/                  config.py, lda.py (NumPy Fisher LDA), train.py, test.py (needs labels)
     ├── common/                       shared by all future algorithms (ICA, LDA, GA, PSO ...)
     │   ├── data_loader.py            sorted loading, index mapping, figure-panel cropping,
     │   │                             colour-map inversion, alignment check, raw NetCDF loading
@@ -31,7 +32,7 @@ Downsampling/                         (repository root)
     │   ├── evaluation.py             dimensionality reduction %, storage sizes
     │   ├── visualization.py          all graphs
     │   └── utils.py                  logging, timing + memory measurement, JSON
-    ├── documentation/PCA.md, ICA.md  each method from the basics, design decisions, results
+    ├── documentation/            PCA.md, ICA.md, LDA.md: each method from the basics, decisions, results
     ├── outputs/                      everything the scripts produce (see section 4)
     └── requirements.txt
 ```
@@ -98,12 +99,22 @@ ICA also writes `metrics/convergence.csv` (iterations, converged flag, final cha
 `metrics/test_independence.csv`, and the graphs `convergence.png`, `independence_ica_vs_pca.png`
 and `ica_mixing_K6.png`. Its models are `models/ica/<experiment>/ica_K{k}.npz`, one per K.
 
+LDA is supervised and needs real per-pixel class labels in `data/labels/sentinel2/`
+(see `documentation/LDA.md`). The dataset has none, so today `train.py` inspects the images, writes
+`metrics/lda/png/label_report.json`, fits nothing and exits with code 3; `test.py` does the same.
+
+```bash
+python Kartavya/algorithms/linear/lda/train.py                # stops with the label report (exit code 3)
+python Kartavya/algorithms/linear/lda/test.py
+python Kartavya/algorithms/linear/lda/train.py --self-check   # verifies the code on Iris and Wine
+```
+
 Use the same options for `train.py` and `test.py`. A run of both takes about 25 seconds at the
 default 1024-pixel width. Settings (split, K values, resolution) are in `config.py`.
 
 ## 4. Where results go
 
-Each experiment (`png`, `png_nostd`, `raw`) writes to `Kartavya/outputs/<category>/<pca|ica>/<experiment>/`:
+Each experiment (`png`, `png_nostd`, `raw`) writes to `Kartavya/outputs/<category>/<pca|ica|lda>/<experiment>/`:
 
 | Folder | Contents |
 |---|---|

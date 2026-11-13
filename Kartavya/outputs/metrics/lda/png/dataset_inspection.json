@@ -1,0 +1,248 @@
+{
+  "2026-09-17": {
+    "files": {
+      "RGB": {
+        "mode": "RGBA",
+        "size_wh": [
+          2852,
+          3024
+        ],
+        "shape": [
+          3024,
+          2852,
+          4
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 255,
+        "alpha_min": 255,
+        "alpha_max": 255,
+        "map_panel_box_tblr": [
+          107,
+          2994,
+          30,
+          2823
+        ],
+        "map_panel_hw": [
+          2887,
+          2793
+        ]
+      },
+      "False_Color": {
+        "mode": "RGBA",
+        "size_wh": [
+          2852,
+          3024
+        ],
+        "shape": [
+          3024,
+          2852,
+          4
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 255,
+        "alpha_min": 255,
+        "alpha_max": 255,
+        "map_panel_box_tblr": [
+          107,
+          2994,
+          30,
+          2823
+        ],
+        "map_panel_hw": [
+          2887,
+          2793
+        ]
+      },
+      "NDVI": {
+        "mode": "RGBA",
+        "size_wh": [
+          3181,
+          2962
+        ],
+        "shape": [
+          2962,
+          3181,
+          4
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 255,
+        "alpha_min": 255,
+        "alpha_max": 255,
+        "map_panel_box_tblr": [
+          107,
+          2932,
+          30,
+          2762
+        ],
+        "map_panel_hw": [
+          2825,
+          2732
+        ],
+        "colormap_decode": {
+          "exact_match_pct": 23.16074320734915,
+          "white_nodata_pct": 0.015029995205949805,
+          "unmatched_pct": 0.0,
+          "quantization_step": 0.0078125
+        },
+        "value_range_decoded": [
+          -0.35546875,
+          0.80078125
+        ]
+      },
+      "NDWI": {
+        "mode": "RGBA",
+        "size_wh": [
+          3181,
+          2962
+        ],
+        "shape": [
+          2962,
+          3181,
+          4
+        ],
+        "dtype": "uint8",
+        "min": 0,
+        "max": 255,
+        "alpha_min": 255,
+        "alpha_max": 255,
+        "map_panel_box_tblr": [
+          107,
+          2932,
+          30,
+          2762
+        ],
+        "map_panel_hw": [
+          2825,
+          2732
+        ],
+        "colormap_decode": {
+          "exact_match_pct": 16.075059277782817,
+          "white_nodata_pct": 0.015029995205949805,
+          "unmatched_pct": 0.0,
+          "quantization_step": 0.0078125
+        },
+        "value_range_decoded": [
+          -0.69140625,
+          0.48046875
+        ]
+      }
+    },
+    "common_grid_hw": [
+      1058,
+      1024
+    ],
+    "valid_pct_on_grid": 99.98477005552931,
+    "channel_natural_range": {
+      "RGB:R(B04)": [
+        0.0,
+        255.0
+      ],
+      "RGB:G(B03)": [
+        0.0,
+        255.0
+      ],
+      "RGB:B(B02)": [
+        0.0,
+        255.0
+      ],
+      "False_Color:R(B08)": [
+        0.0,
+        255.0
+      ],
+      "False_Color:G(B04)": [
+        0.0,
+        255.0
+      ],
+      "False_Color:B(B03)": [
+        0.0,
+        255.0
+      ],
+      "NDVI": [
+        -0.34375,
+        0.7877604365348816
+      ],
+      "NDWI": [
+        -0.6770833730697632,
+        0.38671875
+      ]
+    },
+    "normalization": [
+      [
+        "RGB:R(B04)",
+        0.0,
+        255.0
+      ],
+      [
+        "RGB:G(B03)",
+        0.0,
+        255.0
+      ],
+      [
+        "RGB:B(B02)",
+        0.0,
+        255.0
+      ],
+      [
+        "False_Color:R(B08)",
+        0.0,
+        255.0
+      ],
+      [
+        "False_Color:G(B04)",
+        0.0,
+        255.0
+      ],
+      [
+        "False_Color:B(B03)",
+        0.0,
+        255.0
+      ],
+      [
+        "NDVI",
+        -1.0,
+        1.0
+      ],
+      [
+        "NDWI",
+        -1.0,
+        1.0
+      ]
+    ],
+    "alignment": {
+      "RGB:R(B04) vs False_Color:G(B04)": {
+        "best_shift_dy_dx": [
+          0,
+          0
+        ],
+        "corr_at_best": 0.9999999999999998,
+        "corr_at_zero": 0.9999999999999998,
+        "mean_abs_diff_levels": 0.0
+      },
+      "RGB:G(B03) vs False_Color:B(B03)": {
+        "best_shift_dy_dx": [
+          0,
+          0
+        ],
+        "corr_at_best": 1.0,
+        "corr_at_zero": 1.0,
+        "mean_abs_diff_levels": 0.0
+      },
+      "NDVI vs pseudo-NDVI(False_Color)": {
+        "best_shift_dy_dx": [
+          0,
+          0
+        ],
+        "corr_at_best": 0.8911911438315194,
+        "corr_at_zero": 0.8911911438315194
+      }
+    },
+    "rows_used": [
+      0,
+      529
+    ],
+    "pixels_used": 541696
+  }
+}
