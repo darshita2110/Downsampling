@@ -1,0 +1,6 @@
+k,seed,fitness,selected,selected_idx,generations,stop_reason,evaluations,search_space,seconds,peak_python_mb
+3,42,1.4081448671303178,RGB:B(B02)+False_Color:R(B08)+NDVI,2 3 6,10,no improvement for 10 generations,27,56,1.5331636819999517,53.817038
+3,43,1.4081448671303178,RGB:B(B02)+False_Color:R(B08)+NDVI,2 3 6,10,no improvement for 10 generations,20,56,1.225295047999964,53.801038
+3,44,1.4081448671303178,RGB:B(B02)+False_Color:R(B08)+NDVI,2 3 6,11,no improvement for 10 generations,27,56,1.7075966139999537,53.818862
+3,45,1.396620365193544,RGB:R(B04)+False_Color:R(B08)+NDWI,0 3 7,10,no improvement for 10 generations,22,56,1.383870786999978,53.805088
+3,46,1.396620365193544,RGB:R(B04)+False_Color:R(B08)+NDWI,0 3 7,14,no improvement for 10 generations,36,56,2.0012380730000245,53.832343

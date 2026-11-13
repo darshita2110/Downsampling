@@ -1,0 +1,6 @@
+k,seed,fitness,selected,selected_idx,iterations,stop_reason,evaluations,search_space,seconds,peak_python_mb
+1,42,0.8157627582550049,RGB:B(B02),2,0,every possible subset evaluated,8,8,0.3933943240000133,44.8203
+1,43,0.8157627582550049,RGB:B(B02),2,10,no improvement for 10 iterations,7,8,0.3542932940000014,44.831246
+1,44,0.8157627582550049,RGB:B(B02),2,1,every possible subset evaluated,8,8,0.36345670999999413,44.825315
+1,45,0.8157627582550049,RGB:B(B02),2,1,every possible subset evaluated,8,8,0.40134884600000476,44.82505
+1,46,0.8157627582550049,RGB:B(B02),2,1,every possible subset evaluated,8,8,0.356367652000003,44.825363

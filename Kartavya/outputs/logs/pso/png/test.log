@@ -1,0 +1,26 @@
+2026-11-13 09:45:32 | INFO    | Experiment 'png': loaded saved subsets for K = [1, 2, 3, 4, 5, 6, 7]
+2026-11-13 09:45:32 | INFO    |   K=1: keep ['RGB:B(B02)'] (training fitness 0.81576)
+2026-11-13 09:45:32 | INFO    |   K=2: keep ['False_Color:B(B03)', 'NDWI'] (training fitness 1.37080)
+2026-11-13 09:45:32 | INFO    |   K=3: keep ['RGB:B(B02)', 'False_Color:R(B08)', 'NDVI'] (training fitness 1.40814)
+2026-11-13 09:45:32 | INFO    |   K=4: keep ['RGB:B(B02)', 'False_Color:R(B08)', 'False_Color:G(B04)', 'NDWI'] (training fitness 1.43197)
+2026-11-13 09:45:32 | INFO    |   K=5: keep ['RGB:B(B02)', 'False_Color:R(B08)', 'False_Color:G(B04)', 'NDVI', 'NDWI'] (training fitness 1.43636)
+2026-11-13 09:45:32 | INFO    |   K=6: keep ['RGB:R(B04)', 'RGB:B(B02)', 'False_Color:R(B08)', 'False_Color:B(B03)', 'NDVI', 'NDWI'] (training fitness 1.43758)
+2026-11-13 09:45:32 | INFO    |   K=7: keep ['RGB:R(B04)', 'RGB:B(B02)', 'False_Color:R(B08)', 'False_Color:G(B04)', 'False_Color:B(B03)', 'NDVI', 'NDWI'] (training fitness 1.43379)
+2026-11-13 09:45:37 | INFO    | 00_2026-09-17_bottom: test image 529 x 1024, 541,531 valid pixels
+2026-11-13 09:45:38 | INFO    |   K=1: reduction  87.5% | RMSE 0.0982 MAE 0.0611 PSNR  20.16 dB SSIM 0.7777 | 16.53 MB -> 2.07 MB (file 2.07 MB) | reduce 1.1 ms, rebuild 15.2 ms | kept-channel error 2.1e-16
+2026-11-13 09:45:39 | INFO    |   K=2: reduction  75.0% | RMSE 0.0431 MAE 0.0242 PSNR  27.31 dB SSIM 0.9529 | 16.53 MB -> 4.13 MB (file 4.13 MB) | reduce 1.8 ms, rebuild 15.8 ms | kept-channel error 1.4e-16
+2026-11-13 09:45:40 | INFO    |   K=3: reduction  62.5% | RMSE 0.0291 MAE 0.0155 PSNR  30.71 dB SSIM 0.9657 | 16.53 MB -> 6.20 MB (file 6.20 MB) | reduce 5.5 ms, rebuild 24.6 ms | kept-channel error 1.3e-15
+2026-11-13 09:45:41 | INFO    |   K=4: reduction  50.0% | RMSE 0.0122 MAE 0.0050 PSNR  38.29 dB SSIM 0.9926 | 16.53 MB -> 8.26 MB (file 8.27 MB) | reduce 2.2 ms, rebuild 19.3 ms | kept-channel error 4.9e-16
+2026-11-13 09:45:42 | INFO    |   K=5: reduction  37.5% | RMSE 0.0113 MAE 0.0039 PSNR  38.91 dB SSIM 0.9950 | 16.53 MB -> 10.33 MB (file 10.33 MB) | reduce 3.9 ms, rebuild 27.9 ms | kept-channel error 6.8e-16
+2026-11-13 09:45:43 | INFO    |   K=6: reduction  25.0% | RMSE 0.0000 MAE 0.0000 PSNR 335.93 dB SSIM 1.0000 | 16.53 MB -> 12.39 MB (file 12.40 MB) | reduce 4.0 ms, rebuild 26.4 ms | kept-channel error 6.9e-16
+2026-11-13 09:45:44 | INFO    |   K=7: reduction  12.5% | RMSE 0.0000 MAE 0.0000 PSNR 336.80 dB SSIM 1.0000 | 16.53 MB -> 14.46 MB (file 14.46 MB) | reduce 4.8 ms, rebuild 32.0 ms | kept-channel error 4.9e-16
+2026-11-13 09:45:49 | INFO    | PSO vs PCA at the same K (PSNR dB / SSIM):
+2026-11-13 09:45:49 | INFO    |   K=1: PSO 20.16 / 0.7777  vs  PCA 21.36 / 0.8128
+2026-11-13 09:45:49 | INFO    |   K=2: PSO 27.31 / 0.9529  vs  PCA 28.88 / 0.9679
+2026-11-13 09:45:49 | INFO    |   K=3: PSO 30.71 / 0.9657  vs  PCA 35.23 / 0.9847
+2026-11-13 09:45:49 | INFO    |   K=4: PSO 38.29 / 0.9926  vs  PCA 39.91 / 0.9950
+2026-11-13 09:45:49 | INFO    |   K=5: PSO 38.91 / 0.9950  vs  PCA 45.29 / 0.9973
+2026-11-13 09:45:49 | INFO    |   K=6: PSO 335.93 / 1.0000  vs  PCA 326.22 / 1.0000
+2026-11-13 09:45:49 | INFO    |   K=7: PSO 336.80 / 1.0000  vs  PCA 326.53 / 1.0000
+2026-11-13 09:45:49 | INFO    | PSO vs GA: same training fitness at 7/7 K values
+2026-11-13 09:45:49 | INFO    | Testing finished in 17.1 s. Metrics: /home/claude/Downsampling/Kartavya/outputs/metrics/pso/png

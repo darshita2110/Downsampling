@@ -24,6 +24,9 @@ Downsampling/                         (repository root)
     │       ├── pca/                  config.py, pca.py (NumPy PCA), train.py, test.py
     │       ├── ica/                  config.py, ica.py (NumPy FastICA), train.py, test.py
     │       └── lda/                  config.py, lda.py (NumPy Fisher LDA), train.py, test.py (needs labels)
+    │   └── combinatorial/
+    │       ├── ga/                   config.py, ga.py (NumPy genetic algorithm), train.py, test.py
+    │       └── pso/                  config.py, pso.py (NumPy particle swarm), train.py, test.py
     ├── common/                       shared by all future algorithms (ICA, LDA, GA, PSO ...)
     │   ├── data_loader.py            sorted loading, index mapping, figure-panel cropping,
     │   │                             colour-map inversion, alignment check, raw NetCDF loading
@@ -32,7 +35,7 @@ Downsampling/                         (repository root)
     │   ├── evaluation.py             dimensionality reduction %, storage sizes
     │   ├── visualization.py          all graphs
     │   └── utils.py                  logging, timing + memory measurement, JSON
-    ├── documentation/            PCA.md, ICA.md, LDA.md: each method from the basics, decisions, results
+    ├── documentation/            PCA.md, ICA.md, LDA.md, GA.md, PSO.md: each method from the basics, decisions, results
     ├── outputs/                      everything the scripts produce (see section 4)
     └── requirements.txt
 ```
@@ -109,12 +112,32 @@ python Kartavya/algorithms/linear/lda/test.py
 python Kartavya/algorithms/linear/lda/train.py --self-check   # verifies the code on Iris and Wine
 ```
 
+The Genetic Algorithm selects K of the 8 channels to keep (no new values are created) and rebuilds
+the dropped ones with a small linear model. See `documentation/GA.md`.
+
+```bash
+python Kartavya/algorithms/combinatorial/ga/train.py   # GA on TRAINING pixels, K = 1..7, 5 seeds each (~75 s)
+python Kartavya/algorithms/combinatorial/ga/test.py    # applies the saved subsets to the test region (~20 s)
+```
+
+GA also writes `metrics/selected_features.csv`, `convergence.csv`, `ga_vs_exhaustive.csv`,
+`ga_runs_K{k}.csv`, `ga_vs_pca.csv` and the graphs `ga_convergence.png`, `selected_channels.png`,
+`fitness_terms_vs_k.png`, `ga_vs_pca.png`. Its models are `models/ga/png/ga_K{k}.npz`.
+
+Particle Swarm Optimization selects channels with the same fitness function as the GA
+(see `documentation/PSO.md`):
+
+```bash
+python Kartavya/algorithms/combinatorial/pso/train.py  # PSO on TRAINING pixels, K = 1..7, 5 swarms each (~75 s)
+python Kartavya/algorithms/combinatorial/pso/test.py   # applies the saved subsets to the test region (~20 s)
+```
+
 Use the same options for `train.py` and `test.py`. A run of both takes about 25 seconds at the
 default 1024-pixel width. Settings (split, K values, resolution) are in `config.py`.
 
 ## 4. Where results go
 
-Each experiment (`png`, `png_nostd`, `raw`) writes to `Kartavya/outputs/<category>/<pca|ica|lda>/<experiment>/`:
+Each experiment (`png`, `png_nostd`, `raw`) writes to `Kartavya/outputs/<category>/<pca|ica|lda|ga|pso>/<experiment>/`:
 
 | Folder | Contents |
 |---|---|

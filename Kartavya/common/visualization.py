@@ -11,6 +11,7 @@ import matplotlib
 
 matplotlib.use("Agg")                     # draw to files only (works on servers without a screen)
 import matplotlib.pyplot as plt
+import matplotlib.ticker  # noqa: F401
 import numpy as np
 
 # Fixed categorical order (validated colour-blind-safe palette for adjacent series)
@@ -300,4 +301,65 @@ def plot_confusion_matrix(cm, classes, path, title):
                     color="white" if norm[i, j] > 0.6 else TEXT)
     fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04, label="Share of true class")
     ax.set_title(title, loc="left")
+    return _save(fig, path)
+
+
+def plot_ga_convergence(runs, optimum, path, title, x_key="generation", best_key="best_so_far",
+                        mean_key="gen_mean", unit="Generation", mean_label="population mean (first seed)"):
+    """
+    GA / PSO convergence, one panel per K (small multiples, shared metric).
+    runs   : {k: {seed: history list of dicts with generation, best_so_far, gen_mean}}
+    optimum: {k: best fitness found by exhaustive search} or {} (drawn as a dotted reference line)
+    Solid lines = best fitness found so far for each seed; thin dashed line = population mean of the
+    first seed (shows the population closing in on the best).
+    """
+    ks = sorted(runs)
+    cols = min(len(ks), 4)
+    rows = int(np.ceil(len(ks) / cols))
+    fig, axes = plt.subplots(rows, cols, figsize=(3.6 * cols, 2.9 * rows), squeeze=False)
+    for ax, k in zip(axes.flat, ks):
+        for i, (seed, h) in enumerate(runs[k].items()):
+            g = [r[x_key] for r in h]
+            ax.plot(g, [r[best_key] for r in h], color=SERIES[i % len(SERIES)], marker="o",
+                    markersize=3, lw=1.6, label=f"seed {seed}")
+            if i == 0:
+                ax.plot(g, [r[mean_key] for r in h], color=SERIES[0], lw=1.0, ls="--", alpha=0.7,
+                        label=mean_label)
+        if k in optimum:
+            ax.axhline(optimum[k], color=TEXT2, lw=0.9, ls=":")
+        last = max(r[x_key] for h in runs[k].values() for r in h)
+        ax.set_xlim(-0.5, max(last, 1) + 0.5)
+        ax.xaxis.set_major_locator(matplotlib.ticker.MaxNLocator(integer=True))
+        if last == 0:
+            ax.text(0.5, 0.35, f"every subset fits in the\ninitial {'swarm' if unit == 'Iteration' else 'population'}: done at {unit.lower()} 0",
+                    transform=ax.transAxes, ha="center", fontsize=8, color=TEXT2)
+        ax.set_title(f"K = {k}", loc="left")
+        ax.set_xlabel(unit)
+    for ax in list(axes.flat)[len(ks):]:
+        ax.set_visible(False)
+    axes[0, 0].set_ylabel("Fitness")
+    handles, labels = axes[0, 0].get_legend_handles_labels()
+    fig.legend(handles, labels, loc="lower center", ncol=min(len(labels), 6), bbox_to_anchor=(0.5, -0.01))
+    fig.suptitle(title + "   (dotted = exhaustive-search optimum)", x=0.01, ha="left", fontsize=12,
+                 fontweight="bold", color=TEXT)
+    fig.tight_layout(rect=(0, 0.06, 1, 1))
+    return _save(fig, path)
+
+
+def plot_selection_matrix(selected, names, ks, path, title):
+    """Rows = K, columns = channels; a filled cell means the channel is kept at that K."""
+    m = np.zeros((len(ks), len(names)))
+    for r, k in enumerate(ks):
+        m[r, selected[k]] = 1
+    fig, ax = plt.subplots(figsize=(0.8 * len(names) + 2.2, 0.45 * len(ks) + 1.9))
+    ax.imshow(m, cmap=matplotlib.colors.ListedColormap([SURFACE, SERIES[0]]), vmin=0, vmax=1, aspect="auto")
+    ax.set_xticks(range(len(names)), names, rotation=40, ha="right")
+    ax.set_yticks(range(len(ks)), [f"K = {k}" for k in ks])
+    ax.set_xticks(np.arange(-0.5, len(names)), minor=True)
+    ax.set_yticks(np.arange(-0.5, len(ks)), minor=True)
+    ax.grid(False)
+    ax.grid(which="minor", color=GRID, lw=2)
+    ax.tick_params(which="minor", length=0)
+    ax.set_title(title, loc="left")
+    fig.tight_layout()
     return _save(fig, path)
