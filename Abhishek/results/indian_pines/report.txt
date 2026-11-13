@@ -1,0 +1,66 @@
+DATASET indian_pines
+  shape (H, W, C)  : (145, 145, 200)   dtype float32
+  pixels           : 21,025   |   values: 4,205,000   |   memory 16.8 MB
+  type             : hyperspectral (200 channels)
+  NaN / inf values : 0 (0.000%)
+  value range      : 955 .. 9604   (1-99 percentile: 1010 .. 6690)
+  constant bands   : 0
+  per-band statistics (first 20 of 200)
+      band        min        max       mean        std
+        b1       2560       4536       2957      354.9
+        b2       2709       5744       4091      230.4
+        b3       3649       6361       4278      257.8
+        b4       2810       6362       4170      280.8
+        b5       3840       7153       4517        346
+        b6       4056       7980       4791      414.4
+        b7       4004       8284       4848      469.2
+        b8       3865       8128       4715      491.7
+        b9       3775       8194       4669      533.2
+       b10       2792       7928       4439      539.9
+       b11       2700       7990       4407      596.2
+       b12       2594       7918       4308      674.2
+       b13       2560       7700       4148      758.7
+       b14       2600       7960       4400      641.2
+       b15       2665       7948       4471      634.5
+       b16       2614       7924       4448      669.6
+       b17       2560       7698       4286      780.7
+       b18       2560       7522       4070        852
+       b19       2560       7415       3967      851.7
+       b20       2560       7307       3861      862.1
+  band correlation : neighbouring bands 0.924 | mean |all pairs| 0.642  (high = redundant = good for reduction)
+  components needed: 90% variance -> 3, 95% -> 9, 99% -> 40  (of 200)
+  settings         : k values [3, 5, 10, 20], primary k 3, sigma_spatial 3.0, sigma_color 10
+  split            : random pixels (10% per class; OPTIMISTIC for PPCA+RF because the filter mixes neighbouring pixels)
+  [split] random: train 1,026 px, test 9,223 px, 16 of 16 classes in the test set, majority-class baseline OA = 24.0%, 5 repeat(s)
+
+LABEL DIAGNOSTICS (full-band classifier, per-class recall % on the test pixels)
+  class 1: 32%, class 2: 77%, class 3: 71%, class 4: 56%, class 5: 86%, class 6: 98%, class 7: 60%, class 8: 97%, class 9: 41%, class 10: 75%, class 11: 79%, class 12: 72%, class 13: 98%, class 14: 91%, class 15: 59%, class 16: 92%
+  majority-class baseline OA 24.0%  |  full-band OA 80.3%  AA 74.4%  kappa 77.5%
+  If full-band OA is close to the baseline and AA/kappa are tiny, the labels do not follow the pixels (misaligned, wrong date, or too coarse) and OA says nothing about the reduction.
+
+RESULT (primary k=3): variance explained by PPCA 90.37%, PPCA noise sigma^2 0.0977
+recursive filter: fine detail (noise + texture) removed 30.1%, edge retention (correlation) 0.995
+
+METRICS
+       method   k  var_explained  rmse  nrmse_pct  psnr_db  sam_deg    ARI    NMI    OA    AA  kappa  OA_std
+   Full bands 200              1     0          0      inf        0      1      1 80.32 74.43  77.51    0.52
+         PPCA   3         0.9037 126.1       2.22    33.07    2.187 0.5868 0.7273 64.91 52.56  59.01   0.312
+      PPCA+RF   3         0.9008 128.8      2.268    32.89    2.208 0.5151 0.7233 67.61 57.75  62.29  0.4129
+ Band-uniform   3         0.5249 338.2      5.955     24.5    4.983  0.124 0.2907 38.26 22.62  26.63  0.7986
+Band-variance   3         0.6248 274.7      4.837    26.31    3.474 0.3057 0.4751 49.42 29.07  39.14  0.5841
+ Band-cluster   3         0.8789 150.8      2.656    31.52    2.396 0.4504 0.6744 61.47 48.46  54.74   0.525
+         PPCA   5         0.9311 109.3      1.925    34.31    1.959 0.4535 0.6915 68.37 60.16  63.29  0.6435
+      PPCA+RF   5          0.928 112.4      1.979    34.07    1.985 0.4781 0.7079 70.78 66.46  66.15  0.4274
+ Band-uniform   5         0.8867 148.3      2.612    31.66    2.349 0.2304 0.4576 58.43 48.99  51.73  0.6139
+Band-variance   5         0.6339 270.7      4.766    26.44    3.419 0.3185 0.4836 50.83 31.74   40.9  0.5951
+ Band-cluster   5         0.9084 119.9       2.11    33.51    2.078 0.4118 0.6462 67.75 61.85  62.66  0.5037
+         PPCA  10         0.9553 91.41      1.609    35.87    1.629 0.4872 0.7057 74.13 69.94  70.24  0.5838
+      PPCA+RF  10         0.9521  94.9      1.671    35.54    1.656 0.5021 0.7153 77.28 74.96  73.89   0.501
+ Band-uniform  10          0.921 114.5      2.016    33.91    1.956 0.3496  0.574 70.67  63.6  66.33  0.9026
+Band-variance  10         0.8213 129.9      2.287    32.81    2.128  0.443 0.5899 58.78 45.43  51.51   0.572
+ Band-cluster  10         0.9424 103.4      1.821     34.8    1.817 0.3421 0.5515 64.66  56.9  59.41    1.01
+         PPCA  20         0.9748 77.33      1.361    37.32    1.356 0.5047 0.7221 76.16    72  72.69  0.3811
+      PPCA+RF  20         0.9714 81.56      1.436    36.86    1.394 0.5957  0.757 78.74 75.74  75.65  0.3354
+ Band-uniform  20         0.9337 98.66      1.737     35.2    1.749 0.5591 0.6903 75.72 68.81  72.15  0.3325
+Band-variance  20         0.8458 110.9      1.953    34.19    1.853 0.3579   0.58 64.89 54.89  59.29  0.4185
+ Band-cluster  20         0.9617 91.49      1.611    35.86    1.592 0.3925 0.6213 63.01 54.99  57.65   1.035
