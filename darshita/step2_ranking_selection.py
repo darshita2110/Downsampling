@@ -13,25 +13,23 @@ Three ways to score a band (three ranking methods):
                 contributes to the first K principal components (the main patterns).
 
 Run (after step 1):
-    python darshita/step2_ranking_selection.py
+    python darshita/step2_ranking_selection.py                  # practice image (Indian Pines)
+    python darshita/step2_ranking_selection.py raichur          # our real Sentinel-2 data
 """
 import json
-import os
+import sys
 
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy.io import loadmat
 
-from ranking import entropy_scores, mvpca_scores, top_k, variance_scores   # our own file
+from common import OUT_DIR, default_k, load_dataset                          # our own files
+from ranking import entropy_scores, mvpca_scores, top_k, variance_scores
 
 # ---------------------------------------------------------------- settings
-K = 10                                     # how many bands we are allowed to send
-IMAGE_FILE = "data/darshita/Indian_pines_corrected.mat"
-OUT_DIR = "darshita/outputs"
-os.makedirs(OUT_DIR, exist_ok=True)
-
-image = loadmat(IMAGE_FILE)["indian_pines_corrected"].astype(np.float32)
+DATASET = sys.argv[1] if len(sys.argv) > 1 else "indian_pines"
+image, names = load_dataset(DATASET)
 height, width, n_bands = image.shape
+K = default_k(n_bands)                     # how many bands we are allowed to send (10 of 200, 4 of 12)
 
 # Turn the cube into a table: one ROW per pixel, one COLUMN per band.
 # (145 x 145 x 200)  ->  (21025 pixels x 200 bands). Much easier to work with.
@@ -52,12 +50,12 @@ selected["Uniform"] = np.linspace(0, n_bands - 1, K).round().astype(int).tolist(
 print(f"\nTop {K} bands chosen by each method:")
 for name, bands in selected.items():
     gaps = np.diff(bands)
-    print(f"  {name:9s} {bands}   average gap between chosen bands: {gaps.mean():.1f}")
+    print(f"  {name:9s} {[names[b] for b in bands]}   average gap: {gaps.mean():.1f} bands")
 
 # ---------------------------------------------------- save for step 3
-with open(f"{OUT_DIR}/step2_selected_bands.json", "w") as f:
+with open(f"{OUT_DIR}/step2_selected_bands_{DATASET}.json", "w") as f:
     json.dump({"K": K, "selected": selected}, f, indent=2)
-print(f"\nSaved {OUT_DIR}/step2_selected_bands.json")
+print(f"\nSaved {OUT_DIR}/step2_selected_bands_{DATASET}.json")
 
 # ---------------------------------------------------- picture: scores and picks
 fig, axes = plt.subplots(3, 1, figsize=(10, 8), sharex=True)
@@ -66,11 +64,14 @@ for ax, (name, scores) in zip(axes, all_scores.items()):
     ax.scatter(selected[name], scores[selected[name]], color="red", zorder=3, label=f"top {K}")
     ax.set_ylabel(f"{name}\nscore")
     ax.legend(loc="upper right")
-axes[-1].set_xlabel("Band number")
-fig.suptitle(f"Ranking methods: score of every band, red = the {K} bands kept")
+if n_bands <= 40:                                         # few bands: write their names on the axis
+    axes[-1].set_xticks(range(n_bands))
+    axes[-1].set_xticklabels(names)
+axes[-1].set_xlabel("Band")
+fig.suptitle(f"Ranking methods ({DATASET}): score of every band, red = the {K} bands kept")
 plt.tight_layout()
-plt.savefig(f"{OUT_DIR}/step2_scores.png", dpi=120)
-print(f"Saved {OUT_DIR}/step2_scores.png")
+plt.savefig(f"{OUT_DIR}/step2_scores_{DATASET}.png", dpi=120)
+print(f"Saved {OUT_DIR}/step2_scores_{DATASET}.png")
 
 # ---------------------------------------------------- the weakness of ranking
 # Bands are scored ALONE, so if band 30 scores high, bands 29 and 31 (nearly identical)
