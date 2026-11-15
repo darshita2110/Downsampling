@@ -15,12 +15,13 @@ import time
 
 import matplotlib.pyplot as plt
 
-from common import (OUT_DIR, default_k, evaluate, load_dataset, scale_01, split_pixels,
+from common import (OUT_DIR, default_k, evaluate, dataset_name, load_dataset, scale_01, split_pixels,
                     to_table, uniform)
 from search import exhaustive, genetic_algorithm, make_cost, n_groups, pso, sfs
 
 DATASET = sys.argv[1] if len(sys.argv) > 1 else "indian_pines"
 cube, names = load_dataset(DATASET)
+DATASET = dataset_name(DATASET)          # a file path becomes a short name for output files
 H, W, C = cube.shape
 K = default_k(C)
 raw = to_table(cube)

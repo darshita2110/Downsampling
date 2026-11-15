@@ -22,7 +22,7 @@ import numpy as np
 import pandas as pd
 
 from clustering import ap_select, waludi, walumi
-from common import (OUT_DIR, default_k, evaluate, load_dataset, rebuild, scale_01, split_pixels,
+from common import (OUT_DIR, default_k, evaluate, dataset_name, load_dataset, rebuild, scale_01, split_pixels,
                     to_table, uniform)
 from ranking import entropy_scores, mvpca_scores, top_k, variance_scores
 from search import genetic_algorithm, make_cost, pso, sfs
@@ -50,6 +50,7 @@ def screen(fig, name, text):
 
 # ------------------------------------------------------------------ data
 cube, names = load_dataset(DATASET)
+DATASET = dataset_name(DATASET)          # a file path becomes a short name for output files
 H, W, C = cube.shape
 K = default_k(C)
 raw = to_table(cube)
@@ -59,9 +60,12 @@ size_mb = cube.astype(np.int16).nbytes / 1e6           # satellites store 16-bit
 if DATASET.startswith("raichur"):                     # "raichur" or one date, "raichur_<date>"
     RGB = [names.index("B04"), names.index("B03"), names.index("B02")]
     place = "Raichur, Karnataka (Sentinel-2 satellite, 20 m pixels)"
-else:
+elif DATASET == "indian_pines":
     RGB = [29, 19, 9]
     place = "a farm area in Indiana, USA (AVIRIS, practice image)"
+else:                                                   # any other dataset: bands at the same spectral
+    RGB = [int(C * 0.145), int(C * 0.095), int(C * 0.045)]   # positions as Indian Pines' 29, 19, 9 of 200
+    place = f"the {DATASET} dataset"
 
 
 def colour_picture(table01_or_cube):
