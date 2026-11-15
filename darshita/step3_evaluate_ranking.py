@@ -24,17 +24,18 @@ import sys
 import matplotlib.pyplot as plt
 import numpy as np
 
-from common import OUT_DIR, k_values as k_values_for, load_dataset           # our own files
+from common import OUT_DIR, k_values as k_values_for, dataset_name, load_dataset           # our own files
 from ranking import entropy_scores, mvpca_scores, top_k, variance_scores
 
 DATASET = sys.argv[1] if len(sys.argv) > 1 else "indian_pines"
 image, names = load_dataset(DATASET)
+DATASET = dataset_name(DATASET)          # a file path becomes a short name for output files
 height, width, n_bands = image.shape
 raw_pixels = image.reshape(-1, n_bands)
 
 # Scale every band to 0..1 so that every band counts equally in the error.
 low, high = raw_pixels.min(axis=0), raw_pixels.max(axis=0)
-pixels = (raw_pixels - low) / (high - low)
+pixels = (raw_pixels - low) / np.maximum(high - low, 1e-12)   # constant band -> 0
 
 # Split pixels: 10% to learn the rebuild weights, 90% to test.
 rng = np.random.default_rng(0)                 # fixed seed -> same split every run

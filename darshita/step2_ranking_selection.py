@@ -22,12 +22,13 @@ import sys
 import matplotlib.pyplot as plt
 import numpy as np
 
-from common import OUT_DIR, default_k, load_dataset                          # our own files
+from common import OUT_DIR, default_k, dataset_name, load_dataset                          # our own files
 from ranking import entropy_scores, mvpca_scores, top_k, variance_scores
 
 # ---------------------------------------------------------------- settings
 DATASET = sys.argv[1] if len(sys.argv) > 1 else "indian_pines"
 image, names = load_dataset(DATASET)
+DATASET = dataset_name(DATASET)          # a file path becomes a short name for output files
 height, width, n_bands = image.shape
 K = default_k(n_bands)                     # how many bands we are allowed to send (10 of 200, 4 of 12)
 

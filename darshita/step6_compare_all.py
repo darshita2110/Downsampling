@@ -22,13 +22,14 @@ import numpy as np
 import pandas as pd
 
 from clustering import ap_select, kl_distance, mi_distance, ward_select
-from common import (OUT_DIR, default_k, evaluate, k_values, load_dataset, scale_01,
+from common import (OUT_DIR, default_k, evaluate, k_values, dataset_name, load_dataset, scale_01,
                     split_pixels, to_table, uniform)
 from ranking import entropy_scores, mvpca_scores, top_k, variance_scores
 from search import exhaustive, genetic_algorithm, make_cost, n_groups, pso, sfs
 
 DATASET = sys.argv[1] if len(sys.argv) > 1 else "indian_pines"
 cube, names = load_dataset(DATASET)
+DATASET = dataset_name(DATASET)          # a file path becomes a short name for output files
 H, W, C = cube.shape
 K_MAIN = default_k(C)
 KS = k_values(C)
@@ -85,7 +86,8 @@ for k in KS:
         s = evaluate(pixels01, raw, group, calib, test)
         rows.append({"Method": name, "Family": FAMILY[name], "K": k, "Data sent %": 100 * k / C,
                      "PSNR": s["PSNR"], "SAM": s["SAM"], "Redundancy": s["Redundancy"],
-                     "Time s": seconds, "Channels": " ".join(names[c] for c in group)})
+                     "Time s": seconds, "Channels": " ".join(names[c] for c in group),
+                     "Indices": " ".join(str(c) for c in group)})
 df = pd.DataFrame(rows)
 df.to_csv(f"{OUT_DIR}/final_results_{DATASET}.csv", index=False, float_format="%.4f")
 

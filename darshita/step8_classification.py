@@ -1,162 +1,164 @@
 """
-STEP 8 - Classification test (Indian Pines only).
+STEP 8 - Classification test, on ANY dataset that has labels.
 
 Steps 2-7 asked: "can the ground REBUILD all channels from the K that were sent?"
-This step asks a second, practical question: "can a computer still tell the CROPS apart
-using only the K channels that were sent?"
+This step asks: "can a computer still tell the land-cover CLASSES apart using only the
+K channels that were sent?" This is how most band-selection papers report results, so these
+numbers can be put next to theirs.
 
-How:
-  1. Load the labels map (which crop grows in each pixel, 16 crop classes).
-  2. Keep only the labelled pixels. 10% of them train the classifier, 90% test it.
-     The split keeps the share of every class the same ("stratified") and uses seed 0,
-     so every method is tested on exactly the same pixels.
-  3. For every method and every K, choose the channels exactly like step 6, then train an
-     SVM classifier on ONLY those channels and score it on the test pixels:
-       Overall Accuracy (OA) = % of test pixels given the right crop
-       Cohen's kappa         = accuracy corrected for lucky guesses (1 = perfect, 0 = guessing)
-  4. One reference row uses all 200 channels: the most the classifier can get here.
+Protocol (same as most papers):
+  - only labelled pixels are used; 10% of every class trains the classifier, 90% tests it
+  - repeated for several random splits (--runs), reported as mean +/- std
+  - classifiers: SVM (RBF), and optionally KNN (k=5) and Random Forest (100 trees)
+  - metrics: OA (overall accuracy), AA (average of per-class accuracies), Kappa,
+    and AOA (OA averaged over all K values)
+The channels are NOT chosen again here: they are read from step 6's results, so both steps
+use exactly the same bands. Run step 6 on the same dataset first.
 
-Needs: data/darshita/Indian_pines_gt.mat (variable indian_pines_gt) and scikit-learn.
 Run:
-    python darshita/step8_classification.py
+    python darshita/step8_classification.py indian_pines
+    python darshita/step8_classification.py pavia_u --runs 10 --classifiers svm knn rf
+    python darshita/step8_classification.py data/darshita/MyImage.mat      (needs MyImage_gt.mat)
 """
+import argparse
 import os
 
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from scipy.io import loadmat
-from sklearn.metrics import accuracy_score, cohen_kappa_score
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, cohen_kappa_score, recall_score
 from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
 
-from clustering import ap_select, kl_distance, mi_distance, ward_select
-from common import OUT_DIR, k_values, load_dataset, scale_01, split_pixels, to_table, uniform
-from ranking import entropy_scores, mvpca_scores, top_k, variance_scores
-from search import genetic_algorithm, make_cost, pso, sfs
+from common import OUT_DIR, dataset_name, default_k, load_dataset, load_labels, to_table
 
-LABELS_FILE = "data/darshita/Indian_pines_gt.mat"
-K_MAIN = 10                                   # the K used in the summary table
+p = argparse.ArgumentParser(description="Classification test of the chosen channels")
+p.add_argument("dataset", nargs="?", default="indian_pines")
+p.add_argument("--runs", type=int, default=5, help="random train/test splits (papers often use 10)")
+p.add_argument("--train", type=float, default=0.10, help="share of labelled pixels used for training")
+p.add_argument("--classifiers", nargs="+", default=["svm"], choices=["svm", "knn", "rf"])
+args = p.parse_args()
 
-# Same names, families, colours and line styles as step 6
-FAMILY = {"Variance": "Ranking", "Entropy": "Ranking", "MVPCA": "Ranking",
-          "SFS": "Search", "GA": "Search", "PSO": "Search",
-          "WaLuDi": "Clustering", "WaLuMI": "Clustering", "AffinityProp": "Clustering",
-          "Uniform": "Baseline"}
-COLOUR = {"Ranking": "#2a78d6", "Search": "#eb6834", "Clustering": "#1baf7a", "Baseline": "#555555"}
+FAMILY_COLOUR = {"Ranking": "#2a78d6", "Search": "#eb6834", "Clustering": "#1baf7a",
+                 "Baseline": "#555555", "Best possible": "#000000"}
 STYLE = {"Variance": "-o", "Entropy": "--s", "MVPCA": ":^", "SFS": "-o", "GA": "--s", "PSO": ":^",
-         "WaLuDi": "-o", "WaLuMI": "--s", "AffinityProp": ":^", "Uniform": "-."}
+         "WaLuDi": "-o", "WaLuMI": "--s", "AffinityProp": ":^", "Uniform": "-.", "Exhaustive": ":"}
 
-# ---------------------------------------------- 1. load and check the labels
-if not os.path.exists(LABELS_FILE):
-    raise SystemExit(f"Labels file not found: {LABELS_FILE}\n"
-                     "Put Indian_pines_gt.mat (variable indian_pines_gt) there and run again.")
-labels = loadmat(LABELS_FILE)["indian_pines_gt"]
-cube, names = load_dataset("indian_pines")
+# ---------------------------------------------- 1. data, labels and step 6's channel choices
+cube, names = load_dataset(args.dataset)
+DATASET = dataset_name(args.dataset)
 H, W, C = cube.shape
-if labels.shape != (H, W) or labels.min() < 0 or labels.max() > 16:
-    raise SystemExit(f"Unexpected labels: shape {labels.shape}, values {labels.min()}..{labels.max()}. "
-                     f"Expected shape {(H, W)} and values 0..16.")
-print(f"Labels OK: shape {labels.shape}, {labels.max()} crop classes, "
-      f"{(labels > 0).sum():,} labelled pixels (0 = no label, not used)")
+labels = load_labels(args.dataset)
+if labels is None:
+    raise SystemExit(f"{DATASET} has no labels file, so there is nothing to classify. "
+                     "(Raichur has no crop labels: use step 6's PSNR results for it.)")
+if labels.shape != (H, W):
+    raise SystemExit(f"Labels shape {labels.shape} does not match the image {(H, W)}")
+choices_file = f"{OUT_DIR}/final_results_{DATASET}.csv"
+if not os.path.exists(choices_file):
+    raise SystemExit(f"Run step 6 first:  python darshita/step6_compare_all.py {args.dataset}")
+choices = pd.read_csv(choices_file)
+index_of = {n: i for i, n in enumerate(names)}
 
-raw = to_table(cube)                          # one row per pixel, one column per channel
-crop = labels.ravel()                         # the crop class of every pixel, same order as `raw`
+raw = to_table(cube)
+y_all = labels.ravel()
+labelled = np.where(y_all > 0)[0]
+classes, counts = np.unique(y_all[labelled], return_counts=True)
+print(f"{DATASET}: {len(classes)} classes, {len(labelled):,} labelled pixels, "
+      f"smallest class {counts.min()} pixels. {args.runs} runs, {int(args.train * 100)}% training")
 
-# ---------------------------------------------- 2. train / test split of the labelled pixels
-labelled = np.where(crop > 0)[0]
-train, test = train_test_split(labelled, train_size=0.10, stratify=crop[labelled], random_state=0)
-print(f"Train pixels: {len(train):,} (10%)   Test pixels: {len(test):,} (90%)\n")
-
-
-def classify(channels):
-    """Train an SVM on the chosen channels only; return (OA in %, kappa) on the test pixels."""
-    # StandardScaler: every channel gets mean 0 and std 1 (learned on the train pixels only).
-    # SVC with RBF kernel; C=100 is fixed for every method (no tuning), so the comparison is fair.
-    model = make_pipeline(StandardScaler(), SVC(kernel="rbf", C=100, gamma="scale"))
-    model.fit(raw[np.ix_(train, channels)], crop[train])
-    predicted = model.predict(raw[np.ix_(test, channels)])
-    return 100 * accuracy_score(crop[test], predicted), cohen_kappa_score(crop[test], predicted)
+splits = [train_test_split(labelled, train_size=args.train, stratify=y_all[labelled], random_state=r)
+          for r in range(args.runs)]
 
 
-# ---------------------------------------------- 3. choose channels exactly like step 6
-# Channel selection never looks at the crop labels: it only uses the image itself.
-pixels01 = scale_01(raw)
-calib, _ = split_pixels(len(pixels01))       # the calibration pixels the search methods use
-cost = make_cost(pixels01, calib)
-sample = np.random.default_rng(0).choice(len(pixels01), min(20000, len(pixels01)), replace=False)
+def make_model(kind):
+    """Same fixed settings for every method (no tuning), so only the channels differ."""
+    if kind == "svm":
+        return make_pipeline(StandardScaler(), SVC(kernel="rbf", C=100, gamma="scale"))
+    if kind == "knn":
+        return make_pipeline(StandardScaler(), KNeighborsClassifier(n_neighbors=5))
+    return RandomForestClassifier(n_estimators=100, random_state=0, n_jobs=-1)
 
-print("Preparing scores and distances that do not depend on K ...")
-var_s = variance_scores(raw)
-ent_s = entropy_scores(raw)
-D_kl = kl_distance(pixels01[sample])
-D_mi = mi_distance(pixels01[sample])
 
-methods = {                                   # each one: K -> list of chosen channels
-    "Variance": lambda k: top_k(var_s, k),
-    "Entropy": lambda k: top_k(ent_s, k),
-    "MVPCA": lambda k: top_k(mvpca_scores(raw, k), k),
-    "SFS": lambda k: sfs(cost, C, k)[0],
-    "GA": lambda k: genetic_algorithm(cost, C, k, seed=0)[0],
-    "PSO": lambda k: pso(cost, C, k, seed=0)[0],
-    "WaLuDi": lambda k: ward_select(D_kl, k)[0],
-    "WaLuMI": lambda k: ward_select(D_mi, k)[0],
-    "AffinityProp": lambda k: ap_select(pixels01[sample], k)[0],
-    "Uniform": lambda k: uniform(C, k),
-}
+def score(channels, kind):
+    """OA %, AA %, Kappa for every split."""
+    out = []
+    for train, test in splits:
+        model = make_model(kind).fit(raw[np.ix_(train, channels)], y_all[train])
+        pred = model.predict(raw[np.ix_(test, channels)])
+        out.append((100 * accuracy_score(y_all[test], pred),
+                    100 * recall_score(y_all[test], pred, average="macro"),     # = average accuracy
+                    cohen_kappa_score(y_all[test], pred)))
+    return np.array(out)
 
+
+# ---------------------------------------------- 2. classify with the chosen channels
 rows = []
-for k in k_values(C):
-    print(f"K = {k} ...")
-    for name, choose in methods.items():
-        channels = choose(k)
-        oa, kappa = classify(channels)
-        rows.append({"Method": name, "Family": FAMILY[name], "K": k, "OA %": oa, "Kappa": kappa,
-                     "Channels": " ".join(names[c] for c in channels)})
-
-# Reference: the classifier with every channel
-oa_all, kappa_all = classify(list(range(C)))
-rows.append({"Method": f"All {C} bands", "Family": "Reference", "K": C, "OA %": oa_all,
-             "Kappa": kappa_all, "Channels": "all"})
+for kind in args.classifiers:
+    for _, r in choices.iterrows():
+        if "Indices" in r and isinstance(r.Indices, str):            # step 6 saves the band numbers
+            channels = [int(c) for c in r.Indices.split()]
+        else:                                                        # older step 6 files: names only
+            parts = str(r.Channels).split()
+            pairs = [f"{a} {b}" for a, b in zip(parts[::2], parts[1::2])]
+            channels = [index_of[n] for n in (parts if parts[0] in index_of else pairs)]
+        s = score(channels, kind)
+        rows.append({"Classifier": kind.upper(), "Method": r.Method, "Family": r.Family, "K": r.K,
+                     "OA": s[:, 0].mean(), "OA std": s[:, 0].std(), "AA": s[:, 1].mean(),
+                     "AA std": s[:, 1].std(), "Kappa": s[:, 2].mean(), "Kappa std": s[:, 2].std()})
+        print(f"  {kind.upper():3s} K={r.K:<3} {r.Method:13s} OA {s[:, 0].mean():6.2f} +/- {s[:, 0].std():.2f}")
+    s = score(list(range(C)), kind)                               # reference: every channel
+    rows.append({"Classifier": kind.upper(), "Method": f"All {C} bands", "Family": "Reference", "K": C,
+                 "OA": s[:, 0].mean(), "OA std": s[:, 0].std(), "AA": s[:, 1].mean(), "AA std": s[:, 1].std(),
+                 "Kappa": s[:, 2].mean(), "Kappa std": s[:, 2].std()})
 df = pd.DataFrame(rows)
-df.to_csv(f"{OUT_DIR}/step8_classification_indian_pines.csv", index=False, float_format="%.4f")
+df.to_csv(f"{OUT_DIR}/step8_classification_{DATASET}.csv", index=False, float_format="%.4f")
 
-# ---------------------------------------------- 4a. table at K = 10
-main = df[df.K == K_MAIN].sort_values("OA %", ascending=False)
-lines = [f"## Indian Pines: crop classification with {K_MAIN} of {C} channels", "",
-         f"SVM (RBF) trained on {len(train):,} labelled pixels (10%), tested on {len(test):,} (90%).", "",
-         f"| Method | Family | OA (%) | Kappa | OA behind all {C} bands (points) |",
-         "|---|---|---|---|---|",
-         f"| All {C} bands | Reference | {oa_all:.2f} | {kappa_all:.3f} | 0.00 |"]
-for _, r in main.iterrows():
-    lines.append(f"| {r.Method} | {r.Family} | {r['OA %']:.2f} | {r.Kappa:.3f} | {oa_all - r['OA %']:.2f} |")
-best = (df[df.Family.isin(["Ranking", "Search", "Clustering"])]
-        .groupby(["Family", "K"])["OA %"].max().unstack())
-lines += ["", "Best OA (%) of each family at every K:", "",
-          "| Family | " + " | ".join(f"K={k}" for k in best.columns) + " |",
-          "|---|" + "---|" * len(best.columns)]
-lines += [f"| {f} | " + " | ".join(f"{v:.2f}" for v in r.values) + " |" for f, r in best.iterrows()]
-text = "\n".join(lines) + "\n"
-with open(f"{OUT_DIR}/step8_summary_indian_pines.md", "w", encoding="utf-8") as f:
+# ---------------------------------------------- 3. summary tables
+K_MAIN = default_k(C)
+lines = [f"## {DATASET}: classification with the chosen channels", "",
+         f"{len(classes)} classes, {int(args.train * 100)}% of labelled pixels for training, "
+         f"{args.runs} random splits (mean ± std).", ""]
+for kind in df.Classifier.unique():
+    d = df[df.Classifier == kind]
+    ref = d[d.Family == "Reference"].iloc[0]
+    main = d[d.K == K_MAIN].sort_values("OA", ascending=False)
+    aoa = d[d.Family != "Reference"].groupby("Method").OA.mean()
+    lines += [f"### {kind}, K = {K_MAIN} of {C} channels", "",
+              "| Method | Family | OA (%) | AA (%) | Kappa | AOA over all K (%) |",
+              "|---|---|---|---|---|---|",
+              f"| All {C} bands | Reference | {ref.OA:.2f} ± {ref['OA std']:.2f} | {ref.AA:.2f} | "
+              f"{ref.Kappa:.3f} | – |"]
+    for _, r in main.iterrows():
+        lines.append(f"| {r.Method} | {r.Family} | {r.OA:.2f} ± {r['OA std']:.2f} | {r.AA:.2f} ± "
+                     f"{r['AA std']:.2f} | {r.Kappa:.3f} | {aoa[r.Method]:.2f} |")
+    lines.append("")
+text = "\n".join(lines)
+with open(f"{OUT_DIR}/step8_summary_{DATASET}.md", "w", encoding="utf-8") as f:
     f.write(text)
 print("\n" + text)
 
-# ---------------------------------------------- 4b. chart: OA vs K
+# ---------------------------------------------- 4. chart: OA vs K (first classifier)
+kind = df.Classifier.unique()[0]
+d = df[df.Classifier == kind]
 fig, ax = plt.subplots(figsize=(10, 5.5))
-for name in methods:
-    d = df[df.Method == name]
-    ax.plot(d.K, d["OA %"], STYLE[name], color=COLOUR[FAMILY[name]], lw=2, ms=6,
-            label=f"{name} ({FAMILY[name]})")
-ax.axhline(oa_all, color="black", ls=":", lw=1.5, label=f"All {C} bands ({oa_all:.1f}%)")
+for method in d[d.Family != "Reference"].Method.unique():
+    m = d[d.Method == method]
+    ax.errorbar(m.K, m.OA, yerr=m["OA std"], fmt=STYLE.get(method, "-o"), capsize=3, lw=2, ms=6,
+                color=FAMILY_COLOUR.get(m.Family.iloc[0], "#888888"), label=f"{method} ({m.Family.iloc[0]})")
+ref = d[d.Family == "Reference"].iloc[0]
+ax.axhline(ref.OA, color="black", ls=":", lw=1.5, label=f"All {C} bands ({ref.OA:.1f}%)")
 ax.set_xlabel("K = number of channels sent")
-ax.set_ylabel("Overall accuracy on test pixels (%), higher = better")
-ax.set_title("Indian Pines: crop classification (SVM) using only the sent channels", fontsize=11)
-ax.set_xticks(k_values(C))
+ax.set_ylabel(f"Overall accuracy (%), {kind}, higher = better")
+ax.set_title(f"{DATASET}: classification from the sent channels only", fontsize=11)
+ax.set_xticks(sorted(d[d.Family != "Reference"].K.unique()))
 ax.grid(alpha=0.3)
 ax.legend(loc="center left", bbox_to_anchor=(1.01, 0.5), fontsize=9)
 fig.tight_layout()
-fig.savefig(f"{OUT_DIR}/step8_oa_vs_k_indian_pines.png", dpi=120)
-print(f"Saved step8_classification_indian_pines.csv, step8_oa_vs_k_indian_pines.png and "
-      f"step8_summary_indian_pines.md in {OUT_DIR}/")
+fig.savefig(f"{OUT_DIR}/step8_oa_vs_k_{DATASET}.png", dpi=120)
+print(f"Saved step8_classification_{DATASET}.csv, step8_summary_{DATASET}.md, "
+      f"step8_oa_vs_k_{DATASET}.png in {OUT_DIR}/")

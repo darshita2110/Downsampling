@@ -181,3 +181,28 @@ other 90%, using one stratified split with seed 0.
 - **Rebuilding and classifying reward different bands.** Search wins on PSNR (rebuilding the image), but for telling crops apart, clustering's one-band-per-group spread works better.
 - **Ranking is worst at small K** (56–59% OA at K = 10), because its bands are near-copies of each other.
 - **Uniform spacing is a strong baseline when many bands are sent.** At K = 25 it reaches 77.9%, ahead of every selected set, and accuracy doesn't always rise with K. This is one split with a fixed SVM setting, so gaps of a few points shouldn't be over-read.
+
+## Any dataset (generalized code)
+
+All steps now take a dataset name OR a file path:
+
+| Name | File(s) in `data/darshita/` |
+|---|---|
+| `indian_pines` | Indian_pines_corrected.mat, Indian_pines_gt.mat |
+| `pavia_u` | PaviaU.mat, PaviaU_gt.mat |
+| `salinas` | Salinas_corrected.mat, Salinas_gt.mat |
+| `ksc` | KSC.mat, KSC_gt.mat |
+| `botswana` | Botswana.mat, Botswana_gt.mat |
+| `raichur`, `raichur_<date>` | Sentinel-2 crops (data steps 1-2) |
+| `data/darshita/X.mat` or `.npy` | any cube; labels from `X_gt.mat` / `X_gt.npy` if present |
+
+```
+python darshita/data_3_download_benchmarks.py          # download benchmarks (or by hand from the EHU page)
+python darshita/run_all.py --list                      # which datasets are ready
+python darshita/run_all.py                             # step 6 + step 8 on all, then summary
+python darshita/run_all.py --runs 10 --classifiers svm knn rf   # full paper protocol
+python darshita/step6_compare_all.py data/darshita/X.mat        # any single file
+```
+Summary outputs: `outputs/all_datasets_summary.md`, `all_datasets_rank.png`.
+The loader finds the image (largest 3-D array) and labels (largest 2-D array) automatically,
+puts bands last, removes NaN, clips broken pixels and drops constant bands.
