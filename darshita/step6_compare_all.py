@@ -21,7 +21,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from clustering import ap_select, kl_distance, mi_distance, ward_select
+from clustering import ap_select, kl_distance, mi_distance, segward_select, ward_select
 from common import (OUT_DIR, default_k, evaluate, k_values, dataset_name, load_dataset, scale_01,
                     split_pixels, to_table, uniform)
 from ranking import entropy_scores, mvpca_scores, top_k, variance_scores
@@ -42,11 +42,11 @@ sample = np.random.default_rng(0).choice(len(pixels01), min(20000, len(pixels01)
 FAMILY = {"Variance": "Ranking", "Entropy": "Ranking", "MVPCA": "Ranking",
           "SFS": "Search", "GA": "Search", "PSO": "Search",
           "WaLuDi": "Clustering", "WaLuMI": "Clustering", "AffinityProp": "Clustering",
-          "Uniform": "Baseline", "Exhaustive": "Best possible"}
-COLOUR = {"Ranking": "#2a78d6", "Search": "#eb6834", "Clustering": "#1baf7a",
+          "SegWard": "Hybrid", "Uniform": "Baseline", "Exhaustive": "Best possible"}
+COLOUR = {"Ranking": "#2a78d6", "Search": "#eb6834", "Clustering": "#1baf7a", "Hybrid": "#a5359b",
           "Baseline": "#555555", "Best possible": "#000000"}
 STYLE = {"Variance": "-o", "Entropy": "--s", "MVPCA": ":^", "SFS": "-o", "GA": "--s", "PSO": ":^",
-         "WaLuDi": "-o", "WaLuMI": "--s", "AffinityProp": ":^", "Uniform": "-.", "Exhaustive": ":"}
+         "WaLuDi": "-o", "WaLuMI": "--s", "AffinityProp": ":^", "SegWard": "-D", "Uniform": "-.", "Exhaustive": ":"}
 
 
 # ---------------------------------------------- things that do not depend on K: compute once
@@ -72,6 +72,7 @@ methods = {
     "WaLuDi": lambda k: (lambda r: (r[0][0], r[1] + t_kl))(timed(lambda: ward_select(D_kl, k))),
     "WaLuMI": lambda k: (lambda r: (r[0][0], r[1] + t_mi))(timed(lambda: ward_select(D_mi, k))),
     "AffinityProp": lambda k: timed(lambda: ap_select(pixels01[sample], k)[0]),
+    "SegWard": lambda k: timed(lambda: segward_select(pixels01[sample], k)[0]),
     "Uniform": lambda k: (uniform(C, k), 0.0),
 }
 if n_groups(C, max(KS)) <= 5000:                        # few channels: the true best is computable

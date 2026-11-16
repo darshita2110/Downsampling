@@ -166,3 +166,32 @@ def ap_select(pixels01, k):
     if best is None:
         best, best_labels = [0], np.zeros(len(S), int)
     return exactly_k(list(map(int, best)), D, k), best_labels, D
+
+
+# ================================================================ hybrid: SegWard
+def segward_select(pixels01, k):
+    """
+    HYBRID of clustering and uniform spacing ("SegWard" = segment-constrained Ward).
+
+    Uniform spacing covers the whole spectrum but ignores the data. Ward clustering follows
+    the data but can put far-apart bands in one group and leave parts of the spectrum empty.
+    SegWard does both: Ward clustering where a band may only join its NEIGHBOURING bands, so
+    every group is one contiguous piece of the spectrum (full coverage), but the pieces are
+    as wide or as narrow as the data says (narrow where bands change fast, wide where they
+    are all alike). From each piece it sends the band closest to the piece's average.
+
+    pixels01 : (n_pixels, n_bands) scaled 0..1 (a sample of pixels is enough)
+    returns  : (chosen band numbers, piece number of every band)
+    """
+    from scipy.sparse import diags
+    from sklearn.cluster import AgglomerativeClustering
+    F = np.asarray(pixels01, dtype=np.float64).T                 # one row per band
+    C = F.shape[0]
+    neighbours = diags([1.0, 1.0], [-1, 1], shape=(C, C))            # band i may join only i-1 and i+1
+    pieces = AgglomerativeClustering(n_clusters=k, linkage="ward", connectivity=neighbours).fit_predict(F)
+    chosen = []
+    for g in np.unique(pieces):
+        members = np.where(pieces == g)[0]
+        centre = F[members].mean(axis=0)
+        chosen.append(int(members[np.argmin(((F[members] - centre) ** 2).sum(axis=1))]))
+    return sorted(chosen), pieces

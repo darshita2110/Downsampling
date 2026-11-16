@@ -28,7 +28,8 @@ import pandas as pd
 from common import OUT_DIR, available_datasets, dataset_name, default_k, load_labels
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-FAMILY_COLOUR = {"Ranking": "#2a78d6", "Search": "#eb6834", "Clustering": "#1baf7a", "Baseline": "#555555"}
+FAMILY_COLOUR = {"Ranking": "#2a78d6", "Search": "#eb6834", "Clustering": "#1baf7a", "Hybrid": "#a5359b",
+                 "Baseline": "#555555"}
 
 p = argparse.ArgumentParser()
 p.add_argument("datasets", nargs="*", help="dataset names or files (default: all available)")
@@ -119,7 +120,7 @@ if tables:
         ax.set_title("Rebuild (PSNR)" if col == "PSNR" else "Classification (AOA)")
         ax.set_xlim(0, w["Average rank"].max() + 1.2)
     handles = [plt.Rectangle((0, 0), 1, 1, color=c) for c in FAMILY_COLOUR.values()]
-    fig.legend(handles, list(FAMILY_COLOUR), loc="lower center", ncol=4, frameon=False)
+    fig.legend(handles, list(FAMILY_COLOUR), loc="lower center", ncol=5, frameon=False)
     fig.tight_layout(rect=(0, 0.07, 1, 1))
     fig.savefig(f"{OUT_DIR}/all_datasets_rank.png", dpi=120)
     print(f"Saved all_datasets_summary.md and all_datasets_rank.png in {OUT_DIR}/")
