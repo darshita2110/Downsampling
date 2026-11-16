@@ -1,0 +1,21 @@
+# Kartavya - dataset-independent channel/band reduction (Python >= 3.10; tested with 3.13)
+# core (required by every algorithm)
+numpy>=1.26
+pandas>=2.0
+matplotlib>=3.8
+pillow>=10.0            # PNG / JPG / BMP / GIF / WebP / plain TIFF
+scikit-image>=0.22      # SSIM, resampling
+scipy>=1.11             # MATLAB .mat files
+scikit-learn>=1.4       # PCA / ICA cross-checks, LDA self-check
+psutil>=5.9             # process memory columns (NaN without it)
+
+# scientific raster formats (each optional: only needed for that format)
+tifffile>=2023.1        # TIFF fallback when rasterio is absent
+rasterio>=1.3           # GeoTIFF (georeferencing + nodata), JPEG2000, VRT, ERDAS .img
+spectral>=0.23          # ENVI .hdr + data
+h5py>=3.9               # HDF5 and MATLAB v7.3 .mat
+xarray>=2023.1          # NetCDF
+netCDF4>=1.6            # NetCDF
+
+# UBS-CNN (BS-Net-Conv) only - CPU build is enough; without it UBS-CNN is reported as failed and the rest run
+torch>=2.0
