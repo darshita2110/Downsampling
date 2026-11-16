@@ -13,3 +13,4 @@ rasterio==1.5.2
 opencv-contrib-python
 scipy
 scikit-learn
+pytorch
