@@ -206,3 +206,27 @@ python darshita/step6_compare_all.py data/darshita/X.mat        # any single fil
 Summary outputs: `outputs/all_datasets_summary.md`, `all_datasets_rank.png`.
 The loader finds the image (largest 3-D array) and labels (largest 2-D array) automatically,
 puts bands last, removes NaN, clips broken pixels and drops constant bands.
+
+## Live demo: before vs after reduction, family by family
+
+```
+python darshita/show_reduction.py raichur                 # K = 4 of 12 (or --k 2, 3, 5 ...)
+python darshita/show_reduction.py indian_pines            # K = 10 of 200
+python darshita/show_reduction.py raichur --only search   # one screen: ranking | search | clustering | final
+```
+5 screens, one after another (close a window, the next opens), also saved as
+`outputs/show_<dataset>_K<k>_1_ranking.png` ... `_5_scoreboard.png`:
+1 Ranking (Variance, Entropy, MVPCA) · 2 Search (SFS, GA, PSO, + Exhaustive for few channels) ·
+3 Clustering (WaLuDi, WaLuMI, AffinityProp) · 4 Final (best of each family + Uniform) ·
+5 Scoreboard (PSNR, redundancy, time of every method).
+Each method row: original | rebuilt from K channels | difference map + PSNR | one pixel's spectrum
+with the sent channels marked. Same channel choices as step 6. Takes 10-60 s.
+
+## Hybrid method: SegWard (segment-constrained Ward)
+
+`clustering.segward_select` = Ward clustering where a band may only join its neighbouring
+bands, so every group is one contiguous piece of the spectrum (coverage like Uniform, widths
+chosen by the data like WaLuDi). One band per piece (closest to the piece average).
+Runs automatically in step 6 / step 8 / run_all / show_reduction as family "Hybrid".
+Indian Pines, SVM, 5 splits: K=10 OA 77.41 % (WaLuDi 75.97 %), AOA 74.01 % (best of all methods).
+It is built for classification; for reconstruction (PSNR) search (GA) is still better.
