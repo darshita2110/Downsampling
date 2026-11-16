@@ -1,0 +1,159 @@
+{
+  "experiment": "png",
+  "dataset": "png",
+  "hyperparameters": {
+    "algorithm": "parallel",
+    "fun": "logcosh",
+    "fun_alpha": 1.0,
+    "max_iter": 1000,
+    "tol": 0.0001,
+    "whitening": "PCA, unit variance",
+    "random_seed": 42,
+    "max_train_pixels": 300000,
+    "standardize": true,
+    "rank_tol": 1e-10,
+    "target_width": 1024
+  },
+  "channels": [
+    "RGB:R(B04)",
+    "RGB:G(B03)",
+    "RGB:B(B02)",
+    "False_Color:R(B08)",
+    "False_Color:G(B04)",
+    "False_Color:B(B03)",
+    "NDVI",
+    "NDWI"
+  ],
+  "split": {
+    "mode": "spatial",
+    "spatial_train_fraction": 0.5,
+    "train": [
+      {
+        "index": 0,
+        "rows": "top"
+      }
+    ],
+    "test": [
+      {
+        "index": 0,
+        "rows": "bottom"
+      }
+    ]
+  },
+  "n_training_pixels_total": 541696,
+  "n_pixels_used_for_fit": 300000,
+  "covariance_eigenvalues": [
+    5.865528451835147,
+    1.9287486831362686,
+    0.1513054799442697,
+    0.037720333223893614,
+    0.010215282111890182,
+    0.006508436503582676,
+    5.434522232779744e-17,
+    -5.989540545457574e-16
+  ],
+  "numerical_rank": 6,
+  "component_counts": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "convergence": [
+    {
+      "k": 1,
+      "n_iter": 1,
+      "converged": true,
+      "final_change": 0.0,
+      "tol": 0.0001,
+      "max_iter": 1000,
+      "fit_seconds": 0.024925605000021278,
+      "fit_peak_mb": 31.205192,
+      "sklearn_n_iter": 1,
+      "min_best_abs_corr_with_sklearn_components": 0.9999999999999993,
+      "one_to_one_match": true,
+      "max_abs_diff_reconstruction": 1.028954699222595e-12
+    },
+    {
+      "k": 2,
+      "n_iter": 3,
+      "converged": true,
+      "final_change": 8.384209805667453e-05,
+      "tol": 0.0001,
+      "max_iter": 1000,
+      "fit_seconds": 0.07381182200003877,
+      "fit_peak_mb": 48.005886,
+      "sklearn_n_iter": 38,
+      "min_best_abs_corr_with_sklearn_components": 0.999999986112633,
+      "one_to_one_match": true,
+      "max_abs_diff_reconstruction": 1.0027534358414414e-12
+    },
+    {
+      "k": 3,
+      "n_iter": 51,
+      "converged": true,
+      "final_change": 9.021351377735964e-05,
+      "tol": 0.0001,
+      "max_iter": 1000,
+      "fit_seconds": 1.1071428669999932,
+      "fit_peak_mb": 62.407056,
+      "sklearn_n_iter": 36,
+      "min_best_abs_corr_with_sklearn_components": 0.9999999970298522,
+      "one_to_one_match": true,
+      "max_abs_diff_reconstruction": 9.514611321037592e-13
+    },
+    {
+      "k": 4,
+      "n_iter": 9,
+      "converged": true,
+      "final_change": 5.042106197772345e-05,
+      "tol": 0.0001,
+      "max_iter": 1000,
+      "fit_seconds": 0.19969462500000645,
+      "fit_peak_mb": 76.805808,
+      "sklearn_n_iter": 11,
+      "min_best_abs_corr_with_sklearn_components": 0.9975493856450612,
+      "one_to_one_match": true,
+      "max_abs_diff_reconstruction": 9.28812582401406e-13
+    },
+    {
+      "k": 5,
+      "n_iter": 12,
+      "converged": true,
+      "final_change": 9.496870692160542e-05,
+      "tol": 0.0001,
+      "max_iter": 1000,
+      "fit_seconds": 0.3308123539999883,
+      "fit_peak_mb": 91.206072,
+      "sklearn_n_iter": 21,
+      "min_best_abs_corr_with_sklearn_components": 0.9999978635017236,
+      "one_to_one_match": true,
+      "max_abs_diff_reconstruction": 6.630251903061435e-13
+    },
+    {
+      "k": 6,
+      "n_iter": 7,
+      "converged": true,
+      "final_change": 9.408601914029369e-05,
+      "tol": 0.0001,
+      "max_iter": 1000,
+      "fit_seconds": 0.25202957600004083,
+      "fit_peak_mb": 105.606032,
+      "sklearn_n_iter": 10,
+      "min_best_abs_corr_with_sklearn_components": 0.9997261809633706,
+      "one_to_one_match": true,
+      "max_abs_diff_reconstruction": 5.582201367815287e-13
+    }
+  ],
+  "timing_memory": {
+    "load_and_preprocess": {
+      "seconds": 10.026859899999977,
+      "peak_python_mb": 523.12368,
+      "rss_after_mb": 279.908352
+    }
+  },
+  "process_rss_mb_end": 418.816,
+  "total_seconds": 17.118899166000006
+}

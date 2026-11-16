@@ -1,0 +1,2 @@
+2026-11-13 09:10:21 | INFO    | Experiment 'raw' | hyper-parameters {'algorithm': 'parallel', 'fun': 'logcosh', 'fun_alpha': 1.0, 'max_iter': 1000, 'tol': 0.0001, 'whitening': 'PCA, unit variance', 'random_seed': 42, 'max_train_pixels': 300000, 'standardize': True, 'rank_tol': 1e-10, 'target_width': 1024}
+2026-11-13 09:10:21 | ERROR   | No usable samples found in /home/claude/Downsampling/data/raw/sentinel2_l1c. Original Sentinel-2 bands are not available, so the raw experiment is skipped (no bands are fabricated).

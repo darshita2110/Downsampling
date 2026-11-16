@@ -1,0 +1,4 @@
+2026-11-13 09:20:27 | ERROR   | Supervised LDA cannot be evaluated: train.py found no valid ground-truth labels.
+2026-11-13 09:20:27 | ERROR   |   - Label folder /home/claude/Downsampling/data/labels/sentinel2 does not exist.
+2026-11-13 09:20:27 | ERROR   |   - No label raster found for any date.
+2026-11-13 09:20:27 | ERROR   | Accuracy, precision, recall, F1 and the confusion matrix are NOT computed, because any number would be based on invented labels.

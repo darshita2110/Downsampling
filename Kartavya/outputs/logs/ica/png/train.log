@@ -1,0 +1,26 @@
+2026-11-13 09:06:50 | INFO    | Experiment 'png' | hyper-parameters {'algorithm': 'parallel', 'fun': 'logcosh', 'fun_alpha': 1.0, 'max_iter': 1000, 'tol': 0.0001, 'whitening': 'PCA, unit variance', 'random_seed': 42, 'max_train_pixels': 300000, 'standardize': True, 'rank_tol': 1e-10, 'target_width': 1024}
+2026-11-13 09:06:50 | WARNING | RGB/ has 1 PNG files, expected 5. Continuing with the files that exist.
+2026-11-13 09:06:50 | WARNING | False_Color/ has 1 PNG files, expected 5. Continuing with the files that exist.
+2026-11-13 09:06:50 | WARNING | NDVI/ has 1 PNG files, expected 5. Continuing with the files that exist.
+2026-11-13 09:06:50 | WARNING | NDWI/ has 1 PNG files, expected 5. Continuing with the files that exist.
+2026-11-13 09:06:50 | INFO    |   index 0: date 2026-09-17 -> {'RGB': 'raichur_rgb_2026-09-17.png', 'False_Color': 'raichur_false_color_2026-09-17.png', 'NDVI': 'raichur_ndvi_2026-09-17.png', 'NDWI': 'raichur_ndwi_2026-09-17.png'}
+2026-11-13 09:06:50 | INFO    | Split mode: spatial | train [{'index': 0, 'rows': 'top'}] | test [{'index': 0, 'rows': 'bottom'}]
+2026-11-13 09:06:50 | WARNING | Only ONE date is available: fitting on the top half of the image, testing on the bottom half. With all five dates, earlier dates train and later dates test.
+2026-11-13 09:07:00 | INFO    |   loaded 2026-09-17: grid (1058, 1024), valid 99.985%, pixels used 541,696 (rows 0-529)
+2026-11-13 09:07:00 | INFO    |     RGB: RGBA (3024, 2852, 4) uint8 min 0 max 255, map panel (2887, 2793)
+2026-11-13 09:07:00 | INFO    |     False_Color: RGBA (3024, 2852, 4) uint8 min 0 max 255, map panel (2887, 2793)
+2026-11-13 09:07:00 | INFO    |     NDVI: RGBA (2962, 3181, 4) uint8 min 0 max 255, map panel (2825, 2732), decoded range (-0.35546875, 0.80078125), exact colour match 23.2%, no-data 0.015%
+2026-11-13 09:07:00 | INFO    |     NDWI: RGBA (2962, 3181, 4) uint8 min 0 max 255, map panel (2825, 2732), decoded range (-0.69140625, 0.48046875), exact colour match 16.1%, no-data 0.015%
+2026-11-13 09:07:00 | INFO    |     alignment RGB:R(B04) vs False_Color:G(B04): best shift (0, 0), r=1.0000
+2026-11-13 09:07:00 | INFO    |     alignment RGB:G(B03) vs False_Color:B(B03): best shift (0, 0), r=1.0000
+2026-11-13 09:07:00 | INFO    |     alignment NDVI vs pseudo-NDVI(False_Color): best shift (0, 0), r=0.8912
+2026-11-13 09:07:00 | INFO    | Training matrix: 541,696 pixels x 8 channels; fitting on 300,000 sampled pixels. Channels: ['RGB:R(B04)', 'RGB:G(B03)', 'RGB:B(B02)', 'False_Color:R(B08)', 'False_Color:G(B04)', 'False_Color:B(B03)', 'NDVI', 'NDWI']
+2026-11-13 09:07:00 | INFO    | Covariance eigenvalues: [5.865528, 1.928749, 0.151305, 0.03772, 0.010215, 0.006508, 0.0, -0.0] -> numerical rank 6
+2026-11-13 09:07:00 | INFO    | K > 6 is not fitted: 2 direction(s) have zero variance (duplicated channels), so whitening them would divide by ~0.
+2026-11-13 09:07:01 | INFO    | K=1: converged in 1 iterations (final change 0.00e+00, tol 0.0001), fit 0.02 s, peak 31 MB | sklearn: {'sklearn_n_iter': 1, 'min_best_abs_corr_with_sklearn_components': 0.9999999999999993, 'one_to_one_match': True, 'max_abs_diff_reconstruction': 1.028954699222595e-12}
+2026-11-13 09:07:01 | INFO    | K=2: converged in 3 iterations (final change 8.38e-05, tol 0.0001), fit 0.07 s, peak 48 MB | sklearn: {'sklearn_n_iter': 38, 'min_best_abs_corr_with_sklearn_components': 0.999999986112633, 'one_to_one_match': True, 'max_abs_diff_reconstruction': 1.0027534358414414e-12}
+2026-11-13 09:07:03 | INFO    | K=3: converged in 51 iterations (final change 9.02e-05, tol 0.0001), fit 1.11 s, peak 62 MB | sklearn: {'sklearn_n_iter': 36, 'min_best_abs_corr_with_sklearn_components': 0.9999999970298522, 'one_to_one_match': True, 'max_abs_diff_reconstruction': 9.514611321037592e-13}
+2026-11-13 09:07:04 | INFO    | K=4: converged in 9 iterations (final change 5.04e-05, tol 0.0001), fit 0.20 s, peak 77 MB | sklearn: {'sklearn_n_iter': 11, 'min_best_abs_corr_with_sklearn_components': 0.9975493856450612, 'one_to_one_match': True, 'max_abs_diff_reconstruction': 9.28812582401406e-13}
+2026-11-13 09:07:05 | INFO    | K=5: converged in 12 iterations (final change 9.50e-05, tol 0.0001), fit 0.33 s, peak 91 MB | sklearn: {'sklearn_n_iter': 21, 'min_best_abs_corr_with_sklearn_components': 0.9999978635017236, 'one_to_one_match': True, 'max_abs_diff_reconstruction': 6.630251903061435e-13}
+2026-11-13 09:07:05 | INFO    | K=6: converged in 7 iterations (final change 9.41e-05, tol 0.0001), fit 0.25 s, peak 106 MB | sklearn: {'sklearn_n_iter': 10, 'min_best_abs_corr_with_sklearn_components': 0.9997261809633706, 'one_to_one_match': True, 'max_abs_diff_reconstruction': 5.582201367815287e-13}
+2026-11-13 09:07:07 | INFO    | Training finished in 17.1 s. Models: /home/claude/Downsampling/Kartavya/outputs/models/ica/png

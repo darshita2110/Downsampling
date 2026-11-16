@@ -1,0 +1,2 @@
+2026-11-11 19:03:06 | INFO    | Experiment 'raw' | dataset=raw | standardize=True | seed=42
+2026-11-11 19:03:06 | ERROR   | No usable samples found in /home/claude/Downsampling/data/raw/sentinel2_l1c. Original Sentinel-2 bands are not available, so the raw experiment is skipped (no bands are fabricated).

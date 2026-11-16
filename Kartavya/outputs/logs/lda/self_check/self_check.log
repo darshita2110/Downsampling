@@ -1,0 +1,7 @@
+2026-11-13 09:20:28 | INFO    | iris K=1: acc 0.978 F1 0.978 | |r| vs sklearn 1.000000 | Fisher 2.68 -> 27.73
+2026-11-13 09:20:28 | INFO    | iris K=2: acc 1.000 F1 1.000 | |r| vs sklearn 1.000000 | Fisher 2.68 -> 15.75
+2026-11-13 09:20:29 | INFO    | iris: K=3 correctly refused -> n_components=3 not allowed: with 3 classes and 4 features LDA has at most min(c - 1, D) = 2 components
+2026-11-13 09:20:29 | INFO    | wine K=1: acc 0.906 F1 0.909 | |r| vs sklearn 1.000000 | Fisher 0.86 -> 8.47
+2026-11-13 09:20:29 | INFO    | wine K=2: acc 1.000 F1 1.000 | |r| vs sklearn 1.000000 | Fisher 0.86 -> 6.11
+2026-11-13 09:20:29 | INFO    | wine: K=3 correctly refused -> n_components=3 not allowed: with 3 classes and 13 features LDA has at most min(c - 1, D) = 2 components
+2026-11-13 09:20:29 | INFO    | Self-check written to /home/claude/Downsampling/Kartavya/outputs/metrics/lda/self_check/self_check.csv

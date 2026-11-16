@@ -1,0 +1,22 @@
+2026-11-13 09:20:17 | INFO    | Experiment 'png' | hyper-parameters {'standardize': True, 'shrinkage': 0.0001, 'max_train_pixels': 1000000, 'seed': 42, 'ignore_label': 0, 'min_pixels_per_class': 50}
+2026-11-13 09:20:17 | WARNING | RGB/ has 1 PNG files, expected 5. Continuing with the files that exist.
+2026-11-13 09:20:17 | WARNING | False_Color/ has 1 PNG files, expected 5. Continuing with the files that exist.
+2026-11-13 09:20:17 | WARNING | NDVI/ has 1 PNG files, expected 5. Continuing with the files that exist.
+2026-11-13 09:20:17 | WARNING | NDWI/ has 1 PNG files, expected 5. Continuing with the files that exist.
+2026-11-13 09:20:17 | INFO    |   index 0: date 2026-09-17 -> {'RGB': 'raichur_rgb_2026-09-17.png', 'False_Color': 'raichur_false_color_2026-09-17.png', 'NDVI': 'raichur_ndvi_2026-09-17.png', 'NDWI': 'raichur_ndwi_2026-09-17.png'}
+2026-11-13 09:20:17 | INFO    | Split mode: spatial | train [{'index': 0, 'rows': 'top'}] | test [{'index': 0, 'rows': 'bottom'}]
+2026-11-13 09:20:26 | INFO    |   loaded 2026-09-17: grid (1058, 1024), valid 99.985%, pixels used 541,696 (rows 0-529)
+2026-11-13 09:20:26 | INFO    |     RGB: RGBA (3024, 2852, 4) uint8 min 0 max 255, map panel (2887, 2793)
+2026-11-13 09:20:26 | INFO    |     False_Color: RGBA (3024, 2852, 4) uint8 min 0 max 255, map panel (2887, 2793)
+2026-11-13 09:20:26 | INFO    |     NDVI: RGBA (2962, 3181, 4) uint8 min 0 max 255, map panel (2825, 2732), decoded range (-0.35546875, 0.80078125), exact colour match 23.2%, no-data 0.015%
+2026-11-13 09:20:26 | INFO    |     NDWI: RGBA (2962, 3181, 4) uint8 min 0 max 255, map panel (2825, 2732), decoded range (-0.69140625, 0.48046875), exact colour match 16.1%, no-data 0.015%
+2026-11-13 09:20:26 | INFO    |     alignment RGB:R(B04) vs False_Color:G(B04): best shift (0, 0), r=1.0000
+2026-11-13 09:20:26 | INFO    |     alignment RGB:G(B03) vs False_Color:B(B03): best shift (0, 0), r=1.0000
+2026-11-13 09:20:26 | INFO    |     alignment NDVI vs pseudo-NDVI(False_Color): best shift (0, 0), r=0.8912
+2026-11-13 09:20:26 | INFO    | Channels (8): ['RGB:R(B04)', 'RGB:G(B03)', 'RGB:B(B02)', 'False_Color:R(B08)', 'False_Color:G(B04)', 'False_Color:B(B03)', 'NDVI', 'NDWI']
+2026-11-13 09:20:26 | ERROR   | SUPERVISED LDA CANNOT BE TRAINED OR EVALUATED: no valid ground-truth labels.
+2026-11-13 09:20:26 | ERROR   |   - Label folder /home/claude/Downsampling/data/labels/sentinel2 does not exist.
+2026-11-13 09:20:26 | ERROR   |   - No label raster found for any date.
+2026-11-13 09:20:26 | ERROR   |   Requirement: Class ids per pixel from a source independent of the input images (field data, an external land-cover map, or manual annotation). Labels made by thresholding NDVI/NDWI or clustering these same pixels are circular: LDA would just recover the rule used to create them, so accuracy would be meaningless.
+2026-11-13 09:20:26 | ERROR   |   Expected files: /home/claude/Downsampling/data/labels/sentinel2/raichur_labels_{date}.npy or raichur_labels_{date}.png
+2026-11-13 09:20:26 | ERROR   |   No labels were invented and no model was fitted. See documentation/LDA.md.

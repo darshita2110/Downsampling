@@ -1,0 +1,6 @@
+k,seed,fitness,selected,selected_idx,generations,stop_reason,evaluations,search_space,seconds,peak_python_mb
+7,42,1.4337929681767299,RGB:R(B04)+RGB:B(B02)+False_Color:R(B08)+False_Color:G(B04)+False_Color:B(B03)+NDVI+NDWI,0 2 3 4 5 6 7,0,every possible subset evaluated,8,8,0.6832801819999759,71.703236
+7,43,1.4337929681767299,RGB:R(B04)+RGB:G(B03)+RGB:B(B02)+False_Color:R(B08)+False_Color:G(B04)+NDVI+NDWI,0 1 2 3 4 6 7,0,every possible subset evaluated,8,8,0.670088450000037,71.70202
+7,44,1.4337929681767299,RGB:R(B04)+RGB:B(B02)+False_Color:R(B08)+False_Color:G(B04)+False_Color:B(B03)+NDVI+NDWI,0 2 3 4 5 6 7,0,every possible subset evaluated,8,8,0.7098323409999807,71.702004
+7,45,1.4337929681767299,RGB:R(B04)+RGB:G(B03)+RGB:B(B02)+False_Color:R(B08)+False_Color:G(B04)+NDVI+NDWI,0 1 2 3 4 6 7,0,every possible subset evaluated,8,8,0.6789440559999775,71.701988
+7,46,1.4337929681767299,RGB:R(B04)+RGB:G(B03)+RGB:B(B02)+False_Color:R(B08)+False_Color:G(B04)+NDVI+NDWI,0 1 2 3 4 6 7,0,every possible subset evaluated,8,8,0.6944149850000372,71.702036

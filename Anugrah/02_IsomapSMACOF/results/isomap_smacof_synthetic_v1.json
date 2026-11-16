@@ -1,0 +1,56 @@
+{
+  "technique": "Isomap with SMACOF",
+  "dataset": "synthetic_v1",
+  "n_neighbors": 12,
+  "n_components": 3,
+  "random_seed": 42,
+  "smacof_n_init": 4,
+  "smacof_max_iter": 300,
+  "smacof_n_iter": 76,
+  "smacof_stress": 229861.23142877952,
+  "metrics": {
+    "trustworthiness": 0.9992234100010539,
+    "continuity": 0.9994532155653915,
+    "neighborhood_preservation": 0.6288192157429774,
+    "reconstruction_error": null,
+    "explained_variance_ratio": null,
+    "fit_time_seconds": 15.139620951999973,
+    "peak_memory_mb": 154.524398
+  },
+  "latent_recovery_spearman": [
+    {
+      "embedding_dim": 0,
+      "best_matched_latent": "t",
+      "spearman": 0.2492715553578536
+    },
+    {
+      "embedding_dim": 1,
+      "best_matched_latent": "s",
+      "spearman": -0.4504770112485905
+    },
+    {
+      "embedding_dim": 2,
+      "best_matched_latent": "s",
+      "spearman": 0.5218205066634929
+    }
+  ],
+  "comparison_vs_technique1_isomap": {
+    "trustworthiness_isomap_vs_smacof": [
+      0.9989985114342923,
+      0.9992234100010539
+    ],
+    "continuity_isomap_vs_smacof": [
+      0.9992617438613131,
+      0.9994532155653915
+    ],
+    "neighborhood_preservation_isomap_vs_smacof": [
+      0.5916705796783197,
+      0.6288192157429774
+    ],
+    "fit_time_seconds_isomap_vs_smacof": [
+      0.5293909450000456,
+      15.139620951999973
+    ]
+  },
+  "spatial_awareness_note": "Steps 1-2 (k-NN graph, geodesic distances) are IDENTICAL to Technique 1 - see 01_Isomap/visualisations/03c_spectral_vs_spatial_neighbors.png for the (not re-run here) concrete demonstration that this graph is spectral, not spatial."
+}

@@ -1,0 +1,12 @@
+# Non-linear Feature Extraction subproject - pinned, minimal, CPU-only.
+# Kept deliberately separate from the repo root requirements.txt (that one
+# serves the data-download / darshita band-selection parts of the project).
+numpy==1.26.4
+scipy==1.13.1
+scikit-learn==1.5.2
+matplotlib==3.9.2
+pandas==2.2.2
+
+# Only needed once we reach FHNPW and the fuzzy-membership step (Technique 6).
+# Left commented out until that stage so earlier stages have a minimal, fast install.
+# scikit-fuzzy==0.5.0
