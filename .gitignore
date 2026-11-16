@@ -19,3 +19,6 @@ venv/
 /raichur_ndvi.png
 /raichur_rgb.png
 /scene_overview.png
+*.pt
+Abhishek/results/**/*.npy
+data/
