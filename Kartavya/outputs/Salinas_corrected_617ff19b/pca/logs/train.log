@@ -1,0 +1,28 @@
+2026-11-16 08:19:36 | INFO    | ===== PCA | dataset Salinas_corrected_617ff19b | 204 channels | K = [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25]
+2026-11-16 08:19:36 | INFO    | standardize=True | max_train_pixels=1000000 | seed=42
+2026-11-16 08:19:37 | INFO    |   loaded Salinas_corrected: grid (512, 217), valid 100.000%, pixels used 55,552 (rows 0-256)
+2026-11-16 08:19:37 | INFO    | Feature matrix: 55,552 pixels x 204 channels; fitting on 55,552
+2026-11-16 08:19:38 | INFO    | PCA fit in 0.243 s, peak 273.0 MB
+2026-11-16 08:19:38 | INFO    |   PC1:  63.64%  cumulative  63.64%
+2026-11-16 08:19:38 | INFO    |   PC2:  29.66%  cumulative  93.29%
+2026-11-16 08:19:38 | INFO    |   PC3:   2.40%  cumulative  95.69%
+2026-11-16 08:19:38 | INFO    |   PC4:   1.46%  cumulative  97.15%
+2026-11-16 08:19:38 | INFO    |   PC5:   1.14%  cumulative  98.29%
+2026-11-16 08:19:38 | INFO    |   PC6:   0.49%  cumulative  98.78%
+2026-11-16 08:19:38 | INFO    |   PC7:   0.30%  cumulative  99.08%
+2026-11-16 08:19:38 | INFO    |   PC8:   0.24%  cumulative  99.32%
+2026-11-16 08:19:38 | INFO    |   PC9:   0.20%  cumulative  99.51%
+2026-11-16 08:19:38 | INFO    |   PC10:   0.10%  cumulative  99.61%
+2026-11-16 08:19:38 | INFO    |   PC11:   0.07%  cumulative  99.68%
+2026-11-16 08:19:38 | INFO    |   PC12:   0.05%  cumulative  99.73%
+2026-11-16 08:19:38 | INFO    |   PC13:   0.04%  cumulative  99.77%
+2026-11-16 08:19:38 | INFO    |   PC14:   0.03%  cumulative  99.81%
+2026-11-16 08:19:38 | INFO    |   PC15:   0.03%  cumulative  99.83%
+2026-11-16 08:19:38 | INFO    |   PC16:   0.02%  cumulative  99.85%
+2026-11-16 08:19:38 | INFO    |   PC17:   0.02%  cumulative  99.87%
+2026-11-16 08:19:38 | INFO    |   PC18:   0.01%  cumulative  99.88%
+2026-11-16 08:19:38 | INFO    |   PC19:   0.01%  cumulative  99.89%
+2026-11-16 08:19:38 | INFO    |   PC20:   0.01%  cumulative  99.90%
+2026-11-16 08:19:38 | INFO    | Components needed: {'90%': 2, '95%': 3, '99%': 7}
+2026-11-16 08:19:46 | INFO    | scikit-learn cross-check: {'max_abs_diff_explained_variance_ratio': 1.1102230246251565e-16, 'n_zero_variance_components': 0, 'min_abs_cosine_nonzero_components': 0.9999999999999987, 'max_abs_diff_reconstruction_k2': 1.7763568394002505e-14}
+2026-11-16 08:22:21 | INFO    | Saved model -> D:\DIP\Project\Downsampling\Kartavya\outputs\Salinas_corrected_617ff19b\pca\models\pca_model.npz

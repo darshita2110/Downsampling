@@ -1,0 +1,11 @@
+2026-11-16 08:53:10 | INFO    | Loaded saved models K = [1, 2, 3, 4, 5, 6, 8, 9]; classes ['1', '2', '5', '7', '9', '10', '11', '12', '13', '14']
+2026-11-16 08:53:13 | WARNING | 00_Botswana_bottom: 938 pixels have classes unseen in training; excluded
+2026-11-16 08:53:13 | INFO    | 00_Botswana_bottom: 188,928 valid pixels, 313 labelled test pixels
+2026-11-16 08:53:14 | INFO    |   K=1: acc 0.7572 P 0.2000 R 0.1595 F1 0.1748 | reduction 99.3% | fwd 156.2 ms
+2026-11-16 08:53:15 | INFO    |   K=2: acc 0.8914 P 0.2000 R 0.1820 F1 0.1901 | reduction 98.6% | fwd 180.7 ms
+2026-11-16 08:53:16 | INFO    |   K=3: acc 0.9265 P 0.2000 R 0.1878 F1 0.1935 | reduction 97.9% | fwd 180.0 ms
+2026-11-16 08:53:17 | INFO    |   K=4: acc 0.9457 P 0.2000 R 0.1910 F1 0.1953 | reduction 97.2% | fwd 210.2 ms
+2026-11-16 08:53:18 | INFO    |   K=5: acc 0.9489 P 0.2000 R 0.1915 F1 0.1956 | reduction 96.6% | fwd 188.7 ms
+2026-11-16 08:53:19 | INFO    |   K=6: acc 0.9393 P 0.2000 R 0.1899 F1 0.1947 | reduction 95.9% | fwd 224.3 ms
+2026-11-16 08:53:20 | INFO    |   K=8: acc 0.9457 P 0.2000 R 0.1910 F1 0.1953 | reduction 94.5% | fwd 197.0 ms
+2026-11-16 08:53:21 | INFO    |   K=9: acc 0.9585 P 0.2000 R 0.1931 F1 0.1964 | reduction 93.8% | fwd 204.8 ms

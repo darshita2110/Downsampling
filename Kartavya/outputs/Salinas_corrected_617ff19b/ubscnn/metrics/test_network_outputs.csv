@@ -1,0 +1,4 @@
+sample_name,sample,seed,n_test_patches,network_reconstruction_mse,forward_seconds,test_ranking_mean_of_seeds
+Salinas_corrected,00_Salinas_corrected_bottom,42,806,0.010015596155817999,1.8135111999981746,
+Salinas_corrected,00_Salinas_corrected_bottom,43,806,0.01041014346566936,2.0209629999990284,
+Salinas_corrected,00_Salinas_corrected_bottom,44,806,0.010682013541400586,2.15451590000157,band_183 > band_140 > band_201 > band_101 > band_032 > band_121 > band_193 > band_043 > band_168 > band_117 > band_077 > band_119 > band_099 > band_192 > band_041 > band_058 > band_125 > band_092 > band_124 > band_190 > band_199 > band_011 > band_107 > band_052 > band_010 > band_145 > band_083 > band_030 > band_082 > band_018

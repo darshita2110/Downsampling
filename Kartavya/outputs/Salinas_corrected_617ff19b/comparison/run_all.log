@@ -1,0 +1,25 @@
+2026-11-16 08:19:36 | INFO    | Dataset Salinas_corrected_617ff19b: 1 sample(s), 204 channels; split spatial
+2026-11-16 08:19:36 | INFO    | Common K values for every algorithm: [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25]
+2026-11-16 08:19:36 | INFO    | Algorithms: ['pca', 'ica', 'lda', 'ga', 'pso', 'aco', 'sa', 'ubscnn']
+2026-11-16 08:19:36 | INFO    | [1/8] ===================== PCA =====================
+2026-11-16 08:26:34 | INFO    | PCA: ok in 417.3 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\Salinas_corrected_617ff19b\pca
+2026-11-16 08:26:34 | INFO    | [2/8] ===================== ICA =====================
+2026-11-16 08:38:43 | INFO    | ICA: ok in 729.9 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\Salinas_corrected_617ff19b\ica
+2026-11-16 08:38:43 | INFO    | [3/8] ===================== LDA =====================
+2026-11-16 08:38:44 | INFO    | LDA: not_applicable in 0.9 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\Salinas_corrected_617ff19b\lda
+2026-11-16 08:38:44 | INFO    | [4/8] ===================== GA =====================
+2026-11-16 09:16:46 | INFO    | GA: ok in 2281.2 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\Salinas_corrected_617ff19b\ga
+2026-11-16 09:16:46 | INFO    | [5/8] ===================== PSO =====================
+2026-11-16 11:10:07 | INFO    | PSO: ok in 6801.0 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\Salinas_corrected_617ff19b\pso
+2026-11-16 11:10:07 | INFO    | [6/8] ===================== ACO =====================
+2026-11-16 13:17:19 | INFO    | ACO: ok in 7631.8 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\Salinas_corrected_617ff19b\aco
+2026-11-16 13:17:19 | INFO    | [7/8] ===================== SA =====================
+2026-11-16 14:57:43 | INFO    | SA: ok in 6024.4 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\Salinas_corrected_617ff19b\sa
+2026-11-16 14:57:43 | INFO    | [8/8] ===================== UBSCNN =====================
+2026-11-16 16:12:48 | INFO    | UBS-CNN: ok in 4491.2 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\Salinas_corrected_617ff19b\ubscnn
+2026-11-16 16:13:01 | INFO    | Comparison written to D:\DIP\Project\Downsampling\Kartavya\outputs\Salinas_corrected_617ff19b\comparison
+2026-11-16 16:13:01 | INFO    | All algorithms finished in 28404.7 s
+2026-11-16 16:13:01 | INFO    |   best PSNR (dB) (max): PCA = ICA (37.6521 mean over K [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25])
+2026-11-16 16:13:01 | INFO    |   best SSIM (max): PCA = ICA (0.9686 mean over K [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25])
+2026-11-16 16:13:01 | INFO    |   best RMSE (min): PCA = ICA (0.0201 mean over K [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25])
+2026-11-16 16:13:01 | INFO    | Report: D:\DIP\Project\Downsampling\Kartavya\outputs\Salinas_corrected_617ff19b\comparison\final_report.txt

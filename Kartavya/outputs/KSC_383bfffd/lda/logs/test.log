@@ -1,0 +1,11 @@
+2026-11-16 09:00:44 | INFO    | Loaded saved models K = [1, 2, 3, 4, 5, 6, 8, 9]; classes ['1', '2', '3', '4', '5', '6', '8', '11', '12', '13']
+2026-11-16 09:00:48 | WARNING | 00_KSC_bottom: 1029 pixels have classes unseen in training; excluded
+2026-11-16 09:00:48 | INFO    | 00_KSC_bottom: 157,184 valid pixels, 1,965 labelled test pixels
+2026-11-16 09:00:51 | INFO    |   K=1: acc 0.4489 P 0.2194 R 0.2443 F1 0.2110 | reduction 99.4% | fwd 162.3 ms
+2026-11-16 09:00:53 | INFO    |   K=2: acc 0.6204 P 0.3803 R 0.2783 F1 0.2987 | reduction 98.9% | fwd 175.1 ms
+2026-11-16 09:00:54 | INFO    |   K=3: acc 0.6707 P 0.4166 R 0.3054 F1 0.3164 | reduction 98.3% | fwd 218.9 ms
+2026-11-16 09:00:55 | INFO    |   K=4: acc 0.7827 P 0.5757 R 0.4481 F1 0.4828 | reduction 97.7% | fwd 226.8 ms
+2026-11-16 09:00:56 | INFO    |   K=5: acc 0.7837 P 0.5903 R 0.4644 F1 0.4809 | reduction 97.2% | fwd 237.8 ms
+2026-11-16 09:00:57 | INFO    |   K=6: acc 0.8117 P 0.5910 R 0.4882 F1 0.5023 | reduction 96.6% | fwd 209.5 ms
+2026-11-16 09:00:58 | INFO    |   K=8: acc 0.7807 P 0.6187 R 0.5345 F1 0.5565 | reduction 95.5% | fwd 207.9 ms
+2026-11-16 09:00:59 | INFO    |   K=9: acc 0.7929 P 0.6277 R 0.5477 F1 0.5708 | reduction 94.9% | fwd 230.8 ms

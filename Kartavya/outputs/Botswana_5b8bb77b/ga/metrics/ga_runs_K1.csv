@@ -1,0 +1,6 @@
+k,seed,fitness,selected,selected_idx,generations,stop_reason,evaluations,search_space,seconds,peak_python_mb
+1,42,1.2970413267612457,band_095,94,10,no improvement for 10 generations,31,145,20.00291070000003,597.578434
+1,43,1.2976908087730408,band_094,93,17,no improvement for 10 generations,40,145,25.597239499999887,598.102694
+1,44,1.2961697578430176,band_097,96,10,no improvement for 10 generations,26,145,17.02904209999997,598.0682
+1,45,1.2959535419940948,band_098,97,13,no improvement for 10 generations,35,145,22.14849349999986,598.03759
+1,46,1.2968751192092896,band_096,95,17,no improvement for 10 generations,45,145,32.35540699999956,598.213701

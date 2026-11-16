@@ -1,0 +1,27 @@
+2026-11-16 08:44:33 | INFO    |   K=1: trained with 1 iterations, converged=True, tol=0.0001
+2026-11-16 08:44:33 | INFO    |   K=2: trained with 4 iterations, converged=True, tol=0.0001
+2026-11-16 08:44:33 | INFO    |   K=3: trained with 1000 iterations, converged=False, tol=0.0001
+2026-11-16 08:44:34 | INFO    |   K=4: trained with 1000 iterations, converged=False, tol=0.0001
+2026-11-16 08:44:34 | INFO    |   K=5: trained with 15 iterations, converged=True, tol=0.0001
+2026-11-16 08:44:34 | INFO    |   K=6: trained with 15 iterations, converged=True, tol=0.0001
+2026-11-16 08:44:34 | INFO    |   K=8: trained with 20 iterations, converged=True, tol=0.0001
+2026-11-16 08:44:34 | INFO    |   K=10: trained with 44 iterations, converged=True, tol=0.0001
+2026-11-16 08:44:34 | INFO    |   K=12: trained with 1000 iterations, converged=False, tol=0.0001
+2026-11-16 08:44:34 | INFO    |   K=15: trained with 1000 iterations, converged=False, tol=0.0001
+2026-11-16 08:44:34 | INFO    |   K=20: trained with 1000 iterations, converged=False, tol=0.0001
+2026-11-16 08:44:34 | INFO    |   K=25: trained with 1000 iterations, converged=False, tol=0.0001
+2026-11-16 08:44:34 | INFO    |   K=103: trained with 99 iterations, converged=True, tol=0.0001
+2026-11-16 08:44:36 | INFO    | 00_PaviaU_bottom: test image 305 x 340, 103,700 valid pixels (100.00%)
+2026-11-16 08:44:48 | INFO    |   K=1: reduction  99.0% | RMSE 0.0600 MAE 0.0366 PSNR  24.44 dB SSIM 0.7811 | 40.75 MB -> 406.69 KB | fwd 75.8 ms inv 359.2 ms
+2026-11-16 08:44:58 | INFO    |   K=2: reduction  98.1% | RMSE 0.0192 MAE 0.0128 PSNR  34.31 dB SSIM 0.9475 | 40.75 MB -> 812.17 KB | fwd 86.5 ms inv 272.0 ms
+2026-11-16 08:45:06 | INFO    |   K=3: reduction  97.1% | RMSE 0.0101 MAE 0.0065 PSNR  39.89 dB SSIM 0.9786 | 40.75 MB -> 1.19 MB | fwd 46.9 ms inv 207.8 ms
+2026-11-16 08:45:15 | INFO    |   K=4: reduction  96.1% | RMSE 0.0089 MAE 0.0059 PSNR  41.03 dB SSIM 0.9849 | 40.75 MB -> 1.59 MB | fwd 84.0 ms inv 227.2 ms
+2026-11-16 08:45:24 | INFO    |   K=5: reduction  95.1% | RMSE 0.0076 MAE 0.0050 PSNR  42.35 dB SSIM 0.9874 | 40.75 MB -> 1.98 MB | fwd 67.1 ms inv 184.7 ms
+2026-11-16 08:45:32 | INFO    |   K=6: reduction  94.2% | RMSE 0.0064 MAE 0.0040 PSNR  43.83 dB SSIM 0.9891 | 40.75 MB -> 2.38 MB | fwd 68.8 ms inv 168.6 ms
+2026-11-16 08:45:41 | INFO    |   K=8: reduction  92.2% | RMSE 0.0050 MAE 0.0032 PSNR  46.06 dB SSIM 0.9936 | 40.75 MB -> 3.17 MB | fwd 65.6 ms inv 200.5 ms
+2026-11-16 08:45:50 | INFO    |   K=10: reduction  90.3% | RMSE 0.0041 MAE 0.0027 PSNR  47.65 dB SSIM 0.9955 | 40.75 MB -> 3.96 MB | fwd 52.5 ms inv 177.6 ms
+2026-11-16 08:45:59 | INFO    |   K=12: reduction  88.3% | RMSE 0.0036 MAE 0.0023 PSNR  48.88 dB SSIM 0.9963 | 40.75 MB -> 4.75 MB | fwd 71.8 ms inv 178.9 ms
+2026-11-16 08:46:08 | INFO    |   K=15: reduction  85.4% | RMSE 0.0032 MAE 0.0020 PSNR  50.02 dB SSIM 0.9972 | 40.75 MB -> 5.94 MB | fwd 74.1 ms inv 162.6 ms
+2026-11-16 08:46:16 | INFO    |   K=20: reduction  80.6% | RMSE 0.0026 MAE 0.0017 PSNR  51.67 dB SSIM 0.9980 | 40.75 MB -> 7.92 MB | fwd 57.4 ms inv 189.1 ms
+2026-11-16 08:46:26 | INFO    |   K=25: reduction  75.7% | RMSE 0.0022 MAE 0.0014 PSNR  53.13 dB SSIM 0.9986 | 40.75 MB -> 9.90 MB | fwd 55.7 ms inv 214.3 ms
+2026-11-16 08:46:38 | INFO    |   K=103: reduction   0.0% | RMSE 0.0000 MAE 0.0000 PSNR 312.02 dB SSIM 1.0000 | 40.75 MB -> 40.79 MB | fwd 101.4 ms inv 277.2 ms

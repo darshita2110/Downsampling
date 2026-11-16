@@ -1,0 +1,4 @@
+sample_name,sample,seed,n_test_patches,network_reconstruction_mse,forward_seconds,test_ranking_mean_of_seeds
+KSC,00_KSC_bottom,42,608,0.010250176396666531,1.165702300000703,
+KSC,00_KSC_bottom,43,608,0.008365610284668408,1.2615433000028133,
+KSC,00_KSC_bottom,44,608,0.01002872731697046,1.113373700005468,band_046 > band_028 > band_012 > band_118 > band_108 > band_040 > band_077 > band_025 > band_167 > band_114 > band_038 > band_083 > band_105 > band_158 > band_169 > band_031 > band_119 > band_143 > band_144 > band_081 > band_133 > band_061 > band_096 > band_170 > band_156 > band_015 > band_049 > band_129 > band_071 > band_042

@@ -1,0 +1,27 @@
+2026-11-16 08:44:58 | INFO    |   K=1: trained with 1 iterations, converged=True, tol=0.0001
+2026-11-16 08:44:58 | INFO    |   K=2: trained with 2 iterations, converged=True, tol=0.0001
+2026-11-16 08:44:58 | INFO    |   K=3: trained with 17 iterations, converged=True, tol=0.0001
+2026-11-16 08:44:58 | INFO    |   K=4: trained with 19 iterations, converged=True, tol=0.0001
+2026-11-16 08:44:58 | INFO    |   K=5: trained with 27 iterations, converged=True, tol=0.0001
+2026-11-16 08:44:58 | INFO    |   K=6: trained with 19 iterations, converged=True, tol=0.0001
+2026-11-16 08:44:58 | INFO    |   K=8: trained with 31 iterations, converged=True, tol=0.0001
+2026-11-16 08:44:58 | INFO    |   K=10: trained with 21 iterations, converged=True, tol=0.0001
+2026-11-16 08:44:58 | INFO    |   K=12: trained with 33 iterations, converged=True, tol=0.0001
+2026-11-16 08:44:58 | INFO    |   K=15: trained with 61 iterations, converged=True, tol=0.0001
+2026-11-16 08:44:58 | INFO    |   K=20: trained with 55 iterations, converged=True, tol=0.0001
+2026-11-16 08:44:58 | INFO    |   K=25: trained with 79 iterations, converged=True, tol=0.0001
+2026-11-16 08:44:58 | INFO    |   K=145: trained with 196 iterations, converged=True, tol=0.0001
+2026-11-16 08:45:00 | INFO    | 00_Botswana_bottom: test image 738 x 256, 188,928 valid pixels (100.00%)
+2026-11-16 08:45:28 | INFO    |   K=1: reduction  99.3% | RMSE 0.0292 MAE 0.0197 PSNR  30.69 dB SSIM 0.9140 | 104.50 MB -> 740.27 KB | fwd 139.6 ms inv 584.3 ms
+2026-11-16 08:45:55 | INFO    |   K=2: reduction  98.6% | RMSE 0.0186 MAE 0.0115 PSNR  34.60 dB SSIM 0.9607 | 104.50 MB -> 1.44 MB | fwd 143.3 ms inv 492.1 ms
+2026-11-16 08:46:22 | INFO    |   K=3: reduction  97.9% | RMSE 0.0114 MAE 0.0081 PSNR  38.85 dB SSIM 0.9789 | 104.50 MB -> 2.17 MB | fwd 167.1 ms inv 493.9 ms
+2026-11-16 08:46:47 | INFO    |   K=4: reduction  97.2% | RMSE 0.0101 MAE 0.0070 PSNR  39.91 dB SSIM 0.9826 | 104.50 MB -> 2.89 MB | fwd 163.8 ms inv 535.7 ms
+2026-11-16 08:47:11 | INFO    |   K=5: reduction  96.6% | RMSE 0.0090 MAE 0.0064 PSNR  40.91 dB SSIM 0.9849 | 104.50 MB -> 3.61 MB | fwd 134.7 ms inv 384.5 ms
+2026-11-16 08:47:36 | INFO    |   K=6: reduction  95.9% | RMSE 0.0084 MAE 0.0060 PSNR  41.49 dB SSIM 0.9854 | 104.50 MB -> 4.33 MB | fwd 159.5 ms inv 455.4 ms
+2026-11-16 08:48:04 | INFO    |   K=8: reduction  94.5% | RMSE 0.0077 MAE 0.0055 PSNR  42.23 dB SSIM 0.9863 | 104.50 MB -> 5.77 MB | fwd 212.8 ms inv 469.7 ms
+2026-11-16 08:48:33 | INFO    |   K=10: reduction  93.1% | RMSE 0.0075 MAE 0.0053 PSNR  42.51 dB SSIM 0.9869 | 104.50 MB -> 7.21 MB | fwd 162.5 ms inv 478.2 ms
+2026-11-16 08:49:01 | INFO    |   K=12: reduction  91.7% | RMSE 0.0071 MAE 0.0050 PSNR  42.93 dB SSIM 0.9878 | 104.50 MB -> 8.66 MB | fwd 161.2 ms inv 481.3 ms
+2026-11-16 08:49:30 | INFO    |   K=15: reduction  89.7% | RMSE 0.0068 MAE 0.0048 PSNR  43.37 dB SSIM 0.9890 | 104.50 MB -> 10.82 MB | fwd 186.9 ms inv 487.9 ms
+2026-11-16 08:49:59 | INFO    |   K=20: reduction  86.2% | RMSE 0.0064 MAE 0.0045 PSNR  43.86 dB SSIM 0.9903 | 104.50 MB -> 14.43 MB | fwd 196.3 ms inv 540.5 ms
+2026-11-16 08:50:29 | INFO    |   K=25: reduction  82.8% | RMSE 0.0061 MAE 0.0043 PSNR  44.22 dB SSIM 0.9912 | 104.50 MB -> 18.03 MB | fwd 222.5 ms inv 483.8 ms
+2026-11-16 08:52:24 | INFO    |   K=145: reduction   0.0% | RMSE 0.0000 MAE 0.0000 PSNR 323.65 dB SSIM 1.0000 | 104.50 MB -> 104.58 MB | fwd 276.9 ms inv 646.5 ms

@@ -1,0 +1,5 @@
+2026-11-16 07:46:03 | INFO    | ===== LDA | dataset Indian_pines_corrected_3a38d300 | 200 channels | K = [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25]
+2026-11-16 07:46:03 | INFO    | hyper-parameters {'standardize': True, 'shrinkage': 0.0001, 'max_train_pixels': 1000000, 'seed': 42, 'ignore_label': 0, 'min_pixels_per_class': 50}
+2026-11-16 07:46:03 | WARNING | SUPERVISED LDA CANNOT BE TRAINED OR EVALUATED: no valid ground-truth labels.
+2026-11-16 07:46:03 | WARNING |   - Classes [1, 5, 9] have < 50 training pixels. Merge or relabel them (they are not dropped silently).
+2026-11-16 07:46:03 | WARNING |   Requirement: Class ids per pixel from a source independent of the input images (field data, an external land-cover map, or manual annotation). Labels made by thresholding or clustering these same pixels are circular: LDA would just recover the rule used to create them.

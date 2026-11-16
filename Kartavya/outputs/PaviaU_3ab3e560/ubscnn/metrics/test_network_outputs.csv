@@ -1,0 +1,4 @@
+sample_name,sample,seed,n_test_patches,network_reconstruction_mse,forward_seconds,test_ranking_mean_of_seeds
+PaviaU,00_PaviaU_bottom,42,1517,0.02597425666514797,2.2044633999976213,
+PaviaU,00_PaviaU_bottom,43,1517,0.03869254577591016,2.190529499999684,
+PaviaU,00_PaviaU_bottom,44,1517,0.03803063763419258,2.1490267000008316,band_078 > band_008 > band_081 > band_094 > band_028 > band_070 > band_057 > band_102 > band_083 > band_010 > band_015 > band_044 > band_030 > band_071 > band_041 > band_024 > band_045 > band_064 > band_021 > band_065 > band_090 > band_026 > band_007 > band_077 > band_037 > band_055 > band_101 > band_031 > band_056 > band_047

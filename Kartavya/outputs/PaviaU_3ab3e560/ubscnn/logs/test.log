@@ -1,0 +1,32 @@
+2026-11-16 16:18:23 | INFO    | Loaded 3 trained BS-Net-Conv networks (seeds [42, 43, 44]); forward pass only
+2026-11-16 16:18:24 | INFO    | Loaded saved subsets for K = [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25]
+2026-11-16 16:18:24 | INFO    |   K=1: keep ['band_078'] (training fitness 0.33780)
+2026-11-16 16:18:24 | INFO    |   K=2: keep ['band_008', 'band_078'] (training fitness 1.12266)
+2026-11-16 16:18:24 | INFO    |   K=3: keep ['band_008', 'band_078', 'band_081'] (training fitness 1.27316)
+2026-11-16 16:18:24 | INFO    |   K=4: keep ['band_008', 'band_078', 'band_081', 'band_094'] (training fitness 1.26486)
+2026-11-16 16:18:24 | INFO    |   K=5: keep ['band_008', 'band_070', 'band_078', 'band_081', 'band_094'] (training fitness 1.30419)
+2026-11-16 16:18:24 | INFO    |   K=6: keep ['band_008', 'band_028', 'band_070', 'band_078', 'band_081', 'band_094'] (training fitness 1.31134)
+2026-11-16 16:18:24 | INFO    |   K=8: keep ['band_008', 'band_010', 'band_028', 'band_070', 'band_078', 'band_081', 'band_094', 'band_102'] (training fitness 1.31461)
+2026-11-16 16:18:24 | INFO    |   K=10: keep ['band_008', 'band_010', 'band_015', 'band_028', 'band_057', 'band_070', 'band_078', 'band_081', 'band_094', 'band_102'] (training fitness 1.31963)
+2026-11-16 16:18:24 | INFO    |   K=12: keep ['band_008', 'band_010', 'band_015', 'band_028', 'band_057', 'band_065', 'band_070', 'band_078', 'band_081', 'band_083', 'band_094', 'band_102'] (training fitness 1.32018)
+2026-11-16 16:18:24 | INFO    |   K=15: keep ['band_008', 'band_010', 'band_015', 'band_024', 'band_028', 'band_044', 'band_057', 'band_065', 'band_070', 'band_071', 'band_078', 'band_081'] ... (training fitness 1.31597)
+2026-11-16 16:18:24 | INFO    |   K=20: keep ['band_008', 'band_010', 'band_015', 'band_024', 'band_028', 'band_030', 'band_041', 'band_044', 'band_045', 'band_048', 'band_057', 'band_064'] ... (training fitness 1.30990)
+2026-11-16 16:18:24 | INFO    |   K=25: keep ['band_007', 'band_008', 'band_010', 'band_015', 'band_021', 'band_024', 'band_026', 'band_028', 'band_030', 'band_037', 'band_041', 'band_044'] ... (training fitness 1.31098)
+2026-11-16 16:18:25 | INFO    | 00_PaviaU_bottom: test image 305 x 340, 103,700 valid pixels (100.00%)
+2026-11-16 16:18:39 | INFO    |   CNN on 1,517 test patches: test-region ranking ['band_078', 'band_008', 'band_081', 'band_094', 'band_028', 'band_070', 'band_057', 'band_102', 'band_083', 'band_010'] (training ranking ['band_078', 'band_008', 'band_081', 'band_094', 'band_070', 'band_028', 'band_102', 'band_010', 'band_057', 'band_015'])
+2026-11-16 16:18:50 | INFO    |   K=1: reduction  99.0% | RMSE 0.0652 MAE 0.0470 PSNR  23.71 dB SSIM 0.6665 | 40.75 MB -> 405.89 KB | fwd 33.4 ms inv 49.8 ms
+2026-11-16 16:19:00 | INFO    |   K=2: reduction  98.1% | RMSE 0.0318 MAE 0.0206 PSNR  29.96 dB SSIM 0.8835 | 40.75 MB -> 811.37 KB | fwd 24.1 ms inv 43.2 ms
+2026-11-16 16:19:10 | INFO    |   K=3: reduction  97.1% | RMSE 0.0215 MAE 0.0139 PSNR  33.36 dB SSIM 0.9212 | 40.75 MB -> 1.19 MB | fwd 25.3 ms inv 51.1 ms
+2026-11-16 16:19:20 | INFO    |   K=4: reduction  96.1% | RMSE 0.0203 MAE 0.0126 PSNR  33.83 dB SSIM 0.9246 | 40.75 MB -> 1.58 MB | fwd 25.3 ms inv 54.1 ms
+2026-11-16 16:19:30 | INFO    |   K=5: reduction  95.1% | RMSE 0.0127 MAE 0.0078 PSNR  37.91 dB SSIM 0.9633 | 40.75 MB -> 1.98 MB | fwd 25.6 ms inv 111.7 ms
+2026-11-16 16:19:41 | INFO    |   K=6: reduction  94.2% | RMSE 0.0104 MAE 0.0064 PSNR  39.67 dB SSIM 0.9733 | 40.75 MB -> 2.38 MB | fwd 86.0 ms inv 51.2 ms
+2026-11-16 16:19:51 | INFO    |   K=8: reduction  92.2% | RMSE 0.0099 MAE 0.0059 PSNR  40.08 dB SSIM 0.9757 | 40.75 MB -> 3.17 MB | fwd 31.7 ms inv 124.4 ms
+2026-11-16 16:20:02 | INFO    |   K=10: reduction  90.3% | RMSE 0.0072 MAE 0.0038 PSNR  42.80 dB SSIM 0.9831 | 40.75 MB -> 3.96 MB | fwd 91.1 ms inv 60.4 ms
+2026-11-16 16:20:13 | INFO    |   K=12: reduction  88.3% | RMSE 0.0069 MAE 0.0034 PSNR  43.27 dB SSIM 0.9838 | 40.75 MB -> 4.75 MB | fwd 54.0 ms inv 57.8 ms
+2026-11-16 16:20:24 | INFO    |   K=15: reduction  85.4% | RMSE 0.0063 MAE 0.0030 PSNR  44.05 dB SSIM 0.9847 | 40.75 MB -> 5.94 MB | fwd 60.4 ms inv 55.3 ms
+2026-11-16 16:20:34 | INFO    |   K=20: reduction  80.6% | RMSE 0.0061 MAE 0.0028 PSNR  44.26 dB SSIM 0.9852 | 40.75 MB -> 7.92 MB | fwd 41.7 ms inv 103.1 ms
+2026-11-16 16:20:45 | INFO    |   K=25: reduction  75.7% | RMSE 0.0058 MAE 0.0025 PSNR  44.69 dB SSIM 0.9864 | 40.75 MB -> 9.90 MB | fwd 149.7 ms inv 61.3 ms
+2026-11-16 16:21:23 | INFO    | UBSCNN vs GA: same training objective at 0/12 K values
+2026-11-16 16:21:23 | INFO    | UBSCNN vs PSO: same training objective at 0/12 K values
+2026-11-16 16:21:23 | INFO    | UBSCNN vs ACO: same training objective at 0/12 K values
+2026-11-16 16:21:23 | INFO    | UBSCNN vs SA: same training objective at 0/12 K values

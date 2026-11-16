@@ -1,0 +1,24 @@
+{
+  "label_files": [
+    "D:\\DIP\\Project\\Downsampling\\data\\darshita\\PaviaU_gt.mat"
+  ],
+  "matched": {
+    "PaviaU": "D:\\DIP\\Project\\Downsampling\\data\\darshita\\PaviaU_gt.mat"
+  },
+  "ignore_label": 0,
+  "min_pixels_per_class": 50,
+  "usable": true,
+  "reasons": [],
+  "requirement": "Class ids per pixel from a source independent of the input images (field data, an external land-cover map, or manual annotation). Labels made by thresholding or clustering these same pixels are circular: LDA would just recover the rule used to create them.",
+  "training_class_counts": {
+    "1": 3132,
+    "2": 5216,
+    "3": 81,
+    "4": 1411,
+    "5": 1345,
+    "6": 1499,
+    "7": 85,
+    "8": 1709,
+    "9": 215
+  }
+}

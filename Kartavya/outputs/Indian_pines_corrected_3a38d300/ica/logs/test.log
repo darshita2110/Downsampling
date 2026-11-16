@@ -1,0 +1,27 @@
+2026-11-15 19:20:35 | INFO    |   K=1: trained with 1 iterations, converged=True, tol=0.0001
+2026-11-15 19:20:35 | INFO    |   K=2: trained with 4 iterations, converged=True, tol=0.0001
+2026-11-15 19:20:35 | INFO    |   K=3: trained with 5 iterations, converged=True, tol=0.0001
+2026-11-15 19:20:35 | INFO    |   K=4: trained with 6 iterations, converged=True, tol=0.0001
+2026-11-15 19:20:35 | INFO    |   K=5: trained with 10 iterations, converged=True, tol=0.0001
+2026-11-15 19:20:35 | INFO    |   K=6: trained with 16 iterations, converged=True, tol=0.0001
+2026-11-15 19:20:35 | INFO    |   K=8: trained with 18 iterations, converged=True, tol=0.0001
+2026-11-15 19:20:35 | INFO    |   K=10: trained with 38 iterations, converged=True, tol=0.0001
+2026-11-15 19:20:35 | INFO    |   K=12: trained with 23 iterations, converged=True, tol=0.0001
+2026-11-15 19:20:35 | INFO    |   K=15: trained with 62 iterations, converged=True, tol=0.0001
+2026-11-15 19:20:35 | INFO    |   K=20: trained with 51 iterations, converged=True, tol=0.0001
+2026-11-15 19:20:35 | INFO    |   K=25: trained with 53 iterations, converged=True, tol=0.0001
+2026-11-15 19:20:35 | INFO    |   K=145: trained with 201 iterations, converged=True, tol=0.0001
+2026-11-15 19:20:35 | INFO    | 00_Indian_pines_corrected_bottom: test image 73 x 200, 14,600 valid pixels (100.00%)
+2026-11-15 19:20:37 | INFO    |   K=1: reduction  99.3% | RMSE 0.0630 MAE 0.0397 PSNR  24.01 dB SSIM 0.8128 | 8.08 MB -> 59.30 KB | fwd 9.9 ms inv 38.8 ms
+2026-11-15 19:20:38 | INFO    |   K=2: reduction  98.6% | RMSE 0.0605 MAE 0.0373 PSNR  24.37 dB SSIM 0.8230 | 8.08 MB -> 116.89 KB | fwd 10.2 ms inv 31.4 ms
+2026-11-15 19:20:39 | INFO    |   K=3: reduction  97.9% | RMSE 0.0592 MAE 0.0363 PSNR  24.56 dB SSIM 0.8368 | 8.08 MB -> 174.49 KB | fwd 10.9 ms inv 22.2 ms
+2026-11-15 19:20:41 | INFO    |   K=4: reduction  97.2% | RMSE 0.0528 MAE 0.0323 PSNR  25.55 dB SSIM 0.8482 | 8.08 MB -> 232.09 KB | fwd 8.5 ms inv 21.8 ms
+2026-11-15 19:20:42 | INFO    |   K=5: reduction  96.6% | RMSE 0.0495 MAE 0.0299 PSNR  26.10 dB SSIM 0.8592 | 8.08 MB -> 289.69 KB | fwd 13.4 ms inv 29.3 ms
+2026-11-15 19:20:44 | INFO    |   K=6: reduction  95.9% | RMSE 0.0489 MAE 0.0296 PSNR  26.22 dB SSIM 0.8618 | 8.08 MB -> 347.29 KB | fwd 13.9 ms inv 39.0 ms
+2026-11-15 19:20:45 | INFO    |   K=8: reduction  94.5% | RMSE 0.0402 MAE 0.0241 PSNR  27.92 dB SSIM 0.8841 | 8.08 MB -> 462.48 KB | fwd 9.3 ms inv 25.4 ms
+2026-11-15 19:20:46 | INFO    |   K=10: reduction  93.1% | RMSE 0.0383 MAE 0.0226 PSNR  28.33 dB SSIM 0.8934 | 8.08 MB -> 577.68 KB | fwd 9.5 ms inv 24.0 ms
+2026-11-15 19:20:47 | INFO    |   K=12: reduction  91.7% | RMSE 0.0357 MAE 0.0210 PSNR  28.94 dB SSIM 0.9026 | 8.08 MB -> 692.87 KB | fwd 9.5 ms inv 24.6 ms
+2026-11-15 19:20:48 | INFO    |   K=15: reduction  89.7% | RMSE 0.0334 MAE 0.0193 PSNR  29.54 dB SSIM 0.9136 | 8.08 MB -> 865.66 KB | fwd 9.2 ms inv 28.6 ms
+2026-11-15 19:20:49 | INFO    |   K=20: reduction  86.2% | RMSE 0.0303 MAE 0.0175 PSNR  30.36 dB SSIM 0.9247 | 8.08 MB -> 1.13 MB | fwd 9.7 ms inv 26.5 ms
+2026-11-15 19:20:50 | INFO    |   K=25: reduction  82.8% | RMSE 0.0270 MAE 0.0154 PSNR  31.38 dB SSIM 0.9381 | 8.08 MB -> 1.41 MB | fwd 9.1 ms inv 25.0 ms
+2026-11-15 19:20:52 | INFO    |   K=145: reduction   0.0% | RMSE 0.0000 MAE 0.0000 PSNR 343.86 dB SSIM 1.0000 | 8.08 MB -> 8.16 MB | fwd 14.9 ms inv 30.4 ms

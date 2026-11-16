@@ -1,0 +1,152 @@
+{
+  "algorithm": "pca",
+  "k_tested": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    8,
+    10,
+    12,
+    15,
+    20,
+    25,
+    176
+  ],
+  "per_k_mean_over_test_samples": [
+    {
+      "k": 1,
+      "RMSE": 0.05027723747609859,
+      "MAE": 0.0204561517584888,
+      "PSNR_dB": 25.97257185991511,
+      "SSIM": 0.8179785512651366,
+      "dimensionality_reduction_pct": 99.43181818181817,
+      "storage_saving_pct": 99.42927339354458,
+      "reduced_disk_bytes_npy": 628864.0
+    },
+    {
+      "k": 2,
+      "RMSE": 0.036981610724414145,
+      "MAE": 0.009086721048552383,
+      "PSNR_dB": 28.640283543639235,
+      "SSIM": 0.8571619678826483,
+      "dimensionality_reduction_pct": 98.86363636363636,
+      "storage_saving_pct": 98.86045537829435,
+      "reduced_disk_bytes_npy": 1257600.0
+    },
+    {
+      "k": 3,
+      "RMSE": 0.0333740806087148,
+      "MAE": 0.006116178246378382,
+      "PSNR_dB": 29.531813788689156,
+      "SSIM": 0.9397430877893882,
+      "dimensionality_reduction_pct": 98.29545454545455,
+      "storage_saving_pct": 98.29163736304413,
+      "reduced_disk_bytes_npy": 1886336.0
+    },
+    {
+      "k": 4,
+      "RMSE": 0.03184797575823124,
+      "MAE": 0.005488447705131966,
+      "PSNR_dB": 29.938363319927554,
+      "SSIM": 0.9579500513798436,
+      "dimensionality_reduction_pct": 97.72727272727273,
+      "storage_saving_pct": 97.7228193477939,
+      "reduced_disk_bytes_npy": 2515072.0
+    },
+    {
+      "k": 5,
+      "RMSE": 0.031710297769992464,
+      "MAE": 0.005458627612870203,
+      "PSNR_dB": 29.97599359575124,
+      "SSIM": 0.9582771503165449,
+      "dimensionality_reduction_pct": 97.1590909090909,
+      "storage_saving_pct": 97.15400133254369,
+      "reduced_disk_bytes_npy": 3143808.0
+    },
+    {
+      "k": 6,
+      "RMSE": 0.03168125087865015,
+      "MAE": 0.005455453492908232,
+      "PSNR_dB": 29.983953587755355,
+      "SSIM": 0.9582963494837149,
+      "dimensionality_reduction_pct": 96.5909090909091,
+      "storage_saving_pct": 96.58518331729346,
+      "reduced_disk_bytes_npy": 3772544.0
+    },
+    {
+      "k": 8,
+      "RMSE": 0.03070527138218763,
+      "MAE": 0.005191462865065277,
+      "PSNR_dB": 30.25574119685871,
+      "SSIM": 0.9653530029324482,
+      "dimensionality_reduction_pct": 95.45454545454545,
+      "storage_saving_pct": 95.44754728679301,
+      "reduced_disk_bytes_npy": 5030016.0
+    },
+    {
+      "k": 10,
+      "RMSE": 0.030454502379778352,
+      "MAE": 0.005117427604123927,
+      "PSNR_dB": 30.32696984771809,
+      "SSIM": 0.966779277448262,
+      "dimensionality_reduction_pct": 94.31818181818183,
+      "storage_saving_pct": 94.30991125629257,
+      "reduced_disk_bytes_npy": 6287488.0
+    },
+    {
+      "k": 12,
+      "RMSE": 0.03041531419062889,
+      "MAE": 0.005115407166437741,
+      "PSNR_dB": 30.33815385819402,
+      "SSIM": 0.9668164663369736,
+      "dimensionality_reduction_pct": 93.18181818181819,
+      "storage_saving_pct": 93.17227522579212,
+      "reduced_disk_bytes_npy": 7544960.0
+    },
+    {
+      "k": 15,
+      "RMSE": 0.030055118405816914,
+      "MAE": 0.00507010982550237,
+      "PSNR_dB": 30.441631134714733,
+      "SSIM": 0.9670316916827265,
+      "dimensionality_reduction_pct": 91.47727272727273,
+      "storage_saving_pct": 91.46582118004144,
+      "reduced_disk_bytes_npy": 9431168.0
+    },
+    {
+      "k": 20,
+      "RMSE": 0.0286891839035086,
+      "MAE": 0.004928222269404685,
+      "PSNR_dB": 30.84563611158327,
+      "SSIM": 0.9686693195878913,
+      "dimensionality_reduction_pct": 88.63636363636364,
+      "storage_saving_pct": 88.62173110379035,
+      "reduced_disk_bytes_npy": 12574848.0
+    },
+    {
+      "k": 25,
+      "RMSE": 0.02797942511564852,
+      "MAE": 0.004834608141009861,
+      "PSNR_dB": 31.063224261263024,
+      "SSIM": 0.9700797068455969,
+      "dimensionality_reduction_pct": 85.79545454545455,
+      "storage_saving_pct": 85.77764102753925,
+      "reduced_disk_bytes_npy": 15718528.0
+    },
+    {
+      "k": 176,
+      "RMSE": 2.118355062957559e-17,
+      "MAE": 3.0803445504999816e-19,
+      "PSNR_dB": 333.4800248981742,
+      "SSIM": 1.0,
+      "dimensionality_reduction_pct": 0.0,
+      "storage_saving_pct": -0.11387927524431074,
+      "reduced_disk_bytes_npy": 110657664.0
+    }
+  ],
+  "process_rss_mb_end": 905.326592,
+  "total_seconds": 436.98179160000007
+}

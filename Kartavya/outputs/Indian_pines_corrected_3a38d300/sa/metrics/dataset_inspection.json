@@ -1,0 +1,17 @@
+{
+  "Indian_pines_corrected": {
+    "files": [
+      "D:\\DIP\\Project\\Downsampling\\data\\darshita\\Indian_pines_corrected.mat"
+    ],
+    "grid_hw": [
+      145,
+      200
+    ],
+    "valid_pct_on_grid": 100.0,
+    "rows_used": [
+      0,
+      72
+    ],
+    "pixels_used": 14400
+  }
+}

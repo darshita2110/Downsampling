@@ -1,0 +1,6 @@
+k,seed,fitness,selected,selected_idx,iterations,stop_reason,evaluations,search_space,seconds,peak_python_mb
+1,42,1.296080768108368,band_093,92,10,no improvement for 10 iterations,36,145,33.84981619999962,597.697529
+1,43,1.2683861553668976,band_083,82,10,no improvement for 10 iterations,34,145,31.58246930000132,598.170573
+1,44,1.2970413267612457,band_095,94,24,no improvement for 10 iterations,62,145,59.10409499999878,598.41543
+1,45,1.2968751192092896,band_096,95,10,no improvement for 10 iterations,34,145,31.547622399999455,598.427759
+1,46,1.2976908087730408,band_094,93,32,no improvement for 10 iterations,61,145,58.204559800000425,598.445043

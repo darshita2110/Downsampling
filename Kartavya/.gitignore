@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.venv/
+outputs/**/models/
+outputs/**/reduced_data/
+outputs/**/reconstructed_data/

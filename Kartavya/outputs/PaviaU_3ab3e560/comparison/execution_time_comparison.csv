@@ -1,0 +1,9 @@
+algorithm,algorithm_id,status,reason_or_error,train_seconds,test_seconds,total_seconds,train_peak_python_mb,output_dir
+PCA,pca,ok,,76.42898850000006,126.18286750000004,202.74199209999995,581.784608,D:\DIP\Project\Downsampling\Kartavya\outputs\PaviaU_3ab3e560\pca
+ICA,ica,ok,,1384.983581,155.0578042000002,1540.1589672999999,855.222103,D:\DIP\Project\Downsampling\Kartavya\outputs\PaviaU_3ab3e560\ica
+LDA,lda,ok,,2.0294097000000875,13.426234999999906,15.491545400000177,148.251909,D:\DIP\Project\Downsampling\Kartavya\outputs\PaviaU_3ab3e560\lda
+GA,ga,ok,,2179.064969,127.4559419999996,2306.6281431,282.218,D:\DIP\Project\Downsampling\Kartavya\outputs\PaviaU_3ab3e560\ga
+PSO,pso,ok,,6085.0703497,117.77493709999908,6202.945266500001,285.468051,D:\DIP\Project\Downsampling\Kartavya\outputs\PaviaU_3ab3e560\pso
+ACO,aco,ok,,7105.4761808,208.14043619999939,7313.904575099999,292.264092,D:\DIP\Project\Downsampling\Kartavya\outputs\PaviaU_3ab3e560\aco
+SA,sa,ok,,5519.8227762999995,199.38404820000142,5719.449726499999,294.965748,D:\DIP\Project\Downsampling\Kartavya\outputs\PaviaU_3ab3e560\sa
+UBS-CNN,ubscnn,ok,,5503.4884649999985,180.3611060000003,5684.2043271,672.703621,D:\DIP\Project\Downsampling\Kartavya\outputs\PaviaU_3ab3e560\ubscnn

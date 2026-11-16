@@ -1,0 +1,27 @@
+2026-11-16 11:07:15 | INFO    | Loaded saved subsets for K = [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25]
+2026-11-16 11:07:15 | INFO    |   K=1: keep ['band_038'] (training fitness 0.64167)
+2026-11-16 11:07:15 | INFO    |   K=2: keep ['band_035', 'band_091'] (training fitness 1.22809)
+2026-11-16 11:07:15 | INFO    |   K=3: keep ['band_002', 'band_057', 'band_100'] (training fitness 1.35526)
+2026-11-16 11:07:15 | INFO    |   K=4: keep ['band_001', 'band_011', 'band_059', 'band_093'] (training fitness 1.40301)
+2026-11-16 11:07:15 | INFO    |   K=5: keep ['band_001', 'band_002', 'band_013', 'band_064', 'band_088'] (training fitness 1.41067)
+2026-11-16 11:07:15 | INFO    |   K=6: keep ['band_001', 'band_002', 'band_013', 'band_059', 'band_091', 'band_095'] (training fitness 1.42275)
+2026-11-16 11:07:15 | INFO    |   K=8: keep ['band_001', 'band_003', 'band_014', 'band_061', 'band_081', 'band_089', 'band_096', 'band_102'] (training fitness 1.43485)
+2026-11-16 11:07:15 | INFO    |   K=10: keep ['band_001', 'band_002', 'band_004', 'band_009', 'band_013', 'band_036', 'band_064', 'band_079', 'band_090', 'band_100'] (training fitness 1.43700)
+2026-11-16 11:07:15 | INFO    |   K=12: keep ['band_001', 'band_003', 'band_004', 'band_016', 'band_044', 'band_063', 'band_076', 'band_090', 'band_094', 'band_097', 'band_099', 'band_101'] (training fitness 1.44088)
+2026-11-16 11:07:15 | INFO    |   K=15: keep ['band_001', 'band_002', 'band_003', 'band_005', 'band_006', 'band_022', 'band_058', 'band_064', 'band_078', 'band_086', 'band_088', 'band_093'] ... (training fitness 1.44642)
+2026-11-16 11:07:15 | INFO    |   K=20: keep ['band_001', 'band_002', 'band_003', 'band_004', 'band_005', 'band_008', 'band_027', 'band_048', 'band_060', 'band_064', 'band_067', 'band_079'] ... (training fitness 1.44776)
+2026-11-16 11:07:15 | INFO    |   K=25: keep ['band_001', 'band_002', 'band_003', 'band_004', 'band_005', 'band_007', 'band_008', 'band_011', 'band_013', 'band_030', 'band_039', 'band_044'] ... (training fitness 1.44782)
+2026-11-16 11:07:16 | INFO    | 00_PaviaU_bottom: test image 305 x 340, 103,700 valid pixels (100.00%)
+2026-11-16 11:07:25 | INFO    |   K=1: reduction  99.0% | RMSE 0.0611 MAE 0.0356 PSNR  24.28 dB SSIM 0.7712 | 40.75 MB -> 405.89 KB | fwd 70.3 ms inv 56.3 ms
+2026-11-16 11:07:35 | INFO    |   K=2: reduction  98.1% | RMSE 0.0222 MAE 0.0137 PSNR  33.07 dB SSIM 0.9374 | 40.75 MB -> 811.37 KB | fwd 33.2 ms inv 61.7 ms
+2026-11-16 11:07:44 | INFO    |   K=3: reduction  97.1% | RMSE 0.0192 MAE 0.0123 PSNR  34.34 dB SSIM 0.9085 | 40.75 MB -> 1.19 MB | fwd 33.0 ms inv 76.6 ms
+2026-11-16 11:07:54 | INFO    |   K=4: reduction  96.1% | RMSE 0.0116 MAE 0.0072 PSNR  38.73 dB SSIM 0.9752 | 40.75 MB -> 1.58 MB | fwd 46.0 ms inv 65.9 ms
+2026-11-16 11:08:02 | INFO    |   K=5: reduction  95.1% | RMSE 0.0116 MAE 0.0071 PSNR  38.73 dB SSIM 0.9787 | 40.75 MB -> 1.98 MB | fwd 31.0 ms inv 58.3 ms
+2026-11-16 11:08:08 | INFO    |   K=6: reduction  94.2% | RMSE 0.0105 MAE 0.0064 PSNR  39.54 dB SSIM 0.9798 | 40.75 MB -> 2.38 MB | fwd 33.6 ms inv 51.4 ms
+2026-11-16 11:08:14 | INFO    |   K=8: reduction  92.2% | RMSE 0.0093 MAE 0.0054 PSNR  40.64 dB SSIM 0.9833 | 40.75 MB -> 3.17 MB | fwd 28.3 ms inv 42.1 ms
+2026-11-16 11:08:21 | INFO    |   K=10: reduction  90.3% | RMSE 0.0065 MAE 0.0039 PSNR  43.76 dB SSIM 0.9909 | 40.75 MB -> 3.96 MB | fwd 40.8 ms inv 69.1 ms
+2026-11-16 11:08:28 | INFO    |   K=12: reduction  88.3% | RMSE 0.0062 MAE 0.0035 PSNR  44.11 dB SSIM 0.9902 | 40.75 MB -> 4.75 MB | fwd 35.2 ms inv 63.5 ms
+2026-11-16 11:08:35 | INFO    |   K=15: reduction  85.4% | RMSE 0.0062 MAE 0.0034 PSNR  44.21 dB SSIM 0.9912 | 40.75 MB -> 5.94 MB | fwd 41.3 ms inv 47.7 ms
+2026-11-16 11:08:42 | INFO    |   K=20: reduction  80.6% | RMSE 0.0047 MAE 0.0025 PSNR  46.54 dB SSIM 0.9938 | 40.75 MB -> 7.92 MB | fwd 61.8 ms inv 67.3 ms
+2026-11-16 11:08:49 | INFO    |   K=25: reduction  75.7% | RMSE 0.0037 MAE 0.0020 PSNR  48.66 dB SSIM 0.9964 | 40.75 MB -> 9.90 MB | fwd 53.3 ms inv 72.5 ms
+2026-11-16 11:09:12 | INFO    | PSO vs GA: same training objective at 0/12 K values

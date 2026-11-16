@@ -1,0 +1,28 @@
+2026-11-16 08:16:37 | INFO    | ===== PCA | dataset KSC_383bfffd | 176 channels | K = [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25]
+2026-11-16 08:16:37 | INFO    | standardize=True | max_train_pixels=1000000 | seed=42
+2026-11-16 08:16:38 | INFO    |   loaded KSC: grid (512, 614), valid 100.000%, pixels used 157,184 (rows 0-256)
+2026-11-16 08:16:38 | INFO    | Feature matrix: 157,184 pixels x 176 channels; fitting on 157,184
+2026-11-16 08:16:39 | INFO    | PCA fit in 0.422 s, peak 664.7 MB
+2026-11-16 08:16:39 | INFO    |   PC1:  31.17%  cumulative  31.17%
+2026-11-16 08:16:39 | INFO    |   PC2:  11.95%  cumulative  43.13%
+2026-11-16 08:16:39 | INFO    |   PC3:  10.76%  cumulative  53.88%
+2026-11-16 08:16:39 | INFO    |   PC4:   3.98%  cumulative  57.86%
+2026-11-16 08:16:39 | INFO    |   PC5:   1.77%  cumulative  59.63%
+2026-11-16 08:16:39 | INFO    |   PC6:   1.20%  cumulative  60.83%
+2026-11-16 08:16:39 | INFO    |   PC7:   0.96%  cumulative  61.79%
+2026-11-16 08:16:39 | INFO    |   PC8:   0.94%  cumulative  62.73%
+2026-11-16 08:16:39 | INFO    |   PC9:   0.84%  cumulative  63.57%
+2026-11-16 08:16:39 | INFO    |   PC10:   0.73%  cumulative  64.30%
+2026-11-16 08:16:39 | INFO    |   PC11:   0.67%  cumulative  64.98%
+2026-11-16 08:16:39 | INFO    |   PC12:   0.61%  cumulative  65.58%
+2026-11-16 08:16:39 | INFO    |   PC13:   0.59%  cumulative  66.17%
+2026-11-16 08:16:39 | INFO    |   PC14:   0.57%  cumulative  66.75%
+2026-11-16 08:16:39 | INFO    |   PC15:   0.56%  cumulative  67.30%
+2026-11-16 08:16:39 | INFO    |   PC16:   0.55%  cumulative  67.85%
+2026-11-16 08:16:39 | INFO    |   PC17:   0.53%  cumulative  68.38%
+2026-11-16 08:16:39 | INFO    |   PC18:   0.53%  cumulative  68.91%
+2026-11-16 08:16:39 | INFO    |   PC19:   0.53%  cumulative  69.44%
+2026-11-16 08:16:39 | INFO    |   PC20:   0.52%  cumulative  69.96%
+2026-11-16 08:16:39 | INFO    | Components needed: {'90%': 69, '95%': 85, '99%': 101}
+2026-11-16 08:16:46 | INFO    | scikit-learn cross-check: {'max_abs_diff_explained_variance_ratio': 1.6653345369377348e-16, 'n_zero_variance_components': 0, 'min_abs_cosine_nonzero_components': 0.9999999999999987, 'max_abs_diff_reconstruction_k2': 2.042810365310288e-14}
+2026-11-16 08:21:29 | INFO    | Saved model -> D:\DIP\Project\Downsampling\Kartavya\outputs\KSC_383bfffd\pca\models\pca_model.npz

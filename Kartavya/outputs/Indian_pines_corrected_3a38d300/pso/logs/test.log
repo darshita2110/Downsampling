@@ -1,0 +1,27 @@
+2026-11-15 19:33:44 | INFO    | Loaded saved subsets for K = [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25]
+2026-11-15 19:33:44 | INFO    |   K=1: keep ['band_007'] (training fitness 1.31707)
+2026-11-15 19:33:44 | INFO    |   K=2: keep ['band_015', 'band_027'] (training fitness 1.28191)
+2026-11-15 19:33:44 | INFO    |   K=3: keep ['band_009', 'band_028', 'band_107'] (training fitness 1.30101)
+2026-11-15 19:33:44 | INFO    |   K=4: keep ['band_016', 'band_089', 'band_110', 'band_128'] (training fitness 1.31043)
+2026-11-15 19:33:44 | INFO    |   K=5: keep ['band_038', 'band_049', 'band_091', 'band_098', 'band_124'] (training fitness 1.32467)
+2026-11-15 19:33:44 | INFO    |   K=6: keep ['band_008', 'band_049', 'band_073', 'band_110', 'band_120', 'band_132'] (training fitness 1.33202)
+2026-11-15 19:33:44 | INFO    |   K=8: keep ['band_034', 'band_044', 'band_047', 'band_067', 'band_089', 'band_103', 'band_112', 'band_125'] (training fitness 1.34168)
+2026-11-15 19:33:44 | INFO    |   K=10: keep ['band_012', 'band_036', 'band_045', 'band_055', 'band_062', 'band_078', 'band_093', 'band_104', 'band_113', 'band_125'] (training fitness 1.34838)
+2026-11-15 19:33:44 | INFO    |   K=12: keep ['band_002', 'band_007', 'band_026', 'band_048', 'band_063', 'band_069', 'band_079', 'band_093', 'band_100', 'band_109', 'band_117', 'band_128'] (training fitness 1.35707)
+2026-11-15 19:33:44 | INFO    |   K=15: keep ['band_001', 'band_011', 'band_018', 'band_036', 'band_047', 'band_060', 'band_062', 'band_072', 'band_074', 'band_094', 'band_098', 'band_113'] ... (training fitness 1.36530)
+2026-11-15 19:33:44 | INFO    |   K=20: keep ['band_002', 'band_011', 'band_020', 'band_023', 'band_033', 'band_040', 'band_046', 'band_047', 'band_050', 'band_053', 'band_060', 'band_070'] ... (training fitness 1.37327)
+2026-11-15 19:33:44 | INFO    |   K=25: keep ['band_002', 'band_003', 'band_012', 'band_015', 'band_023', 'band_031', 'band_041', 'band_044', 'band_050', 'band_057', 'band_065', 'band_072'] ... (training fitness 1.37954)
+2026-11-15 19:33:44 | INFO    | 00_Indian_pines_corrected_bottom: test image 73 x 200, 14,600 valid pixels (100.00%)
+2026-11-15 19:33:45 | INFO    |   K=1: reduction  99.3% | RMSE 0.0960 MAE 0.0548 PSNR  20.36 dB SSIM 0.7047 | 8.08 MB -> 58.17 KB | fwd 3.2 ms inv 7.1 ms
+2026-11-15 19:33:46 | INFO    |   K=2: reduction  98.6% | RMSE 0.0732 MAE 0.0437 PSNR  22.71 dB SSIM 0.7573 | 8.08 MB -> 115.77 KB | fwd 4.2 ms inv 7.0 ms
+2026-11-15 19:33:47 | INFO    |   K=3: reduction  97.9% | RMSE 0.0698 MAE 0.0400 PSNR  23.12 dB SSIM 0.7854 | 8.08 MB -> 173.37 KB | fwd 4.2 ms inv 6.7 ms
+2026-11-15 19:33:47 | INFO    |   K=4: reduction  97.2% | RMSE 0.0679 MAE 0.0380 PSNR  23.37 dB SSIM 0.8041 | 8.08 MB -> 230.97 KB | fwd 3.8 ms inv 6.7 ms
+2026-11-15 19:33:48 | INFO    |   K=5: reduction  96.6% | RMSE 0.0598 MAE 0.0353 PSNR  24.46 dB SSIM 0.8107 | 8.08 MB -> 288.57 KB | fwd 4.0 ms inv 7.2 ms
+2026-11-15 19:33:49 | INFO    |   K=6: reduction  95.9% | RMSE 0.0592 MAE 0.0337 PSNR  24.56 dB SSIM 0.8194 | 8.08 MB -> 346.18 KB | fwd 3.5 ms inv 7.6 ms
+2026-11-15 19:33:50 | INFO    |   K=8: reduction  94.5% | RMSE 0.0569 MAE 0.0317 PSNR  24.90 dB SSIM 0.8232 | 8.08 MB -> 461.38 KB | fwd 4.2 ms inv 7.6 ms
+2026-11-15 19:33:50 | INFO    |   K=10: reduction  93.1% | RMSE 0.0489 MAE 0.0267 PSNR  26.22 dB SSIM 0.8513 | 8.08 MB -> 576.58 KB | fwd 5.8 ms inv 11.1 ms
+2026-11-15 19:33:51 | INFO    |   K=12: reduction  91.7% | RMSE 0.0483 MAE 0.0265 PSNR  26.32 dB SSIM 0.8534 | 8.08 MB -> 691.79 KB | fwd 6.0 ms inv 9.3 ms
+2026-11-15 19:33:52 | INFO    |   K=15: reduction  89.7% | RMSE 0.0414 MAE 0.0224 PSNR  27.67 dB SSIM 0.8790 | 8.08 MB -> 864.59 KB | fwd 5.1 ms inv 8.5 ms
+2026-11-15 19:33:53 | INFO    |   K=20: reduction  86.2% | RMSE 0.0396 MAE 0.0204 PSNR  28.04 dB SSIM 0.8906 | 8.08 MB -> 1.13 MB | fwd 6.3 ms inv 9.3 ms
+2026-11-15 19:33:54 | INFO    |   K=25: reduction  82.8% | RMSE 0.0364 MAE 0.0185 PSNR  28.78 dB SSIM 0.9035 | 8.08 MB -> 1.41 MB | fwd 5.3 ms inv 9.2 ms
+2026-11-15 19:34:07 | INFO    | PSO vs GA: same training objective at 0/12 K values
