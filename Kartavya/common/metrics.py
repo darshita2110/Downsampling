@@ -107,7 +107,12 @@ def classification_report(y_true, y_pred, classes):
         precision_c = TP / (TP + FP)   of pixels predicted c, how many really are c
         recall_c    = TP / (TP + FN)   of pixels that are c, how many were found
         F1_c        = 2 P R / (P + R)
-    A class with no predictions (or no true pixels) gets 0 for the undefined ratio.
+    A class with no predictions gets precision 0.
+
+    Macro averages are taken over the classes PRESENT in y_true (support > 0) only. Averaging over every
+    trained class, as an earlier version did, counts each class that has no test pixels as F1 = 0: with a
+    spatial split where only 2 of 10 trained classes occur in the test region, macro-F1 fell to ~0.2 although
+    both present classes were classified well. The old value is still reported as "*_macro_all_classes".
     """
     classes = list(classes)
     idx = {c: i for i, c in enumerate(classes)}
@@ -119,8 +124,14 @@ def classification_report(y_true, y_pred, classes):
     rec = np.divide(tp, true_tot, out=np.zeros_like(tp), where=true_tot > 0)
     f1 = np.divide(2 * prec * rec, prec + rec, out=np.zeros_like(tp), where=(prec + rec) > 0)
     w = true_tot / true_tot.sum()
+    present = true_tot > 0
     return {"accuracy": float(tp.sum() / cm.sum()),
-            "precision_macro": float(prec.mean()), "recall_macro": float(rec.mean()), "f1_macro": float(f1.mean()),
+            "precision_macro": float(prec[present].mean()), "recall_macro": float(rec[present].mean()),
+            "f1_macro": float(f1[present].mean()),
+            "n_classes_evaluated": int(present.sum()),
+            "classes_without_test_pixels": [str(c) for c, p in zip(classes, present) if not p],
+            "precision_macro_all_classes": float(prec.mean()), "recall_macro_all_classes": float(rec.mean()),
+            "f1_macro_all_classes": float(f1.mean()),
             "precision_weighted": float((prec * w).sum()), "recall_weighted": float((rec * w).sum()),
             "f1_weighted": float((f1 * w).sum()),
             "per_class": {str(c): {"precision": float(prec[i]), "recall": float(rec[i]), "f1": float(f1[i]),

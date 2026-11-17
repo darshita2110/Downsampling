@@ -34,7 +34,16 @@ python run_all_algorithms.py --dataset path/to/data --only pca,ga,sa --epochs 20
 ```
 
 Options: `--labels PATH` (LDA ground truth), `--no-standardize` (PCA/ICA/LDA), `--epochs N` (UBS-CNN),
-`--output DIR`, `--self-check` (LDA on Iris/Wine). Exit codes: 0 ok, 2 invalid dataset, 3 not applicable (LDA without labels).
+`--output DIR`, `--self-check` (LDA on Iris/Wine), `--protocol spatial|full` (see **Protocol** below),
+`--bands N` (true band count of a cube whose band axis is ambiguous). Exit codes: 0 ok, 2 invalid dataset,
+3 not applicable (LDA without usable labels).
+
+**Numbers for the paper (same protocol as the team tables)** - run every dataset with `--protocol full`:
+
+```bash
+python run_all_algorithms.py --dataset path/to/Indian_pines_corrected.mat --protocol full
+python run_all_algorithms.py --dataset path/to/Salinas_corrected.mat     --protocol full
+```
 
 ## What a dataset can be
 
@@ -48,16 +57,34 @@ Options: `--labels PATH` (LDA ground truth), `--no-standardize` (PCA/ICA/LDA), `
 Formats: PNG, JPG/JPEG, BMP, GIF, WebP, TIFF/GeoTIFF, JPEG2000, VRT, ERDAS `.img`, ENVI (`.hdr`), NumPy
 `.npy`/`.npz`, MATLAB `.mat` (incl. v7.3), NetCDF `.nc`, HDF5 `.h5`. Detected automatically: size, channel
 count and order (H,W,C vs C,H,W), dtype, band names, no-data (NaN, nodata value, transparent alpha).
+**Band axis:** the standard hyperspectral benchmarks are recognised by file name and their band count is
+enforced (Indian Pines corrected 200, Salinas corrected 204, PaviaU 103, Pavia 102, KSC 176, Botswana 145).
+For any other cube whose band count is close to the image size the run stops and asks for `--bands N`
+instead of guessing (the old "smallest axis = bands" rule read Indian Pines as 145 bands).
 Data stay in native precision until normalisation to [0, 1] (8-bit: 0–255; otherwise per-channel training
 min/max). Files named like `*_gt*`, `*label*`, `*groundtruth*` are labels for LDA, never image data.
 
-**Split** (as before): ≥ 2 samples → first 60 % train, rest test; 1 sample → top half trains, bottom half tests.
-Models are fitted on training pixels only; all metrics are on the test region.
+**Protocol** (`--protocol`, default `spatial`):
+
+| Protocol | Fit on | Metrics on | Output folder | Use for |
+|---|---|---|---|---|
+| `spatial` | ≥ 2 samples: first 60 %; 1 sample: top half | the held-out samples / bottom half | `outputs/<id>/` | how well a reduction transfers to unseen pixels |
+| `full` | every pixel | every pixel | `outputs/<id>__full/` | the paper tables (same as the team pipelines, e.g. PSNR on the whole cube) |
+
+Every `metrics.csv` and `comparison.csv` has a `protocol` column. Do not put `spatial` and `full` PSNR values in
+one table: `spatial` is measured on unseen pixels and is lower by design.
+
+**LDA classification split** (independent of `--protocol`, see `algorithms/lda/config.py`): LDA needs every
+class in both training and test, which the top/bottom split does not give. Its labelled pixels are split
+like the team classification pipeline: `auto` = block split (40 % of blocks train) for images ≥ 256 px on
+the short side, otherwise stratified random (10 % of each class trains); classes with < 10 labelled pixels
+are excluded and listed in `label_report.json`. Macro precision/recall/F1 average only the classes that have
+test pixels (`average_accuracy` = AA of the team tables).
 
 ## Outputs
 
 ```text
-outputs/<dataset_name>_<hash>/            # hash of the files -> different data never mix
+outputs/<dataset_name>_<hash>/            # hash of the files -> different data never mix ("__full" suffix: --protocol full)
 ├── dataset/        filename_index_mapping.json, dataset_inspection.json, split.json, normalization.json
 ├── <algorithm>/
 │   ├── models/              saved models / selected bands (+ .pt networks for UBS-CNN)

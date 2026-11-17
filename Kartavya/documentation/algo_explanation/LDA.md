@@ -105,3 +105,33 @@ image, and it keeps at most c − 1 dimensions. Use PCA or ICA for reconstructio
 
 LDA becomes the right tool when the goal changes to *reducing channels for a land-cover
 classification task* and independent labels have been added.
+
+## 6. Fixes after the hyperspectral benchmark runs (17 Nov 2026)
+
+The first benchmark runs (Botswana, KSC, PaviaU, Salinas, Indian Pines) showed accuracy between 45 and 96 %
+but macro-F1 of only 0.17–0.57, and LDA did not run at all on Salinas and Indian Pines. Three causes were found
+in the code; none of them is a property of LDA itself.
+
+1. **Macro averages counted classes without test pixels.** The top/bottom split left most trained classes
+   absent from the test half (Botswana: test pixels from 2 of the 10 trained classes). Each absent class
+   entered the macro average with F1 = 0. Example, Botswana, K = 1: F1 of 1.00 and 0.75 on the two present
+   classes, reported macro-F1 0.17 instead of 0.87.
+   *Fix:* macro precision/recall/F1 now average only the classes with test pixels. `n_classes_evaluated` and
+   the old value (`f1_macro_all_classes`) are also reported, so nothing is hidden.
+2. **The image-level top/bottom split is not a classification split.** Classes that occur in only one half
+   are never trained (Botswana: 4 of 14 classes; KSC: 3 of 13) or never tested. Salinas stopped because class
+   12 had fewer than 50 pixels in the top half; Indian Pines because of classes 1, 5 and 9.
+   *Fix:* LDA now splits the LABELLED pixels with the team protocol (`Abhishek/universal_pipeline.py`):
+   - stratified random, 10 % of each class for training, for images under 256 px on the short side;
+   - otherwise blocks, 40 % of the blocks for training.
+
+   Classes with fewer than 10 labelled pixels are excluded and listed in `label_report.json`, and test pixels
+   of untrained classes are counted. The split is saved (`models/label_split.npz`) and reused by test. The old
+   behaviour remains available as `LABEL_SPLIT = "protocol"`.
+3. **Misleading message.** "No valid ground-truth labels" was printed even when the labels existed but a
+   class was too small. The report now states the actual reason; for example, no trained class has test
+   pixels in the chosen split.
+
+**Consequence for the paper:** the old LDA numbers should not be used, either as results or as a failure
+case. Rerun LDA on every dataset with the fixed code before deciding whether it is a failure case.
+Indian Pines also needs the band-axis fix (`common/data_loader.py`, see the README).

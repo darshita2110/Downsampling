@@ -126,11 +126,18 @@ def prepare_dataset(dataset_path, label_path=None, output_root=None, logger=None
     the dataset-level reports. Returns (dataset, split, dataset_root)."""
     output_root = Path(output_root) if output_root else gcfg.OUTPUT_ROOT
     log = logger or get_logger("kartavya.dataset")
-    log.info(f"Dataset path: {Path(dataset_path).expanduser().resolve()}")
+    # command-line overrides shared by main.py and run_all_algorithms.py
+    gcfg.EXPECTED_BANDS = cli_option("--bands", gcfg.EXPECTED_BANDS, int)
+    gcfg.PROTOCOL = cli_option("--protocol", gcfg.PROTOCOL)
+    if gcfg.PROTOCOL not in ("spatial", "full"):
+        raise DatasetError(f"Unknown protocol '{gcfg.PROTOCOL}' (use 'spatial' or 'full')")
+    log.info(f"Dataset path: {Path(dataset_path).expanduser().resolve()} | protocol '{gcfg.PROTOCOL}'"
+             + (f" | expected bands {gcfg.EXPECTED_BANDS}" if gcfg.EXPECTED_BANDS else ""))
     ds = Dataset(dataset_path, label_path=label_path, logger=log)
     split = make_split(ds.n_samples)
     ds.fit_normalizer(split, log)
-    root = output_root / ds.dataset_id
+    # the two protocols never share a folder, so their numbers cannot be mixed by accident
+    root = output_root / (ds.dataset_id if gcfg.PROTOCOL == "spatial" else f"{ds.dataset_id}__{gcfg.PROTOCOL}")
     droot = root / "dataset"
     ensure_dirs(droot)
     save_json({"dataset_dir": str(ds.path), "layout": ds.layout,
@@ -150,7 +157,11 @@ def prepare_dataset(dataset_path, label_path=None, output_root=None, logger=None
     log.info(f"Channels: {ds.channel_names[:16]}{' ...' if ds.n_channels > 16 else ''}")
     log.info(f"Split '{split['mode']}': train {split['train']} | test {split['test']}")
     if split["mode"] == "spatial":
-        log.warning("Only ONE sample: the top part of the image trains and the bottom part tests.")
+        log.warning("Only ONE sample: the top part of the image trains and the bottom part tests "
+                    "(PSNR/SSIM are on the held-out bottom part; use --protocol full for whole-image numbers).")
+    if split["mode"] == "full":
+        log.warning("Protocol 'full': fitted and evaluated on ALL pixels (no held-out region), like the team's "
+                    "other pipelines. Band-selection searches still score subsets on held-out validation pixels.")
     if ds.label_map:
         log.info(f"Label rasters (used by LDA only): {[Path(v).name for v in ds.label_map.values()]}")
     return ds, split, root
@@ -209,6 +220,11 @@ def run_algorithm(module, dataset, split, dataset_root, options=None, ks=None):
     return result
 
 
+def protocol_of(split):
+    """'full' or 'spatial' (the temporal split of a multi-image dataset belongs to the 'spatial' protocol)."""
+    return "full" if split.get("mode") == "full" else "spatial"
+
+
 def summarize_per_k(df):
     """Mean over test samples for every K (numeric columns only)."""
     num = df.select_dtypes(include=[np.number, bool]).copy()
@@ -221,16 +237,18 @@ def summarize_per_k(df):
 def write_summary(ctx, result, df):
     """metrics.csv / metrics.json / metrics_report.txt in the algorithm's root folder."""
     per_k = summarize_per_k(df) if df is not None and len(df) else pd.DataFrame()
+    if len(per_k):
+        per_k.insert(1, "protocol", protocol_of(ctx.split))
     per_k.to_csv(ctx.root / "metrics.csv", index=False)
     comparable = [m for m in METRICS if m in per_k.columns]
     payload = {"algorithm": ctx.name, "display": ctx.display, "dataset_id": ctx.dataset.dataset_id,
                "dataset_path": str(ctx.dataset.path), "n_channels": ctx.C, "channel_names": ctx.names,
-               "split": ctx.split, "k_values": ctx.ks, "run": {k: v for k, v in result.items() if k != "per_k"},
+               "split": ctx.split, "protocol": protocol_of(ctx.split), "k_values": ctx.ks, "run": {k: v for k, v in result.items() if k != "per_k"},
                "comparable_metrics": comparable, "per_k": per_k.to_dict(orient="records"), "info": ctx.info}
     save_json(payload, ctx.root / "metrics.json")
     lines = [f"{ctx.display} on {ctx.dataset.dataset_id}", "=" * 60,
              f"status: {result['status']}" + (f" ({result.get('reason')})" if result.get("reason") else ""),
-             f"channels: {ctx.C}   split: {ctx.split['mode']}   K values: {ctx.ks}",
+             f"channels: {ctx.C}   protocol: {protocol_of(ctx.split)}   split: {ctx.split['mode']}   K values: {ctx.ks}",
              f"training {result['train_seconds']:.2f} s, evaluation {result['test_seconds']:.2f} s, "
              f"total {result['total_seconds']:.2f} s", ""]
     if len(per_k):

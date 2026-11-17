@@ -1,6 +1,0 @@
-LDA on Indian_pines_corrected_3a38d300
-============================================================
-status: not_applicable (no usable ground-truth labels: Classes [1, 5, 9] have < 50 training pixels. Merge or relabel them (they are not dropped silently).)
-channels: 200   split: spatial   K values: [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25]
-training 0.09 s, evaluation nan s, total 0.10 s
-

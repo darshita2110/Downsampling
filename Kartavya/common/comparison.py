@@ -66,6 +66,8 @@ def build(results, dataset, split, ks, out_dir, logger=None):
     if len(no_rows):                          # failed / not applicable algorithms still appear, with empty metrics
         table = pd.concat([table, no_rows[["algorithm", "algorithm_id", "status"] + list(RUN_METRICS)]],
                           ignore_index=True)
+    protocol = "full" if split.get("mode") == "full" else "spatial"
+    table.insert(0, "protocol", protocol)          # whole-image ('full') and held-out ('spatial') numbers differ
     table.to_csv(out_dir / "comparison.csv", index=False)
 
     # ---------------------------------------------------------------- per-metric tables, best per K and overall
@@ -196,6 +198,7 @@ def _report(p, runs, long, path, dataset):
     lines = ["CHANNEL / BAND REDUCTION - ALGORITHM COMPARISON", "=" * 72,
              f"Dataset      : {s['path']}", f"Dataset id   : {s['dataset_id']}",
              f"Layout       : {s['layout']}, {s['n_samples']} sample(s), {s['n_channels']} channels, dtype {s['dtype']}",
+             f"Protocol     : {'full (fit + evaluate on every pixel; comparable with the team tables)' if p['split']['mode'] == 'full' else 'spatial (fit on training region, evaluate on held-out region)'}",
              f"Split        : {p['split']['mode']}  train {p['split']['train']}  test {p['split']['test']}",
              f"Normalisation: {dataset.normalizer.method_used} (fitted once on training pixels, shared by all)",
              f"K values     : {p['k_values']} (identical for every algorithm)", "",

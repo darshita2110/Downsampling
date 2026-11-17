@@ -1,0 +1,1076 @@
+{
+  "algorithm": "pso",
+  "hyperparameters": {
+    "n_particles": 12,
+    "max_iterations": 40,
+    "patience": 10,
+    "w_start": 0.9,
+    "w_end": 0.4,
+    "c1": 1.5,
+    "c2": 1.5,
+    "v_max": 0.5,
+    "pso_seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "w_min_r2": 0.5,
+    "w_redundancy": 0.1,
+    "max_train_pixels": 400000,
+    "validation_fraction": 0.3,
+    "random_seed": 42
+  },
+  "channels": [
+    "band_001",
+    "band_002",
+    "band_003",
+    "band_004",
+    "band_005",
+    "band_006",
+    "band_007",
+    "band_008",
+    "band_009",
+    "band_010",
+    "band_011",
+    "band_012",
+    "band_013",
+    "band_014",
+    "band_015",
+    "band_016",
+    "band_017",
+    "band_018",
+    "band_019",
+    "band_020",
+    "band_021",
+    "band_022",
+    "band_023",
+    "band_024",
+    "band_025",
+    "band_026",
+    "band_027",
+    "band_028",
+    "band_029",
+    "band_030",
+    "band_031",
+    "band_032",
+    "band_033",
+    "band_034",
+    "band_035",
+    "band_036",
+    "band_037",
+    "band_038",
+    "band_039",
+    "band_040",
+    "band_041",
+    "band_042",
+    "band_043",
+    "band_044",
+    "band_045",
+    "band_046",
+    "band_047",
+    "band_048",
+    "band_049",
+    "band_050",
+    "band_051",
+    "band_052",
+    "band_053",
+    "band_054",
+    "band_055",
+    "band_056",
+    "band_057",
+    "band_058",
+    "band_059",
+    "band_060",
+    "band_061",
+    "band_062",
+    "band_063",
+    "band_064",
+    "band_065",
+    "band_066",
+    "band_067",
+    "band_068",
+    "band_069",
+    "band_070",
+    "band_071",
+    "band_072",
+    "band_073",
+    "band_074",
+    "band_075",
+    "band_076",
+    "band_077",
+    "band_078",
+    "band_079",
+    "band_080",
+    "band_081",
+    "band_082",
+    "band_083",
+    "band_084",
+    "band_085",
+    "band_086",
+    "band_087",
+    "band_088",
+    "band_089",
+    "band_090",
+    "band_091",
+    "band_092",
+    "band_093",
+    "band_094",
+    "band_095",
+    "band_096",
+    "band_097",
+    "band_098",
+    "band_099",
+    "band_100",
+    "band_101",
+    "band_102",
+    "band_103",
+    "band_104",
+    "band_105",
+    "band_106",
+    "band_107",
+    "band_108",
+    "band_109",
+    "band_110",
+    "band_111",
+    "band_112",
+    "band_113",
+    "band_114",
+    "band_115",
+    "band_116",
+    "band_117",
+    "band_118",
+    "band_119",
+    "band_120",
+    "band_121",
+    "band_122",
+    "band_123",
+    "band_124",
+    "band_125",
+    "band_126",
+    "band_127",
+    "band_128",
+    "band_129",
+    "band_130",
+    "band_131",
+    "band_132",
+    "band_133",
+    "band_134",
+    "band_135",
+    "band_136",
+    "band_137",
+    "band_138",
+    "band_139",
+    "band_140",
+    "band_141",
+    "band_142",
+    "band_143",
+    "band_144",
+    "band_145",
+    "band_146",
+    "band_147",
+    "band_148",
+    "band_149",
+    "band_150",
+    "band_151",
+    "band_152",
+    "band_153",
+    "band_154",
+    "band_155",
+    "band_156",
+    "band_157",
+    "band_158",
+    "band_159",
+    "band_160",
+    "band_161",
+    "band_162",
+    "band_163",
+    "band_164",
+    "band_165",
+    "band_166",
+    "band_167",
+    "band_168",
+    "band_169",
+    "band_170",
+    "band_171",
+    "band_172",
+    "band_173",
+    "band_174",
+    "band_175",
+    "band_176",
+    "band_177",
+    "band_178",
+    "band_179",
+    "band_180",
+    "band_181",
+    "band_182",
+    "band_183",
+    "band_184",
+    "band_185",
+    "band_186",
+    "band_187",
+    "band_188",
+    "band_189",
+    "band_190",
+    "band_191",
+    "band_192",
+    "band_193",
+    "band_194",
+    "band_195",
+    "band_196",
+    "band_197",
+    "band_198",
+    "band_199",
+    "band_200"
+  ],
+  "split": {
+    "mode": "full",
+    "train": [
+      {
+        "index": 0,
+        "rows": "all"
+      }
+    ],
+    "test": [
+      {
+        "index": 0,
+        "rows": "all"
+      }
+    ]
+  },
+  "n_training_pixels_total": 21025,
+  "n_fit_pixels": 14717,
+  "n_validation_pixels": 6308,
+  "near_duplicate_channels": [
+    [
+      "band_112",
+      "band_113",
+      0.999247
+    ],
+    [
+      "band_112",
+      "band_114",
+      0.999117
+    ],
+    [
+      "band_113",
+      "band_114",
+      0.9995
+    ],
+    [
+      "band_113",
+      "band_115",
+      0.999362
+    ],
+    [
+      "band_113",
+      "band_116",
+      0.999009
+    ],
+    [
+      "band_114",
+      "band_115",
+      0.999647
+    ],
+    [
+      "band_114",
+      "band_116",
+      0.999441
+    ],
+    [
+      "band_114",
+      "band_117",
+      0.999151
+    ],
+    [
+      "band_115",
+      "band_116",
+      0.999631
+    ],
+    [
+      "band_115",
+      "band_117",
+      0.999467
+    ],
+    [
+      "band_115",
+      "band_118",
+      0.999153
+    ],
+    [
+      "band_116",
+      "band_117",
+      0.999683
+    ],
+    [
+      "band_116",
+      "band_118",
+      0.999512
+    ],
+    [
+      "band_116",
+      "band_119",
+      0.999238
+    ],
+    [
+      "band_117",
+      "band_118",
+      0.999654
+    ],
+    [
+      "band_117",
+      "band_119",
+      0.999493
+    ],
+    [
+      "band_117",
+      "band_120",
+      0.99924
+    ],
+    [
+      "band_118",
+      "band_119",
+      0.999663
+    ],
+    [
+      "band_118",
+      "band_120",
+      0.999506
+    ],
+    [
+      "band_118",
+      "band_121",
+      0.99922
+    ],
+    [
+      "band_119",
+      "band_120",
+      0.999588
+    ],
+    [
+      "band_119",
+      "band_121",
+      0.999429
+    ],
+    [
+      "band_119",
+      "band_122",
+      0.999277
+    ],
+    [
+      "band_120",
+      "band_121",
+      0.99955
+    ],
+    [
+      "band_120",
+      "band_122",
+      0.999459
+    ],
+    [
+      "band_120",
+      "band_123",
+      0.99915
+    ],
+    [
+      "band_121",
+      "band_122",
+      0.999562
+    ],
+    [
+      "band_121",
+      "band_123",
+      0.999406
+    ],
+    [
+      "band_121",
+      "band_124",
+      0.999132
+    ],
+    [
+      "band_122",
+      "band_123",
+      0.999561
+    ],
+    [
+      "band_122",
+      "band_124",
+      0.999365
+    ],
+    [
+      "band_122",
+      "band_125",
+      0.999085
+    ],
+    [
+      "band_123",
+      "band_124",
+      0.99953
+    ],
+    [
+      "band_123",
+      "band_125",
+      0.999379
+    ],
+    [
+      "band_123",
+      "band_126",
+      0.999188
+    ],
+    [
+      "band_124",
+      "band_125",
+      0.999598
+    ],
+    [
+      "band_124",
+      "band_126",
+      0.999502
+    ],
+    [
+      "band_124",
+      "band_127",
+      0.999356
+    ],
+    [
+      "band_124",
+      "band_128",
+      0.999175
+    ],
+    [
+      "band_124",
+      "band_129",
+      0.999097
+    ],
+    [
+      "band_124",
+      "band_130",
+      0.999134
+    ],
+    [
+      "band_124",
+      "band_131",
+      0.999185
+    ],
+    [
+      "band_124",
+      "band_132",
+      0.999224
+    ],
+    [
+      "band_124",
+      "band_133",
+      0.999154
+    ],
+    [
+      "band_124",
+      "band_134",
+      0.999017
+    ],
+    [
+      "band_125",
+      "band_126",
+      0.99959
+    ],
+    [
+      "band_125",
+      "band_127",
+      0.999507
+    ],
+    [
+      "band_125",
+      "band_128",
+      0.999411
+    ],
+    [
+      "band_125",
+      "band_129",
+      0.999348
+    ],
+    [
+      "band_125",
+      "band_130",
+      0.999358
+    ],
+    [
+      "band_125",
+      "band_131",
+      0.99934
+    ],
+    [
+      "band_125",
+      "band_132",
+      0.999298
+    ],
+    [
+      "band_125",
+      "band_133",
+      0.999169
+    ],
+    [
+      "band_126",
+      "band_127",
+      0.99961
+    ],
+    [
+      "band_126",
+      "band_128",
+      0.999544
+    ],
+    [
+      "band_126",
+      "band_129",
+      0.999493
+    ],
+    [
+      "band_126",
+      "band_130",
+      0.999487
+    ],
+    [
+      "band_126",
+      "band_131",
+      0.999435
+    ],
+    [
+      "band_126",
+      "band_132",
+      0.999342
+    ],
+    [
+      "band_126",
+      "band_133",
+      0.999139
+    ],
+    [
+      "band_127",
+      "band_128",
+      0.999545
+    ],
+    [
+      "band_127",
+      "band_129",
+      0.999529
+    ],
+    [
+      "band_127",
+      "band_130",
+      0.999532
+    ],
+    [
+      "band_127",
+      "band_131",
+      0.999453
+    ],
+    [
+      "band_127",
+      "band_132",
+      0.999324
+    ],
+    [
+      "band_127",
+      "band_133",
+      0.999063
+    ],
+    [
+      "band_128",
+      "band_129",
+      0.999576
+    ],
+    [
+      "band_128",
+      "band_130",
+      0.999563
+    ],
+    [
+      "band_128",
+      "band_131",
+      0.999463
+    ],
+    [
+      "band_128",
+      "band_132",
+      0.999285
+    ],
+    [
+      "band_129",
+      "band_130",
+      0.999537
+    ],
+    [
+      "band_129",
+      "band_131",
+      0.999468
+    ],
+    [
+      "band_129",
+      "band_132",
+      0.999312
+    ],
+    [
+      "band_129",
+      "band_133",
+      0.999034
+    ],
+    [
+      "band_130",
+      "band_131",
+      0.999537
+    ],
+    [
+      "band_130",
+      "band_132",
+      0.999418
+    ],
+    [
+      "band_130",
+      "band_133",
+      0.999178
+    ],
+    [
+      "band_131",
+      "band_132",
+      0.99947
+    ],
+    [
+      "band_131",
+      "band_133",
+      0.999334
+    ],
+    [
+      "band_131",
+      "band_134",
+      0.999119
+    ],
+    [
+      "band_132",
+      "band_133",
+      0.999475
+    ],
+    [
+      "band_132",
+      "band_134",
+      0.999349
+    ],
+    [
+      "band_132",
+      "band_135",
+      0.999098
+    ],
+    [
+      "band_133",
+      "band_134",
+      0.999417
+    ],
+    [
+      "band_133",
+      "band_135",
+      0.999295
+    ],
+    [
+      "band_133",
+      "band_136",
+      0.999102
+    ],
+    [
+      "band_134",
+      "band_135",
+      0.9994
+    ],
+    [
+      "band_134",
+      "band_136",
+      0.99925
+    ],
+    [
+      "band_134",
+      "band_137",
+      0.999075
+    ],
+    [
+      "band_135",
+      "band_136",
+      0.999289
+    ],
+    [
+      "band_135",
+      "band_137",
+      0.999192
+    ],
+    [
+      "band_135",
+      "band_138",
+      0.999042
+    ],
+    [
+      "band_136",
+      "band_137",
+      0.999237
+    ],
+    [
+      "band_136",
+      "band_138",
+      0.999139
+    ],
+    [
+      "band_137",
+      "band_138",
+      0.999148
+    ],
+    [
+      "band_138",
+      "band_139",
+      0.999089
+    ],
+    [
+      "band_160",
+      "band_161",
+      0.99903
+    ],
+    [
+      "band_160",
+      "band_162",
+      0.999048
+    ],
+    [
+      "band_160",
+      "band_163",
+      0.999003
+    ],
+    [
+      "band_160",
+      "band_164",
+      0.999012
+    ],
+    [
+      "band_161",
+      "band_162",
+      0.999052
+    ],
+    [
+      "band_161",
+      "band_163",
+      0.999036
+    ],
+    [
+      "band_161",
+      "band_164",
+      0.999035
+    ],
+    [
+      "band_162",
+      "band_163",
+      0.99907
+    ],
+    [
+      "band_162",
+      "band_164",
+      0.999092
+    ],
+    [
+      "band_163",
+      "band_164",
+      0.999097
+    ],
+    [
+      "band_163",
+      "band_165",
+      0.999019
+    ],
+    [
+      "band_164",
+      "band_165",
+      0.999089
+    ]
+  ],
+  "feature_counts": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    8,
+    10,
+    12,
+    15,
+    20,
+    25
+  ],
+  "selected": {
+    "1": [
+      "band_156"
+    ],
+    "2": [
+      "band_079",
+      "band_120"
+    ],
+    "3": [
+      "band_060",
+      "band_090",
+      "band_120"
+    ],
+    "4": [
+      "band_009",
+      "band_058",
+      "band_090",
+      "band_137"
+    ],
+    "5": [
+      "band_001",
+      "band_052",
+      "band_089",
+      "band_094",
+      "band_115"
+    ],
+    "6": [
+      "band_001",
+      "band_009",
+      "band_041",
+      "band_089",
+      "band_094",
+      "band_114"
+    ],
+    "8": [
+      "band_001",
+      "band_009",
+      "band_045",
+      "band_083",
+      "band_085",
+      "band_087",
+      "band_100",
+      "band_158"
+    ],
+    "10": [
+      "band_001",
+      "band_010",
+      "band_033",
+      "band_051",
+      "band_085",
+      "band_088",
+      "band_090",
+      "band_091",
+      "band_099",
+      "band_162"
+    ],
+    "12": [
+      "band_001",
+      "band_002",
+      "band_017",
+      "band_049",
+      "band_074",
+      "band_084",
+      "band_085",
+      "band_087",
+      "band_088",
+      "band_089",
+      "band_137",
+      "band_157"
+    ],
+    "15": [
+      "band_001",
+      "band_010",
+      "band_028",
+      "band_030",
+      "band_038",
+      "band_060",
+      "band_076",
+      "band_086",
+      "band_088",
+      "band_090",
+      "band_091",
+      "band_096",
+      "band_103",
+      "band_141",
+      "band_179"
+    ],
+    "20": [
+      "band_001",
+      "band_007",
+      "band_025",
+      "band_028",
+      "band_035",
+      "band_042",
+      "band_064",
+      "band_071",
+      "band_076",
+      "band_079",
+      "band_082",
+      "band_085",
+      "band_086",
+      "band_090",
+      "band_091",
+      "band_096",
+      "band_104",
+      "band_120",
+      "band_128",
+      "band_161"
+    ],
+    "25": [
+      "band_001",
+      "band_002",
+      "band_024",
+      "band_028",
+      "band_035",
+      "band_036",
+      "band_038",
+      "band_040",
+      "band_047",
+      "band_060",
+      "band_061",
+      "band_072",
+      "band_083",
+      "band_087",
+      "band_088",
+      "band_090",
+      "band_092",
+      "band_095",
+      "band_104",
+      "band_131",
+      "band_145",
+      "band_149",
+      "band_155",
+      "band_173",
+      "band_200"
+    ]
+  },
+  "pso_vs_exhaustive": [
+    {
+      "k": 1,
+      "pso_best": "band_156",
+      "pso_best_fitness": 0.6792879700660706,
+      "seeds_agreeing": "1/5",
+      "mean_evaluations": 53.6,
+      "search_space": 200,
+      "mean_pso_seconds": 2.399024360000476,
+      "exhaustive_best": "band_154",
+      "n_tied_optimal_subsets": 1,
+      "exhaustive_best_fitness": 0.6796436309814453,
+      "pso_rank_among_all_subsets": 2,
+      "pso_found_optimum": false,
+      "seeds_reaching_optimum": "0/5",
+      "best_non_optimal": "band_156",
+      "best_non_optimal_fitness": 0.6792879700660706,
+      "exhaustive_seconds": 9.044805200002884
+    },
+    {
+      "k": 2,
+      "pso_best": "band_079+band_120",
+      "pso_best_fitness": 0.8553232266203841,
+      "seeds_agreeing": "1/5",
+      "mean_evaluations": 205.8,
+      "search_space": 19900,
+      "mean_pso_seconds": 9.8162556400006,
+      "exhaustive_best": "not run (19,900 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
+    },
+    {
+      "k": 3,
+      "pso_best": "band_060+band_090+band_120",
+      "pso_best_fitness": 0.860658160033082,
+      "seeds_agreeing": "1/5",
+      "mean_evaluations": 298.0,
+      "search_space": 1313400,
+      "mean_pso_seconds": 14.586176860000705,
+      "exhaustive_best": "not run (1,313,400 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
+    },
+    {
+      "k": 4,
+      "pso_best": "band_009+band_058+band_090+band_137",
+      "pso_best_fitness": 0.889971936175312,
+      "seeds_agreeing": "1/5",
+      "mean_evaluations": 267.8,
+      "search_space": 64684950,
+      "mean_pso_seconds": 13.297112599998945,
+      "exhaustive_best": "not run (64,684,950 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
+    },
+    {
+      "k": 5,
+      "pso_best": "band_001+band_052+band_089+band_094+band_115",
+      "pso_best_fitness": 0.9824871392943257,
+      "seeds_agreeing": "1/5",
+      "mean_evaluations": 203.4,
+      "search_space": 2535650040,
+      "mean_pso_seconds": 10.722311900000204,
+      "exhaustive_best": "not run (2,535,650,040 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
+    },
+    {
+      "k": 6,
+      "pso_best": "band_001+band_009+band_041+band_089+band_094+band_114",
+      "pso_best_fitness": 0.9903247641477514,
+      "seeds_agreeing": "1/5",
+      "mean_evaluations": 294.2,
+      "search_space": 82408626300,
+      "mean_pso_seconds": 15.529739140000311,
+      "exhaustive_best": "not run (82,408,626,300 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
+    },
+    {
+      "k": 8,
+      "pso_best": "band_001+band_009+band_045+band_083+band_085+band_087+band_100+band_158",
+      "pso_best_fitness": 1.0438854984746007,
+      "seeds_agreeing": "1/5",
+      "mean_evaluations": 302.4,
+      "search_space": 55098996177225,
+      "mean_pso_seconds": 17.897950739999942,
+      "exhaustive_best": "not run (55,098,996,177,225 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
+    },
+    {
+      "k": 10,
+      "pso_best": "band_001+band_010+band_033+band_051+band_085+band_088+band_090+band_091+band_099+band_162",
+      "pso_best_fitness": 1.058321385467863,
+      "seeds_agreeing": "1/5",
+      "mean_evaluations": 379.8,
+      "search_space": 22451004309013280,
+      "mean_pso_seconds": 24.61098486000119,
+      "exhaustive_best": "not run (22,451,004,309,013,280 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
+    },
+    {
+      "k": 12,
+      "pso_best": "band_001+band_002+band_017+band_049+band_074+band_084+band_085+band_087+band_088+band_089+band_137+band_157",
+      "pso_best_fitness": 1.0569965876612841,
+      "seeds_agreeing": "1/5",
+      "mean_evaluations": 332.2,
+      "search_space": 6107693672247476400,
+      "mean_pso_seconds": 22.15674968000021,
+      "exhaustive_best": "not run (6,107,693,672,247,476,400 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
+    },
+    {
+      "k": 15,
+      "pso_best": "band_001+band_010+band_028+band_030+band_038+band_060+band_076+band_086+band_088+band_090+band_091+band_096+band_103+band_141+band_179",
+      "pso_best_fitness": 1.0619113805302764,
+      "seeds_agreeing": "1/5",
+      "mean_evaluations": 346.2,
+      "search_space": 14629416353818682834880,
+      "mean_pso_seconds": 26.96770467999959,
+      "exhaustive_best": "not run (14,629,416,353,818,682,834,880 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
+    },
+    {
+      "k": 20,
+      "pso_best": "band_001+band_007+band_025+band_028+band_035+band_042+band_064+band_071+band_076+band_079+band_082+band_085+band_086+band_090+band_091+band_096+band_104+band_120+band_128+band_161",
+      "pso_best_fitness": 1.0644093175842033,
+      "seeds_agreeing": "1/5",
+      "mean_evaluations": 344.2,
+      "search_space": 1613587787967350073386147640,
+      "mean_pso_seconds": 31.615842740000517,
+      "exhaustive_best": "not run (1,613,587,787,967,350,073,386,147,640 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
+    },
+    {
+      "k": 25,
+      "pso_best": "band_001+band_002+band_024+band_028+band_035+band_036+band_038+band_040+band_047+band_060+band_061+band_072+band_083+band_087+band_088+band_090+band_092+band_095+band_104+band_131+band_145+band_149+band_155+band_173+band_200",
+      "pso_best_fitness": 1.180394134854791,
+      "seeds_agreeing": "1/5",
+      "mean_evaluations": 326.6,
+      "search_space": 45217131606152448808778187283008,
+      "mean_pso_seconds": 35.09987258000037,
+      "exhaustive_best": "not run (45,217,131,606,152,448,808,778,187,283,008 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
+    }
+  ],
+  "timing_memory": {
+    "load_and_preprocess": {
+      "seconds": 0.10262839999995776,
+      "peak_python_mb": 88.310179,
+      "rss_after_mb": 402.20672
+    }
+  },
+  "process_rss_mb_end": 504.717312
+}

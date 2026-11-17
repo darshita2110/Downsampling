@@ -14,6 +14,34 @@ from pathlib import Path
 KARTAVYA_ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_ROOT = KARTAVYA_ROOT / "outputs"          # outputs/<dataset_id>/<algorithm>/...
 
+# ------------------------------------------------------------------ number of bands (band-axis check)
+# A 3-D array can arrive as (H, W, C), (C, H, W) or (H, C, W). Guessing "the smallest axis is the band axis" is
+# WRONG for hyperspectral cubes whose band count exceeds a side of the image: Indian Pines (145 x 145 x 200)
+# was read as 145 x 200 with 145 "channels". The band axis is therefore resolved as follows:
+#   1. EXPECTED_BANDS (or --bands N on the command line), if set: the axis of that length is the band axis.
+#   2. else the file name is looked up in KNOWN_BAND_COUNTS (standard benchmark cubes).
+#   3. else the smallest-axis rule is used, BUT loading stops with an error when the result is doubtful
+#      (>= AMBIGUOUS_MIN_BANDS channels and more than AMBIGUOUS_RATIO x the shorter image side); set
+#      EXPECTED_BANDS / --bands to confirm the band count in that case.
+EXPECTED_BANDS = None
+KNOWN_BAND_COUNTS = {            # key = file stem in lower case without "_", "-", " "; longest matching prefix wins
+    "indianpinescorrected": 200, "indianpines": 220,
+    "salinascorrected": 204, "salinas": 224, "salinasacorrected": 204, "salinasa": 224,
+    "paviau": 103, "pavia": 102, "ksc": 176, "botswana": 145,
+}
+AMBIGUOUS_MIN_BANDS = 32
+AMBIGUOUS_RATIO = 0.5
+
+# ------------------------------------------------------------------ evaluation protocol
+# "spatial" : (original behaviour) one image -> top half trains, bottom half tests; several images -> earlier
+#             images train, later ones test. Measures how well a reduction learnt on one region transfers.
+# "full"    : every pixel of every image is used to fit AND to evaluate (no held-out region). This is the
+#             protocol of the team's other pipelines (e.g. Abhishek/universal_pipeline.py: PSNR on the whole
+#             cube), so its PSNR/SSIM can be put in the same table. Set on the command line with --protocol.
+# Results of the two protocols go to different folders (outputs/<dataset_id>/ vs outputs/<dataset_id>__full/)
+# and every summary table carries a "protocol" column, so they are never mixed by accident.
+PROTOCOL = "spatial"
+
 # ------------------------------------------------------------------ train / test split
 # Indices refer to the sorted sample order written to dataset/filename_index_mapping.json.
 # None = automatic (the rule of the original repository):

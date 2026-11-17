@@ -297,6 +297,55 @@ def _read_hdf5(path, want_labels=False):
     return a, None, None, {"reader": "h5py", "dataset": key, "orientation": how}
 
 
+def _band_key(stem):
+    return re.sub(r"[^a-z0-9]", "", stem.lower())
+
+
+def expected_band_count(path):
+    """Band count to enforce for this file: config/CLI override, else the known benchmark table, else None."""
+    if gcfg.EXPECTED_BANDS:
+        return int(gcfg.EXPECTED_BANDS), "EXPECTED_BANDS / --bands"
+    key = _band_key(Path(path).stem)
+    hits = [k for k in gcfg.KNOWN_BAND_COUNTS if key.startswith(k)]
+    if hits:
+        k = max(hits, key=len)
+        return gcfg.KNOWN_BAND_COUNTS[k], f"known dataset '{k}'"
+    return None, None
+
+
+def enforce_band_axis(data, path, info):
+    """
+    Make sure the LAST axis really is the band axis (see config.EXPECTED_BANDS). Returns the (possibly
+    re-oriented) array; raises DatasetError instead of silently using a doubtful orientation.
+    """
+    if data.ndim != 3:
+        return data
+    name = Path(path).name
+    expected, source = expected_band_count(path)
+    shape = data.shape
+    if expected:
+        if shape[2] == expected:
+            info["band_check"] = f"{expected} bands confirmed ({source})"
+            return data
+        axes = [i for i in (0, 1) if shape[i] == expected]
+        if len(axes) == 1:
+            fixed = np.moveaxis(data, axes[0], -1)
+            info["band_check"] = (f"read as {list(shape)} but {expected} bands are expected ({source}): axis "
+                                  f"{axes[0]} moved to the end -> {list(fixed.shape)}")
+            return fixed
+        raise DatasetError(f"{name}: {expected} bands expected ({source}) but the array has shape {list(shape)}; "
+                           "no single axis has that length. Check the file or set EXPECTED_BANDS / --bands.")
+    c, short = shape[2], min(shape[0], shape[1])
+    if c >= gcfg.AMBIGUOUS_MIN_BANDS and c > gcfg.AMBIGUOUS_RATIO * short:
+        raise DatasetError(
+            f"{name}: band axis is ambiguous. The array has shape {list(shape)} and the smallest-axis rule would give "
+            f"{c} bands on a {shape[0]} x {shape[1]} grid, but {c} is close to the image size, so a hyperspectral "
+            f"cube with more bands than pixels per side would be read wrongly (as happened with Indian Pines). "
+            f"Give the true band count with --bands N (or EXPECTED_BANDS in common/config.py).")
+    info["band_check"] = f"{c} bands (smallest-axis rule, unambiguous)"
+    return data
+
+
 def read_raster(path, want_labels=False):
     """
     Read ONE file in its native dtype. Returns
@@ -332,6 +381,8 @@ def read_raster(path, want_labels=False):
         raise DatasetError(f"{p.name}: unsupported data type {data.dtype}")
     if data.dtype == bool:
         data = data.astype(np.uint8)
+    if not want_labels:
+        data = enforce_band_axis(data, p, info)
     info.update({"file": p.name, "shape_hwc": list(data.shape), "dtype": str(data.dtype)})
     return data, names, mask, info
 
@@ -666,11 +717,14 @@ def _ranges(data, valid, max_channels=32):
 def make_split(n_samples):
     """
     Which samples train and which test (rule of the original repository, see config.py).
-    Returns {"mode": "temporal"|"spatial", "train": [...], "test": [...]} with entries {"index", "rows"},
-    rows in {"all", "top", "bottom"}.
+    Returns {"mode": "temporal"|"spatial"|"full", "train": [...], "test": [...]} with entries {"index", "rows"},
+    rows in {"all", "top", "bottom"}. Protocol "full" (config.PROTOCOL): every sample, all rows, both roles.
     """
     if n_samples == 0:
         raise DatasetError("No samples found")
+    if gcfg.PROTOCOL == "full":
+        every = [{"index": i, "rows": "all"} for i in range(n_samples)]
+        return {"mode": "full", "train": every, "test": [dict(e) for e in every]}
     if gcfg.TRAIN_INDICES is not None and gcfg.TEST_INDICES is not None:
         overlap = set(gcfg.TRAIN_INDICES) & set(gcfg.TEST_INDICES)
         if overlap:
