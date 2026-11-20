@@ -1,0 +1,35 @@
+{
+  "technique": "LLE",
+  "dataset": "real_raichur",
+  "date": "2026-09-27",
+  "n_valid_pixels_available": 10901746,
+  "n_pixels_used": 8000,
+  "lst_available": false,
+  "channels_used": [
+    "B02",
+    "B03",
+    "B04",
+    "B08",
+    "NDVI",
+    "NDWI"
+  ],
+  "n_neighbors": 12,
+  "n_components": 3,
+  "reg": 0.001,
+  "random_seed": 42,
+  "metrics": {
+    "trustworthiness": 0.9949458134957924,
+    "continuity": 0.9966550786715112,
+    "neighborhood_preservation": 0.3293045794342285,
+    "reconstruction_error": 1.0827931461128532e-07,
+    "explained_variance_ratio": null,
+    "fit_time_seconds": 2.079897600000095,
+    "peak_memory_mb": 13.706427
+  },
+  "known_limitations": [
+    "Clouds/shadows are not masked in this dataset.",
+    "LST is not available upstream; 6 channels used, not 7.",
+    "Pixels were randomly subsampled (8,000 of the available valid pixels).",
+    "Stage 4 on synthetic data found LLE's own (very low) reconstruction error did NOT correspond to good global neighbourhood preservation - worth checking whether the same disconnect appears on real data."
+  ]
+}

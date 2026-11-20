@@ -1,0 +1,31 @@
+{
+  "technique": "PCA baseline",
+  "dataset": "indian_pines",
+  "n_pixels_used": 8000,
+  "n_labelled_pixels_available": 10249,
+  "n_bands": 200,
+  "n_neighbors": 12,
+  "n_components": 3,
+  "random_seed": 42,
+  "metrics": {
+    "trustworthiness": 0.9884292569796822,
+    "continuity": 0.9942089571717931,
+    "neighborhood_preservation": 0.15328897320597917,
+    "reconstruction_error": null,
+    "explained_variance_ratio": 0.9046697037683259,
+    "fit_time_seconds": 0.14996158099999946,
+    "peak_memory_mb": 1.626284
+  },
+  "classification_5nn": {
+    "random_5fold": {
+      "overall_accuracy": 0.6655,
+      "average_class_accuracy": 0.5780483492240323,
+      "kappa": 0.6163479362931125
+    },
+    "spatial_block_5fold": {
+      "overall_accuracy": 0.434625,
+      "average_class_accuracy": 0.287843868245692,
+      "kappa": 0.3517227478864565
+    }
+  }
+}

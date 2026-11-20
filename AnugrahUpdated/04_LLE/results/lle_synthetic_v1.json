@@ -1,0 +1,57 @@
+{
+  "technique": "LLE",
+  "dataset": "synthetic_v1",
+  "n_neighbors": 12,
+  "n_components": 3,
+  "reg": 0.001,
+  "random_seed": 42,
+  "reconstruction_error_lle_native": 1.1377951936717185e-07,
+  "metrics": {
+    "trustworthiness": 0.9756571095478975,
+    "continuity": 0.9839550729792391,
+    "neighborhood_preservation": 0.25915195654840967,
+    "reconstruction_error": 1.1377951936717185e-07,
+    "explained_variance_ratio": null,
+    "fit_time_seconds": 0.3908089390000029,
+    "peak_memory_mb": 2.476014
+  },
+  "latent_recovery_spearman": [
+    {
+      "embedding_dim": 0,
+      "best_matched_latent": "s",
+      "spearman": 0.8756099881042039
+    },
+    {
+      "embedding_dim": 1,
+      "best_matched_latent": "t",
+      "spearman": -0.13986546406791675
+    },
+    {
+      "embedding_dim": 2,
+      "best_matched_latent": "s",
+      "spearman": -0.33395493357074646
+    }
+  ],
+  "latent_recovery_joint_all_dims": {
+    "t": 0.2918754323053651,
+    "s": 0.9465005270068176
+  },
+  "comparison_vs_technique1_isomap": {
+    "trustworthiness_isomap_vs_lle": [
+      0.9989985114342923,
+      0.9756571095478975
+    ],
+    "continuity_isomap_vs_lle": [
+      0.9992617438613131,
+      0.9839550729792391
+    ],
+    "neighborhood_preservation_isomap_vs_lle": [
+      0.5916705796783197,
+      0.25915195654840967
+    ],
+    "fit_time_seconds_isomap_vs_lle": [
+      0.7181739980000046,
+      0.3908089390000029
+    ]
+  }
+}

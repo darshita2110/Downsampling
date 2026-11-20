@@ -1,0 +1,35 @@
+{
+  "technique": "Kernel PCA",
+  "dataset": "real_raichur",
+  "date": "2026-09-27",
+  "n_valid_pixels_available": 10901746,
+  "n_pixels_used": 8000,
+  "lst_available": false,
+  "channels_used": [
+    "B02",
+    "B03",
+    "B04",
+    "B08",
+    "NDVI",
+    "NDWI"
+  ],
+  "n_components": 3,
+  "kernel": "rbf",
+  "gamma_used": 0.16666666666666666,
+  "random_seed": 42,
+  "metrics": {
+    "trustworthiness": 0.9945449777088684,
+    "continuity": 0.9987131256656017,
+    "neighborhood_preservation": 0.2932715214436257,
+    "reconstruction_error": null,
+    "explained_variance_ratio": 0.6463374583805755,
+    "fit_time_seconds": 1.7536347999994177,
+    "peak_memory_mb": 1027.834802
+  },
+  "known_limitations": [
+    "Clouds/shadows are not masked in this dataset.",
+    "LST is not available upstream; 6 channels used, not 7.",
+    "Pixels were randomly subsampled (8,000 of the available valid pixels).",
+    "Stage 4 on synthetic data found Kernel PCA did not recover one of two true latent variables at all (not just rotated, as with Isomap/SMACOF) - worth checking whether the real-data embedding similarly concentrates on one dominant mode."
+  ]
+}

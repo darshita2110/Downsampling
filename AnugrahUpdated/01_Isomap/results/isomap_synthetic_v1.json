@@ -1,0 +1,35 @@
+{
+  "technique": "Isomap",
+  "dataset": "synthetic_v1",
+  "n_neighbors": 12,
+  "n_components": 3,
+  "random_seed": 42,
+  "metrics": {
+    "trustworthiness": 0.9989985114342923,
+    "continuity": 0.9992617438613131,
+    "neighborhood_preservation": 0.5916705796783197,
+    "reconstruction_error": 2.345032564454911,
+    "explained_variance_ratio": null,
+    "fit_time_seconds": 0.7181739980000046,
+    "peak_memory_mb": 62.95675
+  },
+  "latent_recovery_spearman": [
+    {
+      "embedding_dim": 0,
+      "best_matched_latent": "s",
+      "spearman": 0.24924589730950172
+    },
+    {
+      "embedding_dim": 1,
+      "best_matched_latent": "t",
+      "spearman": -0.2619664250392272
+    },
+    {
+      "embedding_dim": 2,
+      "best_matched_latent": "s",
+      "spearman": -0.9385078333852911
+    }
+  ],
+  "spectral_vs_spatial_neighbor_overlap_example": 0,
+  "spatial_awareness_note": "Pixel-wise Isomap's neighbourhood graph is built on spectral distance only; see 03c_spectral_vs_spatial_neighbors.png for a concrete per-pixel example of how little this overlaps with actual spatial adjacency."
+}

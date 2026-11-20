@@ -1,0 +1,11 @@
+# Non-linear Feature Extraction subproject - pinned, minimal, CPU-only.
+# Kept deliberately separate from the repo root requirements.txt (that one
+# serves the data-download / darshita band-selection parts of the project).
+numpy==1.26.4
+scipy==1.13.1
+scikit-learn==1.5.2
+matplotlib==3.9.2
+pandas==2.2.2
+# scikit-image is used only for SSIM in experiments/09 (tested with 0.26.0; any >=0.22 should work)
+scikit-image>=0.22
+

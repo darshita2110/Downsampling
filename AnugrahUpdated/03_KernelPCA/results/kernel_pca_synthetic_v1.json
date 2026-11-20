@@ -1,0 +1,52 @@
+{
+  "technique": "Kernel PCA",
+  "dataset": "synthetic_v1",
+  "n_components": 3,
+  "kernel": "rbf",
+  "gamma_used": 0.14285714285714285,
+  "random_seed": 42,
+  "metrics": {
+    "trustworthiness": 0.9916208570449995,
+    "continuity": 0.9974196108652124,
+    "neighborhood_preservation": 0.4639396218601697,
+    "reconstruction_error": null,
+    "explained_variance_ratio": 0.5564752637504702,
+    "fit_time_seconds": 0.09434350200000097,
+    "peak_memory_mb": 21.798325
+  },
+  "latent_recovery_spearman": [
+    {
+      "embedding_dim": 0,
+      "best_matched_latent": "s",
+      "spearman": 0.2863977883579769
+    },
+    {
+      "embedding_dim": 1,
+      "best_matched_latent": "s",
+      "spearman": -0.8127067741653492
+    },
+    {
+      "embedding_dim": 2,
+      "best_matched_latent": "s",
+      "spearman": 0.25752507950170445
+    }
+  ],
+  "comparison_vs_technique1_isomap": {
+    "trustworthiness_isomap_vs_kpca": [
+      0.9989985114342923,
+      0.9916208570449995
+    ],
+    "continuity_isomap_vs_kpca": [
+      0.9992617438613131,
+      0.9974196108652124
+    ],
+    "neighborhood_preservation_isomap_vs_kpca": [
+      0.5916705796783197,
+      0.4639396218601697
+    ],
+    "fit_time_seconds_isomap_vs_kpca": [
+      0.7181739980000046,
+      0.09434350200000097
+    ]
+  }
+}

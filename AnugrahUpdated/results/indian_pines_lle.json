@@ -1,0 +1,31 @@
+{
+  "technique": "LLE",
+  "dataset": "indian_pines",
+  "n_pixels_used": 8000,
+  "n_labelled_pixels_available": 10249,
+  "n_bands": 200,
+  "n_neighbors": 12,
+  "n_components": 3,
+  "random_seed": 42,
+  "metrics": {
+    "trustworthiness": 0.9564441077282884,
+    "continuity": 0.9800437639645848,
+    "neighborhood_preservation": 0.08558364642323621,
+    "reconstruction_error": 1.7390189200954907e-10,
+    "explained_variance_ratio": null,
+    "fit_time_seconds": 3.0287829529999897,
+    "peak_memory_mb": 17.034193
+  },
+  "classification_5nn": {
+    "random_5fold": {
+      "overall_accuracy": 0.54525,
+      "average_class_accuracy": 0.48134525510123644,
+      "kappa": 0.4776710006058722
+    },
+    "spatial_block_5fold": {
+      "overall_accuracy": 0.38375,
+      "average_class_accuracy": 0.2645360277972819,
+      "kappa": 0.2913022499051191
+    }
+  }
+}
