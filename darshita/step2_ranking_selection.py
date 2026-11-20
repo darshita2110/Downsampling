@@ -71,7 +71,7 @@ if n_bands <= 40:                                         # few bands: write the
 axes[-1].set_xlabel("Band")
 fig.suptitle(f"Ranking methods ({DATASET}): score of every band, red = the {K} bands kept")
 plt.tight_layout()
-plt.savefig(f"{OUT_DIR}/step2_scores_{DATASET}.png", dpi=120)
+plt.savefig(f"{OUT_DIR}/step2_scores_{DATASET}.png", dpi=200)
 print(f"Saved {OUT_DIR}/step2_scores_{DATASET}.png")
 
 # ---------------------------------------------------- the weakness of ranking

@@ -1,0 +1,12 @@
+Method,Family,indian_pines,Average rank
+GA,Search,0.9105,1.0000
+PSO,Search,0.9061,2.0000
+SFS,Search,0.9053,3.0000
+AffinityProp,Clustering,0.9048,4.0000
+WaLuDi,Clustering,0.8955,5.0000
+Uniform,Baseline,0.8943,6.0000
+SegWard,Hybrid,0.8932,7.0000
+WaLuMI,Clustering,0.8891,8.0000
+Variance,Ranking,0.7950,9.0000
+MVPCA,Ranking,0.7576,10.0000
+Entropy,Ranking,0.7450,11.0000

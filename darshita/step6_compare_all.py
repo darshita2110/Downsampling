@@ -1,7 +1,7 @@
 """
 STEP 6 - Final comparison: ranking vs search vs clustering, on one dataset.
 
-For every method and every K it records PSNR, SAM, redundancy and time, then makes the
+For every method and every K it records PSNR, SSIM, SAM, redundancy and time, then makes the
 final table and graphs for the report.
 
 Run:
@@ -10,7 +10,8 @@ Run:
 
 Outputs (darshita/outputs/):
     final_results_<dataset>.csv      every method x every K
-    final_psnr_vs_k_<dataset>.png    quality vs number of channels sent
+    final_psnr_vs_k_<dataset>.png    PSNR vs number of channels sent
+    final_ssim_vs_k_<dataset>.png    SSIM vs number of channels sent
     final_at_k_<dataset>.png         bar chart at the default K
     final_summary_<dataset>.md       the table, ready to paste into the report
 """
@@ -84,9 +85,9 @@ for k in KS:
     print(f"K = {k} ...")
     for name, run in methods.items():
         group, seconds = run(k)
-        s = evaluate(pixels01, raw, group, calib, test)
+        s = evaluate(pixels01, raw, group, calib, test, (H, W))
         rows.append({"Method": name, "Family": FAMILY[name], "K": k, "Data sent %": 100 * k / C,
-                     "PSNR": s["PSNR"], "SAM": s["SAM"], "Redundancy": s["Redundancy"],
+                     "PSNR": s["PSNR"], "SSIM": s["SSIM"], "SAM": s["SAM"], "Redundancy": s["Redundancy"],
                      "Time s": seconds, "Channels": " ".join(names[c] for c in group),
                      "Indices": " ".join(str(c) for c in group)})
 df = pd.DataFrame(rows)
@@ -101,9 +102,9 @@ for name, fn in [("GA", genetic_algorithm), ("PSO", pso)]:
 # ---------------------------------------------- table at the main K
 main = df[df.K == K_MAIN].sort_values("PSNR", ascending=False)
 print(f"\n=== {DATASET}: sending {K_MAIN} of {C} channels ({100 * K_MAIN / C:.0f}% of the data) ===")
-print(f"  {'Method':13s} {'Family':13s} {'PSNR dB':>8s} {'SAM deg':>8s} {'Redund.':>8s} {'Time s':>7s}")
+print(f"  {'Method':13s} {'Family':13s} {'PSNR dB':>8s} {'SSIM':>7s} {'SAM deg':>8s} {'Redund.':>8s} {'Time s':>7s}")
 for _, r in main.iterrows():
-    print(f"  {r.Method:13s} {r.Family:13s} {r.PSNR:8.2f} {r.SAM:8.2f} {r.Redundancy:8.3f} {r['Time s']:7.2f}")
+    print(f"  {r.Method:13s} {r.Family:13s} {r.PSNR:8.2f} {r.SSIM:7.4f} {r.SAM:8.2f} {r.Redundancy:8.3f} {r['Time s']:7.2f}")
 print("\nGA / PSO over 5 random seeds: " +
       ", ".join(f"{n} {m:.2f} ± {s:.2f} dB" for n, m, s in seed_rows))
 
@@ -114,10 +115,10 @@ print(fam.round(2).to_string())
 
 with open(f"{OUT_DIR}/final_summary_{DATASET}.md", "w", encoding="utf-8") as f:   # utf-8: keeps ° and ± on Windows
     f.write(f"## {DATASET}: {K_MAIN} of {C} channels ({100 * K_MAIN / C:.0f}% of the data)\n\n")
-    f.write("| Method | Family | PSNR (dB) | SAM (°) | Redundancy | Time (s) | Channels sent |\n")
-    f.write("|---|---|---|---|---|---|---|\n")
+    f.write("| Method | Family | PSNR (dB) | SSIM | SAM (°) | Redundancy | Time (s) | Channels sent |\n")
+    f.write("|---|---|---|---|---|---|---|---|\n")
     for _, r in main.iterrows():
-        f.write(f"| {r.Method} | {r.Family} | {r.PSNR:.2f} | {r.SAM:.2f} | {r.Redundancy:.3f} | "
+        f.write(f"| {r.Method} | {r.Family} | {r.PSNR:.2f} | {r.SSIM:.4f} | {r.SAM:.2f} | {r.Redundancy:.3f} | "
                 f"{r['Time s']:.2f} | {r.Channels} |\n")
     f.write("\nGA / PSO over 5 seeds: " +
             ", ".join(f"{n} {m:.2f} ± {s:.2f} dB" for n, m, s in seed_rows) + "\n\n")
@@ -126,43 +127,50 @@ with open(f"{OUT_DIR}/final_summary_{DATASET}.md", "w", encoding="utf-8") as f: 
     for family, r in fam.iterrows():
         f.write(f"| {family} | " + " | ".join(f"{v:.2f}" for v in r.values) + " |\n")
 
-# ---------------------------------------------- graph 1: PSNR vs K
-fig, ax = plt.subplots(figsize=(10, 5.5))
-for name in methods:
-    d = df[df.Method == name]
-    ax.plot(d.K, d.PSNR, STYLE[name], color=COLOUR[FAMILY[name]], lw=2 if name != "Exhaustive" else 1.5,
-            ms=6, label=f"{name} ({FAMILY[name]})")
-ax.set_xlabel("K = number of channels sent")
-ax.set_ylabel("PSNR of the rebuilt image (dB), higher = better")
-ax.set_title(f"{DATASET}: quality vs channels sent. Blue = ranking, orange = search, green = clustering",
-             fontsize=11)
-ax.set_xticks(KS)
-ax.grid(alpha=0.3)
-ax.legend(loc="center left", bbox_to_anchor=(1.01, 0.5), fontsize=9)
-fig.tight_layout()
-fig.savefig(f"{OUT_DIR}/final_psnr_vs_k_{DATASET}.png", dpi=120)
+# ---------------------------------------------- graph 1: PSNR vs K and SSIM vs K
+for metric, label, fname in [("PSNR", "PSNR of the rebuilt image (dB), higher = better", "psnr"),
+                             ("SSIM", "SSIM of the rebuilt image (0-1), higher = better", "ssim")]:
+    fig, ax = plt.subplots(figsize=(10, 5.5))
+    for name in methods:
+        d = df[df.Method == name]
+        ax.plot(d.K, d[metric], STYLE[name], color=COLOUR[FAMILY[name]], lw=2 if name != "Exhaustive" else 1.5,
+                ms=6, label=f"{name} ({FAMILY[name]})")
+    ax.set_xlabel("K = number of channels sent")
+    ax.set_ylabel(label)
+    ax.set_title(f"{DATASET}: {metric} vs channels sent. Blue = ranking, orange = search, green = clustering, "
+                 f"purple = hybrid", fontsize=11)
+    ax.set_xticks(KS)
+    ax.grid(alpha=0.3)
+    ax.legend(loc="center left", bbox_to_anchor=(1.01, 0.5), fontsize=9)
+    fig.tight_layout()
+    fig.savefig(f"{OUT_DIR}/final_{fname}_vs_k_{DATASET}.png", dpi=200)
+    plt.close(fig)
 
 # ---------------------------------------------- graph 2: everything at the main K
-fig, axes = plt.subplots(1, 3, figsize=(16, 5.2), sharey=True)
+fig, axes = plt.subplots(1, 4, figsize=(20, 5.2), sharey=True)
 order = main.Method.tolist()
 colours = [COLOUR[FAMILY[m]] for m in order]
 for ax, col, label in [(axes[0], "PSNR", "PSNR (dB), higher = better"),
-                       (axes[1], "Redundancy", "redundancy of sent channels, lower = better"),
-                       (axes[2], "Time s", "time to choose (s), log scale")]:
+                       (axes[1], "SSIM", "SSIM (0-1), higher = better"),
+                       (axes[2], "Redundancy", "redundancy of sent channels, lower = better"),
+                       (axes[3], "Time s", "time to choose (s), log scale")]:
     vals = main.set_index("Method").loc[order, col].values
     ax.barh(order, np.maximum(vals, 1e-4) if col == "Time s" else vals, color=colours)
     for i, v in enumerate(vals):
-        ax.text(max(v, 1e-4), i, f" {v:.2f}" if col != "Time s" else f" {v:.3g}", va="center", fontsize=9)
+        txt = f" {v:.3g}" if col == "Time s" else f" {v:.4f}" if col == "SSIM" else f" {v:.2f}"
+        ax.text(max(v, 1e-4), i, txt, va="center", fontsize=9)
     ax.set_xlabel(label)
     if col == "Time s":
         ax.set_xscale("log")
     if col == "PSNR":
         ax.set_xlim(min(vals) - 2, max(vals) + 1.5)
+    if col == "SSIM":
+        ax.set_xlim(max(0, min(vals) - 0.1), min(1.08, max(vals) + 0.06))
     if col == "Redundancy":
         ax.set_xlim(0, 1.15)
 axes[0].invert_yaxis()
 fig.suptitle(f"{DATASET}: all methods at K = {K_MAIN} of {C} channels", fontweight="bold")
 fig.tight_layout()
-fig.savefig(f"{OUT_DIR}/final_at_k_{DATASET}.png", dpi=120)
-print(f"\nSaved final_results_{DATASET}.csv, final_psnr_vs_k_{DATASET}.png, "
+fig.savefig(f"{OUT_DIR}/final_at_k_{DATASET}.png", dpi=200)
+print(f"\nSaved final_results_{DATASET}.csv, final_psnr_vs_k_{DATASET}.png, final_ssim_vs_k_{DATASET}.png, "
       f"final_at_k_{DATASET}.png, final_summary_{DATASET}.md in {OUT_DIR}/")

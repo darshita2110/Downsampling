@@ -159,6 +159,6 @@ ax.set_xticks(sorted(d[d.Family != "Reference"].K.unique()))
 ax.grid(alpha=0.3)
 ax.legend(loc="center left", bbox_to_anchor=(1.01, 0.5), fontsize=9)
 fig.tight_layout()
-fig.savefig(f"{OUT_DIR}/step8_oa_vs_k_{DATASET}.png", dpi=120)
+fig.savefig(f"{OUT_DIR}/step8_oa_vs_k_{DATASET}.png", dpi=200)
 print(f"Saved step8_classification_{DATASET}.csv, step8_summary_{DATASET}.md, "
       f"step8_oa_vs_k_{DATASET}.png in {OUT_DIR}/")
