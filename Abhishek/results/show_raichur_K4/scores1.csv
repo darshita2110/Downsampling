@@ -1,0 +1,6 @@
+Method,Family,K,PSNR,SSIM,SAM,Time (s),Sent
+WaveAE,Wavelet,4,45.7464,0.9931,0.9053,56.970,"16 ch at half res, deep learning, 600 steps + decoder 8% (send once)"
+Wavelet-PCA,Wavelet,4,40.1962,0.9826,1.5481,0.138,16 ch at half resolution (linear) + basis 0.1% extra
+PPCA,PPCA,4,36.0648,0.9649,2.6845,0.060,"4 new channels, full resolution + basis 0.0% extra"
+PPCA + Recursive Filter,PPCA,4,35.0410,0.9305,3.0510,0.141,4 smoothed channels (sigma_spatial 6) + basis 0.0% extra
+Uniform bands,Baseline,4,32.5734,0.9272,3.3444,0.000,sent B01 B05 B08 B12

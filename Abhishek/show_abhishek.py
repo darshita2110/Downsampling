@@ -44,7 +44,7 @@ import matplotlib
 _BACKEND = matplotlib.get_backend()   # the window backend; Abhishek's files switch to 'Agg' (no windows) when imported
 import numpy as np
 
-from universal_pipeline import ppca_fit, ppca_reconstruct, ppca_scores       # Abhishek's PPCA
+from universal_pipeline import ppca_fit, ppca_reconstruct, ppca_scores, ssim_cube       # Abhishek's PPCA (+ SSIM)
 from ppca_rf_pipeline import recursive_filter                                  # Abhishek's recursive filter
 
 # ======================================================================
@@ -200,8 +200,9 @@ def add(name, family, rebuilt01, sent, secs, note):
     rebuilt01 = np.clip(rebuilt01.reshape(-1, C), 0, 1)
     R[name] = {"family": family, "rebuilt": rebuilt01, "sent": sent, "time": secs, "note": note,
                "psnr": psnr(p01[test], rebuilt01[test]), "sam": sam_degrees(p01[test], rebuilt01[test]),
+               "ssim": ssim_cube(p01, rebuilt01, (H, W), 1.0, test),
                "error": np.abs(p01 - rebuilt01).mean(axis=1).reshape(H, W)}
-    print(f"  {name:28s} PSNR {R[name]['psnr']:6.2f} dB   SAM {R[name]['sam']:5.2f}°   {secs:6.2f} s")
+    print(f"  {name:28s} PSNR {R[name]['psnr']:6.2f} dB   SSIM {R[name]['ssim']:.4f}   SAM {R[name]['sam']:5.2f}°   {secs:6.2f} s")
 
 
 # --- PPCA family (Abhishek's own functions) ---
@@ -308,10 +309,10 @@ def screen(rows, title, filename, note):
 
 
 def table(title, rows):
-    print(f"\n{title}\n  {'Method':28s} {'PSNR dB':>8s} {'SAM °':>7s} {'Time s':>7s}  Sent")
+    print(f"\n{title}\n  {'Method':28s} {'PSNR dB':>8s} {'SSIM':>7s} {'SAM °':>7s} {'Time s':>7s}  Sent")
     for n in rows:
         r = R[n]
-        print(f"  {n:28s} {r['psnr']:8.2f} {r['sam']:7.2f} {r['time']:7.2f}  {r['note']}")
+        print(f"  {n:28s} {r['psnr']:8.2f} {r['ssim']:7.4f} {r['sam']:7.2f} {r['time']:7.2f}  {r['note']}")
 
 
 by_psnr = lambda ns: sorted(ns, key=lambda n: -R[n]["psnr"])
@@ -359,7 +360,7 @@ if args.only in (None, "final"):
 import csv                                                                            # noqa: E402
 with open(OUT / "scores.csv", "w", newline="") as f:
     w = csv.writer(f)
-    w.writerow(["Method", "Family", "K", "PSNR", "SAM", "Time (s)", "Sent"])
+    w.writerow(["Method", "Family", "K", "PSNR", "SSIM", "SAM", "Time (s)", "Sent"])
     for n in by_psnr(list(R)):
-        w.writerow([n, R[n]["family"], K, f"{R[n]['psnr']:.4f}", f"{R[n]['sam']:.4f}", f"{R[n]['time']:.3f}", R[n]["note"]])
+        w.writerow([n, R[n]["family"], K, f"{R[n]['psnr']:.4f}", f"{R[n]['ssim']:.4f}", f"{R[n]['sam']:.4f}", f"{R[n]['time']:.3f}", R[n]["note"]])
 print(f"\nSaved in {OUT}/ : 1_ppca.png, 2_wavelet.png, 3_final.png, 4_scoreboard.png, scores.csv")
