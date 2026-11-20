@@ -1,0 +1,5 @@
+Method,Family,K,PSNR,SAM,Time (s),Sent
+Wavelet-PCA,Wavelet,10,31.8326,3.5264,0.433,40 ch at half resolution (linear) + basis 15.8% extra
+PPCA,PPCA,10,30.9956,3.8874,0.064,"10 new channels, full resolution + basis 1.1% extra"
+PPCA + Recursive Filter,PPCA,10,30.7201,3.9464,0.144,10 smoothed channels (sigma_spatial 3) + basis 1.1% extra
+Uniform bands,Baseline,10,29.4739,4.5370,0.000,sent 10 evenly spaced bands

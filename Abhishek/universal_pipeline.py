@@ -36,6 +36,7 @@ import numpy as np
 import pandas as pd
 from matplotlib.colors import ListedColormap
 from scipy.io import loadmat
+from scipy.ndimage import uniform_filter
 from sklearn.cluster import KMeans, MiniBatchKMeans
 from sklearn.metrics import adjusted_rand_score, cohen_kappa_score, normalized_mutual_info_score
 from sklearn.svm import SVC
@@ -263,13 +264,45 @@ def sam_deg(a, b):
     return float(np.degrees(np.arccos(np.clip((a * b).sum(1) / den, -1, 1))).mean())
 
 
-def recon_metrics(X, Xs, recon_s, m, rng_val):
-    """variance explained (standardised), RMSE/PSNR in original units, SAM."""
+def ssim_cube(X, rec, hw, data_range, mask=None, win=7):
+    """Structural similarity (SSIM) between original X and rebuilt rec, both (n_pixels, C) tables, averaged over all
+    channels. Higher = better, 1 = identical. Same definition as skimage.metrics.structural_similarity (7 x 7 window,
+    K1 = 0.01, K2 = 0.03). data_range = the peak value, the same number PSNR uses (rng_val here, 1 after 0-1 scaling).
+    SSIM compares small windows of the picture, so the tables are put back into (H, W, C) images first.
+    mask = optional array of pixel indices: only those pixels are averaged (e.g. the test pixels)."""
+    h, w = hw
+    n_ch = X.shape[1]
+    a, b = X.reshape(h, w, n_ch), rec.reshape(h, w, n_ch)
+    cov_norm = win * win / (win * win - 1)                 # sample covariance, as in skimage
+    c1, c2 = (0.01 * data_range) ** 2, (0.03 * data_range) ** 2
+    keep = np.ones(h * w, bool)
+    if mask is not None:
+        keep[:] = False
+        keep[mask] = True
+    total, count = 0.0, 0
+    for s in range(0, n_ch, 32):                           # 32 channels at a time keeps memory small
+        x, y = a[:, :, s:s + 32].astype(np.float64), b[:, :, s:s + 32].astype(np.float64)
+        size = (win, win, 1)
+        ux, uy = uniform_filter(x, size=size), uniform_filter(y, size=size)
+        vx = cov_norm * (uniform_filter(x * x, size=size) - ux * ux)
+        vy = cov_norm * (uniform_filter(y * y, size=size) - uy * uy)
+        vxy = cov_norm * (uniform_filter(x * y, size=size) - ux * uy)
+        smap = ((2 * ux * uy + c1) * (2 * vxy + c2) / ((ux ** 2 + uy ** 2 + c1) * (vx + vy + c2))).reshape(h * w, -1)
+        total += smap[keep].sum()
+        count += smap[keep].size
+    return float(total / count)
+
+
+def recon_metrics(X, Xs, recon_s, m, rng_val, hw=None):
+    """variance explained (standardised), RMSE/PSNR in original units, SAM. Give hw = (H, W) to also get SSIM."""
     var_exp = 1 - float(((Xs - recon_s) ** 2).sum() / (Xs ** 2).sum())
     rec = recon_s * m["sd"] + m["mu"]
     rmse = float(np.sqrt(np.mean((X - rec) ** 2)))
-    return {"var_explained": var_exp, "rmse": rmse, "nrmse_pct": rmse / rng_val * 100,
-            "psnr_db": 20 * np.log10(rng_val / max(rmse, 1e-12)), "sam_deg": sam_deg(X, rec)}
+    out = {"var_explained": var_exp, "rmse": rmse, "nrmse_pct": rmse / rng_val * 100,
+           "psnr_db": 20 * np.log10(rng_val / max(rmse, 1e-12)), "sam_deg": sam_deg(X, rec)}
+    if hw is not None:
+        out["ssim"] = ssim_cube(X, rec, hw, rng_val)
+    return out
 
 
 def cluster_labels(F, n_clusters, seed=0):
@@ -466,13 +499,13 @@ def run(a, which):
     rows, kept = [], {}
 
     def evaluate(method, k, feats, recon_s):
-        r = {"method": method, "k": k, **recon_metrics(X, Xs, recon_s, m, rng_val)}
+        r = {"method": method, "k": k, **recon_metrics(X, Xs, recon_s, m, rng_val, (H, W))}
         cl = cluster_labels(feats, a.n_clusters)
         r["ARI"], r["NMI"] = adjusted_rand_score(ref_clusters, cl), normalized_mutual_info_score(ref_clusters, cl)
         if y is not None:
             r.update(classify_multi(feats, y, splits)[0])
         rows.append(r)
-        print(f"  {method:16s} k={k:<3d} var {r['var_explained'] * 100:6.2f}%  RMSE {r['rmse']:.4g}  SAM {r['sam_deg']:.2f}  "
+        print(f"  {method:16s} k={k:<3d} var {r['var_explained'] * 100:6.2f}%  RMSE {r['rmse']:.4g}  SAM {r['sam_deg']:.2f}  SSIM {r['ssim']:.4f}  "
               + (f"OA {r['OA']:.1f}%" if y is not None else f"ARI {r['ARI']:.3f}"))
 
     print("\n[compare] evaluating methods (this is the slow part)...")
@@ -480,7 +513,7 @@ def run(a, which):
     if y is not None:                                            # reference: all bands
         met, ref_recalls = classify_multi(Xs, y, splits)
         ref = {"method": "Full bands", "k": C, "var_explained": 1.0, "rmse": 0.0, "nrmse_pct": 0.0,
-               "psnr_db": np.inf, "sam_deg": 0.0, "ARI": 1.0, "NMI": 1.0, **met}
+               "psnr_db": np.inf, "sam_deg": 0.0, "ssim": 1.0, "ARI": 1.0, "NMI": 1.0, **met}
         rows.append(ref)
         print(f"  {'Full bands':16s} k={C:<3d} OA {ref['OA']:.1f}%  (upper reference)")
 
@@ -638,7 +671,7 @@ def rf_sweep(a, out, kept, m, X, Xs, rng_val, H, W, y, splits, ref_clusters):
     for ss, sc in combos:
         Zs = Z if ss == 0 else recursive_filter(Z, ss, sc, a.iters)
         flat = Zs.reshape(-1, k)
-        r = {"sigma_spatial": ss, "sigma_color": sc, **recon_metrics(X, Xs, ppca_reconstruct(m, flat, back, k), m, rng_val)}
+        r = {"sigma_spatial": ss, "sigma_color": sc, **recon_metrics(X, Xs, ppca_reconstruct(m, flat, back, k), m, rng_val, (H, W))}
         r["noise_reduced_pct"], r["edge_retention"] = spatial_stats(Z, Zs) if ss else (0.0, 1.0)
         r["ARI"] = adjusted_rand_score(ref_clusters, cluster_labels(flat * back, a.n_clusters))
         if y is not None:

@@ -1,5 +1,6 @@
-Method,Family,K,PSNR,SAM,Time (s),Sent
-Wavelet-PCA,Wavelet,10,31.8326,3.5264,0.433,40 ch at half resolution (linear) + basis 15.8% extra
-PPCA,PPCA,10,30.9956,3.8874,0.064,"10 new channels, full resolution + basis 1.1% extra"
-PPCA + Recursive Filter,PPCA,10,30.7201,3.9464,0.144,10 smoothed channels (sigma_spatial 3) + basis 1.1% extra
-Uniform bands,Baseline,10,29.4739,4.5370,0.000,sent 10 evenly spaced bands
+Method,Family,K,PSNR,SSIM,SAM,Time (s),Sent
+WaveAE,Wavelet,10,33.0202,0.9447,3.0601,261.710,"40 ch at half res, deep learning, 600 steps + decoder 101% (send once)"
+Wavelet-PCA,Wavelet,10,31.8326,0.9314,3.5264,0.362,40 ch at half resolution (linear) + basis 15.8% extra
+PPCA,PPCA,10,30.9956,0.9242,3.8874,0.137,"10 new channels, full resolution + basis 1.1% extra"
+PPCA + Recursive Filter,PPCA,10,30.7201,0.9127,3.9464,0.174,10 smoothed channels (sigma_spatial 3) + basis 1.1% extra
+Uniform bands,Baseline,10,29.4739,0.8943,4.5370,0.000,sent 10 evenly spaced bands

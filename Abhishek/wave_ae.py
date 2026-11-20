@@ -55,7 +55,7 @@ from scipy.io import loadmat
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
-from universal_pipeline import build_splits, classify_multi, get_labels, sam_deg    # read-only helpers
+from universal_pipeline import build_splits, classify_multi, get_labels, sam_deg, ssim_cube    # read-only helpers
 
 RAICHUR_BANDS = ["B01", "B02", "B03", "B04", "B05", "B06", "B07", "B08", "B8A", "B09", "B11", "B12"]
 
@@ -227,14 +227,18 @@ def pca_fit(X):
 # ======================================================================
 # 5. metrics
 # ======================================================================
-def recon_metrics(X, Xs, rec_s, mu, sd, rng_val):
-    """Rebuild quality in standardised space (variance explained) and original units (RMSE, PSNR, SAM)."""
+def recon_metrics(X, Xs, rec_s, mu, sd, rng_val, hw=None):
+    """Rebuild quality in standardised space (variance explained) and original units (RMSE, PSNR, SAM).
+    Give hw = (H, W) to also get SSIM."""
     rec_s = rec_s.reshape(Xs.shape)
     rec = rec_s * sd + mu
     rmse = float(np.sqrt(np.mean((X - rec) ** 2)))
-    return {"var_explained": 1 - float(((Xs - rec_s) ** 2).sum() / ((Xs - Xs.mean(0)) ** 2).sum()), "rmse": rmse,
-            "nrmse_pct": rmse / rng_val * 100, "psnr_db": 20 * np.log10(rng_val / max(rmse, 1e-12)),
-            "sam_deg": sam_deg(X, rec)}
+    out = {"var_explained": 1 - float(((Xs - rec_s) ** 2).sum() / ((Xs - Xs.mean(0)) ** 2).sum()), "rmse": rmse,
+           "nrmse_pct": rmse / rng_val * 100, "psnr_db": 20 * np.log10(rng_val / max(rmse, 1e-12)),
+           "sam_deg": sam_deg(X, rec)}
+    if hw is not None:
+        out["ssim"] = ssim_cube(X, rec, hw, rng_val)
+    return out
 
 
 # ======================================================================
@@ -430,11 +434,11 @@ def main():
         mb = (lat_vals + side_vals) * 4 / 1e6                                 # float32 values, latent + side information
         r = {"method": method, "k_eq": k_eq, "channels_sent": sent, "resolution": res, "compression_x": round(C / k_eq, 1),
              "transmit_MB": round(mb, 3), "effective_compression_x": round(cube_MB / mb, 1),
-             "encoder_macs_per_pixel": int(macs), **recon_metrics(X, Xs, rec_s, mu, sd, rng_val), **(extra or {})}
+             "encoder_macs_per_pixel": int(macs), **recon_metrics(X, Xs, rec_s, mu, sd, rng_val, (H, W)), **(extra or {})}
         if y is not None:
             r.update(classify_multi(feats.reshape(H * W, -1), y, splits)[0])
         rows.append(r)
-        print(f"    {method:34s} var {r['var_explained'] * 100:6.2f}%  NRMSE {r['nrmse_pct']:5.2f}%  SAM {r['sam_deg']:5.2f}  "
+        print(f"    {method:34s} var {r['var_explained'] * 100:6.2f}%  NRMSE {r['nrmse_pct']:5.2f}%  SAM {r['sam_deg']:5.2f}  SSIM {r['ssim']:.4f}  "
               f"eff.compr {r['effective_compression_x']:6.1f}x" + (f"  OA {r['OA']:5.1f}%" if y is not None else ""))
 
     for k_eq in ks:
@@ -503,7 +507,7 @@ def main():
     (out / "report.txt").write_text(f"{header}\n{df.to_string(index=False, float_format=lambda v: f'{v:.4g}')}{caveat}\n", encoding="utf-8")
     print(f"\n[saved] {out}\n  metrics.csv, report.txt, fig1_wavelet_and_latent.png, fig2_reconstruction.png, fig3_metrics_vs_budget.png,"
           f"\n  waveae_latent_k*.npy (the compressed data), waveae_k*.pt (trained weights)")
-    print(df[["method", "k_eq", "channels_sent", "compression_x", "effective_compression_x", "var_explained", "nrmse_pct", "sam_deg",
+    print(df[["method", "k_eq", "channels_sent", "compression_x", "effective_compression_x", "var_explained", "nrmse_pct", "sam_deg", "ssim",
               "encoder_macs_per_pixel"] + (["OA"] if y is not None else [])].round(3).to_string(index=False))
 
 
