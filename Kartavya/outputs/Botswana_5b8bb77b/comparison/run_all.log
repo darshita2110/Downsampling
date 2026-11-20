@@ -1,0 +1,26 @@
+2026-11-16 08:15:09 | INFO    | Dataset Botswana_5b8bb77b: 1 sample(s), 145 channels; split spatial
+2026-11-16 08:15:09 | INFO    | Common K values for every algorithm: [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25]
+2026-11-16 08:15:09 | INFO    | Algorithms: ['pca', 'ica', 'lda', 'ga', 'pso', 'aco', 'sa', 'ubscnn']
+2026-11-16 08:15:09 | INFO    | [1/8] ===================== PCA =====================
+2026-11-16 08:25:39 | INFO    | PCA: ok in 629.4 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\Botswana_5b8bb77b\pca
+2026-11-16 08:25:39 | INFO    | [2/8] ===================== ICA =====================
+2026-11-16 08:53:06 | INFO    | ICA: ok in 1646.9 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\Botswana_5b8bb77b\ica
+2026-11-16 08:53:06 | INFO    | [3/8] ===================== LDA =====================
+2026-11-16 08:53:33 | INFO    | LDA: ok in 27.5 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\Botswana_5b8bb77b\lda
+2026-11-16 08:53:33 | INFO    | [4/8] ===================== GA =====================
+2026-11-16 10:43:10 | INFO    | GA: ok in 6576.5 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\Botswana_5b8bb77b\ga
+2026-11-16 10:43:10 | INFO    | [5/8] ===================== PSO =====================
+2026-11-16 16:38:00 | INFO    | PSO: ok in 21290.6 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\Botswana_5b8bb77b\pso
+2026-11-16 16:38:00 | INFO    | [6/8] ===================== ACO =====================
+2026-11-16 20:29:18 | INFO    | ACO: ok in 13877.5 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\Botswana_5b8bb77b\aco
+2026-11-16 20:29:18 | INFO    | [7/8] ===================== SA =====================
+2026-11-16 23:01:16 | INFO    | SA: ok in 9117.5 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\Botswana_5b8bb77b\sa
+2026-11-16 23:01:16 | INFO    | [8/8] ===================== UBSCNN =====================
+2026-11-16 23:51:04 | INFO    | UBS-CNN: ok in 2978.1 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\Botswana_5b8bb77b\ubscnn
+2026-11-16 23:51:17 | INFO    | Comparison written to D:\DIP\Project\Downsampling\Kartavya\outputs\Botswana_5b8bb77b\comparison
+2026-11-16 23:51:17 | INFO    | All algorithms finished in 56167.5 s
+2026-11-16 23:51:17 | INFO    |   best PSNR (dB) (max): PCA = ICA (40.4650 mean over K [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25])
+2026-11-16 23:51:17 | INFO    |   best SSIM (max): PCA = ICA (0.9782 mean over K [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25])
+2026-11-16 23:51:17 | INFO    |   best RMSE (min): PCA = ICA (0.0107 mean over K [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25])
+2026-11-16 23:51:17 | INFO    |   best Accuracy (max): LDA (0.9141 mean over K [1, 2, 3, 4, 5, 6, 8, 9])
+2026-11-16 23:51:17 | INFO    | Report: D:\DIP\Project\Downsampling\Kartavya\outputs\Botswana_5b8bb77b\comparison\final_report.txt

@@ -43,10 +43,10 @@ p.add_argument("--train", type=float, default=0.10, help="share of labelled pixe
 p.add_argument("--classifiers", nargs="+", default=["svm"], choices=["svm", "knn", "rf"])
 args = p.parse_args()
 
-FAMILY_COLOUR = {"Ranking": "#2a78d6", "Search": "#eb6834", "Clustering": "#1baf7a",
+FAMILY_COLOUR = {"Ranking": "#2a78d6", "Search": "#eb6834", "Clustering": "#1baf7a", "Hybrid": "#a5359b",
                  "Baseline": "#555555", "Best possible": "#000000"}
 STYLE = {"Variance": "-o", "Entropy": "--s", "MVPCA": ":^", "SFS": "-o", "GA": "--s", "PSO": ":^",
-         "WaLuDi": "-o", "WaLuMI": "--s", "AffinityProp": ":^", "Uniform": "-.", "Exhaustive": ":"}
+         "WaLuDi": "-o", "WaLuMI": "--s", "AffinityProp": ":^", "SegWard": "-D", "Uniform": "-.", "Exhaustive": ":"}
 
 # ---------------------------------------------- 1. data, labels and step 6's channel choices
 cube, names = load_dataset(args.dataset)

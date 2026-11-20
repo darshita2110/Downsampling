@@ -1,0 +1,12 @@
+2026-11-16 08:53:06 | INFO    | ===== LDA | dataset Botswana_5b8bb77b | 145 channels | K = [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25]
+2026-11-16 08:53:06 | INFO    | hyper-parameters {'standardize': True, 'shrinkage': 0.0001, 'max_train_pixels': 1000000, 'seed': 42, 'ignore_label': 0, 'min_pixels_per_class': 50}
+2026-11-16 08:53:08 | INFO    | K [10, 12, 15, 20, 25] not possible: 10 classes allow at most 9 LDA components
+2026-11-16 08:53:08 | INFO    | Fitting on 1,997 labelled pixels, classes {1: 146, 2: 101, 5: 80, 7: 259, 9: 314, 10: 248, 11: 305, 12: 181, 13: 268, 14: 95}, K = [1, 2, 3, 4, 5, 6, 8, 9]
+2026-11-16 08:53:08 | INFO    | K=1: train acc 0.6580 F1 0.6335, fit 0.041 s
+2026-11-16 08:53:08 | INFO    | K=2: train acc 0.9009 F1 0.8788, fit 0.026 s
+2026-11-16 08:53:08 | INFO    | K=3: train acc 0.9494 F1 0.9588, fit 0.072 s
+2026-11-16 08:53:08 | INFO    | K=4: train acc 0.9564 F1 0.9653, fit 0.031 s
+2026-11-16 08:53:08 | INFO    | K=5: train acc 0.9710 F1 0.9758, fit 0.282 s
+2026-11-16 08:53:09 | INFO    | K=6: train acc 0.9685 F1 0.9736, fit 0.389 s
+2026-11-16 08:53:09 | INFO    | K=8: train acc 0.9900 F1 0.9913, fit 0.067 s
+2026-11-16 08:53:10 | INFO    | K=9: train acc 0.9905 F1 0.9917, fit 0.756 s

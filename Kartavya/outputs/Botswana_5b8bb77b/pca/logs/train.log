@@ -1,0 +1,28 @@
+2026-11-16 08:15:09 | INFO    | ===== PCA | dataset Botswana_5b8bb77b | 145 channels | K = [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25]
+2026-11-16 08:15:09 | INFO    | standardize=True | max_train_pixels=1000000 | seed=42
+2026-11-16 08:15:11 | INFO    |   loaded Botswana: grid (1476, 256), valid 100.000%, pixels used 188,928 (rows 0-738)
+2026-11-16 08:15:11 | INFO    | Feature matrix: 188,928 pixels x 145 channels; fitting on 188,928
+2026-11-16 08:15:11 | INFO    | PCA fit in 0.172 s, peak 658.0 MB
+2026-11-16 08:15:11 | INFO    |   PC1:  92.64%  cumulative  92.64%
+2026-11-16 08:15:11 | INFO    |   PC2:   4.21%  cumulative  96.85%
+2026-11-16 08:15:11 | INFO    |   PC3:   1.74%  cumulative  98.59%
+2026-11-16 08:15:11 | INFO    |   PC4:   0.41%  cumulative  99.00%
+2026-11-16 08:15:11 | INFO    |   PC5:   0.16%  cumulative  99.16%
+2026-11-16 08:15:11 | INFO    |   PC6:   0.08%  cumulative  99.24%
+2026-11-16 08:15:11 | INFO    |   PC7:   0.07%  cumulative  99.32%
+2026-11-16 08:15:11 | INFO    |   PC8:   0.05%  cumulative  99.37%
+2026-11-16 08:15:11 | INFO    |   PC9:   0.04%  cumulative  99.40%
+2026-11-16 08:15:11 | INFO    |   PC10:   0.03%  cumulative  99.43%
+2026-11-16 08:15:11 | INFO    |   PC11:   0.03%  cumulative  99.46%
+2026-11-16 08:15:11 | INFO    |   PC12:   0.02%  cumulative  99.48%
+2026-11-16 08:15:11 | INFO    |   PC13:   0.02%  cumulative  99.50%
+2026-11-16 08:15:11 | INFO    |   PC14:   0.02%  cumulative  99.52%
+2026-11-16 08:15:11 | INFO    |   PC15:   0.02%  cumulative  99.54%
+2026-11-16 08:15:11 | INFO    |   PC16:   0.02%  cumulative  99.56%
+2026-11-16 08:15:11 | INFO    |   PC17:   0.02%  cumulative  99.58%
+2026-11-16 08:15:11 | INFO    |   PC18:   0.02%  cumulative  99.60%
+2026-11-16 08:15:11 | INFO    |   PC19:   0.01%  cumulative  99.61%
+2026-11-16 08:15:11 | INFO    |   PC20:   0.01%  cumulative  99.63%
+2026-11-16 08:15:11 | INFO    | Components needed: {'90%': 1, '95%': 2, '99%': 5}
+2026-11-16 08:15:18 | INFO    | scikit-learn cross-check: {'max_abs_diff_explained_variance_ratio': 1.1102230246251565e-16, 'n_zero_variance_components': 0, 'min_abs_cosine_nonzero_components': 0.9999999999999987, 'max_abs_diff_reconstruction_k2': 2.2648549702353193e-14}
+2026-11-16 08:18:08 | INFO    | Saved model -> D:\DIP\Project\Downsampling\Kartavya\outputs\Botswana_5b8bb77b\pca\models\pca_model.npz

@@ -1,0 +1,17 @@
+{
+  "dataset_dir": "D:\\DIP\\Project\\Downsampling\\data\\darshita\\Botswana.mat",
+  "layout": "single_file",
+  "sort_rule": "ascending lexicographic order of the full (relative) filename",
+  "samples": [
+    {
+      "index": 0,
+      "name": "Botswana",
+      "files": [
+        "D:\\DIP\\Project\\Downsampling\\data\\darshita\\Botswana.mat"
+      ]
+    }
+  ],
+  "labels": {
+    "0": "D:\\DIP\\Project\\Downsampling\\data\\darshita\\Botswana_gt.mat"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "dataset_dir": "D:\\DIP\\Project\\Downsampling\\data\\darshita\\PaviaU.mat",
+  "layout": "single_file",
+  "sort_rule": "ascending lexicographic order of the full (relative) filename",
+  "samples": [
+    {
+      "index": 0,
+      "name": "PaviaU",
+      "files": [
+        "D:\\DIP\\Project\\Downsampling\\data\\darshita\\PaviaU.mat"
+      ]
+    }
+  ],
+  "labels": {
+    "0": "D:\\DIP\\Project\\Downsampling\\data\\darshita\\PaviaU_gt.mat"
+  }
+}

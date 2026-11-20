@@ -1,0 +1,9 @@
+algorithm,algorithm_id,status,reason_or_error,train_seconds,test_seconds,total_seconds,train_peak_python_mb,output_dir
+PCA,pca,ok,,306.00437580000005,437.02946870000005,743.1579191,1420.707372,D:\DIP\Project\Downsampling\Kartavya\outputs\KSC_383bfffd\pca
+ICA,ica,ok,,1421.6055622000001,475.2442891999999,1896.9693566,2214.348906,D:\DIP\Project\Downsampling\Kartavya\outputs\KSC_383bfffd\ica
+LDA,lda,ok,,6.49939170000016,26.436088200000086,33.04377239999985,239.980481,D:\DIP\Project\Downsampling\Kartavya\outputs\KSC_383bfffd\lda
+GA,ga,ok,,6917.7015142,475.8414862999998,7393.6335871,703.830888,D:\DIP\Project\Downsampling\Kartavya\outputs\KSC_383bfffd\ga
+PSO,pso,ok,,20475.1367284,421.9090120000001,20897.1928915,710.981533,D:\DIP\Project\Downsampling\Kartavya\outputs\KSC_383bfffd\pso
+ACO,aco,ok,,15232.917004100003,389.1979999000032,15622.239580499998,721.444905,D:\DIP\Project\Downsampling\Kartavya\outputs\KSC_383bfffd\aco
+SA,sa,ok,,9970.5150603,214.23741339999833,10184.891857099996,720.210653,D:\DIP\Project\Downsampling\Kartavya\outputs\KSC_383bfffd\sa
+UBS-CNN,ubscnn,ok,,1522.1067317999987,296.0839210000049,1818.440260999996,992.703174,D:\DIP\Project\Downsampling\Kartavya\outputs\KSC_383bfffd\ubscnn

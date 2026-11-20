@@ -1,0 +1,283 @@
+{
+  "path": "D:\\DIP\\Project\\Downsampling\\data\\darshita\\PaviaU.mat",
+  "layout": "single_file",
+  "n_samples": 1,
+  "label_files": [
+    "D:\\DIP\\Project\\Downsampling\\data\\darshita\\PaviaU_gt.mat"
+  ],
+  "samples": [
+    {
+      "index": 0,
+      "name": "PaviaU",
+      "files": [
+        "D:\\DIP\\Project\\Downsampling\\data\\darshita\\PaviaU.mat"
+      ],
+      "shape_hwc": [
+        610,
+        340,
+        103
+      ],
+      "dtype": "uint16",
+      "valid_pct": 100.0,
+      "value_range_per_channel": [
+        [
+          0.0,
+          8000.0
+        ],
+        [
+          0.0,
+          8000.0
+        ],
+        [
+          0.0,
+          8000.0
+        ],
+        [
+          0.0,
+          8000.0
+        ],
+        [
+          0.0,
+          8000.0
+        ],
+        [
+          0.0,
+          8000.0
+        ],
+        [
+          0.0,
+          8000.0
+        ],
+        [
+          0.0,
+          8000.0
+        ],
+        [
+          0.0,
+          8000.0
+        ],
+        [
+          0.0,
+          8000.0
+        ],
+        [
+          0.0,
+          8000.0
+        ],
+        [
+          0.0,
+          8000.0
+        ],
+        [
+          0.0,
+          8000.0
+        ],
+        [
+          0.0,
+          8000.0
+        ],
+        [
+          0.0,
+          8000.0
+        ],
+        [
+          0.0,
+          8000.0
+        ],
+        [
+          0.0,
+          8000.0
+        ],
+        [
+          0.0,
+          8000.0
+        ],
+        [
+          0.0,
+          8000.0
+        ],
+        [
+          0.0,
+          8000.0
+        ],
+        [
+          0.0,
+          8000.0
+        ],
+        [
+          0.0,
+          8000.0
+        ],
+        [
+          0.0,
+          8000.0
+        ],
+        [
+          0.0,
+          8000.0
+        ],
+        [
+          0.0,
+          8000.0
+        ],
+        [
+          0.0,
+          8000.0
+        ],
+        [
+          0.0,
+          8000.0
+        ],
+        [
+          0.0,
+          8000.0
+        ],
+        [
+          0.0,
+          8000.0
+        ],
+        [
+          0.0,
+          8000.0
+        ],
+        [
+          0.0,
+          8000.0
+        ],
+        [
+          0.0,
+          8000.0
+        ]
+      ],
+      "readers": [
+        {
+          "reader": "scipy.io.loadmat",
+          "variable": "paviaU",
+          "orientation": "shape (610, 340, 103): last axis smallest -> (H, W, C)",
+          "all_variables": {
+            "paviaU": [
+              610,
+              340,
+              103
+            ]
+          },
+          "v73": false,
+          "file": "PaviaU.mat",
+          "shape_hwc": [
+            610,
+            340,
+            103
+          ],
+          "dtype": "uint16"
+        }
+      ]
+    }
+  ],
+  "n_channels": 103,
+  "channel_names": [
+    "band_001",
+    "band_002",
+    "band_003",
+    "band_004",
+    "band_005",
+    "band_006",
+    "band_007",
+    "band_008",
+    "band_009",
+    "band_010",
+    "band_011",
+    "band_012",
+    "band_013",
+    "band_014",
+    "band_015",
+    "band_016",
+    "band_017",
+    "band_018",
+    "band_019",
+    "band_020",
+    "band_021",
+    "band_022",
+    "band_023",
+    "band_024",
+    "band_025",
+    "band_026",
+    "band_027",
+    "band_028",
+    "band_029",
+    "band_030",
+    "band_031",
+    "band_032",
+    "band_033",
+    "band_034",
+    "band_035",
+    "band_036",
+    "band_037",
+    "band_038",
+    "band_039",
+    "band_040",
+    "band_041",
+    "band_042",
+    "band_043",
+    "band_044",
+    "band_045",
+    "band_046",
+    "band_047",
+    "band_048",
+    "band_049",
+    "band_050",
+    "band_051",
+    "band_052",
+    "band_053",
+    "band_054",
+    "band_055",
+    "band_056",
+    "band_057",
+    "band_058",
+    "band_059",
+    "band_060",
+    "band_061",
+    "band_062",
+    "band_063",
+    "band_064",
+    "band_065",
+    "band_066",
+    "band_067",
+    "band_068",
+    "band_069",
+    "band_070",
+    "band_071",
+    "band_072",
+    "band_073",
+    "band_074",
+    "band_075",
+    "band_076",
+    "band_077",
+    "band_078",
+    "band_079",
+    "band_080",
+    "band_081",
+    "band_082",
+    "band_083",
+    "band_084",
+    "band_085",
+    "band_086",
+    "band_087",
+    "band_088",
+    "band_089",
+    "band_090",
+    "band_091",
+    "band_092",
+    "band_093",
+    "band_094",
+    "band_095",
+    "band_096",
+    "band_097",
+    "band_098",
+    "band_099",
+    "band_100",
+    "band_101",
+    "band_102",
+    "band_103"
+  ],
+  "dtype": "uint16"
+}

@@ -1,0 +1,26 @@
+2026-11-16 08:18:03 | INFO    | Dataset PaviaU_3ab3e560: 1 sample(s), 103 channels; split spatial
+2026-11-16 08:18:03 | INFO    | Common K values for every algorithm: [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25]
+2026-11-16 08:18:04 | INFO    | Algorithms: ['pca', 'ica', 'lda', 'ga', 'pso', 'aco', 'sa', 'ubscnn']
+2026-11-16 08:18:04 | INFO    | [1/8] ===================== PCA =====================
+2026-11-16 08:21:27 | INFO    | PCA: ok in 202.7 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\PaviaU_3ab3e560\pca
+2026-11-16 08:21:27 | INFO    | [2/8] ===================== ICA =====================
+2026-11-16 08:47:07 | INFO    | ICA: ok in 1540.2 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\PaviaU_3ab3e560\ica
+2026-11-16 08:47:07 | INFO    | [3/8] ===================== LDA =====================
+2026-11-16 08:47:22 | INFO    | LDA: ok in 15.5 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\PaviaU_3ab3e560\lda
+2026-11-16 08:47:22 | INFO    | [4/8] ===================== GA =====================
+2026-11-16 09:25:49 | INFO    | GA: ok in 2306.6 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\PaviaU_3ab3e560\ga
+2026-11-16 09:25:49 | INFO    | [5/8] ===================== PSO =====================
+2026-11-16 11:09:12 | INFO    | PSO: ok in 6202.9 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\PaviaU_3ab3e560\pso
+2026-11-16 11:09:12 | INFO    | [6/8] ===================== ACO =====================
+2026-11-16 13:11:06 | INFO    | ACO: ok in 7313.9 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\PaviaU_3ab3e560\aco
+2026-11-16 13:11:06 | INFO    | [7/8] ===================== SA =====================
+2026-11-16 14:46:26 | INFO    | SA: ok in 5719.4 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\PaviaU_3ab3e560\sa
+2026-11-16 14:46:26 | INFO    | [8/8] ===================== UBSCNN =====================
+2026-11-16 16:21:23 | INFO    | UBS-CNN: ok in 5684.2 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\PaviaU_3ab3e560\ubscnn
+2026-11-16 16:21:34 | INFO    | Comparison written to D:\DIP\Project\Downsampling\Kartavya\outputs\PaviaU_3ab3e560\comparison
+2026-11-16 16:21:34 | INFO    | All algorithms finished in 29009.9 s
+2026-11-16 16:21:34 | INFO    |   best PSNR (dB) (max): PCA = ICA (43.6046 mean over K [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25])
+2026-11-16 16:21:34 | INFO    |   best SSIM (max): PCA = ICA (0.9707 mean over K [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25])
+2026-11-16 16:21:34 | INFO    |   best RMSE (min): PCA = ICA (0.0111 mean over K [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25])
+2026-11-16 16:21:34 | INFO    |   best Accuracy (max): LDA (0.5432 mean over K [1, 2, 3, 4, 5, 6, 8])
+2026-11-16 16:21:34 | INFO    | Report: D:\DIP\Project\Downsampling\Kartavya\outputs\PaviaU_3ab3e560\comparison\final_report.txt

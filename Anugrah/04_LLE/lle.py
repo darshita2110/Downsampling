@@ -24,7 +24,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))  # project root, fo
 from src.preprocessing import cube_to_pixels, pixels_to_cube, standardize, validate_cube
 
 
-def fit_lle_pixels(pixels, n_neighbors=12, n_components=3, reg=1e-3, random_state=42):
+def fit_lle_pixels(pixels, n_neighbors=12, n_components=3, reg=1e-3, random_state=42, eigen_solver="auto"):
     """Fit LLE on a (n_pixels, n_channels) matrix.
 
     Parameters
@@ -36,6 +36,10 @@ def fit_lle_pixels(pixels, n_neighbors=12, n_components=3, reg=1e-3, random_stat
         this REQUIRES `reg` (below) rather than leaving it at risk of being
         ill-conditioned; checked directly in documentation, not assumed safe.
     n_components : int
+    eigen_solver : str
+        'auto' (default, used for the synthetic and Raichur results) or 'dense'. On the Indian Pines
+        data (200 bands) with scikit-learn 1.5.2 / SciPy 1.13.1, 'auto' (ARPACK) returned a degenerate
+        embedding (trustworthiness 0.54) while 'dense' gave 0.94, so the hyperspectral scripts use 'dense'.
     reg : float
         Regularisation added to the local covariance matrix in Stage 1's
         Step 2, required whenever n_neighbors > n_channels. See
@@ -71,7 +75,7 @@ def fit_lle_pixels(pixels, n_neighbors=12, n_components=3, reg=1e-3, random_stat
 
     model = LocallyLinearEmbedding(n_neighbors=n_neighbors, n_components=n_components,
                                      method="standard", reg=reg, random_state=random_state,
-                                     eigen_solver="auto")
+                                     eigen_solver=eigen_solver)
 
     tracemalloc.start()
     start = time.perf_counter()

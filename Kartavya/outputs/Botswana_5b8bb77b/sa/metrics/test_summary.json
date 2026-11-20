@@ -1,0 +1,377 @@
+{
+  "algorithm": "sa",
+  "k_tested": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    8,
+    10,
+    12,
+    15,
+    20,
+    25
+  ],
+  "per_k_mean_over_test_samples": [
+    {
+      "k": 1,
+      "RMSE": 0.033704185069213875,
+      "MAE": 0.02142970014816511,
+      "PSNR_dB": 29.446323383393405,
+      "SSIM": 0.8856883474417921,
+      "dimensionality_reduction_pct": 99.3103448275862,
+      "storage_saving_pct": 99.3092825728904,
+      "reduced_disk_bytes_npy": 755840.0
+    },
+    {
+      "k": 2,
+      "RMSE": 0.02482696783718639,
+      "MAE": 0.014860115887932896,
+      "PSNR_dB": 32.10152636765994,
+      "SSIM": 0.9380291222511955,
+      "dimensionality_reduction_pct": 98.62068965517241,
+      "storage_saving_pct": 98.61909444794878,
+      "reduced_disk_bytes_npy": 1511552.0
+    },
+    {
+      "k": 3,
+      "RMSE": 0.015913464382610456,
+      "MAE": 0.010525893624671918,
+      "PSNR_dB": 35.96470527134691,
+      "SSIM": 0.962996553992315,
+      "dimensionality_reduction_pct": 97.93103448275862,
+      "storage_saving_pct": 97.9289063230072,
+      "reduced_disk_bytes_npy": 2267264.0
+    },
+    {
+      "k": 4,
+      "RMSE": 0.015664853850742132,
+      "MAE": 0.010009668446334873,
+      "PSNR_dB": 36.101473052494946,
+      "SSIM": 0.9693375213860349,
+      "dimensionality_reduction_pct": 97.24137931034483,
+      "storage_saving_pct": 97.2387181980656,
+      "reduced_disk_bytes_npy": 3022976.0
+    },
+    {
+      "k": 5,
+      "RMSE": 0.012652539845698148,
+      "MAE": 0.008964445233737508,
+      "PSNR_dB": 37.95644572651732,
+      "SSIM": 0.9711088856479021,
+      "dimensionality_reduction_pct": 96.55172413793103,
+      "storage_saving_pct": 96.548530073124,
+      "reduced_disk_bytes_npy": 3778688.0
+    },
+    {
+      "k": 6,
+      "RMSE": 0.011208313337551921,
+      "MAE": 0.007882356671319124,
+      "PSNR_dB": 39.00919472991382,
+      "SSIM": 0.9764348740566694,
+      "dimensionality_reduction_pct": 95.86206896551724,
+      "storage_saving_pct": 95.85834194818241,
+      "reduced_disk_bytes_npy": 4534400.0
+    },
+    {
+      "k": 8,
+      "RMSE": 0.01039430511374457,
+      "MAE": 0.007241388494530457,
+      "PSNR_dB": 39.66409078149126,
+      "SSIM": 0.9780578828928932,
+      "dimensionality_reduction_pct": 94.48275862068965,
+      "storage_saving_pct": 94.47796569829923,
+      "reduced_disk_bytes_npy": 6045824.0
+    },
+    {
+      "k": 10,
+      "RMSE": 0.00980872658997517,
+      "MAE": 0.006742808742454962,
+      "PSNR_dB": 40.1677474178324,
+      "SSIM": 0.9805463100136833,
+      "dimensionality_reduction_pct": 93.10344827586206,
+      "storage_saving_pct": 93.09758944841604,
+      "reduced_disk_bytes_npy": 7557248.0
+    },
+    {
+      "k": 12,
+      "RMSE": 0.008987196831694846,
+      "MAE": 0.00609869381432389,
+      "PSNR_dB": 40.92751493144181,
+      "SSIM": 0.9825801891124722,
+      "dimensionality_reduction_pct": 91.72413793103449,
+      "storage_saving_pct": 91.71721319853285,
+      "reduced_disk_bytes_npy": 9068672.0
+    },
+    {
+      "k": 15,
+      "RMSE": 0.008898680165318196,
+      "MAE": 0.006065099935491832,
+      "PSNR_dB": 41.01348804558477,
+      "SSIM": 0.9829450261632234,
+      "dimensionality_reduction_pct": 89.65517241379311,
+      "storage_saving_pct": 89.64664882370806,
+      "reduced_disk_bytes_npy": 11335808.0
+    },
+    {
+      "k": 20,
+      "RMSE": 0.00795469456518609,
+      "MAE": 0.005304045482538607,
+      "PSNR_dB": 41.98752982430996,
+      "SSIM": 0.9857583412291208,
+      "dimensionality_reduction_pct": 86.20689655172413,
+      "storage_saving_pct": 86.19570819900008,
+      "reduced_disk_bytes_npy": 15114368.0
+    },
+    {
+      "k": 25,
+      "RMSE": 0.007435233370351792,
+      "MAE": 0.004851511836408567,
+      "PSNR_dB": 42.57410791374721,
+      "SSIM": 0.9871298027248576,
+      "dimensionality_reduction_pct": 82.75862068965517,
+      "storage_saving_pct": 82.74476757429213,
+      "reduced_disk_bytes_npy": 18892928.0
+    }
+  ],
+  "process_rss_mb_end": 369.020928,
+  "selected": {
+    "1": [
+      "band_094"
+    ],
+    "2": [
+      "band_035",
+      "band_120"
+    ],
+    "3": [
+      "band_014",
+      "band_057",
+      "band_134"
+    ],
+    "4": [
+      "band_008",
+      "band_037",
+      "band_106",
+      "band_145"
+    ],
+    "5": [
+      "band_008",
+      "band_035",
+      "band_061",
+      "band_131",
+      "band_145"
+    ],
+    "6": [
+      "band_007",
+      "band_036",
+      "band_059",
+      "band_109",
+      "band_140",
+      "band_145"
+    ],
+    "8": [
+      "band_001",
+      "band_004",
+      "band_029",
+      "band_041",
+      "band_055",
+      "band_098",
+      "band_140",
+      "band_144"
+    ],
+    "10": [
+      "band_001",
+      "band_004",
+      "band_024",
+      "band_031",
+      "band_038",
+      "band_051",
+      "band_102",
+      "band_128",
+      "band_142",
+      "band_144"
+    ],
+    "12": [
+      "band_001",
+      "band_005",
+      "band_022",
+      "band_030",
+      "band_031",
+      "band_055",
+      "band_057",
+      "band_097",
+      "band_114",
+      "band_135",
+      "band_140",
+      "band_144"
+    ],
+    "15": [
+      "band_001",
+      "band_003",
+      "band_022",
+      "band_031",
+      "band_036",
+      "band_042",
+      "band_047",
+      "band_054",
+      "band_099",
+      "band_119",
+      "band_128",
+      "band_137",
+      "band_139",
+      "band_143",
+      "band_144"
+    ],
+    "20": [
+      "band_001",
+      "band_003",
+      "band_007",
+      "band_009",
+      "band_023",
+      "band_033",
+      "band_034",
+      "band_037",
+      "band_045",
+      "band_047",
+      "band_051",
+      "band_057",
+      "band_070",
+      "band_099",
+      "band_115",
+      "band_139",
+      "band_141",
+      "band_142",
+      "band_144",
+      "band_145"
+    ],
+    "25": [
+      "band_001",
+      "band_002",
+      "band_004",
+      "band_008",
+      "band_011",
+      "band_027",
+      "band_034",
+      "band_035",
+      "band_036",
+      "band_039",
+      "band_045",
+      "band_047",
+      "band_050",
+      "band_051",
+      "band_056",
+      "band_077",
+      "band_083",
+      "band_098",
+      "band_112",
+      "band_115",
+      "band_134",
+      "band_137",
+      "band_141",
+      "band_143",
+      "band_145"
+    ]
+  },
+  "sa_vs_pca": [
+    {
+      "sample": "00_Botswana_bottom",
+      "k": 1,
+      "PSNR_dB_sa": 29.446323383393405,
+      "PSNR_dB_pca": 30.690035448212434,
+      "SSIM_sa": 0.8856883474417921,
+      "SSIM_pca": 0.9140347670968284
+    },
+    {
+      "sample": "00_Botswana_bottom",
+      "k": 2,
+      "PSNR_dB_sa": 32.10152636765994,
+      "PSNR_dB_pca": 34.59852483969189,
+      "SSIM_sa": 0.9380291222511955,
+      "SSIM_pca": 0.960680008430619
+    },
+    {
+      "sample": "00_Botswana_bottom",
+      "k": 3,
+      "PSNR_dB_sa": 35.96470527134691,
+      "PSNR_dB_pca": 38.85462072703483,
+      "SSIM_sa": 0.962996553992315,
+      "SSIM_pca": 0.9788729394631184
+    },
+    {
+      "sample": "00_Botswana_bottom",
+      "k": 4,
+      "PSNR_dB_sa": 36.101473052494946,
+      "PSNR_dB_pca": 39.90712122237244,
+      "SSIM_sa": 0.9693375213860349,
+      "SSIM_pca": 0.982571313320274
+    },
+    {
+      "sample": "00_Botswana_bottom",
+      "k": 5,
+      "PSNR_dB_sa": 37.95644572651732,
+      "PSNR_dB_pca": 40.91382854365119,
+      "SSIM_sa": 0.9711088856479021,
+      "SSIM_pca": 0.9849274841404732
+    },
+    {
+      "sample": "00_Botswana_bottom",
+      "k": 6,
+      "PSNR_dB_sa": 39.00919472991382,
+      "PSNR_dB_pca": 41.49075669002543,
+      "SSIM_sa": 0.9764348740566694,
+      "SSIM_pca": 0.9854498658584068
+    },
+    {
+      "sample": "00_Botswana_bottom",
+      "k": 8,
+      "PSNR_dB_sa": 39.66409078149126,
+      "PSNR_dB_pca": 42.23381809782851,
+      "SSIM_sa": 0.9780578828928932,
+      "SSIM_pca": 0.9863340870851268
+    },
+    {
+      "sample": "00_Botswana_bottom",
+      "k": 10,
+      "PSNR_dB_sa": 40.1677474178324,
+      "PSNR_dB_pca": 42.50542710485729,
+      "SSIM_sa": 0.9805463100136833,
+      "SSIM_pca": 0.9869200147435212
+    },
+    {
+      "sample": "00_Botswana_bottom",
+      "k": 12,
+      "PSNR_dB_sa": 40.92751493144181,
+      "PSNR_dB_pca": 42.9280559707705,
+      "SSIM_sa": 0.9825801891124722,
+      "SSIM_pca": 0.98781171124365
+    },
+    {
+      "sample": "00_Botswana_bottom",
+      "k": 15,
+      "PSNR_dB_sa": 41.01348804558477,
+      "PSNR_dB_pca": 43.37151277930084,
+      "SSIM_sa": 0.9829450261632234,
+      "SSIM_pca": 0.9890088780436462
+    },
+    {
+      "sample": "00_Botswana_bottom",
+      "k": 20,
+      "PSNR_dB_sa": 41.98752982430996,
+      "PSNR_dB_pca": 43.862096324559744,
+      "SSIM_sa": 0.9857583412291208,
+      "SSIM_pca": 0.9902520580726952
+    },
+    {
+      "sample": "00_Botswana_bottom",
+      "k": 25,
+      "PSNR_dB_sa": 42.57410791374721,
+      "PSNR_dB_pca": 44.223626030994936,
+      "SSIM_sa": 0.9871298027248576,
+      "SSIM_pca": 0.991161797507048
+    }
+  ],
+  "search_comparison_file": "sa_vs_ga_pso_aco.csv",
+  "total_seconds": 342.8344627999977
+}

@@ -68,7 +68,7 @@ def eig_pca(Zs):
     return U[:, np.argsort(ev)[::-1]].astype(np.float32)
 
 
-def run_dataset(name, data_dir, ks, n_sample, repeats, no_ssim):
+def run_dataset(name, data_dir, ks, n_sample, repeats, no_ssim, merge=False):
     scene = load_hsi(name, data_dir, labelled_only=False)
     X = scene["pixels"].astype(np.float32)
     N, C = X.shape
@@ -151,7 +151,7 @@ def run_dataset(name, data_dir, ks, n_sample, repeats, no_ssim):
     fitters = {
         "Isomap": lambda k: fit_isomap_pixels(Zs_fit, n_neighbors=N_NEIGHBORS, n_components=k, random_state=RANDOM_SEED),
         "Kernel PCA": lambda k: fit_kernel_pca_pixels(Zs_fit, n_components=k, kernel="rbf", gamma=None, random_state=RANDOM_SEED),
-        "LLE": lambda k: fit_lle_pixels(Zs_fit, n_neighbors=N_NEIGHBORS, n_components=k, reg=1e-3, random_state=RANDOM_SEED),
+        "LLE": lambda k: fit_lle_pixels(Zs_fit, n_neighbors=N_NEIGHBORS, n_components=k, reg=1e-3, random_state=RANDOM_SEED, eigen_solver="dense"),
     }
     for k in ks:
         for method, fit in fitters.items():
@@ -175,6 +175,12 @@ def run_dataset(name, data_dir, ks, n_sample, repeats, no_ssim):
     df = pd.DataFrame(rows)
     out = PROJECT_ROOT / "results" / "team_comparable" / name
     out.mkdir(parents=True, exist_ok=True)
+    if merge and (out / "team_comparable_all.csv").exists():
+        # keep earlier rows for other k values; new rows replace the same (algorithm, k)
+        old = pd.read_csv(out / "team_comparable_all.csv")
+        new_keys = set(zip(df["algorithm"], df["k"]))
+        old = old[[(a, k) not in new_keys for a, k in zip(old["algorithm"], old["k"])]]
+        df = pd.concat([old, df], ignore_index=True)
     df.to_csv(out / "team_comparable_all.csv", index=False)
     kcols = ["PSNR_dB", "SSIM", "MSE", "RMSE", "MAE", "dimensionality_reduction_pct", "storage_saving_pct",
              "compression_ratio", "forward_seconds", "inverse_seconds", "forward_peak_mb"]
@@ -210,13 +216,14 @@ def main():
     ap.add_argument("--sample-size", type=int, default=8000)
     ap.add_argument("--repeats", type=int, default=5, help="random splits averaged for the SVM scores")
     ap.add_argument("--no-ssim", action="store_true", help="skip SSIM (faster)")
+    ap.add_argument("--merge", action="store_true", help="add these k values to the existing CSV instead of replacing it")
     a = ap.parse_args()
     found = available_datasets(a.data_dir)
     for name in a.datasets or list(REGISTRY):
         if name not in found:
             print(f"SKIPPING {name}: image file not found in {a.data_dir}")
             continue
-        run_dataset(name, a.data_dir, a.ks, a.sample_size, a.repeats, a.no_ssim)
+        run_dataset(name, a.data_dir, a.ks, a.sample_size, a.repeats, a.no_ssim, a.merge)
 
 
 if __name__ == "__main__":

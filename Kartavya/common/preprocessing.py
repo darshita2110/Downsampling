@@ -2,51 +2,81 @@
 Preprocessing shared by all Kartavya algorithms.
 
 The pipeline is:
-    image (H, W, C) in natural units
-      -> normalise every channel to [0, 1]             (normalize_channels)
-      -> keep only valid pixels, flatten to (N, C)     (image_to_matrix)
-      -> optionally standardise with TRAINING mean/std (Standardizer)
+    image (H, W, C) in native units and dtype
+      -> normalise every channel to [0, 1] with TRAINING statistics   (Normalizer)
+      -> keep only valid pixels, flatten to (N, C)                     (image_to_matrix)
+      -> optionally standardise with TRAINING mean/std                 (Standardizer)
     ... algorithm ...
-      -> undo standardisation, put pixels back in place (matrix_to_image)
+      -> undo standardisation, put pixels back in place                (matrix_to_image)
 """
 import numpy as np
 
 
-def normalize_channels(x, names, ranges):
+class Normalizer:
     """
-    Map each channel to [0, 1] using its KNOWN physical range, not the range of the current image.
-    Using fixed ranges keeps every date on the same scale, so a model fitted on one date can be applied
-    to another date.
+    Map each channel to [0, 1] with FIXED per-channel ranges learnt once (from training pixels or from the
+    data type), so every sample is on the same scale and a model fitted on one sample applies to another.
+    This replaces the hard-coded per-dataset ranges of the original code (e.g. ("RGB:", 0, 255),
+    ("NDVI", -1, 1)) with ranges detected from the data.
 
-    ranges: list of (prefix, low, high). The first prefix that a channel name starts with is used,
-            e.g. ("RGB:", 0, 255) for display levels, ("NDVI", -1, 1) for the index.
+    method "auto"  : uint8 / int8 -> range of the type (0..255, identical to the original PNG experiment);
+                     everything else -> training min/max per channel
+           "dtype" : any integer type -> range of the type; float -> training min/max
+           "minmax": training min/max per channel for every type
     """
-    out = np.empty_like(x, dtype=np.float32)
-    used = []
-    for c, name in enumerate(names):
-        for prefix, low, high in ranges:
-            if name.startswith(prefix):
-                out[..., c] = (x[..., c] - low) / (high - low)
-                used.append((name, low, high))
-                break
+
+    def __init__(self, method="auto"):
+        self.method = method
+        self.low = self.high = None
+        self.method_used = None
+
+    def fit(self, x, dtype):
+        dtype = np.dtype(dtype)
+        x = np.asarray(x)
+        use_dtype = (dtype.kind in "iu" and (self.method == "dtype" or (self.method == "auto" and dtype.itemsize == 1)))
+        if use_dtype:
+            info = np.iinfo(dtype)
+            self.low = np.full(x.shape[1], float(info.min))
+            self.high = np.full(x.shape[1], float(info.max))
+            self.method_used = f"dtype range {info.min}..{info.max}"
         else:
-            raise KeyError(f"No normalisation range configured for channel '{name}'")
-    np.clip(out, 0.0, 1.0, out=out)
-    return out, used
+            self.low = np.nanmin(x, axis=0).astype(np.float64)
+            self.high = np.nanmax(x, axis=0).astype(np.float64)
+            self.method_used = "training min/max per channel"
+        span = self.high - self.low
+        self.constant_channels = np.flatnonzero(span <= 0).tolist()
+        self.high = np.where(span <= 0, self.low + 1.0, self.high)     # a constant channel maps to 0
+        return self
+
+    def transform(self, data):
+        """Native (H, W, C) or (N, C) -> float in [0, 1]. float64 input stays float64 (no precision loss);
+        everything else becomes float32 (exact for 8/16-bit integers)."""
+        out_dtype = np.float64 if np.asarray(data).dtype == np.float64 else np.float32
+        out = (np.asarray(data, dtype=np.float64) - self.low) / (self.high - self.low)
+        out = np.nan_to_num(out, nan=0.0, posinf=1.0, neginf=0.0)
+        np.clip(out, 0.0, 1.0, out=out)
+        return out.astype(out_dtype)
+
+    def inverse_transform(self, z):
+        return np.asarray(z, dtype=np.float64) * (self.high - self.low) + self.low
+
+    def state(self):
+        return {"method": self.method, "method_used": self.method_used, "low": self.low, "high": self.high,
+                "constant_channels": self.constant_channels}
 
 
 def image_to_matrix(img, valid):
     """
     (H, W, C) image -> (N, C) feature matrix: one ROW per valid pixel, one COLUMN per channel.
-    This is the "pixels are samples, channels are features" view PCA needs.
+    This is the "pixels are samples, channels are features" view the algorithms need.
     """
     return img[valid].astype(np.float64)
 
 
-def matrix_to_image(mat, valid, fill=0.0):
+def matrix_to_image(mat, valid, fill=0.0, dtype=np.float32):
     """(N, K) matrix of valid pixels -> (H, W, K) image; invalid pixels get `fill`."""
     h, w = valid.shape
-    out = np.full((h, w, mat.shape[1]), fill, dtype=np.float32)
+    out = np.full((h, w, mat.shape[1]), fill, dtype=dtype)
     out[valid] = mat
     return out
 
@@ -93,19 +123,6 @@ class Standardizer:
         s = cls(bool(d["enabled"]))
         s.mean_, s.std_ = np.asarray(d["mean"]), np.asarray(d["std"])
         return s
-
-
-def spatial_split(valid, train_fraction=0.5):
-    """
-    Split ONE image into a training part (top rows) and a test part (bottom rows), used only when
-    there is a single acquisition date. Returns two boolean masks.
-    """
-    h = valid.shape[0]
-    cut = int(round(h * train_fraction))
-    train, test = valid.copy(), valid.copy()
-    train[cut:] = False
-    test[:cut] = False
-    return train, test, cut
 
 
 def extract_patches(img, valid, size, stride, row_range=None):

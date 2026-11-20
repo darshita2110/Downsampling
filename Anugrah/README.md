@@ -455,6 +455,24 @@ Outputs: `results/benchmarks/<scene>_all.json`, `results/benchmarks_summary.md/.
 script and the Raichur-vs-Indian-Pines table; `07_`/`08_` supersede them for the
 multi-scene comparison.) The large .mat files are not included in the zip.
 
+
+## Easy comparison and verdict
+`python experiments/13_easy_comparison.py` -> `results/EASY_COMPARISON.md` (PCA won 39 of 40 contests on Indian Pines and Salinas, k = 3, 5, 10, 20).
+
+## Final table
+`python experiments/12_final_comparison_table.py` -> `results/FINAL_COMPARISON_TABLE.md` (see HOW_TO_RUN.md).
+
+## Notes on how these results were produced (read before pushing)
+- All results in `results/benchmarks/` and `results/team_comparable/` were generated on a development machine (one CPU core,
+  newer numpy/scikit-learn than the pinned `requirements.txt`). Timings and memory are therefore not comparable with the
+  Raichur runs made on the author's laptop. Re-run the commands in `HOW_TO_RUN.md` to regenerate on your own machine.
+- LLE on the 200-band scenes uses `eigen_solver="dense"`: with the pinned library versions the default solver gave a
+  degenerate embedding on Indian Pines (trustworthiness 0.54 vs 0.94). The dense solver costs about 43 s and 578 MB at
+  8,000 pixels, so LLE is NOT lightweight on those scenes (it was on Raichur, 13.7 MB, with the default solver).
+- Raichur real-data results are the saved JSON files; the parquet file itself is not in this folder.
+- Not run: Pavia University (image file missing), Isomap with SMACOF on the hyperspectral scenes, and the
+  team-comparable pipeline on KSC and Botswana (see HOW_TO_RUN.md).
+
 ## Scope
 
 The study covers exactly four techniques (Isomap, Isomap with SMACOF, Kernel PCA, LLE) plus a PCA

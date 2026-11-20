@@ -1,13 +1,14 @@
 """
-Small helpers shared by every algorithm in Kartavya/.
-
-Nothing here is specific to PCA: logging, folder creation, timing, memory
-measurement and JSON saving are needed by ICA, LDA, GA, PSO ... as well.
+Small helpers shared by every algorithm: logging, folder creation, timing + memory measurement, JSON.
+(Unchanged in behaviour from the original repository; dataset-independent helpers were added at the end.)
 """
+import hashlib
 import json
 import logging
+import math
 import os
 import random
+import re
 import sys
 import time
 import tracemalloc
@@ -21,9 +22,7 @@ try:                                    # psutil gives the process memory (RSS);
 except ImportError:                     # pragma: no cover - the code still works without it
     psutil = None
 
-# Kartavya/common/utils.py -> parents[1] is Kartavya/, parents[2] is the repository root
 KARTAVYA_ROOT = Path(__file__).resolve().parents[1]
-REPO_ROOT = KARTAVYA_ROOT.parent
 
 
 def ensure_dirs(*dirs):
@@ -43,6 +42,8 @@ def get_logger(name, log_file=None):
     """A logger that prints to the terminal and, if log_file is given, also writes to that file."""
     logger = logging.getLogger(name)
     logger.setLevel(logging.INFO)
+    for h in list(logger.handlers):
+        h.close()
     logger.handlers.clear()                     # avoid duplicate lines when called twice
     fmt = logging.Formatter("%(asctime)s | %(levelname)-7s | %(message)s", "%Y-%m-%d %H:%M:%S")
     console = logging.StreamHandler(sys.stdout)
@@ -55,6 +56,12 @@ def get_logger(name, log_file=None):
         logger.addHandler(fh)
     logger.propagate = False
     return logger
+
+
+def close_logger(logger):
+    for h in list(logger.handlers):
+        h.close()
+        logger.removeHandler(h)
 
 
 def rss_mb():
@@ -74,31 +81,51 @@ def measure(stats, key):
             model.fit(X)
         stats["fit"] -> {"seconds": ..., "peak_python_mb": ..., "rss_after_mb": ...}
 
-    peak_python_mb: the largest amount of memory allocated *inside* the block,
-                    tracked by tracemalloc (NumPy arrays are included).
-    rss_after_mb  : total process memory after the block (includes everything loaded before).
+    peak_python_mb: the largest amount of memory allocated *inside* the block, tracked by tracemalloc
+                    (NumPy arrays are included; PyTorch's C++ allocations are not).
+    rss_after_mb  : total process memory after the block.
+    Nested use is supported (an inner block does not stop the outer measurement).
     """
-    tracemalloc.start()
+    already = tracemalloc.is_tracing()
+    if not already:
+        tracemalloc.start()
+    else:
+        tracemalloc.reset_peak()
     t0 = time.perf_counter()
     try:
         yield
     finally:
         seconds = time.perf_counter() - t0
         _, peak = tracemalloc.get_traced_memory()
-        tracemalloc.stop()
+        if not already:
+            tracemalloc.stop()
         stats[key] = {"seconds": seconds, "peak_python_mb": peak / 1e6, "rss_after_mb": rss_mb()}
+
+
+def timed(fn, repeats):
+    """Run fn `repeats` times under measure(); return the last result and the median statistics.
+    (Millisecond timings are noisy, so each step is repeated and the median kept.)"""
+    runs, out = [], None
+    for _ in range(max(1, int(repeats))):
+        st = {}
+        with measure(st, "x"):
+            out = fn()
+        runs.append(st["x"])
+    return out, {key: float(np.median([r[key] for r in runs])) for key in runs[0]}
 
 
 def _to_jsonable(obj):
     """Turn NumPy numbers/arrays and Paths into plain Python objects so json can write them."""
     if isinstance(obj, dict):
         return {str(k): _to_jsonable(v) for k, v in obj.items()}
-    if isinstance(obj, (list, tuple)):
+    if isinstance(obj, (list, tuple, set)):
         return [_to_jsonable(v) for v in obj]
     if isinstance(obj, np.ndarray):
-        return obj.tolist()
+        return _to_jsonable(obj.tolist())
     if isinstance(obj, np.generic):
-        return obj.item()
+        return _to_jsonable(obj.item())
+    if isinstance(obj, float) and (math.isnan(obj) or math.isinf(obj)):
+        return None if math.isnan(obj) else ("inf" if obj > 0 else "-inf")
     if isinstance(obj, Path):
         return str(obj)
     return obj
@@ -125,3 +152,23 @@ def human_bytes(n):
         if abs(n) < 1024 or unit == "GB":
             return f"{n:.2f} {unit}"
         n /= 1024
+
+
+def safe_name(text, max_len=60):
+    """A string usable as a folder name on every OS."""
+    s = re.sub(r"[^A-Za-z0-9._-]+", "_", str(text)).strip("._-")
+    return (s or "dataset")[:max_len]
+
+
+def fingerprint(paths):
+    """Short hash of the dataset files (absolute path, size, modification time): a different dataset - or
+    the same folder with different files - gets a different output directory, so results never mix."""
+    h = hashlib.sha1()
+    for p in sorted(Path(x).resolve() for x in paths):
+        st = p.stat()
+        h.update(f"{p}|{st.st_size}|{int(st.st_mtime)}".encode())
+    return h.hexdigest()[:8]
+
+
+def comb_safe(n, k):
+    return math.comb(int(n), int(k))

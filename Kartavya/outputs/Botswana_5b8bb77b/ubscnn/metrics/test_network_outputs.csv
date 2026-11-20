@@ -1,0 +1,4 @@
+sample_name,sample,seed,n_test_patches,network_reconstruction_mse,forward_seconds,test_ranking_mean_of_seeds
+Botswana,00_Botswana_bottom,42,736,0.009121772159879533,2.078240899994853,
+Botswana,00_Botswana_bottom,43,736,0.017868421460198857,1.9391141000014613,
+Botswana,00_Botswana_bottom,44,736,0.011962353450426276,1.9092643999974825,band_030 > band_134 > band_011 > band_042 > band_106 > band_084 > band_108 > band_128 > band_096 > band_024 > band_040 > band_067 > band_049 > band_074 > band_109 > band_089 > band_052 > band_014 > band_065 > band_020 > band_138 > band_112 > band_059 > band_076 > band_102 > band_119 > band_053 > band_070 > band_092 > band_104

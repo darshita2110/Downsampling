@@ -1,0 +1,26 @@
+2026-11-16 09:23:42 | INFO    | Loaded saved subsets for K = [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25]
+2026-11-16 09:23:42 | INFO    |   K=1: keep ['band_037'] (training fitness 0.64150)
+2026-11-16 09:23:42 | INFO    |   K=2: keep ['band_035', 'band_093'] (training fitness 1.22796)
+2026-11-16 09:23:42 | INFO    |   K=3: keep ['band_002', 'band_042', 'band_093'] (training fitness 1.36701)
+2026-11-16 09:23:42 | INFO    |   K=4: keep ['band_001', 'band_005', 'band_056', 'band_090'] (training fitness 1.40154)
+2026-11-16 09:23:42 | INFO    |   K=5: keep ['band_001', 'band_002', 'band_013', 'band_058', 'band_092'] (training fitness 1.41238)
+2026-11-16 09:23:42 | INFO    |   K=6: keep ['band_001', 'band_002', 'band_015', 'band_058', 'band_088', 'band_095'] (training fitness 1.42280)
+2026-11-16 09:23:42 | INFO    |   K=8: keep ['band_001', 'band_002', 'band_005', 'band_022', 'band_060', 'band_079', 'band_087', 'band_099'] (training fitness 1.43575)
+2026-11-16 09:23:42 | INFO    |   K=10: keep ['band_001', 'band_003', 'band_004', 'band_016', 'band_053', 'band_072', 'band_086', 'band_088', 'band_090', 'band_095'] (training fitness 1.43869)
+2026-11-16 09:23:42 | INFO    |   K=12: keep ['band_001', 'band_002', 'band_004', 'band_006', 'band_018', 'band_057', 'band_062', 'band_075', 'band_087', 'band_100', 'band_102', 'band_103'] (training fitness 1.44378)
+2026-11-16 09:23:42 | INFO    |   K=15: keep ['band_001', 'band_002', 'band_004', 'band_005', 'band_010', 'band_018', 'band_043', 'band_064', 'band_070', 'band_083', 'band_088', 'band_093'] ... (training fitness 1.44519)
+2026-11-16 09:23:42 | INFO    |   K=20: keep ['band_001', 'band_002', 'band_004', 'band_005', 'band_006', 'band_008', 'band_017', 'band_036', 'band_057', 'band_065', 'band_069', 'band_081'] ... (training fitness 1.44830)
+2026-11-16 09:23:42 | INFO    |   K=25: keep ['band_001', 'band_002', 'band_003', 'band_004', 'band_006', 'band_009', 'band_010', 'band_016', 'band_036', 'band_051', 'band_056', 'band_060'] ... (training fitness 1.44935)
+2026-11-16 09:23:43 | INFO    | 00_PaviaU_bottom: test image 305 x 340, 103,700 valid pixels (100.00%)
+2026-11-16 09:23:51 | INFO    |   K=1: reduction  99.0% | RMSE 0.0611 MAE 0.0359 PSNR  24.27 dB SSIM 0.7701 | 40.75 MB -> 405.89 KB | fwd 28.1 ms inv 85.9 ms
+2026-11-16 09:23:59 | INFO    |   K=2: reduction  98.1% | RMSE 0.0222 MAE 0.0137 PSNR  33.06 dB SSIM 0.9372 | 40.75 MB -> 811.37 KB | fwd 31.5 ms inv 79.7 ms
+2026-11-16 09:24:07 | INFO    |   K=3: reduction  97.1% | RMSE 0.0172 MAE 0.0112 PSNR  35.28 dB SSIM 0.9310 | 40.75 MB -> 1.19 MB | fwd 38.8 ms inv 50.4 ms
+2026-11-16 09:24:15 | INFO    |   K=4: reduction  96.1% | RMSE 0.0138 MAE 0.0087 PSNR  37.19 dB SSIM 0.9572 | 40.75 MB -> 1.58 MB | fwd 33.9 ms inv 52.9 ms
+2026-11-16 09:24:23 | INFO    |   K=5: reduction  95.1% | RMSE 0.0109 MAE 0.0066 PSNR  39.26 dB SSIM 0.9798 | 40.75 MB -> 1.98 MB | fwd 32.0 ms inv 67.6 ms
+2026-11-16 09:24:31 | INFO    |   K=6: reduction  94.2% | RMSE 0.0101 MAE 0.0060 PSNR  39.91 dB SSIM 0.9816 | 40.75 MB -> 2.38 MB | fwd 36.2 ms inv 58.3 ms
+2026-11-16 09:24:39 | INFO    |   K=8: reduction  92.2% | RMSE 0.0077 MAE 0.0046 PSNR  42.30 dB SSIM 0.9877 | 40.75 MB -> 3.17 MB | fwd 64.1 ms inv 52.5 ms
+2026-11-16 09:24:47 | INFO    |   K=10: reduction  90.3% | RMSE 0.0081 MAE 0.0046 PSNR  41.83 dB SSIM 0.9871 | 40.75 MB -> 3.96 MB | fwd 35.3 ms inv 62.5 ms
+2026-11-16 09:24:55 | INFO    |   K=12: reduction  88.3% | RMSE 0.0068 MAE 0.0038 PSNR  43.37 dB SSIM 0.9906 | 40.75 MB -> 4.75 MB | fwd 48.3 ms inv 54.5 ms
+2026-11-16 09:25:03 | INFO    |   K=15: reduction  85.4% | RMSE 0.0052 MAE 0.0029 PSNR  45.64 dB SSIM 0.9932 | 40.75 MB -> 5.94 MB | fwd 45.5 ms inv 75.9 ms
+2026-11-16 09:25:11 | INFO    |   K=20: reduction  80.6% | RMSE 0.0044 MAE 0.0024 PSNR  47.18 dB SSIM 0.9950 | 40.75 MB -> 7.92 MB | fwd 62.4 ms inv 67.5 ms
+2026-11-16 09:25:20 | INFO    |   K=25: reduction  75.7% | RMSE 0.0037 MAE 0.0020 PSNR  48.60 dB SSIM 0.9960 | 40.75 MB -> 9.90 MB | fwd 68.8 ms inv 86.7 ms

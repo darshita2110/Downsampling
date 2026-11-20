@@ -1,0 +1,12 @@
+2026-11-16 09:00:37 | INFO    | ===== LDA | dataset KSC_383bfffd | 176 channels | K = [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25]
+2026-11-16 09:00:37 | INFO    | hyper-parameters {'standardize': True, 'shrinkage': 0.0001, 'max_train_pixels': 1000000, 'seed': 42, 'ignore_label': 0, 'min_pixels_per_class': 50}
+2026-11-16 09:00:40 | INFO    | K [10, 12, 15, 20, 25] not possible: 10 classes allow at most 9 LDA components
+2026-11-16 09:00:40 | INFO    | Fitting on 2,217 labelled pixels, classes {1: 205, 2: 156, 3: 57, 4: 141, 5: 161, 6: 229, 8: 251, 11: 186, 12: 503, 13: 328}, K = [1, 2, 3, 4, 5, 6, 8, 9]
+2026-11-16 09:00:41 | INFO    | K=1: train acc 0.5837 F1 0.3967, fit 0.067 s
+2026-11-16 09:00:42 | INFO    | K=2: train acc 0.8223 F1 0.7181, fit 1.688 s
+2026-11-16 09:00:43 | INFO    | K=3: train acc 0.8764 F1 0.7744, fit 0.079 s
+2026-11-16 09:00:43 | INFO    | K=4: train acc 0.9287 F1 0.8538, fit 0.029 s
+2026-11-16 09:00:43 | INFO    | K=5: train acc 0.9323 F1 0.8539, fit 0.024 s
+2026-11-16 09:00:43 | INFO    | K=6: train acc 0.9400 F1 0.8724, fit 0.035 s
+2026-11-16 09:00:43 | INFO    | K=8: train acc 0.9671 F1 0.9464, fit 0.041 s
+2026-11-16 09:00:43 | INFO    | K=9: train acc 0.9761 F1 0.9683, fit 0.080 s

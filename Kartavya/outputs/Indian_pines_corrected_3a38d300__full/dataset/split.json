@@ -1,0 +1,15 @@
+{
+  "mode": "full",
+  "train": [
+    {
+      "index": 0,
+      "rows": "all"
+    }
+  ],
+  "test": [
+    {
+      "index": 0,
+      "rows": "all"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 """
-Bookkeeping for "how much smaller is the data?" questions, shared by all algorithms.
+Bookkeeping for "how much smaller is the data?" questions, plus the registry of every metric's
+optimisation direction (used by the unified comparison).
 
 Storage is reported two ways:
   * theoretical: number of stored values x bytes per value (independent of file format)
@@ -50,3 +51,47 @@ def flatten_record(prefix_dict, sep="_"):
                 flat[key] = v
     walk(prefix_dict, "")
     return flat
+
+
+# ------------------------------------------------------------------ metric registry
+# direction: "max" = higher is better, "min" = lower is better. Only these metrics are compared across
+# algorithms; every algorithm-specific metric stays in that algorithm's own files.
+METRICS = {
+    # reconstruction quality (test region, data in [0, 1])
+    "PSNR_dB":                      {"direction": "max", "label": "PSNR (dB)", "family": "reconstruction"},
+    "SSIM":                         {"direction": "max", "label": "SSIM", "family": "reconstruction"},
+    "MSE":                          {"direction": "min", "label": "MSE", "family": "reconstruction"},
+    "RMSE":                         {"direction": "min", "label": "RMSE", "family": "reconstruction"},
+    "MAE":                          {"direction": "min", "label": "MAE", "family": "reconstruction"},
+    # size
+    "dimensionality_reduction_pct": {"direction": "max", "label": "Dimensionality reduction (%)", "family": "size"},
+    "storage_saving_pct":           {"direction": "max", "label": "Storage saving incl. model (%)", "family": "size"},
+    "compression_ratio":            {"direction": "max", "label": "Compression ratio", "family": "size"},
+    # cost of applying the reduction (test region)
+    "forward_seconds":              {"direction": "min", "label": "Forward (reduce) time (s)", "family": "cost"},
+    "inverse_seconds":              {"direction": "min", "label": "Inverse (reconstruct) time (s)", "family": "cost"},
+    "forward_peak_mb":              {"direction": "min", "label": "Forward peak memory (MB)", "family": "cost"},
+    # supervised (LDA only; NaN = not applicable for unsupervised methods)
+    "accuracy":                     {"direction": "max", "label": "Accuracy", "family": "classification"},
+    "precision_macro":              {"direction": "max", "label": "Precision (macro)", "family": "classification"},
+    "recall_macro":                 {"direction": "max", "label": "Recall (macro)", "family": "classification"},
+    "f1_macro":                     {"direction": "max", "label": "F1 (macro)", "family": "classification"},
+    "fisher_lda":                   {"direction": "max", "label": "Fisher separability", "family": "classification"},
+}
+
+RUN_METRICS = {   # one value per algorithm run
+    "train_seconds": {"direction": "min", "label": "Training time (s)"},
+    "test_seconds":  {"direction": "min", "label": "Evaluation time (s)"},
+    "total_seconds": {"direction": "min", "label": "Total time (s)"},
+    "train_peak_python_mb": {"direction": "min", "label": "Training peak memory (MB, tracemalloc)"},
+}
+
+
+def best_index(values, direction):
+    """Index of the best finite value (ties: first), or None if nothing is finite."""
+    v = np.asarray(values, dtype=float)
+    ok = np.isfinite(v) | (np.isinf(v) & (v > 0) if direction == "max" else np.isfinite(v))
+    if not ok.any():
+        return None
+    w = np.where(ok, v, -np.inf if direction == "max" else np.inf)
+    return int(np.argmax(w) if direction == "max" else np.argmin(w))

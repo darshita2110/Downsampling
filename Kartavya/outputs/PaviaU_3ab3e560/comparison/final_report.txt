@@ -1,0 +1,99 @@
+CHANNEL / BAND REDUCTION - ALGORITHM COMPARISON
+========================================================================
+Dataset      : D:\DIP\Project\Downsampling\data\darshita\PaviaU.mat
+Dataset id   : PaviaU_3ab3e560
+Layout       : single_file, 1 sample(s), 103 channels, dtype uint16
+Split        : spatial  train [{'index': 0, 'rows': 'top'}]  test [{'index': 0, 'rows': 'bottom'}]
+Normalisation: training min/max per channel (fitted once on training pixels, shared by all)
+K values     : [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25] (identical for every algorithm)
+
+ALGORITHM STATUS
+------------------------------------------------------------------------
+  PCA        ok              total    202.7 s
+  ICA        ok              total   1540.2 s
+  LDA        ok              total     15.5 s
+  GA         ok              total   2306.6 s
+  PSO        ok              total   6202.9 s
+  ACO        ok              total   7313.9 s
+  SA         ok              total   5719.4 s
+  UBS-CNN    ok              total   5684.2 s
+
+BEST ALGORITHM PER METRIC (mean over the shared K values; direction-aware; ties reported)
+------------------------------------------------------------------------
+  PSNR (dB)                        (higher is better): PCA = ICA = 43.605
+                                                      not applicable: LDA
+                                                      note: tie between PCA, ICA
+  SSIM                             (higher is better): PCA = ICA = 0.97067
+                                                      not applicable: LDA
+                                                      note: tie between PCA, ICA
+  MSE                              (lower is better ): PCA = ICA = 0.00036031
+                                                      not applicable: LDA
+                                                      note: tie between PCA, ICA
+  RMSE                             (lower is better ): PCA = ICA = 0.011082
+                                                      not applicable: LDA
+                                                      note: tie between PCA, ICA
+  MAE                              (lower is better ): PCA = ICA = 0.0070281
+                                                      not applicable: LDA
+                                                      note: tie between PCA, ICA
+  Dimensionality reduction (%)     (higher is better): PCA = ICA = GA = PSO = ACO = SA = UBS-CNN = 91.019
+                                                      note: tie between PCA, ICA, GA, PSO, ACO, SA, UBS-CNN; ranked separately (cannot reach every shared K): LDA K=[1, 2, 3, 4, 5, 6, 8]
+  Storage saving incl. model (%)   (higher is better): GA = PSO = ACO = SA = UBS-CNN = 91.009
+                                                      note: tie between GA, PSO, ACO, SA, UBS-CNN; ranked separately (cannot reach every shared K): LDA K=[1, 2, 3, 4, 5, 6, 8]
+  Compression ratio                (higher is better): GA = PSO = ACO = SA = UBS-CNN = 24.982
+                                                      note: tie between GA, PSO, ACO, SA, UBS-CNN; ranked separately (cannot reach every shared K): LDA K=[1, 2, 3, 4, 5, 6, 8]
+  Forward (reduce) time (s)        (lower is better ): PSO = 0.042316
+                                                      note: ranked separately (cannot reach every shared K): LDA K=[1, 2, 3, 4, 5, 6, 8]
+  Inverse (reconstruct) time (s)   (lower is better ): PSO = 0.061036
+                                                      not applicable: LDA
+  Forward peak memory (MB)         (lower is better ): SA = 444.88
+                                                      note: ranked separately (cannot reach every shared K): LDA K=[1, 2, 3, 4, 5, 6, 8]
+  Accuracy                         (higher is better): LDA = 0.54316
+                                                      not applicable: PCA, ICA, GA, PSO, ACO, SA, UBS-CNN
+                                                      note: only one algorithm provides this metric
+  Precision (macro)                (higher is better): LDA = 0.41012
+                                                      not applicable: PCA, ICA, GA, PSO, ACO, SA, UBS-CNN
+                                                      note: only one algorithm provides this metric
+  Recall (macro)                   (higher is better): LDA = 0.44421
+                                                      not applicable: PCA, ICA, GA, PSO, ACO, SA, UBS-CNN
+                                                      note: only one algorithm provides this metric
+  F1 (macro)                       (higher is better): LDA = 0.35319
+                                                      not applicable: PCA, ICA, GA, PSO, ACO, SA, UBS-CNN
+                                                      note: only one algorithm provides this metric
+  Fisher separability              (higher is better): LDA = 1.8454
+                                                      not applicable: PCA, ICA, GA, PSO, ACO, SA, UBS-CNN
+                                                      note: only one algorithm provides this metric
+
+RUN-LEVEL COST
+------------------------------------------------------------------------
+  Training time (s)                       : LDA = 2.0294
+  Evaluation time (s)                     : LDA = 13.426
+  Total time (s)                          : LDA = 15.492
+  Training peak memory (MB, tracemalloc)  : LDA = 148.25
+
+MEAN OF KEY METRICS OVER THE SHARED K VALUES (per algorithm; per-K tables in metric_comparison/)
+------------------------------------------------------------------------
+           K evaluated  PSNR_dB    SSIM     RMSE       MAE  storage_saving_pct  accuracy  f1_macro  forward_seconds
+algorithm                                                                                                          
+PCA                 12   43.605 0.97067 0.011082 0.0070281              91.008       n/a       n/a         0.065927
+ICA                 12   43.605 0.97067 0.011082 0.0070281              91.008       n/a       n/a         0.067188
+LDA                  7      n/a     n/a      n/a       n/a              95.971   0.54316   0.35319         0.061758
+GA                  12   39.824 0.95888 0.014272 0.0085511              91.009       n/a       n/a         0.043754
+PSO                 12   39.718 0.95805 0.014394 0.0085734              91.009       n/a       n/a         0.042316
+ACO                 12   40.495 0.96132 0.013651 0.0081773              91.009       n/a       n/a         0.066602
+SA                  12   39.928  0.9605 0.014104 0.0084039              91.009       n/a       n/a          0.07154
+UBS-CNN             12   38.133 0.93594 0.017015  0.010806              91.009       n/a       n/a          0.05403
+
+WINNER PER K
+------------------------------------------------------------------------
+  PSNR (dB)   : K=1: PCA, K=2: PCA, K=3: PCA, K=4: PCA, K=5: PCA, K=6: PCA, K=8: PCA, K=10: ICA, K=12: PCA, K=15: PCA, K=20: ICA, K=25: ICA, K=103: PCA
+  SSIM        : K=1: PCA, K=2: PCA, K=3: PCA, K=4: PCA, K=5: PCA, K=6: PCA, K=8: ICA, K=10: ICA, K=12: PCA, K=15: PCA, K=20: ICA, K=25: ICA, K=103: PCA
+  RMSE        : K=1: PCA, K=2: PCA, K=3: PCA, K=4: PCA, K=5: PCA, K=6: PCA, K=8: PCA, K=10: ICA, K=12: PCA, K=15: PCA, K=20: ICA, K=25: ICA, K=103: PCA
+  Accuracy    : K=1: LDA, K=2: LDA, K=3: LDA, K=4: LDA, K=5: LDA, K=6: LDA, K=8: LDA
+
+Notes
+------------------------------------------------------------------------
+  * n/a = the metric does not apply to that algorithm (e.g. LDA has no reconstruction; only LDA has
+    classification scores) or the algorithm did not run. No artificial values are inserted.
+  * PSNR is infinite for a lossless reconstruction (e.g. PCA with K = C); graphs cap it at 100 dB.
+  * Per-algorithm details (models, reduced/reconstructed data, all original metrics and graphs) are in
+    the algorithm folders listed in comparison.json.

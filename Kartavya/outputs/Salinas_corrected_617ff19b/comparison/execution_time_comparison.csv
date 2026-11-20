@@ -1,0 +1,9 @@
+algorithm,algorithm_id,status,reason_or_error,train_seconds,test_seconds,total_seconds,train_peak_python_mb,output_dir
+PCA,pca,ok,,177.54692879999993,239.69389019999994,417.3440733000001,645.928475,D:\DIP\Project\Downsampling\Kartavya\outputs\Salinas_corrected_617ff19b\pca
+ICA,ica,ok,,566.2880685999999,163.4964546000001,729.8559143,908.157398,D:\DIP\Project\Downsampling\Kartavya\outputs\Salinas_corrected_617ff19b\ica
+LDA,lda,not_applicable,no usable ground-truth labels: Classes [12] have < 50 training pixels. Merge or relabel them (they are not dropped silently).,0.9400740999999471,,0.9416572000000087,475.972224,D:\DIP\Project\Downsampling\Kartavya\outputs\Salinas_corrected_617ff19b\lda
+GA,ga,ok,,2127.9676953999997,153.09041440000055,2281.2498395,291.352767,D:\DIP\Project\Downsampling\Kartavya\outputs\Salinas_corrected_617ff19b\ga
+PSO,pso,ok,,6689.6591701,111.25354510000034,6801.0157438,298.499816,D:\DIP\Project\Downsampling\Kartavya\outputs\Salinas_corrected_617ff19b\pso
+ACO,aco,ok,,7438.488593199998,193.08801810000296,7631.767254900002,308.779704,D:\DIP\Project\Downsampling\Kartavya\outputs\Salinas_corrected_617ff19b\aco
+SA,sa,ok,,5766.345044599999,257.7185762000008,6024.446692199999,305.359658,D:\DIP\Project\Downsampling\Kartavya\outputs\Salinas_corrected_617ff19b\sa
+UBS-CNN,ubscnn,ok,,4214.419687600002,276.33896240000104,4491.233956600001,697.97175,D:\DIP\Project\Downsampling\Kartavya\outputs\Salinas_corrected_617ff19b\ubscnn

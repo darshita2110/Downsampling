@@ -1,0 +1,25 @@
+{
+  "label_files": [
+    "D:\\DIP\\Project\\Downsampling\\data\\darshita\\KSC_gt.mat"
+  ],
+  "matched": {
+    "KSC": "D:\\DIP\\Project\\Downsampling\\data\\darshita\\KSC_gt.mat"
+  },
+  "ignore_label": 0,
+  "min_pixels_per_class": 50,
+  "usable": true,
+  "reasons": [],
+  "requirement": "Class ids per pixel from a source independent of the input images (field data, an external land-cover map, or manual annotation). Labels made by thresholding or clustering these same pixels are circular: LDA would just recover the rule used to create them.",
+  "training_class_counts": {
+    "1": 205,
+    "2": 156,
+    "3": 57,
+    "4": 141,
+    "5": 161,
+    "6": 229,
+    "8": 251,
+    "11": 186,
+    "12": 503,
+    "13": 328
+  }
+}

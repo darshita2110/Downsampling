@@ -1,0 +1,17 @@
+{
+  "dataset_dir": "D:\\DIP\\Project\\Downsampling\\data\\darshita\\Indian_pines_corrected.mat",
+  "layout": "single_file",
+  "sort_rule": "ascending lexicographic order of the full (relative) filename",
+  "samples": [
+    {
+      "index": 0,
+      "name": "Indian_pines_corrected",
+      "files": [
+        "D:\\DIP\\Project\\Downsampling\\data\\darshita\\Indian_pines_corrected.mat"
+      ]
+    }
+  ],
+  "labels": {
+    "0": "D:\\DIP\\Project\\Downsampling\\data\\darshita\\Indian_pines_gt.mat"
+  }
+}

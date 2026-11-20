@@ -1,0 +1,17 @@
+{
+  "Botswana": {
+    "files": [
+      "D:\\DIP\\Project\\Downsampling\\data\\darshita\\Botswana.mat"
+    ],
+    "grid_hw": [
+      1476,
+      256
+    ],
+    "valid_pct_on_grid": 100.0,
+    "rows_used": [
+      0,
+      738
+    ],
+    "pixels_used": 188928
+  }
+}

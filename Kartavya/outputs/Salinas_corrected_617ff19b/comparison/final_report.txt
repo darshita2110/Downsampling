@@ -1,0 +1,85 @@
+CHANNEL / BAND REDUCTION - ALGORITHM COMPARISON
+========================================================================
+Dataset      : D:\DIP\Project\Downsampling\data\darshita\Salinas_corrected.mat
+Dataset id   : Salinas_corrected_617ff19b
+Layout       : single_file, 1 sample(s), 204 channels, dtype int16
+Split        : spatial  train [{'index': 0, 'rows': 'top'}]  test [{'index': 0, 'rows': 'bottom'}]
+Normalisation: training min/max per channel (fitted once on training pixels, shared by all)
+K values     : [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25] (identical for every algorithm)
+
+ALGORITHM STATUS
+------------------------------------------------------------------------
+  PCA        ok              total    417.3 s
+  ICA        ok              total    729.9 s
+  LDA        not_applicable  total      0.9 s  [no usable ground-truth labels: Classes [12] have < 50 training pixels. Merge or relabel them (they are not dropped silently).]
+  GA         ok              total   2281.2 s
+  PSO        ok              total   6801.0 s
+  ACO        ok              total   7631.8 s
+  SA         ok              total   6024.4 s
+  UBS-CNN    ok              total   4491.2 s
+
+BEST ALGORITHM PER METRIC (mean over the shared K values; direction-aware; ties reported)
+------------------------------------------------------------------------
+  PSNR (dB)                        (higher is better): PCA = ICA = 37.652
+                                                      not applicable: LDA
+                                                      note: tie between PCA, ICA
+  SSIM                             (higher is better): PCA = ICA = 0.96863
+                                                      not applicable: LDA
+                                                      note: tie between PCA, ICA
+  MSE                              (lower is better ): PCA = ICA = 0.00081726
+                                                      not applicable: LDA
+                                                      note: tie between PCA, ICA
+  RMSE                             (lower is better ): PCA = ICA = 0.020066
+                                                      not applicable: LDA
+                                                      note: tie between PCA, ICA
+  MAE                              (lower is better ): PCA = ICA = 0.013429
+                                                      not applicable: LDA
+                                                      note: tie between PCA, ICA
+  Dimensionality reduction (%)     (higher is better): PCA = ICA = GA = PSO = ACO = SA = UBS-CNN = 95.466
+                                                      not applicable: LDA
+                                                      note: tie between PCA, ICA, GA, PSO, ACO, SA, UBS-CNN
+  Storage saving incl. model (%)   (higher is better): GA = PSO = ACO = SA = UBS-CNN = 95.447
+                                                      not applicable: LDA
+                                                      note: tie between GA, PSO, ACO, SA, UBS-CNN
+  Compression ratio                (higher is better): GA = PSO = ACO = SA = UBS-CNN = 49.278
+                                                      not applicable: LDA
+                                                      note: tie between GA, PSO, ACO, SA, UBS-CNN
+  Forward (reduce) time (s)        (lower is better ): PSO = 0.035293
+                                                      not applicable: LDA
+  Inverse (reconstruct) time (s)   (lower is better ): PSO = 0.052403
+                                                      not applicable: LDA
+  Forward peak memory (MB)         (lower is better ): SA = 465.19
+                                                      not applicable: LDA
+
+RUN-LEVEL COST
+------------------------------------------------------------------------
+  Training time (s)                       : PCA = 177.55
+  Evaluation time (s)                     : PSO = 111.25
+  Total time (s)                          : PCA = 417.34
+  Training peak memory (MB, tracemalloc)  : GA = 291.35
+
+MEAN OF KEY METRICS OVER THE SHARED K VALUES (per algorithm; per-K tables in metric_comparison/)
+------------------------------------------------------------------------
+           K evaluated  PSNR_dB    SSIM     RMSE      MAE  storage_saving_pct  forward_seconds
+algorithm                                                                                     
+PCA                 12   37.652 0.96863 0.020066 0.013429              95.444           0.1356
+ICA                 12   37.652 0.96863 0.020066 0.013429              95.444         0.060809
+GA                  12   33.771 0.95569  0.02655 0.016975              95.447         0.041621
+PSO                 12   32.715 0.94886 0.028643  0.01835              95.447         0.035293
+ACO                 12   34.416 0.95879 0.026283 0.017242              95.447         0.052994
+SA                  12   33.515 0.95743 0.028774 0.019107              95.447         0.082475
+UBS-CNN             12   30.352 0.92021 0.037488 0.021604              95.447         0.076711
+
+WINNER PER K
+------------------------------------------------------------------------
+  PSNR (dB)   : K=1: PCA, K=2: PCA, K=3: SA, K=4: PCA, K=5: PCA, K=6: PCA, K=8: PCA, K=10: PCA, K=12: PCA, K=15: ICA, K=20: PCA, K=25: ICA, K=204: PCA
+  SSIM        : K=1: PCA, K=2: PCA, K=3: PSO, K=4: PCA, K=5: PCA, K=6: PCA, K=8: PCA, K=10: PCA, K=12: PCA, K=15: ICA, K=20: ICA, K=25: ICA, K=204: PCA
+  RMSE        : K=1: PCA, K=2: PCA, K=3: SA, K=4: PCA, K=5: PCA, K=6: PCA, K=8: PCA, K=10: PCA, K=12: PCA, K=15: ICA, K=20: PCA, K=25: ICA, K=204: PCA
+
+Notes
+------------------------------------------------------------------------
+  * n/a = the metric does not apply to that algorithm (e.g. LDA has no reconstruction; only LDA has
+    classification scores) or the algorithm did not run. No artificial values are inserted.
+  * PSNR is infinite for a lossless reconstruction (e.g. PCA with K = C); graphs cap it at 100 dB.
+  * Per-algorithm details (models, reduced/reconstructed data, all original metrics and graphs) are in
+    the algorithm folders listed in comparison.json.

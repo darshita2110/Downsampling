@@ -45,15 +45,28 @@ def k_mae(x, y):
     return float(np.mean(np.abs(np.asarray(x, np.float64) - np.asarray(y, np.float64))))
 
 
+_SSIM_WARNED = False
+
+
 def ssim_mean(orig_unit, rec_unit, grid_shape):
-    """Mean over channels of SSIM (7x7 window) between two (N, C) arrays in [0,1] laid out on the image grid."""
-    from skimage.metrics import structural_similarity
+    """Mean over channels of SSIM (7x7 window), computed as in Kartavya/common/metrics.py: skimage
+    structural_similarity with full=True, averaging the WHOLE SSIM map (borders included).
+    Needs scikit-image; if it is missing, returns NaN and prints how to install it."""
+    global _SSIM_WARNED
+    try:
+        from skimage.metrics import structural_similarity
+    except ImportError:
+        if not _SSIM_WARNED:
+            print("  [SSIM skipped: scikit-image is not installed. Run: pip install scikit-image]")
+            _SSIM_WARNED = True
+        return float("nan")
     h, w = grid_shape
     vals = []
     for c in range(orig_unit.shape[1]):
         a = orig_unit[:, c].reshape(h, w).astype(np.float64)
         b = rec_unit[:, c].reshape(h, w).astype(np.float64)
-        vals.append(structural_similarity(a, b, data_range=1.0, win_size=7))
+        _, smap = structural_similarity(a, b, data_range=1.0, full=True, win_size=7)
+        vals.append(float(smap.mean()))
     return float(np.nanmean(vals))
 
 

@@ -1,0 +1,28 @@
+2026-11-16 08:18:04 | INFO    | ===== PCA | dataset PaviaU_3ab3e560 | 103 channels | K = [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25]
+2026-11-16 08:18:04 | INFO    | standardize=True | max_train_pixels=1000000 | seed=42
+2026-11-16 08:18:05 | INFO    |   loaded PaviaU: grid (610, 340), valid 100.000%, pixels used 103,700 (rows 0-305)
+2026-11-16 08:18:05 | INFO    | Feature matrix: 103,700 pixels x 103 channels; fitting on 103,700
+2026-11-16 08:18:05 | INFO    | PCA fit in 0.075 s, peak 256.6 MB
+2026-11-16 08:18:05 | INFO    |   PC1:  64.68%  cumulative  64.68%
+2026-11-16 08:18:05 | INFO    |   PC2:  27.86%  cumulative  92.54%
+2026-11-16 08:18:05 | INFO    |   PC3:   6.10%  cumulative  98.64%
+2026-11-16 08:18:05 | INFO    |   PC4:   0.42%  cumulative  99.07%
+2026-11-16 08:18:05 | INFO    |   PC5:   0.22%  cumulative  99.28%
+2026-11-16 08:18:05 | INFO    |   PC6:   0.21%  cumulative  99.49%
+2026-11-16 08:18:05 | INFO    |   PC7:   0.16%  cumulative  99.65%
+2026-11-16 08:18:05 | INFO    |   PC8:   0.09%  cumulative  99.75%
+2026-11-16 08:18:05 | INFO    |   PC9:   0.05%  cumulative  99.80%
+2026-11-16 08:18:05 | INFO    |   PC10:   0.03%  cumulative  99.83%
+2026-11-16 08:18:05 | INFO    |   PC11:   0.02%  cumulative  99.85%
+2026-11-16 08:18:05 | INFO    |   PC12:   0.02%  cumulative  99.87%
+2026-11-16 08:18:05 | INFO    |   PC13:   0.02%  cumulative  99.89%
+2026-11-16 08:18:05 | INFO    |   PC14:   0.01%  cumulative  99.90%
+2026-11-16 08:18:05 | INFO    |   PC15:   0.01%  cumulative  99.91%
+2026-11-16 08:18:05 | INFO    |   PC16:   0.01%  cumulative  99.92%
+2026-11-16 08:18:05 | INFO    |   PC17:   0.01%  cumulative  99.93%
+2026-11-16 08:18:05 | INFO    |   PC18:   0.01%  cumulative  99.93%
+2026-11-16 08:18:05 | INFO    |   PC19:   0.01%  cumulative  99.94%
+2026-11-16 08:18:05 | INFO    |   PC20:   0.00%  cumulative  99.94%
+2026-11-16 08:18:05 | INFO    | Components needed: {'90%': 2, '95%': 3, '99%': 4}
+2026-11-16 08:18:11 | INFO    | scikit-learn cross-check: {'max_abs_diff_explained_variance_ratio': 4.440892098500626e-16, 'n_zero_variance_components': 0, 'min_abs_cosine_nonzero_components': 0.9999999999999981, 'max_abs_diff_reconstruction_k2': 2.842170943040401e-14}
+2026-11-16 08:19:12 | INFO    | Saved model -> D:\DIP\Project\Downsampling\Kartavya\outputs\PaviaU_3ab3e560\pca\models\pca_model.npz

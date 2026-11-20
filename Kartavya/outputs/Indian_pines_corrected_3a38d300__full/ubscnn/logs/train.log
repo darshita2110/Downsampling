@@ -1,0 +1,56 @@
+2026-11-17 21:00:42 | INFO    | ===== UBS-CNN | dataset Indian_pines_corrected_3a38d300 | 200 channels | K = [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25]
+2026-11-17 21:00:42 | INFO    |   loaded Indian_pines_corrected: grid (145, 145), valid 100.000%, pixels used 21,025 (rows 0-145)
+2026-11-17 21:00:42 | INFO    | Training matrix: 21,025 pixels x 200 channels; sample 21,025 -> fit 14,717 / validation 6,308
+2026-11-17 21:00:43 | INFO    | Near-duplicate channel pairs (|r| > 0.999): [('band_112', 'band_113', 0.999247), ('band_112', 'band_114', 0.999117), ('band_113', 'band_114', 0.9995), ('band_113', 'band_115', 0.999362), ('band_113', 'band_116', 0.999009), ('band_114', 'band_115', 0.999647), ('band_114', 'band_116', 0.999441), ('band_114', 'band_117', 0.999151), ('band_115', 'band_116', 0.999631), ('band_115', 'band_117', 0.999467), ('band_115', 'band_118', 0.999153), ('band_116', 'band_117', 0.999683), ('band_116', 'band_118', 0.999512), ('band_116', 'band_119', 0.999238), ('band_117', 'band_118', 0.999654), ('band_117', 'band_119', 0.999493), ('band_117', 'band_120', 0.99924), ('band_118', 'band_119', 0.999663), ('band_118', 'band_120', 0.999506), ('band_118', 'band_121', 0.99922)] .... Keeping both members of a pair adds no information; the redundancy term penalises it.
+2026-11-17 21:00:44 | INFO    | hyper-parameters {'method': 'BS-Net-Conv (Cai et al., IEEE TGRS 2020, arXiv:1904.08269) used as UBS-CNN', 'patch_size': 16, 'patch_stride_configured': 16, 'patch_stride_used': 4, 'l1_lambda': 0.01, 'learning_rate': 0.0001, 'batch_size': 32, 'epochs': 100, 'seeds': [42, 43, 44], 'optimizer': 'Adam', 'val_patch_fraction': 0.1, 'torch': '2.15.0+cpu', 'threads': 10}
+2026-11-17 21:00:44 | INFO    | Small training region: stride lowered 16 -> 4 to get 1,089 patches
+2026-11-17 21:00:44 | INFO    | Patches: 1,089 -> train 980 / held-out 109; BS-Net-Conv has 591,584 trainable parameters
+2026-11-17 21:00:59 | INFO    |   seed 42 epoch   1: loss 31.3952 (MSE 0.04864 + L1 31.3465), val MSE 0.04007, 8.7 s
+2026-11-17 21:02:12 | INFO    |   seed 42 epoch  10: loss 1.8239 (MSE 0.00576 + L1 1.8181), val MSE 0.00488, 7.8 s
+2026-11-17 21:03:34 | INFO    |   seed 42 epoch  20: loss 0.2341 (MSE 0.00337 + L1 0.2307), val MSE 0.00321, 8.1 s
+2026-11-17 21:04:54 | INFO    |   seed 42 epoch  30: loss 0.0897 (MSE 0.00280 + L1 0.0869), val MSE 0.00261, 8.5 s
+2026-11-17 21:06:06 | INFO    |   seed 42 epoch  40: loss 0.0489 (MSE 0.00253 + L1 0.0464), val MSE 0.00243, 5.0 s
+2026-11-17 21:07:01 | INFO    |   seed 42 epoch  50: loss 0.0300 (MSE 0.00236 + L1 0.0277), val MSE 0.00335, 5.7 s
+2026-11-17 21:08:34 | INFO    |   seed 42 epoch  60: loss 0.0234 (MSE 0.00263 + L1 0.0208), val MSE 0.00459, 10.6 s
+2026-11-17 21:10:18 | INFO    |   seed 42 epoch  70: loss 0.0150 (MSE 0.00222 + L1 0.0128), val MSE 0.00595, 10.1 s
+2026-11-17 21:12:00 | INFO    |   seed 42 epoch  80: loss 0.0114 (MSE 0.00223 + L1 0.0092), val MSE 0.00903, 10.5 s
+2026-11-17 21:13:46 | INFO    |   seed 42 epoch  90: loss 0.0100 (MSE 0.00228 + L1 0.0077), val MSE 0.01450, 10.4 s
+2026-11-17 21:15:26 | INFO    |   seed 42 epoch 100: loss 0.0074 (MSE 0.00232 + L1 0.0051), val MSE 0.02146, 10.0 s
+2026-11-17 21:15:26 | INFO    | seed 42: trained in 882 s; ranking band_135 > band_110 > band_182 > band_043 > band_125 > band_146 > band_144 > band_053 > band_033 > band_157 > band_200 > band_132 > band_036 > band_048 > band_095 > band_158 > band_024 > band_121 > ba
+2026-11-17 21:15:36 | INFO    |   seed 43 epoch   1: loss 31.2905 (MSE 0.04374 + L1 31.2468), val MSE 0.03736, 10.4 s
+2026-11-17 21:17:10 | INFO    |   seed 43 epoch  10: loss 1.8340 (MSE 0.00523 + L1 1.8288), val MSE 0.00508, 10.6 s
+2026-11-17 21:18:52 | INFO    |   seed 43 epoch  20: loss 0.2392 (MSE 0.00333 + L1 0.2359), val MSE 0.00294, 10.3 s
+2026-11-17 21:20:33 | INFO    |   seed 43 epoch  30: loss 0.0900 (MSE 0.00292 + L1 0.0870), val MSE 0.00268, 10.2 s
+2026-11-17 21:22:16 | INFO    |   seed 43 epoch  40: loss 0.0459 (MSE 0.00254 + L1 0.0433), val MSE 0.00276, 10.2 s
+2026-11-17 21:23:36 | INFO    |   seed 43 epoch  50: loss 0.0277 (MSE 0.00249 + L1 0.0252), val MSE 0.00266, 4.7 s
+2026-11-17 21:24:29 | INFO    |   seed 43 epoch  60: loss 0.0185 (MSE 0.00229 + L1 0.0162), val MSE 0.00542, 5.5 s
+2026-11-17 21:25:24 | INFO    |   seed 43 epoch  70: loss 0.0164 (MSE 0.00275 + L1 0.0136), val MSE 0.02611, 5.5 s
+2026-11-17 21:26:19 | INFO    |   seed 43 epoch  80: loss 0.0106 (MSE 0.00227 + L1 0.0083), val MSE 0.01110, 5.7 s
+2026-11-17 21:27:14 | INFO    |   seed 43 epoch  90: loss 0.0085 (MSE 0.00217 + L1 0.0064), val MSE 0.04450, 5.5 s
+2026-11-17 21:28:09 | INFO    |   seed 43 epoch 100: loss 0.0077 (MSE 0.00231 + L1 0.0054), val MSE 0.03497, 5.5 s
+2026-11-17 21:28:09 | INFO    | seed 43: trained in 763 s; ranking band_119 > band_139 > band_163 > band_186 > band_137 > band_105 > band_113 > band_184 > band_152 > band_061 > band_006 > band_158 > band_013 > band_101 > band_129 > band_190 > band_092 > band_166 > ba
+2026-11-17 21:28:14 | INFO    |   seed 44 epoch   1: loss 31.3668 (MSE 0.04461 + L1 31.3222), val MSE 0.03895, 5.6 s
+2026-11-17 21:29:04 | INFO    |   seed 44 epoch  10: loss 1.7053 (MSE 0.00523 + L1 1.7001), val MSE 0.00529, 5.5 s
+2026-11-17 21:29:59 | INFO    |   seed 44 epoch  20: loss 0.2223 (MSE 0.00400 + L1 0.2183), val MSE 0.00355, 5.5 s
+2026-11-17 21:30:54 | INFO    |   seed 44 epoch  30: loss 0.0717 (MSE 0.00287 + L1 0.0688), val MSE 0.00260, 5.4 s
+2026-11-17 21:31:49 | INFO    |   seed 44 epoch  40: loss 0.0384 (MSE 0.00350 + L1 0.0349), val MSE 0.00400, 5.5 s
+2026-11-17 21:32:45 | INFO    |   seed 44 epoch  50: loss 0.0214 (MSE 0.00256 + L1 0.0188), val MSE 0.00593, 5.5 s
+2026-11-17 21:33:40 | INFO    |   seed 44 epoch  60: loss 0.0137 (MSE 0.00216 + L1 0.0115), val MSE 0.02435, 5.5 s
+2026-11-17 21:34:35 | INFO    |   seed 44 epoch  70: loss 0.0102 (MSE 0.00214 + L1 0.0081), val MSE 0.00629, 5.5 s
+2026-11-17 21:35:30 | INFO    |   seed 44 epoch  80: loss 0.0096 (MSE 0.00258 + L1 0.0070), val MSE 0.03093, 5.5 s
+2026-11-17 21:36:26 | INFO    |   seed 44 epoch  90: loss 0.0080 (MSE 0.00265 + L1 0.0054), val MSE 0.01506, 5.4 s
+2026-11-17 21:37:21 | INFO    |   seed 44 epoch 100: loss 0.0050 (MSE 0.00195 + L1 0.0031), val MSE 0.08719, 5.5 s
+2026-11-17 21:37:21 | INFO    | seed 44: trained in 552 s; ranking band_112 > band_108 > band_142 > band_107 > band_029 > band_109 > band_137 > band_037 > band_160 > band_006 > band_059 > band_060 > band_076 > band_004 > band_123 > band_028 > band_152 > band_081 > ba
+2026-11-17 21:37:21 | INFO    | Consensus channel ranking: band_158 0.000, band_135 0.000, band_137 0.000, band_186 0.000, band_112 0.000, band_059 0.000, band_182 0.000, band_013 0.000, band_200 0.000, band_110 0.000, band_125 0.000, band_144 0.000, band_043 0.000, band_076 0.000, band_036 0.000, band_152 0.000, band_053 0.000, band_070 0.000, band_139 0.000, band_092 0.000
+2026-11-17 21:37:29 | INFO    | K=1: select ['band_158'] | objective 0.67825 (optimum 0.67964, rank 8/200) | same top-1 in 0/3 seeds
+2026-11-17 21:37:29 | INFO    | K=2: select ['band_135', 'band_158'] | objective 0.65332 | same top-2 in 0/3 seeds
+2026-11-17 21:37:29 | INFO    | K=3: select ['band_135', 'band_137', 'band_158'] | objective 0.65386 | same top-3 in 0/3 seeds
+2026-11-17 21:37:29 | INFO    | K=4: select ['band_135', 'band_137', 'band_158', 'band_186'] | objective 0.65467 | same top-4 in 0/3 seeds
+2026-11-17 21:37:29 | INFO    | K=5: select ['band_112', 'band_135', 'band_137', 'band_158', 'band_186'] | objective 0.65927 | same top-5 in 0/3 seeds
+2026-11-17 21:37:29 | INFO    | K=6: select ['band_059', 'band_112', 'band_135', 'band_137', 'band_158', 'band_186'] | objective 0.81241 | same top-6 in 0/3 seeds
+2026-11-17 21:37:29 | INFO    | K=8: select ['band_013', 'band_059', 'band_112', 'band_135', 'band_137', 'band_158', 'band_182', 'band_186'] | objective 0.82532 | same top-8 in 0/3 seeds
+2026-11-17 21:37:29 | INFO    | K=10: select ['band_013', 'band_059', 'band_110', 'band_112', 'band_135', 'band_137', 'band_158', 'band_182', 'band_186', 'band_200'] | objective 0.83428 | same top-10 in 0/3 seeds
+2026-11-17 21:37:30 | INFO    | K=12: select ['band_013', 'band_059', 'band_110', 'band_112', 'band_125', 'band_135', 'band_137', 'band_144', 'band_158', 'band_182'] | objective 0.83502 | same top-12 in 0/3 seeds
+2026-11-17 21:37:30 | INFO    | K=15: select ['band_013', 'band_036', 'band_043', 'band_059', 'band_076', 'band_110', 'band_112', 'band_125', 'band_135', 'band_137'] | objective 0.86205 | same top-15 in 0/3 seeds
+2026-11-17 21:37:30 | INFO    | K=20: select ['band_013', 'band_036', 'band_043', 'band_053', 'band_059', 'band_070', 'band_076', 'band_092', 'band_110', 'band_112'] | objective 0.86833 | same top-20 in 0/3 seeds
+2026-11-17 21:37:30 | INFO    | K=25: select ['band_010', 'band_013', 'band_036', 'band_043', 'band_048', 'band_053', 'band_059', 'band_061', 'band_070', 'band_076'] | objective 0.88923 | same top-25 in 0/3 seeds

@@ -29,9 +29,17 @@ can sit in the same tables.
 | Fit and score on | all pixels ('full') | all pixels | fit on 8,000, score on all and on held-out |
 
 ## 4. Check against the teammates (Indian Pines, k = 3, PCA fitted on all pixels)
-PSNR 28.1466 dB (theirs 28.1466), RMSE 126.0953 and PSNR 33.0730 (Abhishek's, identical), OA 64.907% (identical),
-SSIM 0.8789 (theirs 0.8786), AA within 0.001. ARI/NMI differ (0.620 vs 0.587 and 0.735 vs 0.727), probably from
-k-means randomness or the scikit-learn version; not tested. Treat ARI/NMI as indicative.
+| Quantity | Teammate | This pipeline |
+|---|---|---|
+| PSNR (Kartavya, [0,1] data) | 28.146576 dB | 28.146574 dB |
+| SSIM (Kartavya) | 0.8785723 | 0.8785733 |
+| Compression ratio | 65.42201 | 65.42201 |
+| RMSE / PSNR (Abhishek, original units) | 126.0953 / 33.0730 dB | 126.0953 / 33.0730 dB |
+| SAM | 2.18735 deg | 2.18735 deg |
+| Variance explained | 0.903734 | 0.903734 |
+| SVM OA | 64.907 % | 64.907 % |
+ARI/NMI do NOT match exactly (ARI 0.620 vs 0.587, NMI 0.735 vs 0.727), probably k-means randomness or the
+scikit-learn version (not tested). Treat ARI/NMI as indicative.
 
 ## 5. Results (k = 3)
 | dataset | algorithm | k | PSNR_dB | PSNR_dB_heldout | SSIM | sam_deg | OA | AA | kappa | ARI | NMI | neighborhood_preservation | storage_saving_pct | compression_ratio |
@@ -41,27 +49,27 @@ k-means randomness or the scikit-learn version; not tested. Treat ARI/NMI as ind
 | indian_pines | PCA (fit on sample) + knn decoder | 3 | 30.711 | 30.122 | 0.924 | 1.29 | 64.957 | 52.658 | 59.069 | 0.563 | 0.709 | 0.174 | 59.87 | 2.492 |
 | indian_pines | Isomap + linear decoder | 3 | 26.692 | 26.706 | 0.827 | 2.394 | 60.286 | 48.339 | 53.262 | 0.586 | 0.675 | 0.175 | 98.471 | 65.422 |
 | indian_pines | Isomap + knn decoder | 3 | 30.434 | 29.816 | 0.914 | 1.324 | 60.286 | 48.339 | 53.262 | 0.586 | 0.675 | 0.175 | 59.87 | 2.492 |
-| indian_pines | Kernel PCA + linear decoder | 3 | 23.905 | 23.93 | 0.698 | 2.874 | 58.111 | 43.617 | 50.51 | 0.516 | 0.668 | 0.117 | 98.471 | 65.422 |
+| indian_pines | Kernel PCA + linear decoder | 3 | 23.905 | 23.93 | 0.697 | 2.874 | 58.111 | 43.617 | 50.51 | 0.516 | 0.668 | 0.117 | 98.471 | 65.422 |
 | indian_pines | Kernel PCA + knn decoder | 3 | 29.668 | 29.123 | 0.908 | 1.511 | 58.111 | 43.617 | 50.51 | 0.516 | 0.668 | 0.117 | 59.87 | 2.492 |
-| indian_pines | LLE + linear decoder | 3 | 22.971 | 22.967 | 0.625 | 3.497 | 52.499 | 29.175 | 42.392 | 0.376 | 0.585 | 0.108 | 98.471 | 65.422 |
-| indian_pines | LLE + knn decoder | 3 | 28.768 | 28.177 | 0.881 | 1.606 | 52.499 | 29.175 | 42.392 | 0.376 | 0.585 | 0.108 | 59.87 | 2.492 |
+| indian_pines | LLE + linear decoder | 3 | 22.971 | 22.967 | 0.625 | 3.497 | 52.495 | 29.173 | 42.386 | 0.376 | 0.585 | 0.108 | 98.471 | 65.422 |
+| indian_pines | LLE + knn decoder | 3 | 28.768 | 28.177 | 0.88 | 1.606 | 52.495 | 29.173 | 42.386 | 0.376 | 0.585 | 0.108 | 59.87 | 2.492 |
 | salinas | PCA (fit on all pixels) | 3 | 34.709 | 34.707 | 0.974 | 2.594 | 85.744 | 91.183 | 84.036 | 0.719 | 0.791 |  | 98.524 | 67.751 |
 | salinas | PCA (fit on sample) | 3 | 34.682 | 34.679 | 0.973 | 2.622 | 85.726 | 91.14 | 84.015 | 0.716 | 0.793 | 0.2 | 98.524 | 67.751 |
 | salinas | PCA (fit on sample) + knn decoder | 3 | 39.966 | 39.802 | 0.98 | 0.753 | 85.726 | 91.14 | 84.015 | 0.716 | 0.793 | 0.2 | 91.221 | 11.391 |
 | salinas | Isomap + linear decoder | 3 | 33.048 | 33.029 | 0.945 | 3.148 | 84.907 | 89.666 | 83.106 | 0.717 | 0.802 | 0.152 | 98.524 | 67.751 |
 | salinas | Isomap + knn decoder | 3 | 38.108 | 37.957 | 0.967 | 1.038 | 84.907 | 89.666 | 83.106 | 0.717 | 0.802 | 0.152 | 91.221 | 11.391 |
-| salinas | Kernel PCA + linear decoder | 3 | 26.512 | 26.503 | 0.858 | 4.135 | 83.232 | 86.494 | 81.267 | 0.564 | 0.69 | 0.118 | 98.524 | 67.751 |
-| salinas | Kernel PCA + knn decoder | 3 | 34.697 | 34.486 | 0.961 | 0.996 | 83.232 | 86.494 | 81.267 | 0.564 | 0.69 | 0.118 | 91.221 | 11.391 |
-| salinas | LLE + linear decoder | 3 | 19.783 | 19.78 | 0.749 | 11.616 | 66.211 | 52.188 | 61.26 | 0.458 | 0.587 | 0.057 | 98.524 | 67.751 |
-| salinas | LLE + knn decoder | 3 | 30.464 | 30.328 | 0.871 | 2.102 | 66.211 | 52.188 | 61.26 | 0.458 | 0.587 | 0.057 | 91.221 | 11.391 |
+| salinas | Kernel PCA + linear decoder | 3 | 26.512 | 26.503 | 0.857 | 4.135 | 83.232 | 86.494 | 81.267 | 0.564 | 0.69 | 0.118 | 98.524 | 67.751 |
+| salinas | Kernel PCA + knn decoder | 3 | 34.697 | 34.486 | 0.96 | 0.996 | 83.232 | 86.494 | 81.267 | 0.564 | 0.69 | 0.118 | 91.221 | 11.391 |
+| salinas | LLE + linear decoder | 3 | 19.783 | 19.78 | 0.75 | 11.616 | 66.184 | 52.138 | 61.227 | 0.473 | 0.57 | 0.056 | 98.524 | 67.751 |
+| salinas | LLE + knn decoder | 3 | 30.471 | 30.336 | 0.87 | 2.101 | 66.184 | 52.138 | 61.227 | 0.473 | 0.57 | 0.056 | 91.221 | 11.391 |
 
 k = 3. 'PCA (fit on all pixels)' reproduces the teammates' PCA/PPCA protocol.
 OA/AA/kappa: RBF-SVM, random 10% per class (Abhishek's protocol), %. PSNR/SSIM: Kartavya's [0,1] protocol.
 '+ knn decoder' rows must be compared with 'PCA (fit on sample) + knn decoder', which uses the same decoder.
 ARI/NMI depend on k-means randomness and the scikit-learn version; treat as indicative (about +/-0.03).
 
-Not run: KSC and Botswana (see HOW_TO_RUN.md). Isomap with SMACOF is excluded because scikit-learn's MDS cannot
-embed new pixels.
+Final one-table summary: results/FINAL_COMPARISON_TABLE.md. Not run: KSC and Botswana through this pipeline (see HOW_TO_RUN.md).
+Isomap with SMACOF is excluded because scikit-learn's MDS cannot embed new pixels.
 
 ## 6. What to say
 - The reproduced PCA row matches the teammates' numbers, so the pipeline's scores can be put beside theirs.

@@ -8,10 +8,10 @@
     "trustworthiness": 0.9989985114342923,
     "continuity": 0.9992617438613131,
     "neighborhood_preservation": 0.5916705796783197,
-    "reconstruction_error": 2.3450325644549057,
+    "reconstruction_error": 2.345032564454911,
     "explained_variance_ratio": null,
-    "fit_time_seconds": 0.5293909450000456,
-    "peak_memory_mb": 62.954875
+    "fit_time_seconds": 0.7181739980000046,
+    "peak_memory_mb": 62.95675
   },
   "latent_recovery_spearman": [
     {

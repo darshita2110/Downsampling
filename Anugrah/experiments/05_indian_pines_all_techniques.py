@@ -162,7 +162,7 @@ def main():
             extra = {"gamma_used": diag["gamma_used"]}
         else:
             emb, model, diag = fit_lle_pixels(Xi, n_neighbors=N_NEIGHBORS, n_components=N_COMPONENTS,
-                                               reg=1e-3, random_state=RANDOM_SEED)
+                                               reg=1e-3, random_state=RANDOM_SEED, eigen_solver="dense")
             metrics = summarize(Xi, emb, model=model, diagnostics=diag, n_neighbors=N_NEIGHBORS)
 
         cls = classification_scores(emb, yi, gi)

@@ -1,0 +1,28 @@
+2026-11-16 13:14:06 | INFO    | Loaded saved subsets for K = [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25]
+2026-11-16 13:14:06 | INFO    |   K=1: keep ['band_157'] (training fitness 0.62109)
+2026-11-16 13:14:06 | INFO    |   K=2: keep ['band_084', 'band_145'] (training fitness 0.97048)
+2026-11-16 13:14:06 | INFO    |   K=3: keep ['band_010', 'band_066', 'band_111'] (training fitness 1.02872)
+2026-11-16 13:14:06 | INFO    |   K=4: keep ['band_004', 'band_088', 'band_109', 'band_127'] (training fitness 1.08441)
+2026-11-16 13:14:06 | INFO    |   K=5: keep ['band_003', 'band_057', 'band_091', 'band_107', 'band_118'] (training fitness 1.13957)
+2026-11-16 13:14:06 | INFO    |   K=6: keep ['band_003', 'band_016', 'band_057', 'band_091', 'band_107', 'band_182'] (training fitness 1.15583)
+2026-11-16 13:14:06 | INFO    |   K=8: keep ['band_001', 'band_002', 'band_003', 'band_023', 'band_048', 'band_095', 'band_107', 'band_167'] (training fitness 1.32105)
+2026-11-16 13:14:06 | INFO    |   K=10: keep ['band_001', 'band_002', 'band_003', 'band_010', 'band_076', 'band_095', 'band_107', 'band_124', 'band_149', 'band_203'] (training fitness 1.34022)
+2026-11-16 13:14:06 | INFO    |   K=12: keep ['band_001', 'band_002', 'band_003', 'band_006', 'band_030', 'band_055', 'band_086', 'band_107', 'band_108', 'band_150', 'band_179', 'band_203'] (training fitness 1.37446)
+2026-11-16 13:14:06 | INFO    |   K=15: keep ['band_001', 'band_002', 'band_003', 'band_004', 'band_013', 'band_039', 'band_054', 'band_083', 'band_106', 'band_107', 'band_142', 'band_148'] ... (training fitness 1.42123)
+2026-11-16 13:14:06 | INFO    |   K=20: keep ['band_001', 'band_002', 'band_003', 'band_004', 'band_006', 'band_033', 'band_039', 'band_054', 'band_099', 'band_105', 'band_107', 'band_108'] ... (training fitness 1.43310)
+2026-11-16 13:14:06 | INFO    |   K=25: keep ['band_001', 'band_002', 'band_003', 'band_004', 'band_007', 'band_019', 'band_036', 'band_038', 'band_039', 'band_040', 'band_044', 'band_068'] ... (training fitness 1.43688)
+2026-11-16 13:14:08 | INFO    | 00_Salinas_corrected_bottom: test image 256 x 217, 55,552 valid pixels (100.00%)
+2026-11-16 13:14:20 | INFO    |   K=1: reduction  99.5% | RMSE 0.0792 MAE 0.0485 PSNR  22.02 dB SSIM 0.8138 | 43.23 MB -> 218.60 KB | fwd 52.0 ms inv 88.3 ms
+2026-11-16 13:14:32 | INFO    |   K=2: reduction  99.0% | RMSE 0.0420 MAE 0.0309 PSNR  27.54 dB SSIM 0.9479 | 43.23 MB -> 436.40 KB | fwd 43.3 ms inv 115.5 ms
+2026-11-16 13:14:44 | INFO    |   K=3: reduction  98.5% | RMSE 0.0436 MAE 0.0307 PSNR  27.20 dB SSIM 0.9468 | 43.23 MB -> 654.20 KB | fwd 50.3 ms inv 74.7 ms
+2026-11-16 13:14:56 | INFO    |   K=4: reduction  98.0% | RMSE 0.0436 MAE 0.0312 PSNR  27.22 dB SSIM 0.9302 | 43.23 MB -> 872.00 KB | fwd 39.6 ms inv 65.0 ms
+2026-11-16 13:15:07 | INFO    |   K=5: reduction  97.5% | RMSE 0.0316 MAE 0.0206 PSNR  30.02 dB SSIM 0.9610 | 43.23 MB -> 1.06 MB | fwd 44.9 ms inv 95.0 ms
+2026-11-16 13:15:19 | INFO    |   K=6: reduction  97.1% | RMSE 0.0147 MAE 0.0081 PSNR  36.63 dB SSIM 0.9785 | 43.23 MB -> 1.28 MB | fwd 52.1 ms inv 71.4 ms
+2026-11-16 13:15:31 | INFO    |   K=8: reduction  96.1% | RMSE 0.0126 MAE 0.0079 PSNR  38.01 dB SSIM 0.9862 | 43.23 MB -> 1.70 MB | fwd 61.5 ms inv 119.1 ms
+2026-11-16 13:15:43 | INFO    |   K=10: reduction  95.1% | RMSE 0.0164 MAE 0.0095 PSNR  35.72 dB SSIM 0.9821 | 43.23 MB -> 2.13 MB | fwd 56.0 ms inv 80.7 ms
+2026-11-16 13:15:55 | INFO    |   K=12: reduction  94.1% | RMSE 0.0099 MAE 0.0063 PSNR  40.05 dB SSIM 0.9881 | 43.23 MB -> 2.55 MB | fwd 52.0 ms inv 72.2 ms
+2026-11-16 13:16:07 | INFO    |   K=15: reduction  92.6% | RMSE 0.0088 MAE 0.0055 PSNR  41.07 dB SSIM 0.9889 | 43.23 MB -> 3.19 MB | fwd 66.0 ms inv 78.2 ms
+2026-11-16 13:16:19 | INFO    |   K=20: reduction  90.2% | RMSE 0.0066 MAE 0.0041 PSNR  43.59 dB SSIM 0.9903 | 43.23 MB -> 4.25 MB | fwd 52.0 ms inv 127.0 ms
+2026-11-16 13:16:31 | INFO    |   K=25: reduction  87.7% | RMSE 0.0064 MAE 0.0035 PSNR  43.93 dB SSIM 0.9914 | 43.23 MB -> 5.32 MB | fwd 66.1 ms inv 86.0 ms
+2026-11-16 13:17:18 | INFO    | ACO vs GA: same training objective at 1/12 K values
+2026-11-16 13:17:18 | INFO    | ACO vs PSO: same training objective at 0/12 K values

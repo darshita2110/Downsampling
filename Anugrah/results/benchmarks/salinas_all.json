@@ -29,7 +29,7 @@
       "neighborhood_preservation": 0.1477223574570088,
       "reconstruction_error": null,
       "explained_variance_ratio": 0.9738726645291027,
-      "fit_time_seconds": 0.021407923000026585,
+      "fit_time_seconds": 0.01719973599995228,
       "peak_memory_mb": 1.691164
     },
     "classification_5nn": {
@@ -56,12 +56,12 @@
     "random_seed": 42,
     "metrics": {
       "trustworthiness": 0.9873044775418155,
-      "continuity": 0.9932847496293512,
+      "continuity": 0.9932847509344526,
       "neighborhood_preservation": 0.12655499034998294,
-      "reconstruction_error": 28.99300385148536,
+      "reconstruction_error": 28.993003851483255,
       "explained_variance_ratio": null,
-      "fit_time_seconds": 17.899242352999977,
-      "peak_memory_mb": 1540.368727
+      "fit_time_seconds": 15.400792922999926,
+      "peak_memory_mb": 1540.368432
     },
     "classification_5nn": {
       "random_5fold": {
@@ -91,8 +91,8 @@
       "neighborhood_preservation": 0.104273087358193,
       "reconstruction_error": null,
       "explained_variance_ratio": 0.695679891208404,
-      "fit_time_seconds": 2.634876910999992,
-      "peak_memory_mb": 528.203911
+      "fit_time_seconds": 1.9113504130000365,
+      "peak_memory_mb": 528.203781
     },
     "classification_5nn": {
       "random_5fold": {
@@ -117,24 +117,24 @@
     "n_components": 3,
     "random_seed": 42,
     "metrics": {
-      "trustworthiness": 0.9754690521309696,
-      "continuity": 0.9844474853306605,
-      "neighborhood_preservation": 0.07161828060103399,
-      "reconstruction_error": 1.889627203074627e-10,
+      "trustworthiness": 0.9754527879575685,
+      "continuity": 0.9844202556954624,
+      "neighborhood_preservation": 0.07161059092229168,
+      "reconstruction_error": 1.8896356387528807e-10,
       "explained_variance_ratio": null,
-      "fit_time_seconds": 2.9322494360000064,
-      "peak_memory_mb": 16.575768
+      "fit_time_seconds": 44.98435547199995,
+      "peak_memory_mb": 577.609814
     },
     "classification_5nn": {
       "random_5fold": {
         "overall_accuracy": 0.836,
         "average_class_accuracy": 0.8916880794251071,
-        "kappa": 0.8171358866432051
+        "kappa": 0.8171360363807298
       },
       "spatial_block_5fold": {
         "overall_accuracy": 0.7375,
         "average_class_accuracy": 0.7933651419515451,
-        "kappa": 0.7069199497025787
+        "kappa": 0.7069201900064321
       }
     }
   }

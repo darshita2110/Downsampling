@@ -1,0 +1,16 @@
+LDA on PaviaU_3ab3e560
+============================================================
+status: ok
+channels: 103   split: spatial   K values: [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25]
+training 2.03 s, evaluation 13.43 s, total 15.49 s
+
+ k  PSNR_dB  SSIM  RMSE  MAE  MSE  accuracy  f1_macro  storage_saving_pct  compression_ratio  forward_seconds
+ 1      NaN   NaN   NaN  NaN  NaN   0.55076   0.20721              99.025             102.59         0.050574
+ 2      NaN   NaN   NaN  NaN  NaN   0.57376    0.2566              98.053             51.372          0.06181
+ 3      NaN   NaN   NaN  NaN  NaN   0.61546   0.30402              97.082             34.265         0.072558
+ 4      NaN   NaN   NaN  NaN  NaN    0.6448   0.41751               96.11             25.705         0.059748
+ 5      NaN   NaN   NaN  NaN  NaN   0.46452   0.40406              95.138             20.567         0.053185
+ 6      NaN   NaN   NaN  NaN  NaN   0.47559   0.43738              94.166             17.141         0.078316
+ 8      NaN   NaN   NaN  NaN  NaN   0.47723   0.44552              92.222             12.857         0.056112
+
+Direction: PSNR_dB higher is better, SSIM higher is better, RMSE lower is better, MAE lower is better, MSE lower is better, accuracy higher is better, f1_macro higher is better, storage_saving_pct higher is better, compression_ratio higher is better, forward_seconds lower is better

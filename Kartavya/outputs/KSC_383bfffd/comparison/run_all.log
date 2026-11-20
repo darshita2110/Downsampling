@@ -1,0 +1,26 @@
+2026-11-16 08:16:36 | INFO    | Dataset KSC_383bfffd: 1 sample(s), 176 channels; split spatial
+2026-11-16 08:16:36 | INFO    | Common K values for every algorithm: [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25]
+2026-11-16 08:16:37 | INFO    | Algorithms: ['pca', 'ica', 'lda', 'ga', 'pso', 'aco', 'sa', 'ubscnn']
+2026-11-16 08:16:37 | INFO    | [1/8] ===================== PCA =====================
+2026-11-16 08:29:00 | INFO    | PCA: ok in 743.2 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\KSC_383bfffd\pca
+2026-11-16 08:29:00 | INFO    | [2/8] ===================== ICA =====================
+2026-11-16 09:00:37 | INFO    | ICA: ok in 1897.0 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\KSC_383bfffd\ica
+2026-11-16 09:00:37 | INFO    | [3/8] ===================== LDA =====================
+2026-11-16 09:01:10 | INFO    | LDA: ok in 33.0 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\KSC_383bfffd\lda
+2026-11-16 09:01:10 | INFO    | [4/8] ===================== GA =====================
+2026-11-16 11:04:24 | INFO    | GA: ok in 7393.6 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\KSC_383bfffd\ga
+2026-11-16 11:04:24 | INFO    | [5/8] ===================== PSO =====================
+2026-11-16 16:52:41 | INFO    | PSO: ok in 20897.2 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\KSC_383bfffd\pso
+2026-11-16 16:52:41 | INFO    | [6/8] ===================== ACO =====================
+2026-11-16 21:13:04 | INFO    | ACO: ok in 15622.2 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\KSC_383bfffd\aco
+2026-11-16 21:13:04 | INFO    | [7/8] ===================== SA =====================
+2026-11-17 00:02:49 | INFO    | SA: ok in 10184.9 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\KSC_383bfffd\sa
+2026-11-17 00:02:49 | INFO    | [8/8] ===================== UBSCNN =====================
+2026-11-17 00:33:10 | INFO    | UBS-CNN: ok in 1818.4 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\KSC_383bfffd\ubscnn
+2026-11-17 00:33:20 | INFO    | Comparison written to D:\DIP\Project\Downsampling\Kartavya\outputs\KSC_383bfffd\comparison
+2026-11-17 00:33:20 | INFO    | All algorithms finished in 58602.8 s
+2026-11-17 00:33:20 | INFO    |   best PSNR (dB) (max): PCA = ICA (29.7762 mean over K [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25])
+2026-11-17 00:33:20 | INFO    |   best SSIM (max): PCA = ICA (0.9412 mean over K [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25])
+2026-11-17 00:33:20 | INFO    |   best RMSE (min): PCA = ICA (0.0328 mean over K [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25])
+2026-11-17 00:33:20 | INFO    |   best Accuracy (max): LDA (0.7115 mean over K [1, 2, 3, 4, 5, 6, 8, 9])
+2026-11-17 00:33:20 | INFO    | Report: D:\DIP\Project\Downsampling\Kartavya\outputs\KSC_383bfffd\comparison\final_report.txt

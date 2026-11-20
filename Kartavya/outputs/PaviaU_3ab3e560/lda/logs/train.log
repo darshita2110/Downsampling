@@ -1,0 +1,11 @@
+2026-11-16 08:47:07 | INFO    | ===== LDA | dataset PaviaU_3ab3e560 | 103 channels | K = [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25]
+2026-11-16 08:47:07 | INFO    | hyper-parameters {'standardize': True, 'shrinkage': 0.0001, 'max_train_pixels': 1000000, 'seed': 42, 'ignore_label': 0, 'min_pixels_per_class': 50}
+2026-11-16 08:47:08 | INFO    | K [10, 12, 15, 20, 25] not possible: 9 classes allow at most 8 LDA components
+2026-11-16 08:47:08 | INFO    | Fitting on 14,693 labelled pixels, classes {1: 3132, 2: 5216, 3: 81, 4: 1411, 5: 1345, 6: 1499, 7: 85, 8: 1709, 9: 215}, K = [1, 2, 3, 4, 5, 6, 8]
+2026-11-16 08:47:08 | INFO    | K=1: train acc 0.7078 F1 0.3835, fit 0.046 s
+2026-11-16 08:47:08 | INFO    | K=2: train acc 0.8012 F1 0.4837, fit 0.074 s
+2026-11-16 08:47:08 | INFO    | K=3: train acc 0.8351 F1 0.5301, fit 0.048 s
+2026-11-16 08:47:08 | INFO    | K=4: train acc 0.8612 F1 0.6379, fit 0.071 s
+2026-11-16 08:47:09 | INFO    | K=5: train acc 0.9376 F1 0.7579, fit 0.070 s
+2026-11-16 08:47:09 | INFO    | K=6: train acc 0.9386 F1 0.8165, fit 0.041 s
+2026-11-16 08:47:09 | INFO    | K=8: train acc 0.9409 F1 0.8486, fit 0.074 s

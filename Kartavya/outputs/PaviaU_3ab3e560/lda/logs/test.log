@@ -1,0 +1,9 @@
+2026-11-16 08:47:09 | INFO    | Loaded saved models K = [1, 2, 3, 4, 5, 6, 8]; classes ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+2026-11-16 08:47:10 | INFO    | 00_PaviaU_bottom: 103,700 valid pixels, 28,083 labelled test pixels
+2026-11-16 08:47:11 | INFO    |   K=1: acc 0.5508 P 0.1650 R 0.2901 F1 0.2072 | reduction 99.0% | fwd 50.6 ms
+2026-11-16 08:47:11 | INFO    |   K=2: acc 0.5738 P 0.2254 R 0.3433 F1 0.2566 | reduction 98.1% | fwd 61.8 ms
+2026-11-16 08:47:12 | INFO    |   K=3: acc 0.6155 P 0.3863 R 0.3898 F1 0.3040 | reduction 97.1% | fwd 72.6 ms
+2026-11-16 08:47:12 | INFO    |   K=4: acc 0.6448 P 0.5203 R 0.4986 F1 0.4175 | reduction 96.1% | fwd 59.7 ms
+2026-11-16 08:47:13 | INFO    |   K=5: acc 0.4645 P 0.4987 R 0.5159 F1 0.4041 | reduction 95.1% | fwd 53.2 ms
+2026-11-16 08:47:14 | INFO    |   K=6: acc 0.4756 P 0.5070 R 0.5339 F1 0.4374 | reduction 94.2% | fwd 78.3 ms
+2026-11-16 08:47:14 | INFO    |   K=8: acc 0.4772 P 0.5681 R 0.5379 F1 0.4455 | reduction 92.2% | fwd 56.1 ms

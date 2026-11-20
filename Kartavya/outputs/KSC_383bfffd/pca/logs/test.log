@@ -1,0 +1,14 @@
+2026-11-16 08:21:45 | INFO    | 00_KSC_bottom: test image 256 x 614, 157,184 valid pixels (100.00%)
+2026-11-16 08:22:10 | INFO    |   K=1: reduction  99.4% | RMSE 0.0503 MAE 0.0205 PSNR  25.97 dB SSIM 0.8180 | 105.53 MB -> 616.75 KB | fwd 142.9 ms inv 474.4 ms
+2026-11-16 08:22:29 | INFO    |   K=2: reduction  98.9% | RMSE 0.0370 MAE 0.0091 PSNR  28.64 dB SSIM 0.8572 | 105.53 MB -> 1.20 MB | fwd 145.5 ms inv 405.2 ms
+2026-11-16 08:22:50 | INFO    |   K=3: reduction  98.3% | RMSE 0.0334 MAE 0.0061 PSNR  29.53 dB SSIM 0.9397 | 105.53 MB -> 1.80 MB | fwd 128.3 ms inv 328.4 ms
+2026-11-16 08:23:12 | INFO    |   K=4: reduction  97.7% | RMSE 0.0318 MAE 0.0055 PSNR  29.94 dB SSIM 0.9580 | 105.53 MB -> 2.40 MB | fwd 122.9 ms inv 510.7 ms
+2026-11-16 08:24:44 | INFO    |   K=5: reduction  97.2% | RMSE 0.0317 MAE 0.0055 PSNR  29.98 dB SSIM 0.9583 | 105.53 MB -> 3.00 MB | fwd 138.0 ms inv 1212.0 ms
+2026-11-16 08:25:41 | INFO    |   K=6: reduction  96.6% | RMSE 0.0317 MAE 0.0055 PSNR  29.98 dB SSIM 0.9583 | 105.53 MB -> 3.60 MB | fwd 553.3 ms inv 2137.9 ms
+2026-11-16 08:26:03 | INFO    |   K=8: reduction  95.5% | RMSE 0.0307 MAE 0.0052 PSNR  30.26 dB SSIM 0.9654 | 105.53 MB -> 4.80 MB | fwd 135.4 ms inv 387.0 ms
+2026-11-16 08:26:26 | INFO    |   K=10: reduction  94.3% | RMSE 0.0305 MAE 0.0051 PSNR  30.33 dB SSIM 0.9668 | 105.53 MB -> 6.00 MB | fwd 165.8 ms inv 590.5 ms
+2026-11-16 08:26:52 | INFO    |   K=12: reduction  93.2% | RMSE 0.0304 MAE 0.0051 PSNR  30.34 dB SSIM 0.9668 | 105.53 MB -> 7.21 MB | fwd 195.6 ms inv 490.4 ms
+2026-11-16 08:27:19 | INFO    |   K=15: reduction  91.5% | RMSE 0.0301 MAE 0.0051 PSNR  30.44 dB SSIM 0.9670 | 105.53 MB -> 9.01 MB | fwd 213.7 ms inv 565.4 ms
+2026-11-16 08:27:48 | INFO    |   K=20: reduction  88.6% | RMSE 0.0287 MAE 0.0049 PSNR  30.85 dB SSIM 0.9687 | 105.53 MB -> 12.01 MB | fwd 161.2 ms inv 399.7 ms
+2026-11-16 08:28:11 | INFO    |   K=25: reduction  85.8% | RMSE 0.0280 MAE 0.0048 PSNR  31.06 dB SSIM 0.9701 | 105.53 MB -> 15.01 MB | fwd 174.6 ms inv 493.9 ms
+2026-11-16 08:28:38 | INFO    |   K=176: reduction   0.0% | RMSE 0.0000 MAE 0.0000 PSNR 333.48 dB SSIM 1.0000 | 105.53 MB -> 105.65 MB | fwd 330.6 ms inv 640.5 ms

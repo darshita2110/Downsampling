@@ -12,8 +12,8 @@
     "neighborhood_preservation": 0.25915195654840967,
     "reconstruction_error": 1.1377951936717185e-07,
     "explained_variance_ratio": null,
-    "fit_time_seconds": 0.6901818469999981,
-    "peak_memory_mb": 2.47613
+    "fit_time_seconds": 0.3908089390000029,
+    "peak_memory_mb": 2.476014
   },
   "latent_recovery_spearman": [
     {
@@ -50,8 +50,8 @@
       0.25915195654840967
     ],
     "fit_time_seconds_isomap_vs_lle": [
-      0.5293909450000456,
-      0.6901818469999981
+      0.7181739980000046,
+      0.3908089390000029
     ]
   }
 }

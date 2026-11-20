@@ -1,0 +1,4 @@
+sample_name,sample,seed,n_test_patches,network_reconstruction_mse,forward_seconds,test_ranking_mean_of_seeds
+Indian_pines_corrected,00_Indian_pines_corrected,42,1089,0.022452319576939495,1.1257686999997532,
+Indian_pines_corrected,00_Indian_pines_corrected,43,1089,0.03600226998657563,1.1413871999975527,
+Indian_pines_corrected,00_Indian_pines_corrected,44,1089,0.08887079468333907,1.0825796999997692,band_158 > band_135 > band_137 > band_186 > band_112 > band_059 > band_182 > band_013 > band_200 > band_110 > band_125 > band_144 > band_043 > band_076 > band_036 > band_152 > band_053 > band_070 > band_139 > band_092 > band_048 > band_010 > band_146 > band_061 > band_129 > band_006 > band_123 > band_163 > band_142 > band_028

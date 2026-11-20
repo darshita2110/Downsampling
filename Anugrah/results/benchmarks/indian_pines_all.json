@@ -28,9 +28,9 @@
       "continuity": 0.9942089571717931,
       "neighborhood_preservation": 0.15328897320597917,
       "reconstruction_error": null,
-      "explained_variance_ratio": 0.9046697037683259,
-      "fit_time_seconds": 0.03707076300003109,
-      "peak_memory_mb": 1.626284
+      "explained_variance_ratio": 0.904669703768326,
+      "fit_time_seconds": 0.029773500002193032,
+      "peak_memory_mb": 1.289903
     },
     "classification_5nn": {
       "random_5fold": {
@@ -58,10 +58,10 @@
       "trustworthiness": 0.9875965670613294,
       "continuity": 0.9942614444340037,
       "neighborhood_preservation": 0.1459680844764335,
-      "reconstruction_error": 86.51206365892881,
+      "reconstruction_error": 86.51206365891998,
       "explained_variance_ratio": null,
-      "fit_time_seconds": 17.18481277500001,
-      "peak_memory_mb": 1540.837377
+      "fit_time_seconds": 22.358838100000867,
+      "peak_memory_mb": 2052.64972
     },
     "classification_5nn": {
       "random_5fold": {
@@ -90,9 +90,9 @@
       "continuity": 0.9887761085531124,
       "neighborhood_preservation": 0.10205204031061144,
       "reconstruction_error": null,
-      "explained_variance_ratio": 0.559616850338227,
-      "fit_time_seconds": 2.3287153930000386,
-      "peak_memory_mb": 527.955423
+      "explained_variance_ratio": 0.5596168503382271,
+      "fit_time_seconds": 1.4546779000011156,
+      "peak_memory_mb": 1039.760332
     },
     "classification_5nn": {
       "random_5fold": {
@@ -117,13 +117,13 @@
     "n_components": 3,
     "random_seed": 42,
     "metrics": {
-      "trustworthiness": 0.9564441077282884,
-      "continuity": 0.9800437639645848,
-      "neighborhood_preservation": 0.08558364642323621,
-      "reconstruction_error": 1.7390189200954907e-10,
+      "trustworthiness": 0.9564356558917497,
+      "continuity": 0.9801383720687423,
+      "neighborhood_preservation": 0.08554963836921368,
+      "reconstruction_error": 1.739033599061747e-10,
       "explained_variance_ratio": null,
-      "fit_time_seconds": 2.8910376739999606,
-      "peak_memory_mb": 17.035275
+      "fit_time_seconds": 14.368806800001039,
+      "peak_memory_mb": 577.205845
     },
     "classification_5nn": {
       "random_5fold": {

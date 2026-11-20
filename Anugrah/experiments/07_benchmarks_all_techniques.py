@@ -119,7 +119,7 @@ def run_dataset(name, data_dir, with_smacof):
                     Xi, n_components=N_COMPONENTS, kernel="rbf", gamma=None, random_state=RANDOM_SEED)
             else:
                 emb, model, diag = fit_lle_pixels(Xi, n_neighbors=N_NEIGHBORS, n_components=N_COMPONENTS,
-                                                   reg=1e-3, random_state=RANDOM_SEED)
+                                                   reg=1e-3, random_state=RANDOM_SEED, eigen_solver="dense")
                 metrics = summarize(Xi, emb, model=model, diagnostics=diag, n_neighbors=N_NEIGHBORS)
         except Exception as exc:  # report, never hide, and keep the other techniques running
             print(f"  FAILED: {type(exc).__name__}: {exc}")
