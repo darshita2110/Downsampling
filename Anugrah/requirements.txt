@@ -6,7 +6,6 @@ scipy==1.13.1
 scikit-learn==1.5.2
 matplotlib==3.9.2
 pandas==2.2.2
+# scikit-image is used only for SSIM in experiments/09 (tested with 0.26.0; any >=0.22 should work)
+scikit-image>=0.22
 
-# Only needed once we reach FHNPW and the fuzzy-membership step (Technique 6).
-# Left commented out until that stage so earlier stages have a minimal, fast install.
-# scikit-fuzzy==0.5.0

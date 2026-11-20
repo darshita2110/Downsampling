@@ -15,8 +15,8 @@ Assigned techniques, in the order we will build them:
 | 2 | Isomap with SMACOF | **Done**: Stages 1-5 on synthetic AND real Raichur data |
 | 3 | Kernel PCA | **Done**: Stages 1-5 on synthetic AND real Raichur data |
 | 4 | Locally Linear Embedding (LLE) | **Done**: Stages 1-5 on synthetic AND real Raichur data (see 04_LLE/documentation/04_real_data_results.md) |
-| 5 | Constrained Laplacian Eigenmaps | not started |
-| 6 | FHNPW (Fuzzy-embedded Hyperbolic Sigmoid Nonlinear PCA, Weighted LS) | not started - see note below |
+| 5 | Constrained Laplacian Eigenmaps | Not part of this study (scope fixed at four techniques) |
+| 6 | FHNPW | Not part of this study (scope fixed at four techniques) |
 
 ## Relationship to the rest of the repository
 
@@ -455,8 +455,7 @@ Outputs: `results/benchmarks/<scene>_all.json`, `results/benchmarks_summary.md/.
 script and the Raichur-vs-Indian-Pines table; `07_`/`08_` supersede them for the
 multi-scene comparison.) The large .mat files are not included in the zip.
 
-## Next step
+## Scope
 
-Technique 5: **Constrained Laplacian Eigenmaps** (a modification of the base
-algorithm; Stage 4 must re-run the spectral-vs-spatial neighbour check), then
-Technique 6 (FHNPW, only after its original publication is verified).
+The study covers exactly four techniques (Isomap, Isomap with SMACOF, Kernel PCA, LLE) plus a PCA
+baseline. See HOW_TO_RUN.md for every command.
