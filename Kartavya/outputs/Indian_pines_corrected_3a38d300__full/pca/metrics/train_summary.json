@@ -638,16 +638,16 @@
   },
   "timing_memory": {
     "load_and_preprocess": {
-      "seconds": 0.11562229999981355,
-      "peak_python_mb": 88.307712,
-      "rss_after_mb": 401.94048
+      "seconds": 0.18241970000235597,
+      "peak_python_mb": 88.308574,
+      "rss_after_mb": 174.497792
     },
     "pca_fit": {
-      "seconds": 0.042750600001454586,
-      "peak_python_mb": 101.898474,
-      "rss_after_mb": 436.555776
+      "seconds": 0.1379367999979877,
+      "peak_python_mb": 101.901965,
+      "rss_after_mb": 211.39456
     }
   },
-  "process_rss_mb_end": 577.306624,
+  "process_rss_mb_end": 512.991232,
   "model_file": "D:\\DIP\\Project\\Downsampling\\Kartavya\\outputs\\Indian_pines_corrected_3a38d300__full\\pca\\models\\pca_model.npz"
 }

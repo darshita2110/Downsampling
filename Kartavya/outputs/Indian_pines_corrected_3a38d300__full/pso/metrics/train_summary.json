@@ -943,7 +943,7 @@
       "seeds_agreeing": "1/5",
       "mean_evaluations": 53.6,
       "search_space": 200,
-      "mean_pso_seconds": 2.399024360000476,
+      "mean_pso_seconds": 2.7797342000005303,
       "exhaustive_best": "band_154",
       "n_tied_optimal_subsets": 1,
       "exhaustive_best_fitness": 0.6796436309814453,
@@ -952,7 +952,7 @@
       "seeds_reaching_optimum": "0/5",
       "best_non_optimal": "band_156",
       "best_non_optimal_fitness": 0.6792879700660706,
-      "exhaustive_seconds": 9.044805200002884
+      "exhaustive_seconds": 9.47661049999806
     },
     {
       "k": 2,
@@ -961,7 +961,7 @@
       "seeds_agreeing": "1/5",
       "mean_evaluations": 205.8,
       "search_space": 19900,
-      "mean_pso_seconds": 9.8162556400006,
+      "mean_pso_seconds": 9.297012840000388,
       "exhaustive_best": "not run (19,900 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
     },
     {
@@ -971,7 +971,7 @@
       "seeds_agreeing": "1/5",
       "mean_evaluations": 298.0,
       "search_space": 1313400,
-      "mean_pso_seconds": 14.586176860000705,
+      "mean_pso_seconds": 13.918675499999518,
       "exhaustive_best": "not run (1,313,400 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
     },
     {
@@ -981,7 +981,7 @@
       "seeds_agreeing": "1/5",
       "mean_evaluations": 267.8,
       "search_space": 64684950,
-      "mean_pso_seconds": 13.297112599998945,
+      "mean_pso_seconds": 13.067382760000328,
       "exhaustive_best": "not run (64,684,950 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
     },
     {
@@ -991,7 +991,7 @@
       "seeds_agreeing": "1/5",
       "mean_evaluations": 203.4,
       "search_space": 2535650040,
-      "mean_pso_seconds": 10.722311900000204,
+      "mean_pso_seconds": 10.801712199999747,
       "exhaustive_best": "not run (2,535,650,040 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
     },
     {
@@ -1001,7 +1001,7 @@
       "seeds_agreeing": "1/5",
       "mean_evaluations": 294.2,
       "search_space": 82408626300,
-      "mean_pso_seconds": 15.529739140000311,
+      "mean_pso_seconds": 15.896648739999364,
       "exhaustive_best": "not run (82,408,626,300 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
     },
     {
@@ -1011,7 +1011,7 @@
       "seeds_agreeing": "1/5",
       "mean_evaluations": 302.4,
       "search_space": 55098996177225,
-      "mean_pso_seconds": 17.897950739999942,
+      "mean_pso_seconds": 18.24466659999962,
       "exhaustive_best": "not run (55,098,996,177,225 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
     },
     {
@@ -1021,7 +1021,7 @@
       "seeds_agreeing": "1/5",
       "mean_evaluations": 379.8,
       "search_space": 22451004309013280,
-      "mean_pso_seconds": 24.61098486000119,
+      "mean_pso_seconds": 24.75064779999884,
       "exhaustive_best": "not run (22,451,004,309,013,280 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
     },
     {
@@ -1031,7 +1031,7 @@
       "seeds_agreeing": "1/5",
       "mean_evaluations": 332.2,
       "search_space": 6107693672247476400,
-      "mean_pso_seconds": 22.15674968000021,
+      "mean_pso_seconds": 22.80394424000042,
       "exhaustive_best": "not run (6,107,693,672,247,476,400 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
     },
     {
@@ -1041,7 +1041,7 @@
       "seeds_agreeing": "1/5",
       "mean_evaluations": 346.2,
       "search_space": 14629416353818682834880,
-      "mean_pso_seconds": 26.96770467999959,
+      "mean_pso_seconds": 26.348493259999668,
       "exhaustive_best": "not run (14,629,416,353,818,682,834,880 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
     },
     {
@@ -1051,7 +1051,7 @@
       "seeds_agreeing": "1/5",
       "mean_evaluations": 344.2,
       "search_space": 1613587787967350073386147640,
-      "mean_pso_seconds": 31.615842740000517,
+      "mean_pso_seconds": 31.890029059998778,
       "exhaustive_best": "not run (1,613,587,787,967,350,073,386,147,640 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
     },
     {
@@ -1061,16 +1061,16 @@
       "seeds_agreeing": "1/5",
       "mean_evaluations": 326.6,
       "search_space": 45217131606152448808778187283008,
-      "mean_pso_seconds": 35.09987258000037,
+      "mean_pso_seconds": 36.25853808000029,
       "exhaustive_best": "not run (45,217,131,606,152,448,808,778,187,283,008 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
     }
   ],
   "timing_memory": {
     "load_and_preprocess": {
-      "seconds": 0.10262839999995776,
+      "seconds": 0.11513779999950202,
       "peak_python_mb": 88.310179,
-      "rss_after_mb": 402.20672
+      "rss_after_mb": 400.523264
     }
   },
-  "process_rss_mb_end": 504.717312
+  "process_rss_mb_end": 481.34144
 }

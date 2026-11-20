@@ -10,61 +10,72 @@ K values     : [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25] (identical for every al
 
 ALGORITHM STATUS
 ------------------------------------------------------------------------
-  PCA        ok              total    151.7 s
-  ICA        ok              total    863.5 s
-  PCA        ok              total     73.3 s
-  GA         ok              total    470.5 s
-  PSO        ok              total   1174.2 s
-  ACO        ok              total   1239.0 s
-  SA         ok              total    811.9 s
-  UBS-CNN    ok              total   2249.3 s
+  PCA        ok              total     97.2 s
+  ICA        ok              total     95.4 s
+  LDA        not_applicable  total      0.1 s  [no usable ground-truth labels: Classes [1, 7, 9] have < 50 training pixels. Merge or relabel them (they are not dropped silently).]
+  GA         ok              total    470.9 s
+  PSO        ok              total   1181.4 s
+  ACO        ok              total   1239.2 s
+  SA         ok              total    889.8 s
+  UBS-CNN    ok              total   3809.2 s
 
 BEST ALGORITHM PER METRIC (mean over the shared K values; direction-aware; ties reported)
 ------------------------------------------------------------------------
   PSNR (dB)                        (higher is better): PCA = ICA = 29.925
+                                                      not applicable: LDA
                                                       note: tie between PCA, ICA
   SSIM                             (higher is better): PCA = ICA = 0.89384
+                                                      not applicable: LDA
                                                       note: tie between PCA, ICA
   MSE                              (lower is better ): PCA = ICA = 0.0012763
+                                                      not applicable: LDA
                                                       note: tie between PCA, ICA
   RMSE                             (lower is better ): PCA = ICA = 0.033662
+                                                      not applicable: LDA
                                                       note: tie between PCA, ICA
   MAE                              (lower is better ): PCA = ICA = 0.019986
+                                                      not applicable: LDA
                                                       note: tie between PCA, ICA
   Dimensionality reduction (%)     (higher is better): PCA = ICA = GA = PSO = ACO = SA = UBS-CNN = 95.375
+                                                      not applicable: LDA
                                                       note: tie between PCA, ICA, GA, PSO, ACO, SA, UBS-CNN
   Storage saving incl. model (%)   (higher is better): GA = PSO = ACO = SA = UBS-CNN = 95.326
+                                                      not applicable: LDA
                                                       note: tie between GA, PSO, ACO, SA, UBS-CNN
   Compression ratio                (higher is better): GA = PSO = ACO = SA = UBS-CNN = 47.887
+                                                      not applicable: LDA
                                                       note: tie between GA, PSO, ACO, SA, UBS-CNN
-  Forward (reduce) time (s)        (lower is better ): UBS-CNN = 0.0071887
-  Inverse (reconstruct) time (s)   (lower is better ): UBS-CNN = 0.01236
+  Forward (reduce) time (s)        (lower is better ): PSO = 0.0083195
+                                                      not applicable: LDA
+  Inverse (reconstruct) time (s)   (lower is better ): PSO = 0.014637
+                                                      not applicable: LDA
   Forward peak memory (MB)         (lower is better ): ACO = 156.35
+                                                      not applicable: LDA
 
 RUN-LEVEL COST
 ------------------------------------------------------------------------
-  Training time (s)                       : PCA = 42.986
-  Evaluation time (s)                     : SA = 27.258
-  Total time (s)                          : PCA = 73.288
-  Training peak memory (MB, tracemalloc)  : GA = 162.48
+  Training time (s)                       : ICA = 64.048
+  Evaluation time (s)                     : PSO = 28.176
+  Total time (s)                          : ICA = 95.448
+  Training peak memory (MB, tracemalloc)  : GA = 165.53
 
 MEAN OF KEY METRICS OVER THE SHARED K VALUES (per algorithm; per-K tables in metric_comparison/)
 ------------------------------------------------------------------------
            K evaluated  PSNR_dB    SSIM     RMSE      MAE  storage_saving_pct  forward_seconds
 algorithm                                                                                     
-PCA                 12   29.925 0.89384 0.033662 0.019986              95.317          0.02419
-ICA                 12   29.925 0.89384 0.033662 0.019986              95.317         0.015601
-GA                  12   28.505 0.87002  0.03877 0.022644              95.326        0.0089046
-PSO                 12   28.684 0.87288 0.038118 0.022151              95.326        0.0076228
-ACO                 12   28.702 0.87075 0.038069  0.02209              95.326        0.0078924
-SA                  12   28.421 0.86852 0.039192   0.0231              95.326        0.0077503
-UBS-CNN             12    26.88 0.81967  0.04698 0.027038              95.326        0.0071887
+PCA                 12   29.925 0.89384 0.033662 0.019986              95.317         0.017243
+ICA                 12   29.925 0.89384 0.033662 0.019986              95.317         0.017632
+GA                  12   28.505 0.87002  0.03877 0.022644              95.326        0.0084879
+PSO                 12   28.684 0.87288 0.038118 0.022151              95.326        0.0083195
+ACO                 12   28.702 0.87075 0.038069  0.02209              95.326        0.0085125
+SA                  12   28.421 0.86852 0.039192   0.0231              95.326        0.0094559
+UBS-CNN             12    26.88 0.81967  0.04698 0.027038              95.326         0.015026
 
 WINNER PER K
 ------------------------------------------------------------------------
-  PSNR (dB)   : K=1: PCA, K=2: PCA, K=3: PCA, K=4: PCA, K=5: PCA, K=6: PCA, K=8: PCA, K=10: PCA, K=12: ICA, K=15: PCA, K=20: PCA, K=25: PCA, K=200: PCA
-  SSIM        : K=1: GA, K=2: PCA, K=3: PCA, K=4: PCA, K=5: PCA, K=6: PCA, K=8: PCA, K=10: PCA, K=12: ICA, K=15: PCA, K=20: PCA, K=25: ICA, K=200: PCA
-  RMSE        : K=1: PCA, K=2: PCA, K=3: PCA, K=4: PCA, K=5: PCA, K=6: PCA, K=8: PCA, K=10: PCA, K=12: ICA, K=15: PCA, K=20: PCA, K=25: PCA, K=200: PCA
+  PSNR (dB)   : K=1: PCA, K=2: PCA, K=3: PCA, K=4: PCA, K=5: PCA, K=6: PCA, K=8: PCA, K=10: PCA, K=12: ICA, K=15: PCA, K=20: PCA, K=25: PCA
+  SSIM        : K=1: GA, K=2: PCA, K=3: PCA, K=4: PCA, K=5: PCA, K=6: PCA, K=8: PCA, K=10: PCA, K=12: ICA, K=15: PCA, K=20: PCA, K=25: ICA
+  RMSE        : K=1: PCA, K=2: PCA, K=3: PCA, K=4: PCA, K=5: PCA, K=6: PCA, K=8: PCA, K=10: PCA, K=12: ICA, K=15: PCA, K=20: PCA, K=25: PCA
 
 Notes
 ------------------------------------------------------------------------

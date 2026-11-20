@@ -946,7 +946,7 @@
       "seeds_agreeing": "3/5",
       "mean_evaluations": 91.8,
       "search_space": 200,
-      "mean_aco_seconds": 3.9035140600004525,
+      "mean_aco_seconds": 4.359005339998111,
       "exhaustive_best": "band_154",
       "n_tied_optimal_subsets": 1,
       "exhaustive_best_fitness": 0.6796436309814453,
@@ -955,7 +955,7 @@
       "seeds_reaching_optimum": "3/5",
       "best_non_optimal": "band_156",
       "best_non_optimal_fitness": 0.6792879700660706,
-      "exhaustive_seconds": 8.218724199999997
+      "exhaustive_seconds": 9.550870600000053
     },
     {
       "k": 2,
@@ -964,7 +964,7 @@
       "seeds_agreeing": "3/5",
       "mean_evaluations": 280.6,
       "search_space": 19900,
-      "mean_aco_seconds": 13.969111479999992,
+      "mean_aco_seconds": 12.903036119999888,
       "exhaustive_best": "not run (19,900 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
     },
     {
@@ -974,7 +974,7 @@
       "seeds_agreeing": "1/5",
       "mean_evaluations": 317.4,
       "search_space": 1313400,
-      "mean_aco_seconds": 14.787664900001982,
+      "mean_aco_seconds": 15.072338619999936,
       "exhaustive_best": "not run (1,313,400 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
     },
     {
@@ -984,7 +984,7 @@
       "seeds_agreeing": "1/5",
       "mean_evaluations": 355.4,
       "search_space": 64684950,
-      "mean_aco_seconds": 17.50153405999954,
+      "mean_aco_seconds": 18.169805300000736,
       "exhaustive_best": "not run (64,684,950 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
     },
     {
@@ -994,7 +994,7 @@
       "seeds_agreeing": "1/5",
       "mean_evaluations": 425.0,
       "search_space": 2535650040,
-      "mean_aco_seconds": 23.13406696000093,
+      "mean_aco_seconds": 22.57905105999962,
       "exhaustive_best": "not run (2,535,650,040 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
     },
     {
@@ -1004,7 +1004,7 @@
       "seeds_agreeing": "1/5",
       "mean_evaluations": 339.2,
       "search_space": 82408626300,
-      "mean_aco_seconds": 19.2918007200009,
+      "mean_aco_seconds": 20.171069299998635,
       "exhaustive_best": "not run (82,408,626,300 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
     },
     {
@@ -1014,7 +1014,7 @@
       "seeds_agreeing": "1/5",
       "mean_evaluations": 337.2,
       "search_space": 55098996177225,
-      "mean_aco_seconds": 20.11535978000029,
+      "mean_aco_seconds": 21.51157930000045,
       "exhaustive_best": "not run (55,098,996,177,225 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
     },
     {
@@ -1024,7 +1024,7 @@
       "seeds_agreeing": "1/5",
       "mean_evaluations": 355.2,
       "search_space": 22451004309013280,
-      "mean_aco_seconds": 25.021989000000758,
+      "mean_aco_seconds": 23.089737099999912,
       "exhaustive_best": "not run (22,451,004,309,013,280 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
     },
     {
@@ -1034,7 +1034,7 @@
       "seeds_agreeing": "1/5",
       "mean_evaluations": 330.8,
       "search_space": 6107693672247476400,
-      "mean_aco_seconds": 22.491445339999338,
+      "mean_aco_seconds": 22.643672420000804,
       "exhaustive_best": "not run (6,107,693,672,247,476,400 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
     },
     {
@@ -1044,7 +1044,7 @@
       "seeds_agreeing": "1/5",
       "mean_evaluations": 285.4,
       "search_space": 14629416353818682834880,
-      "mean_aco_seconds": 22.056491819999792,
+      "mean_aco_seconds": 22.73184560000009,
       "exhaustive_best": "not run (14,629,416,353,818,682,834,880 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
     },
     {
@@ -1054,7 +1054,7 @@
       "seeds_agreeing": "1/5",
       "mean_evaluations": 259.2,
       "search_space": 1613587787967350073386147640,
-      "mean_aco_seconds": 24.659972979998564,
+      "mean_aco_seconds": 23.993521540000074,
       "exhaustive_best": "not run (1,613,587,787,967,350,073,386,147,640 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
     },
     {
@@ -1064,16 +1064,16 @@
       "seeds_agreeing": "1/5",
       "mean_evaluations": 268.8,
       "search_space": 45217131606152448808778187283008,
-      "mean_aco_seconds": 29.996206380000512,
+      "mean_aco_seconds": 28.563337500001218,
       "exhaustive_best": "not run (45,217,131,606,152,448,808,778,187,283,008 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
     }
   ],
   "timing_memory": {
     "load_and_preprocess": {
-      "seconds": 0.10900960000071791,
+      "seconds": 0.10912120000284631,
       "peak_python_mb": 88.310276,
-      "rss_after_mb": 404.742144
+      "rss_after_mb": 411.0336
     }
   },
-  "process_rss_mb_end": 508.801024
+  "process_rss_mb_end": 493.735936
 }

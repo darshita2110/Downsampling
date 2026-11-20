@@ -1,25 +1,25 @@
-2026-11-17 19:40:54 | INFO    | Dataset Indian_pines_corrected_3a38d300: 1 sample(s), 200 channels; split full
-2026-11-17 19:40:54 | INFO    | Common K values for every algorithm: [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25]
-2026-11-17 19:40:54 | INFO    | Algorithms: ['pca', 'ica', 'lda', 'ga', 'pso', 'aco', 'sa', 'ubscnn']
-2026-11-17 19:40:54 | INFO    | [1/8] ===================== PCA =====================
-2026-11-17 19:43:26 | INFO    | PCA: ok in 151.7 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\Indian_pines_corrected_3a38d300__full\pca
-2026-11-17 19:43:26 | INFO    | [2/8] ===================== ICA =====================
-2026-11-17 19:57:49 | INFO    | ICA: ok in 863.5 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\Indian_pines_corrected_3a38d300__full\ica
-2026-11-17 19:57:49 | INFO    | [3/8] ===================== LDA =====================
-2026-11-17 19:59:03 | INFO    | PCA: ok in 73.3 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\Indian_pines_corrected_3a38d300__full\pca
-2026-11-17 19:59:03 | INFO    | [4/8] ===================== GA =====================
-2026-11-17 20:06:53 | INFO    | GA: ok in 470.5 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\Indian_pines_corrected_3a38d300__full\ga
-2026-11-17 20:06:53 | INFO    | [5/8] ===================== PSO =====================
-2026-11-17 20:26:27 | INFO    | PSO: ok in 1174.2 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\Indian_pines_corrected_3a38d300__full\pso
-2026-11-17 20:26:27 | INFO    | [6/8] ===================== ACO =====================
-2026-11-17 20:47:07 | INFO    | ACO: ok in 1239.0 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\Indian_pines_corrected_3a38d300__full\aco
-2026-11-17 20:47:07 | INFO    | [7/8] ===================== SA =====================
-2026-11-17 21:00:39 | INFO    | SA: ok in 811.9 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\Indian_pines_corrected_3a38d300__full\sa
-2026-11-17 21:00:39 | INFO    | [8/8] ===================== UBSCNN =====================
-2026-11-17 21:38:11 | INFO    | UBS-CNN: ok in 2249.3 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\Indian_pines_corrected_3a38d300__full\ubscnn
-2026-11-17 21:38:13 | INFO    | Comparison written to D:\DIP\Project\Downsampling\Kartavya\outputs\Indian_pines_corrected_3a38d300__full\comparison
-2026-11-17 21:38:13 | INFO    | All algorithms finished in 7038.8 s
-2026-11-17 21:38:13 | INFO    |   best PSNR (dB) (max): PCA = ICA (29.9247 mean over K [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25])
-2026-11-17 21:38:13 | INFO    |   best SSIM (max): PCA = ICA (0.8938 mean over K [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25])
-2026-11-17 21:38:13 | INFO    |   best RMSE (min): PCA = ICA (0.0337 mean over K [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25])
-2026-11-17 21:38:13 | INFO    | Report: D:\DIP\Project\Downsampling\Kartavya\outputs\Indian_pines_corrected_3a38d300__full\comparison\final_report.txt
+2026-11-20 21:11:03 | INFO    | Dataset Indian_pines_corrected_3a38d300: 1 sample(s), 200 channels; split full
+2026-11-20 21:11:03 | INFO    | Common K values for every algorithm: [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25]
+2026-11-20 21:11:04 | INFO    | Algorithms: ['pca', 'ica', 'lda', 'ga', 'pso', 'aco', 'sa', 'ubscnn']
+2026-11-20 21:11:04 | INFO    | [1/8] ===================== PCA =====================
+2026-11-20 21:12:41 | INFO    | PCA: ok in 97.2 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\Indian_pines_corrected_3a38d300__full\pca
+2026-11-20 21:12:41 | INFO    | [2/8] ===================== ICA =====================
+2026-11-20 21:14:16 | INFO    | ICA: ok in 95.4 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\Indian_pines_corrected_3a38d300__full\ica
+2026-11-20 21:14:16 | INFO    | [3/8] ===================== LDA =====================
+2026-11-20 21:14:17 | INFO    | LDA: not_applicable in 0.1 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\Indian_pines_corrected_3a38d300__full\lda
+2026-11-20 21:14:17 | INFO    | [4/8] ===================== GA =====================
+2026-11-20 21:22:07 | INFO    | GA: ok in 470.9 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\Indian_pines_corrected_3a38d300__full\ga
+2026-11-20 21:22:07 | INFO    | [5/8] ===================== PSO =====================
+2026-11-20 21:41:49 | INFO    | PSO: ok in 1181.4 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\Indian_pines_corrected_3a38d300__full\pso
+2026-11-20 21:41:49 | INFO    | [6/8] ===================== ACO =====================
+2026-11-20 22:02:28 | INFO    | ACO: ok in 1239.2 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\Indian_pines_corrected_3a38d300__full\aco
+2026-11-20 22:02:28 | INFO    | [7/8] ===================== SA =====================
+2026-11-20 22:17:18 | INFO    | SA: ok in 889.8 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\Indian_pines_corrected_3a38d300__full\sa
+2026-11-20 22:17:18 | INFO    | [8/8] ===================== UBSCNN =====================
+2026-11-20 23:20:55 | INFO    | UBS-CNN: ok in 3809.2 s -> D:\DIP\Project\Downsampling\Kartavya\outputs\Indian_pines_corrected_3a38d300__full\ubscnn
+2026-11-20 23:21:00 | INFO    | Comparison written to D:\DIP\Project\Downsampling\Kartavya\outputs\Indian_pines_corrected_3a38d300__full\comparison
+2026-11-20 23:21:00 | INFO    | All algorithms finished in 7796.4 s
+2026-11-20 23:21:00 | INFO    |   best PSNR (dB) (max): PCA = ICA (29.9247 mean over K [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25])
+2026-11-20 23:21:00 | INFO    |   best SSIM (max): PCA = ICA (0.8938 mean over K [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25])
+2026-11-20 23:21:00 | INFO    |   best RMSE (min): PCA = ICA (0.0337 mean over K [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25])
+2026-11-20 23:21:00 | INFO    | Report: D:\DIP\Project\Downsampling\Kartavya\outputs\Indian_pines_corrected_3a38d300__full\comparison\final_report.txt

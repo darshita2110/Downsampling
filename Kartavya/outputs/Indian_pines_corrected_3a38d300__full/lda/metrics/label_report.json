@@ -1,0 +1,33 @@
+{
+  "label_files": [
+    "D:\\DIP\\Project\\Downsampling\\data\\darshita\\Indian_pines_gt.mat"
+  ],
+  "matched": {
+    "Indian_pines_corrected": "D:\\DIP\\Project\\Downsampling\\data\\darshita\\Indian_pines_gt.mat"
+  },
+  "ignore_label": 0,
+  "min_pixels_per_class": 50,
+  "usable": false,
+  "reasons": [
+    "Classes [1, 7, 9] have < 50 training pixels. Merge or relabel them (they are not dropped silently)."
+  ],
+  "requirement": "Class ids per pixel from a source independent of the input images (field data, an external land-cover map, or manual annotation). Labels made by thresholding or clustering these same pixels are circular: LDA would just recover the rule used to create them.",
+  "training_class_counts": {
+    "1": 46,
+    "2": 1428,
+    "3": 830,
+    "4": 237,
+    "5": 483,
+    "6": 730,
+    "7": 28,
+    "8": 478,
+    "9": 20,
+    "10": 972,
+    "11": 2455,
+    "12": 593,
+    "13": 205,
+    "14": 1265,
+    "15": 386,
+    "16": 93
+  }
+}

@@ -136,7 +136,7 @@
       "reduced_disk_bytes_npy": 2102628.0
     }
   ],
-  "process_rss_mb_end": 370.266112,
+  "process_rss_mb_end": 368.549888,
   "selected": {
     "1": [
       "band_154"
@@ -373,5 +373,5 @@
     }
   ],
   "search_comparison_file": null,
-  "total_seconds": 32.37692629999947
+  "total_seconds": 32.89279720000195
 }

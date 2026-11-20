@@ -12,8 +12,7 @@
     12,
     15,
     20,
-    25,
-    200
+    25
   ],
   "per_k_mean_over_test_samples": [
     {
@@ -135,18 +134,8 @@
       "dimensionality_reduction_pct": 87.5,
       "storage_saving_pct": 87.3668252080856,
       "reduced_disk_bytes_npy": 2102628.0
-    },
-    {
-      "k": 200,
-      "RMSE": 3.915206907051646e-18,
-      "MAE": 2.211865252983888e-20,
-      "PSNR_dB": 348.14490563653266,
-      "SSIM": 1.0,
-      "dimensionality_reduction_pct": 0.0,
-      "storage_saving_pct": -0.9655172413793212,
-      "reduced_disk_bytes_npy": 16820128.0
     }
   ],
-  "process_rss_mb_end": 429.645824,
-  "total_seconds": 30.241839999998774
+  "process_rss_mb_end": 378.781696,
+  "total_seconds": 29.04497740000079
 }

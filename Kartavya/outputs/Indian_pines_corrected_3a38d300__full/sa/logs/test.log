@@ -1,29 +1,29 @@
-2026-11-17 21:00:12 | INFO    | Loaded saved subsets for K = [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25]
-2026-11-17 21:00:12 | INFO    |   K=1: keep ['band_154'] (training fitness 0.67964)
-2026-11-17 21:00:12 | INFO    |   K=2: keep ['band_079', 'band_122'] (training fitness 0.85545)
-2026-11-17 21:00:12 | INFO    |   K=3: keep ['band_001', 'band_065', 'band_116'] (training fitness 0.87567)
-2026-11-17 21:00:12 | INFO    |   K=4: keep ['band_004', 'band_063', 'band_089', 'band_139'] (training fitness 0.89594)
-2026-11-17 21:00:12 | INFO    |   K=5: keep ['band_001', 'band_048', 'band_080', 'band_090', 'band_125'] (training fitness 0.91385)
-2026-11-17 21:00:12 | INFO    |   K=6: keep ['band_001', 'band_053', 'band_086', 'band_087', 'band_100', 'band_160'] (training fitness 1.00505)
-2026-11-17 21:00:12 | INFO    |   K=8: keep ['band_001', 'band_036', 'band_071', 'band_083', 'band_090', 'band_091', 'band_115', 'band_200'] (training fitness 1.11690)
-2026-11-17 21:00:12 | INFO    |   K=10: keep ['band_001', 'band_017', 'band_065', 'band_077', 'band_086', 'band_087', 'band_088', 'band_089', 'band_132', 'band_200'] (training fitness 1.11625)
-2026-11-17 21:00:12 | INFO    |   K=12: keep ['band_001', 'band_008', 'band_037', 'band_075', 'band_087', 'band_088', 'band_090', 'band_093', 'band_097', 'band_117', 'band_168', 'band_200'] (training fitness 1.13223)
-2026-11-17 21:00:12 | INFO    |   K=15: keep ['band_001', 'band_016', 'band_020', 'band_053', 'band_076', 'band_084', 'band_086', 'band_089', 'band_090', 'band_091', 'band_094', 'band_115'] ... (training fitness 1.13787)
-2026-11-17 21:00:12 | INFO    |   K=20: keep ['band_001', 'band_006', 'band_031', 'band_036', 'band_052', 'band_066', 'band_075', 'band_086', 'band_088', 'band_089', 'band_090', 'band_091'] ... (training fitness 1.14514)
-2026-11-17 21:00:12 | INFO    |   K=25: keep ['band_001', 'band_002', 'band_015', 'band_026', 'band_051', 'band_057', 'band_063', 'band_076', 'band_080', 'band_084', 'band_085', 'band_086'] ... (training fitness 1.14782)
-2026-11-17 21:00:12 | INFO    | 00_Indian_pines_corrected: test image 145 x 145, 21,025 valid pixels (100.00%)
-2026-11-17 21:00:13 | INFO    |   K=1: reduction  99.5% | RMSE 0.0671 MAE 0.0426 PSNR  23.47 dB SSIM 0.6693 | 16.04 MB -> 83.70 KB | fwd 6.8 ms inv 15.9 ms
-2026-11-17 21:00:14 | INFO    |   K=2: reduction  99.0% | RMSE 0.0477 MAE 0.0298 PSNR  26.42 dB SSIM 0.8354 | 16.04 MB -> 166.61 KB | fwd 7.6 ms inv 16.6 ms
-2026-11-17 21:00:16 | INFO    |   K=3: reduction  98.5% | RMSE 0.0434 MAE 0.0260 PSNR  27.26 dB SSIM 0.8568 | 16.04 MB -> 249.52 KB | fwd 8.8 ms inv 12.4 ms
-2026-11-17 21:00:17 | INFO    |   K=4: reduction  98.0% | RMSE 0.0415 MAE 0.0252 PSNR  27.64 dB SSIM 0.8640 | 16.04 MB -> 332.44 KB | fwd 6.6 ms inv 12.7 ms
-2026-11-17 21:00:18 | INFO    |   K=5: reduction  97.5% | RMSE 0.0429 MAE 0.0260 PSNR  27.36 dB SSIM 0.8560 | 16.04 MB -> 415.35 KB | fwd 7.3 ms inv 12.1 ms
-2026-11-17 21:00:20 | INFO    |   K=6: reduction  97.0% | RMSE 0.0384 MAE 0.0214 PSNR  28.31 dB SSIM 0.8809 | 16.04 MB -> 498.27 KB | fwd 7.1 ms inv 15.8 ms
-2026-11-17 21:00:21 | INFO    |   K=8: reduction  96.0% | RMSE 0.0370 MAE 0.0220 PSNR  28.64 dB SSIM 0.8895 | 16.04 MB -> 664.09 KB | fwd 7.7 ms inv 13.9 ms
-2026-11-17 21:00:22 | INFO    |   K=10: reduction  95.0% | RMSE 0.0372 MAE 0.0228 PSNR  28.58 dB SSIM 0.8869 | 16.04 MB -> 829.92 KB | fwd 7.8 ms inv 12.5 ms
-2026-11-17 21:00:24 | INFO    |   K=12: reduction  94.0% | RMSE 0.0318 MAE 0.0181 PSNR  29.94 dB SSIM 0.9065 | 16.04 MB -> 995.75 KB | fwd 6.8 ms inv 14.7 ms
-2026-11-17 21:00:25 | INFO    |   K=15: reduction  92.5% | RMSE 0.0299 MAE 0.0161 PSNR  30.48 dB SSIM 0.9168 | 16.04 MB -> 1.22 MB | fwd 7.6 ms inv 14.0 ms
-2026-11-17 21:00:26 | INFO    |   K=20: reduction  90.0% | RMSE 0.0272 MAE 0.0139 PSNR  31.32 dB SSIM 0.9259 | 16.04 MB -> 1.62 MB | fwd 9.3 ms inv 21.4 ms
-2026-11-17 21:00:28 | INFO    |   K=25: reduction  87.5% | RMSE 0.0262 MAE 0.0135 PSNR  31.63 dB SSIM 0.9344 | 16.04 MB -> 2.03 MB | fwd 9.5 ms inv 18.6 ms
-2026-11-17 21:00:38 | INFO    | SA vs GA: same training objective at 1/12 K values
-2026-11-17 21:00:38 | INFO    | SA vs PSO: same training objective at 0/12 K values
-2026-11-17 21:00:39 | INFO    | SA vs ACO: same training objective at 2/12 K values
+2026-11-20 22:16:29 | INFO    | Loaded saved subsets for K = [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25]
+2026-11-20 22:16:29 | INFO    |   K=1: keep ['band_154'] (training fitness 0.67964)
+2026-11-20 22:16:29 | INFO    |   K=2: keep ['band_079', 'band_122'] (training fitness 0.85545)
+2026-11-20 22:16:29 | INFO    |   K=3: keep ['band_001', 'band_065', 'band_116'] (training fitness 0.87567)
+2026-11-20 22:16:29 | INFO    |   K=4: keep ['band_004', 'band_063', 'band_089', 'band_139'] (training fitness 0.89594)
+2026-11-20 22:16:29 | INFO    |   K=5: keep ['band_001', 'band_048', 'band_080', 'band_090', 'band_125'] (training fitness 0.91385)
+2026-11-20 22:16:29 | INFO    |   K=6: keep ['band_001', 'band_053', 'band_086', 'band_087', 'band_100', 'band_160'] (training fitness 1.00505)
+2026-11-20 22:16:29 | INFO    |   K=8: keep ['band_001', 'band_036', 'band_071', 'band_083', 'band_090', 'band_091', 'band_115', 'band_200'] (training fitness 1.11690)
+2026-11-20 22:16:29 | INFO    |   K=10: keep ['band_001', 'band_017', 'band_065', 'band_077', 'band_086', 'band_087', 'band_088', 'band_089', 'band_132', 'band_200'] (training fitness 1.11625)
+2026-11-20 22:16:29 | INFO    |   K=12: keep ['band_001', 'band_008', 'band_037', 'band_075', 'band_087', 'band_088', 'band_090', 'band_093', 'band_097', 'band_117', 'band_168', 'band_200'] (training fitness 1.13223)
+2026-11-20 22:16:29 | INFO    |   K=15: keep ['band_001', 'band_016', 'band_020', 'band_053', 'band_076', 'band_084', 'band_086', 'band_089', 'band_090', 'band_091', 'band_094', 'band_115'] ... (training fitness 1.13787)
+2026-11-20 22:16:29 | INFO    |   K=20: keep ['band_001', 'band_006', 'band_031', 'band_036', 'band_052', 'band_066', 'band_075', 'band_086', 'band_088', 'band_089', 'band_090', 'band_091'] ... (training fitness 1.14514)
+2026-11-20 22:16:29 | INFO    |   K=25: keep ['band_001', 'band_002', 'band_015', 'band_026', 'band_051', 'band_057', 'band_063', 'band_076', 'band_080', 'band_084', 'band_085', 'band_086'] ... (training fitness 1.14782)
+2026-11-20 22:16:29 | INFO    | 00_Indian_pines_corrected: test image 145 x 145, 21,025 valid pixels (100.00%)
+2026-11-20 22:16:31 | INFO    |   K=1: reduction  99.5% | RMSE 0.0671 MAE 0.0426 PSNR  23.47 dB SSIM 0.6693 | 16.04 MB -> 83.70 KB | fwd 8.3 ms inv 14.7 ms
+2026-11-20 22:16:33 | INFO    |   K=2: reduction  99.0% | RMSE 0.0477 MAE 0.0298 PSNR  26.42 dB SSIM 0.8354 | 16.04 MB -> 166.61 KB | fwd 9.6 ms inv 17.4 ms
+2026-11-20 22:16:35 | INFO    |   K=3: reduction  98.5% | RMSE 0.0434 MAE 0.0260 PSNR  27.26 dB SSIM 0.8568 | 16.04 MB -> 249.52 KB | fwd 8.5 ms inv 16.6 ms
+2026-11-20 22:16:36 | INFO    |   K=4: reduction  98.0% | RMSE 0.0415 MAE 0.0252 PSNR  27.64 dB SSIM 0.8640 | 16.04 MB -> 332.44 KB | fwd 9.1 ms inv 15.1 ms
+2026-11-20 22:16:38 | INFO    |   K=5: reduction  97.5% | RMSE 0.0429 MAE 0.0260 PSNR  27.36 dB SSIM 0.8560 | 16.04 MB -> 415.35 KB | fwd 9.2 ms inv 15.8 ms
+2026-11-20 22:16:40 | INFO    |   K=6: reduction  97.0% | RMSE 0.0384 MAE 0.0214 PSNR  28.31 dB SSIM 0.8809 | 16.04 MB -> 498.27 KB | fwd 9.3 ms inv 17.2 ms
+2026-11-20 22:16:42 | INFO    |   K=8: reduction  96.0% | RMSE 0.0370 MAE 0.0220 PSNR  28.64 dB SSIM 0.8895 | 16.04 MB -> 664.09 KB | fwd 8.6 ms inv 17.3 ms
+2026-11-20 22:16:44 | INFO    |   K=10: reduction  95.0% | RMSE 0.0372 MAE 0.0228 PSNR  28.58 dB SSIM 0.8869 | 16.04 MB -> 829.92 KB | fwd 9.9 ms inv 16.1 ms
+2026-11-20 22:16:45 | INFO    |   K=12: reduction  94.0% | RMSE 0.0318 MAE 0.0181 PSNR  29.94 dB SSIM 0.9065 | 16.04 MB -> 995.75 KB | fwd 10.2 ms inv 16.5 ms
+2026-11-20 22:16:47 | INFO    |   K=15: reduction  92.5% | RMSE 0.0299 MAE 0.0161 PSNR  30.48 dB SSIM 0.9168 | 16.04 MB -> 1.22 MB | fwd 9.2 ms inv 17.4 ms
+2026-11-20 22:16:49 | INFO    |   K=20: reduction  90.0% | RMSE 0.0272 MAE 0.0139 PSNR  31.32 dB SSIM 0.9259 | 16.04 MB -> 1.62 MB | fwd 10.5 ms inv 20.5 ms
+2026-11-20 22:16:52 | INFO    |   K=25: reduction  87.5% | RMSE 0.0262 MAE 0.0135 PSNR  31.63 dB SSIM 0.9344 | 16.04 MB -> 2.03 MB | fwd 10.9 ms inv 20.1 ms
+2026-11-20 22:17:18 | INFO    | SA vs GA: same training objective at 1/12 K values
+2026-11-20 22:17:18 | INFO    | SA vs PSO: same training objective at 0/12 K values
+2026-11-20 22:17:18 | INFO    | SA vs ACO: same training objective at 2/12 K values

@@ -941,7 +941,7 @@
       "seeds_agreeing": "2/5",
       "mean_evaluations": 99.4,
       "search_space": 200,
-      "mean_sa_seconds": 4.16324550000063,
+      "mean_sa_seconds": 5.677475280000363,
       "exhaustive_best": "band_154",
       "n_tied_optimal_subsets": 1,
       "exhaustive_best_fitness": 0.6796436309814453,
@@ -950,7 +950,7 @@
       "seeds_reaching_optimum": "2/5",
       "best_non_optimal": "band_156",
       "best_non_optimal_fitness": 0.6792879700660706,
-      "exhaustive_seconds": 8.289260999998078
+      "exhaustive_seconds": 11.640451700000995
     },
     {
       "k": 2,
@@ -959,7 +959,7 @@
       "seeds_agreeing": "1/5",
       "mean_evaluations": 198.0,
       "search_space": 19900,
-      "mean_sa_seconds": 8.988673959999142,
+      "mean_sa_seconds": 8.792715560000214,
       "exhaustive_best": "not run (19,900 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
     },
     {
@@ -969,7 +969,7 @@
       "seeds_agreeing": "1/5",
       "mean_evaluations": 203.4,
       "search_space": 1313400,
-      "mean_sa_seconds": 9.148925619998773,
+      "mean_sa_seconds": 10.014544819998264,
       "exhaustive_best": "not run (1,313,400 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
     },
     {
@@ -979,7 +979,7 @@
       "seeds_agreeing": "1/5",
       "mean_evaluations": 202.8,
       "search_space": 64684950,
-      "mean_sa_seconds": 10.94711116000035,
+      "mean_sa_seconds": 10.750754339999549,
       "exhaustive_best": "not run (64,684,950 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
     },
     {
@@ -989,7 +989,7 @@
       "seeds_agreeing": "1/5",
       "mean_evaluations": 193.0,
       "search_space": 2535650040,
-      "mean_sa_seconds": 10.15206659999967,
+      "mean_sa_seconds": 12.044064059999801,
       "exhaustive_best": "not run (2,535,650,040 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
     },
     {
@@ -999,7 +999,7 @@
       "seeds_agreeing": "1/5",
       "mean_evaluations": 204.2,
       "search_space": 82408626300,
-      "mean_sa_seconds": 10.69611864000035,
+      "mean_sa_seconds": 11.51415158000018,
       "exhaustive_best": "not run (82,408,626,300 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
     },
     {
@@ -1009,7 +1009,7 @@
       "seeds_agreeing": "1/5",
       "mean_evaluations": 220.2,
       "search_space": 55098996177225,
-      "mean_sa_seconds": 12.89304626000012,
+      "mean_sa_seconds": 16.171434939999745,
       "exhaustive_best": "not run (55,098,996,177,225 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
     },
     {
@@ -1019,7 +1019,7 @@
       "seeds_agreeing": "1/5",
       "mean_evaluations": 204.8,
       "search_space": 22451004309013280,
-      "mean_sa_seconds": 12.68575334000052,
+      "mean_sa_seconds": 14.52046521999946,
       "exhaustive_best": "not run (22,451,004,309,013,280 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
     },
     {
@@ -1029,7 +1029,7 @@
       "seeds_agreeing": "1/5",
       "mean_evaluations": 220.6,
       "search_space": 6107693672247476400,
-      "mean_sa_seconds": 14.92301654000039,
+      "mean_sa_seconds": 15.28064430000013,
       "exhaustive_best": "not run (6,107,693,672,247,476,400 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
     },
     {
@@ -1039,7 +1039,7 @@
       "seeds_agreeing": "1/5",
       "mean_evaluations": 205.0,
       "search_space": 14629416353818682834880,
-      "mean_sa_seconds": 15.946291380000185,
+      "mean_sa_seconds": 15.602749940000649,
       "exhaustive_best": "not run (14,629,416,353,818,682,834,880 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
     },
     {
@@ -1049,7 +1049,7 @@
       "seeds_agreeing": "1/5",
       "mean_evaluations": 205.0,
       "search_space": 1613587787967350073386147640,
-      "mean_sa_seconds": 19.00498472000036,
+      "mean_sa_seconds": 19.76417637999839,
       "exhaustive_best": "not run (1,613,587,787,967,350,073,386,147,640 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
     },
     {
@@ -1059,16 +1059,16 @@
       "seeds_agreeing": "1/5",
       "mean_evaluations": 204.8,
       "search_space": 45217131606152448808778187283008,
-      "mean_sa_seconds": 22.440812119999464,
+      "mean_sa_seconds": 21.726245200000267,
       "exhaustive_best": "not run (45,217,131,606,152,448,808,778,187,283,008 subsets > EXHAUSTIVE_MAX_SUBSETS=500)"
     }
   ],
   "timing_memory": {
     "load_and_preprocess": {
-      "seconds": 0.10236770000119577,
+      "seconds": 0.13067360000059125,
       "peak_python_mb": 88.310249,
-      "rss_after_mb": 485.003264
+      "rss_after_mb": 484.093952
     }
   },
-  "process_rss_mb_end": 508.911616
+  "process_rss_mb_end": 496.82432
 }

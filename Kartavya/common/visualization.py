@@ -561,7 +561,9 @@ def plot_horizontal_bars(labels, values, path, title, x_label, highlight=None):
     order = np.argsort(values)
     fig, ax = plt.subplots(figsize=(7.5, 0.45 * len(labels) + 1.6))
     cols = [SERIES[1] if labels[i] == highlight else SERIES[0] for i in order]
-    ax.barh([labels[i] for i in order], [values[i] for i in order], color=cols, zorder=2)
+    ys = np.arange(len(order))                       # numeric positions: duplicate labels never share a bar
+    ax.barh(ys, [values[i] for i in order], color=cols, zorder=2)
+    ax.set_yticks(ys, [labels[i] for i in order])
     for y, i in enumerate(order):
         ax.text(values[i], y, f" {values[i]:.3g}", va="center", fontsize=8, color=TEXT2)
     ax.set_xlabel(x_label)

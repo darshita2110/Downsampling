@@ -10,6 +10,7 @@ import pandas as pd
 
 from algorithms.pca import config as cfg
 from algorithms.pca.implementation import PCA
+from common import config as gcfg
 from common import visualization as viz
 from common.data_loader import load_split_pixels
 from common.metrics import mae, mse, psnr, rmse
@@ -118,7 +119,7 @@ def test(ctx):
     t0 = time.perf_counter()
     model, scaler = load_model(ctx)
     C = model.n_features_
-    ks = cfg.COMPONENT_COUNTS or sorted(set(ctx.ks) | {C})
+    ks = cfg.COMPONENT_COUNTS or sorted(set(ctx.ks) | ({C} if gcfg.INCLUDE_FULL_K else set()))
     ks = [k for k in ks if 1 <= k <= C]
     n_extra = 2 * C if scaler.enabled else 0          # standardiser mean + std also travel with the model
     cum = np.cumsum(model.all_explained_variance_ratio_)

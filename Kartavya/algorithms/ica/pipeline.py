@@ -13,6 +13,7 @@ import pandas as pd
 
 from algorithms.ica import config as cfg
 from algorithms.ica.implementation import FastICA
+from common import config as gcfg
 from common import visualization as viz
 from common.data_loader import load_split_pixels
 from common.metrics import component_statistics, mae, mse, psnr, rmse
@@ -78,7 +79,7 @@ def train(ctx):
     cov_eig = np.sort(np.linalg.eigvalsh(np.cov(z_fit.T)))[::-1]
     rank = FastICA.numerical_rank(np.clip(cov_eig, 0, None), cfg.RANK_TOL)
     C = len(names)
-    req = cfg.COMPONENT_COUNTS or sorted(set(ctx.ks) | {C})
+    req = cfg.COMPONENT_COUNTS or sorted(set(ctx.ks) | ({C} if gcfg.INCLUDE_FULL_K else set()))
     ks = [k for k in req if 1 <= k <= rank]
     skipped = [k for k in req if k > rank]
     log.info(f"Covariance eigenvalues: {np.round(cov_eig, 6).tolist()[:20]} -> numerical rank {rank}")

@@ -136,7 +136,7 @@
       "reduced_disk_bytes_npy": 2102628.0
     }
   ],
-  "process_rss_mb_end": 783.38048,
+  "process_rss_mb_end": 822.484992,
   "selected": {
     "1": [
       "band_158"
@@ -373,5 +373,5 @@
     }
   ],
   "search_comparison_file": "ubscnn_vs_ga_pso_aco_sa.csv",
-  "total_seconds": 32.71062549999988
+  "total_seconds": 77.28582499999902
 }

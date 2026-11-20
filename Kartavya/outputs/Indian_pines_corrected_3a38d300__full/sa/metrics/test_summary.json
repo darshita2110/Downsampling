@@ -136,7 +136,7 @@
       "reduced_disk_bytes_npy": 2102628.0
     }
   ],
-  "process_rss_mb_end": 567.844864,
+  "process_rss_mb_end": 473.890816,
   "selected": {
     "1": [
       "band_154"
@@ -373,5 +373,5 @@
     }
   ],
   "search_comparison_file": "sa_vs_ga_pso_aco.csv",
-  "total_seconds": 27.25352650000059
+  "total_seconds": 49.17172339999888
 }

@@ -243,9 +243,9 @@
   "seeds": [
     {
       "seed": 42,
-      "train_seconds": 881.8864414999989,
-      "train_peak_python_mb": 590.424932,
-      "rss_after_mb": 1222.619136,
+      "train_seconds": 1151.6851150000002,
+      "train_peak_python_mb": 590.443145,
+      "rss_after_mb": 1244.585984,
       "process_peak_rss_mb": null,
       "final_train_mse": 0.002317618722251306,
       "final_val_mse": 0.021459302989714737,
@@ -254,9 +254,9 @@
     },
     {
       "seed": 43,
-      "train_seconds": 762.6410141000015,
-      "train_peak_python_mb": 587.359034,
-      "rss_after_mb": 1245.53216,
+      "train_seconds": 1546.7625377000004,
+      "train_peak_python_mb": 587.3548,
+      "rss_after_mb": 1263.45216,
       "process_peak_rss_mb": null,
       "final_train_mse": 0.0023115369685304662,
       "final_val_mse": 0.03497131907611812,
@@ -265,9 +265,9 @@
     },
     {
       "seed": 44,
-      "train_seconds": 552.1879862000023,
-      "train_peak_python_mb": 587.51366,
-      "rss_after_mb": 1248.989184,
+      "train_seconds": 984.8344848999986,
+      "train_peak_python_mb": 587.510035,
+      "rss_after_mb": 1284.325376,
       "process_peak_rss_mb": null,
       "final_train_mse": 0.0019541650855292875,
       "final_val_mse": 0.08719397308629587,
@@ -818,15 +818,15 @@
   },
   "timing_memory": {
     "load_and_preprocess": {
-      "seconds": 0.09999600000082864,
+      "seconds": 0.22844570000233944,
       "peak_python_mb": 88.330571,
-      "rss_after_mb": 531.283968
+      "rss_after_mb": 503.586816
     },
     "make_patches": {
-      "seconds": 0.5801252999990538,
-      "peak_python_mb": 593.200363,
-      "rss_after_mb": 799.932416
+      "seconds": 1.161891799998557,
+      "peak_python_mb": 593.218347,
+      "rss_after_mb": 773.398528
     }
   },
-  "process_rss_mb_end": 1305.86624
+  "process_rss_mb_end": 1344.987136
 }

@@ -84,6 +84,10 @@ RANDOM_SEED = 42
 MAX_C_FOR_ALL_K = 16
 K_GRID = [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25, 30, 40, 50, 64, 75, 100, 128, 150, 200, 256]
 MAX_K_VALUES = 12                  # at most this many values from K_GRID (the smallest ones are kept)
+# PCA / ICA can also be run at K = C (all channels kept: a lossless sanity check, PSNR ~ infinite). That single
+# point squashes every K-axis graph (e.g. K = 200 next to K = 1..25 on Indian Pines) and is skipped by default.
+# True = evaluate K = C again (only for checking that the reconstruction is exact).
+INCLUDE_FULL_K = False
 
 # ------------------------------------------------------------------ exhaustive checks (band selection)
 # GA/PSO/ACO/SA/UBS-CNN verify their result against an exhaustive search of all C-choose-K subsets.

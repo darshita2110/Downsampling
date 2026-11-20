@@ -1,14 +1,13 @@
-2026-11-17 19:58:32 | INFO    | 00_Indian_pines_corrected: test image 145 x 145, 21,025 valid pixels (100.00%)
-2026-11-17 19:58:34 | INFO    |   K=1: reduction  99.5% | RMSE 0.0663 MAE 0.0437 PSNR  23.57 dB SSIM 0.6685 | 16.04 MB -> 85.25 KB | fwd 13.4 ms inv 45.4 ms
-2026-11-17 19:58:35 | INFO    |   K=2: reduction  99.0% | RMSE 0.0430 MAE 0.0264 PSNR  27.33 dB SSIM 0.8637 | 16.04 MB -> 168.16 KB | fwd 16.9 ms inv 35.7 ms
-2026-11-17 19:58:37 | INFO    |   K=3: reduction  98.5% | RMSE 0.0391 MAE 0.0238 PSNR  28.15 dB SSIM 0.8786 | 16.04 MB -> 251.07 KB | fwd 16.5 ms inv 40.2 ms
-2026-11-17 19:58:39 | INFO    |   K=4: reduction  98.0% | RMSE 0.0364 MAE 0.0215 PSNR  28.79 dB SSIM 0.8941 | 16.04 MB -> 333.98 KB | fwd 16.2 ms inv 39.1 ms
-2026-11-17 19:58:40 | INFO    |   K=5: reduction  97.5% | RMSE 0.0354 MAE 0.0209 PSNR  29.01 dB SSIM 0.9012 | 16.04 MB -> 416.89 KB | fwd 15.7 ms inv 39.6 ms
-2026-11-17 19:58:42 | INFO    |   K=6: reduction  97.0% | RMSE 0.0333 MAE 0.0180 PSNR  29.55 dB SSIM 0.9084 | 16.04 MB -> 499.80 KB | fwd 15.8 ms inv 40.3 ms
-2026-11-17 19:58:43 | INFO    |   K=8: reduction  96.0% | RMSE 0.0303 MAE 0.0168 PSNR  30.36 dB SSIM 0.9169 | 16.04 MB -> 665.62 KB | fwd 16.5 ms inv 38.5 ms
-2026-11-17 19:58:45 | INFO    |   K=10: reduction  95.0% | RMSE 0.0282 MAE 0.0159 PSNR  30.99 dB SSIM 0.9242 | 16.04 MB -> 831.45 KB | fwd 15.2 ms inv 41.5 ms
-2026-11-17 19:58:46 | INFO    |   K=12: reduction  94.0% | RMSE 0.0264 MAE 0.0150 PSNR  31.58 dB SSIM 0.9305 | 16.04 MB -> 997.27 KB | fwd 16.6 ms inv 36.5 ms
-2026-11-17 19:58:48 | INFO    |   K=15: reduction  92.5% | RMSE 0.0244 MAE 0.0141 PSNR  32.26 dB SSIM 0.9368 | 16.04 MB -> 1.22 MB | fwd 15.9 ms inv 36.4 ms
-2026-11-17 19:58:49 | INFO    |   K=20: reduction  90.0% | RMSE 0.0217 MAE 0.0125 PSNR  33.27 dB SSIM 0.9477 | 16.04 MB -> 1.62 MB | fwd 16.0 ms inv 41.7 ms
-2026-11-17 19:58:51 | INFO    |   K=25: reduction  87.5% | RMSE 0.0194 MAE 0.0111 PSNR  34.25 dB SSIM 0.9556 | 16.04 MB -> 2.03 MB | fwd 17.6 ms inv 38.8 ms
-2026-11-17 19:58:52 | INFO    |   K=200: reduction   0.0% | RMSE 0.0000 MAE 0.0000 PSNR 348.14 dB SSIM 1.0000 | 16.04 MB -> 16.20 MB | fwd 29.9 ms inv 54.5 ms
+2026-11-20 21:12:12 | INFO    | 00_Indian_pines_corrected: test image 145 x 145, 21,025 valid pixels (100.00%)
+2026-11-20 21:12:14 | INFO    |   K=1: reduction  99.5% | RMSE 0.0663 MAE 0.0437 PSNR  23.57 dB SSIM 0.6685 | 16.04 MB -> 85.25 KB | fwd 12.5 ms inv 53.0 ms
+2026-11-20 21:12:15 | INFO    |   K=2: reduction  99.0% | RMSE 0.0430 MAE 0.0264 PSNR  27.33 dB SSIM 0.8637 | 16.04 MB -> 168.16 KB | fwd 14.9 ms inv 35.9 ms
+2026-11-20 21:12:16 | INFO    |   K=3: reduction  98.5% | RMSE 0.0391 MAE 0.0238 PSNR  28.15 dB SSIM 0.8786 | 16.04 MB -> 251.07 KB | fwd 14.8 ms inv 37.3 ms
+2026-11-20 21:12:18 | INFO    |   K=4: reduction  98.0% | RMSE 0.0364 MAE 0.0215 PSNR  28.79 dB SSIM 0.8941 | 16.04 MB -> 333.98 KB | fwd 14.8 ms inv 39.0 ms
+2026-11-20 21:12:20 | INFO    |   K=5: reduction  97.5% | RMSE 0.0354 MAE 0.0209 PSNR  29.01 dB SSIM 0.9012 | 16.04 MB -> 416.89 KB | fwd 14.9 ms inv 39.2 ms
+2026-11-20 21:12:21 | INFO    |   K=6: reduction  97.0% | RMSE 0.0333 MAE 0.0180 PSNR  29.55 dB SSIM 0.9084 | 16.04 MB -> 499.80 KB | fwd 20.9 ms inv 62.3 ms
+2026-11-20 21:12:23 | INFO    |   K=8: reduction  96.0% | RMSE 0.0303 MAE 0.0168 PSNR  30.36 dB SSIM 0.9169 | 16.04 MB -> 665.62 KB | fwd 17.1 ms inv 42.0 ms
+2026-11-20 21:12:24 | INFO    |   K=10: reduction  95.0% | RMSE 0.0282 MAE 0.0159 PSNR  30.99 dB SSIM 0.9242 | 16.04 MB -> 831.45 KB | fwd 17.8 ms inv 42.4 ms
+2026-11-20 21:12:26 | INFO    |   K=12: reduction  94.0% | RMSE 0.0264 MAE 0.0150 PSNR  31.58 dB SSIM 0.9305 | 16.04 MB -> 997.27 KB | fwd 23.1 ms inv 43.6 ms
+2026-11-20 21:12:28 | INFO    |   K=15: reduction  92.5% | RMSE 0.0244 MAE 0.0141 PSNR  32.26 dB SSIM 0.9368 | 16.04 MB -> 1.22 MB | fwd 17.2 ms inv 38.0 ms
+2026-11-20 21:12:29 | INFO    |   K=20: reduction  90.0% | RMSE 0.0217 MAE 0.0125 PSNR  33.27 dB SSIM 0.9477 | 16.04 MB -> 1.62 MB | fwd 18.2 ms inv 38.7 ms
+2026-11-20 21:12:31 | INFO    |   K=25: reduction  87.5% | RMSE 0.0194 MAE 0.0111 PSNR  34.25 dB SSIM 0.9556 | 16.04 MB -> 2.03 MB | fwd 20.8 ms inv 40.8 ms
