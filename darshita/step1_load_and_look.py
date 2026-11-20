@@ -51,7 +51,7 @@ for ax, b in zip(axes, [10, 100, 180]):
     ax.axis("off")
 plt.suptitle("The same place seen in three different bands")
 plt.tight_layout()
-plt.savefig(f"{OUT_DIR}/step1_three_bands.png", dpi=120)
+plt.savefig(f"{OUT_DIR}/step1_three_bands.png", dpi=200)
 print(f"Saved {OUT_DIR}/step1_three_bands.png")
 
 # ------------------------------------------------------- 4. look at spectra
@@ -64,7 +64,7 @@ plt.ylabel("Value")
 plt.title("Spectra of three pixels")
 plt.legend()
 plt.tight_layout()
-plt.savefig(f"{OUT_DIR}/step1_spectra.png", dpi=120)
+plt.savefig(f"{OUT_DIR}/step1_spectra.png", dpi=200)
 print(f"Saved {OUT_DIR}/step1_spectra.png")
 
 # ------------------------------------------------------- 5. the key observation

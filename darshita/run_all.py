@@ -14,8 +14,9 @@ Run (from the repo folder):
     python darshita/run_all.py --summary-only                 # just rebuild the summary
 
 Outputs (darshita/outputs/):
-    all_datasets_summary.md / .csv     PSNR and OA of every method on every dataset + average rank
+    all_datasets_summary.md / .csv     PSNR, SSIM and AOA of every method on every dataset + average rank
     all_datasets_rank.png              average rank of every method (1 = best)
+    all_results.xlsx                   every value of every table above, one sheet each
 """
 import argparse
 import os
@@ -56,13 +57,14 @@ def run(script, *extra):
 
 if not args.summary_only:
     for ds in datasets:
-        if args.redo or not os.path.exists(f"{OUT_DIR}/final_results_{dataset_name(ds)}.csv"):
+        f6 = f"{OUT_DIR}/final_results_{dataset_name(ds)}.csv"
+        if args.redo or not os.path.exists(f6) or "SSIM" not in pd.read_csv(f6, nrows=1).columns:
             run("step6_compare_all.py", ds)
         if load_labels(ds) is not None:
             run("step8_classification.py", ds, "--runs", str(args.runs), "--classifiers", *args.classifiers)
 
 # ---------------------------------------------------------------- summary across datasets
-psnr_rows, oa_rows = [], []
+psnr_rows, ssim_rows, oa_rows = [], [], []
 for ds in datasets:
     tag = dataset_name(ds)
     f6 = f"{OUT_DIR}/final_results_{tag}.csv"
@@ -73,6 +75,9 @@ for ds in datasets:
         k_main = default_k(n_bands)
         for _, r in d[d.K == k_main].iterrows():
             psnr_rows.append({"Dataset": tag, "Method": r.Method, "Family": r.Family, "K": k_main, "PSNR": r.PSNR})
+            if "SSIM" in d.columns:                     # results made before SSIM was added have none
+                ssim_rows.append({"Dataset": tag, "Method": r.Method, "Family": r.Family, "K": k_main,
+                                  "SSIM": r.SSIM})
     f8 = f"{OUT_DIR}/step8_classification_{tag}.csv"
     if os.path.exists(f8):
         d = pd.read_csv(f8)
@@ -84,6 +89,7 @@ for ds in datasets:
 lines = ["# All datasets: summary", ""]
 tables = {}
 for title, rows, col in [("Rebuild quality: PSNR (dB) at the main K", psnr_rows, "PSNR"),
+                         ("Rebuild quality: SSIM (0-1) at the main K", ssim_rows, "SSIM"),
                          ("Classification: AOA (%), OA averaged over K = 5..30", oa_rows, "AOA")]:
     if not rows:
         continue
@@ -96,7 +102,9 @@ for title, rows, col in [("Rebuild quality: PSNR (dB) at the main K", psnr_rows,
     lines += [f"## {title}", "", "| Method | Family | " + " | ".join(wide.columns) + " |",
               "|---|---|" + "---|" * len(wide.columns)]
     for (m, fam), r in wide.iterrows():
-        lines.append(f"| {m} | {fam} | " + " | ".join(f"{v:.2f}" if pd.notna(v) else "–" for v in r.values) + " |")
+        fmt = "{:.4f}" if col == "SSIM" else "{:.2f}"
+        lines.append(f"| {m} | {fam} | " + " | ".join(fmt.format(v) if pd.notna(v) else "–" for v in r.values[:-1])
+                     + f" | {r.values[-1]:.2f} |")
     fam_rank = wide.groupby(level="Family")["Average rank"].mean().sort_values()
     lines += ["", "Family average rank (1 = best): " +
               ", ".join(f"{f} {v:.2f}" for f, v in fam_rank.items()), ""]
@@ -117,10 +125,52 @@ if tables:
             ax.text(v + 0.05, i, f"{v:.2f}", va="center", fontsize=9)
         n = len([c for c in wide.columns if c != "Average rank"])
         ax.set_xlabel(f"average rank over {n} dataset(s), 1 = best")
-        ax.set_title("Rebuild (PSNR)" if col == "PSNR" else "Classification (AOA)")
+        ax.set_title({"PSNR": "Rebuild (PSNR)", "SSIM": "Rebuild (SSIM)", "AOA": "Classification (AOA)"}[col])
         ax.set_xlim(0, w["Average rank"].max() + 1.2)
     handles = [plt.Rectangle((0, 0), 1, 1, color=c) for c in FAMILY_COLOUR.values()]
     fig.legend(handles, list(FAMILY_COLOUR), loc="lower center", ncol=5, frameon=False)
     fig.tight_layout(rect=(0, 0.07, 1, 1))
-    fig.savefig(f"{OUT_DIR}/all_datasets_rank.png", dpi=120)
+    fig.savefig(f"{OUT_DIR}/all_datasets_rank.png", dpi=200)
     print(f"Saved all_datasets_summary.md and all_datasets_rank.png in {OUT_DIR}/")
+
+# ---------------------------------------------------------------- one Excel file with every value
+sheets = []
+for ds in datasets:
+    tag = dataset_name(ds)
+    for prefix, label in [("final_results", "Rebuild"), ("step8_classification", "Classif")]:
+        path = f"{OUT_DIR}/{prefix}_{tag}.csv"
+        if os.path.exists(path):
+            sheets.append((f"{label} {tag}"[:31], pd.read_csv(path)))
+for col, wide in tables.items():
+    sheets.append((f"All datasets {col}", wide.reset_index()))
+if sheets:
+    from openpyxl.styles import Font, PatternFill
+    xlsx = f"{OUT_DIR}/all_results.xlsx"
+    with pd.ExcelWriter(xlsx, engine="openpyxl") as xl:
+        pd.DataFrame({"Sheet": [n for n, _ in sheets], "Rows": [len(d) for _, d in sheets]}).to_excel(
+            xl, sheet_name="Contents", index=False, startrow=6)
+        ws = xl.sheets["Contents"]
+        for i, line in enumerate(["Band selection results - Darshita Bansal",
+                                  "Rebuild: PSNR (dB) and SSIM (0-1) higher = better; SAM (degrees), "
+                                  "Redundancy (0-1) and Time (s) lower = better",
+                                  "Classif: OA, AA (%) and Kappa from an SVM trained on 10% of the labelled pixels",
+                                  "All datasets: value at the main K (10 bands, 4 for Raichur) + average rank, "
+                                  "1 = best"], start=1):
+            ws.cell(row=i, column=1, value=line)
+        ws.cell(row=1, column=1).font = Font(bold=True, size=13)
+        for name, d in sheets:
+            d.to_excel(xl, sheet_name=name, index=False)
+        for name, ws in xl.sheets.items():
+            head = 7 if name == "Contents" else 1
+            for c in ws[head]:
+                c.font, c.fill = Font(bold=True), PatternFill("solid", fgColor="DDDDDD")
+            ws.freeze_panes = ws.cell(row=head + 1, column=1)
+            for column in ws.columns:
+                width = max(len(str(c.value)) for c in column[head - 1:] if c.value is not None) if any(
+                    c.value is not None for c in column[head - 1:]) else 8
+                ws.column_dimensions[column[0].column_letter].width = min(max(9, width + 2), 40)
+            for row in ws.iter_rows(min_row=head + 1):
+                for c in row:
+                    if isinstance(c.value, float):
+                        c.number_format = "0.0000"
+    print(f"Saved {xlsx} (every value, one sheet per table)")

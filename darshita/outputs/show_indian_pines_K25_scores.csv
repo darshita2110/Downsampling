@@ -1,0 +1,10 @@
+Method,Family,K,Data sent %,PSNR,SSIM,SAM,Redundancy,Time s,Channels
+SFS,Search,25,12.5000,33.5539,0.9441,2.8153,0.4188,0.3084,ch 0 ch 9 ch 16 ch 20 ch 23 ch 27 ch 37 ch 56 ch 58 ch 60 ch 61 ch 74 ch 75 ch 88 ch 90 ch 96 ch 102 ch 103 ch 104 ch 128 ch 143 ch 144 ch 153 ch 163 ch 199
+AffinityProp,Clustering,25,12.5000,32.7314,0.9415,3.1281,0.3233,1.4128,ch 0 ch 1 ch 9 ch 27 ch 34 ch 35 ch 47 ch 60 ch 63 ch 74 ch 75 ch 86 ch 87 ch 89 ch 90 ch 91 ch 93 ch 96 ch 99 ch 102 ch 103 ch 118 ch 143 ch 163 ch 199
+WaLuDi,Clustering,25,12.5000,32.0281,0.9273,3.3080,0.5809,0.1010,ch 0 ch 3 ch 6 ch 12 ch 14 ch 17 ch 18 ch 19 ch 21 ch 23 ch 27 ch 29 ch 33 ch 34 ch 56 ch 57 ch 60 ch 88 ch 91 ch 103 ch 113 ch 136 ch 144 ch 163 ch 199
+SegWard,Hybrid,25,12.5000,31.9921,0.9310,3.3965,0.4683,3.4882,ch 0 ch 1 ch 2 ch 6 ch 13 ch 25 ch 33 ch 35 ch 47 ch 58 ch 60 ch 66 ch 74 ch 77 ch 83 ch 89 ch 98 ch 103 ch 112 ch 123 ch 136 ch 175 ch 190 ch 198 ch 199
+Uniform,Baseline,25,12.5000,30.5070,0.9123,4.0557,0.6025,0.0001,ch 0 ch 8 ch 17 ch 25 ch 33 ch 41 ch 50 ch 58 ch 66 ch 75 ch 83 ch 91 ch 100 ch 108 ch 116 ch 124 ch 133 ch 141 ch 149 ch 158 ch 166 ch 174 ch 182 ch 191 ch 199
+WaLuMI,Clustering,25,12.5000,30.5064,0.9204,3.9779,0.6087,4.4476,ch 1 ch 9 ch 17 ch 24 ch 35 ch 47 ch 55 ch 67 ch 77 ch 91 ch 100 ch 102 ch 103 ch 104 ch 105 ch 112 ch 122 ch 143 ch 144 ch 145 ch 153 ch 165 ch 186 ch 198 ch 199
+Variance,Ranking,25,12.5000,26.7989,0.8230,5.3451,0.7606,0.0248,ch 16 ch 17 ch 18 ch 19 ch 20 ch 21 ch 22 ch 23 ch 24 ch 25 ch 26 ch 27 ch 28 ch 29 ch 30 ch 31 ch 32 ch 33 ch 38 ch 40 ch 41 ch 42 ch 43 ch 47 ch 48
+Entropy,Ranking,25,12.5000,26.0944,0.8077,5.6569,0.9522,0.0352,ch 19 ch 20 ch 21 ch 25 ch 26 ch 27 ch 28 ch 29 ch 30 ch 33 ch 107 ch 108 ch 109 ch 110 ch 111 ch 112 ch 113 ch 114 ch 115 ch 116 ch 117 ch 118 ch 119 ch 120 ch 121
+MVPCA,Ranking,25,12.5000,25.8356,0.8024,5.5301,0.7440,0.0712,ch 0 ch 90 ch 102 ch 103 ch 112 ch 113 ch 114 ch 115 ch 116 ch 117 ch 118 ch 119 ch 120 ch 121 ch 143 ch 144 ch 159 ch 161 ch 162 ch 163 ch 164 ch 165 ch 166 ch 167 ch 199

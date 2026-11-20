@@ -20,6 +20,7 @@ Run (from the repo folder):
     python darshita/show_reduction.py pavia_u --k 5            # choose K yourself
     python darshita/show_reduction.py raichur --only search    # one screen: ranking, search, clustering, final
     python darshita/show_reduction.py raichur --no-show        # only save the pictures
+    python darshita/show_reduction.py indian_pines --k 25 --search SFS   # K = 25, only SFS from search
 Saved as darshita/outputs/show_<dataset>_K<k>_1_ranking.png ... _5_scoreboard.png
 """
 import argparse
@@ -30,7 +31,7 @@ import numpy as np
 
 from clustering import ap_select, kl_distance, mi_distance, segward_select, ward_select
 from common import (OUT_DIR, dataset_name, default_k, load_dataset, psnr, rebuild, redundancy,
-                    sam_degrees, scale_01, split_pixels, to_table, uniform)
+                    sam_degrees, scale_01, split_pixels, ssim, to_table, uniform)
 from ranking import entropy_scores, mvpca_scores, top_k, variance_scores
 from search import exhaustive, genetic_algorithm, make_cost, n_groups, pso, sfs
 
@@ -39,6 +40,8 @@ p.add_argument("dataset", nargs="?", default="raichur")
 p.add_argument("--k", type=int, help="channels to send (default: 4 for 12 bands, 10 for hyperspectral)")
 p.add_argument("--only", choices=["ranking", "search", "clustering", "final"], help="show only this screen")
 p.add_argument("--no-show", action="store_true", help="only save the pictures, open no window")
+p.add_argument("--search", nargs="+", default=["SFS", "GA", "PSO"], type=str.upper, choices=["SFS", "GA", "PSO"],
+               help="search methods to run, e.g. --search SFS (default: SFS GA PSO)")
 args = p.parse_args()
 
 COLOUR = {"Ranking": "#2a78d6", "Search": "#eb6834", "Clustering": "#1baf7a", "Hybrid": "#a5359b",
@@ -95,6 +98,7 @@ FAMILIES = {
     "Hybrid": {"SegWard": lambda: segward_select(p01[sample], K)[0]},
     "Baseline": {"Uniform": lambda: uniform(C, K)},
 }
+FAMILIES["Search"] = {m: f for m, f in FAMILIES["Search"].items() if m in args.search}
 if n_groups(C, K) <= 5000:                          # few channels: the true best can be found
     FAMILIES["Search"]["Exhaustive"] = lambda: exhaustive(cost, C, K)[0]
 
@@ -105,8 +109,16 @@ for family, methods in FAMILIES.items():
         rebuilt = rebuild(p01, group, calib)
         R[name] = {"family": family, "group": group, "rebuilt": rebuilt, "time": secs,
                    "psnr": psnr(p01[test], rebuilt[test]), "sam": sam_degrees(p01[test], rebuilt[test]),
+                   "ssim": ssim(p01, rebuilt, (H, W), test),
                    "red": redundancy(raw, group),
                    "error": np.abs(p01 - rebuilt).mean(axis=1).reshape(H, W)}
+
+import pandas as pd                                             # every score of this run, also as a table
+pd.DataFrame([{"Method": m, "Family": r["family"], "K": K, "Data sent %": 100 * K / C, "PSNR": r["psnr"],
+               "SSIM": r["ssim"], "SAM": r["sam"], "Redundancy": r["red"], "Time s": r["time"],
+               "Channels": " ".join(names[c] for c in r["group"])} for m, r in R.items()]
+             ).sort_values("PSNR", ascending=False).to_csv(f"{OUT_DIR}/show_{DATASET}_K{K}_scores.csv",
+                                                          index=False, float_format="%.4f")
 
 ERR_MAX = np.percentile(R["Uniform"]["error"], 99.5) * 1.5      # same colour scale on every error map
 PIXEL = test[np.argmax(R["Uniform"]["error"].ravel()[test])]     # one hard pixel, same in every plot
@@ -117,10 +129,10 @@ def sent(group):
 
 
 def print_table(title, rows):
-    print(f"\n{title}\n  {'Method':13s} {'PSNR dB':>8s} {'SAM °':>7s} {'Redund.':>8s} {'Time s':>7s}  Channels sent")
+    print(f"\n{title}\n  {'Method':13s} {'PSNR dB':>8s} {'SSIM':>7s} {'SAM °':>7s} {'Redund.':>8s} {'Time s':>7s}  Channels sent")
     for m in rows:
         r = R[m]
-        print(f"  {m:13s} {r['psnr']:8.2f} {r['sam']:7.2f} {r['red']:8.3f} {r['time']:7.2f}  "
+        print(f"  {m:13s} {r['psnr']:8.2f} {r['ssim']:7.4f} {r['sam']:7.2f} {r['red']:8.3f} {r['time']:7.2f}  "
               + " ".join(names[c] for c in r["group"]))
 
 
@@ -137,7 +149,7 @@ def screen(rows, title, filename, note=""):
         a1.set_title(f"{m}: REBUILT from {K} channels ({size_k:.1f} MB)", fontsize=9.5,
                      color=col, fontweight="bold")
         im = a2.imshow(r["error"], cmap="magma", vmin=0, vmax=ERR_MAX)
-        a2.set_title(f"DIFFERENCE: PSNR {r['psnr']:.2f} dB, SAM {r['sam']:.2f}°\n(brighter = more lost)",
+        a2.set_title(f"DIFFERENCE: PSNR {r['psnr']:.2f} dB, SSIM {r['ssim']:.3f}\nSAM {r['sam']:.2f}° (brighter = more lost)",
                      fontsize=9.5)
         fig.colorbar(im, ax=a2, fraction=0.046, pad=0.02)
         for ax in (a0, a1, a2):
@@ -159,7 +171,7 @@ def screen(rows, title, filename, note=""):
     fig.text(0.01, 0.005, f"Pictures: {rgb_note}, same colour stretch in all. Error maps: same scale in all.",
              fontsize=8, color="#555555")
     fig.tight_layout(rect=(0, 0.015, 1, 0.95))
-    fig.savefig(f"{OUT_DIR}/show_{DATASET}_K{K}_{filename}.png", dpi=100)
+    fig.savefig(f"{OUT_DIR}/show_{DATASET}_K{K}_{filename}.png", dpi=200)
     print(f"  saved {OUT_DIR}/show_{DATASET}_K{K}_{filename}.png")
     if not args.no_show:
         plt.show()
@@ -200,17 +212,21 @@ if args.only in (None, "final"):
 
     # ---------------------------------------------------- 4. scoreboard of every method
     order = by_psnr(list(R))
-    fig, axes = plt.subplots(1, 3, figsize=(16, 0.45 * len(order) + 2), sharey=True)
+    fig, axes = plt.subplots(1, 4, figsize=(20, 0.45 * len(order) + 2), sharey=True)
     cols = [COLOUR[R[m]["family"]] for m in order]
-    for ax, key, label in zip(axes, ["psnr", "red", "time"],
-                              ["PSNR (dB), higher = better", "Redundancy, lower = better",
+    for ax, key, label in zip(axes, ["psnr", "ssim", "red", "time"],
+                              ["PSNR (dB), higher = better", "SSIM (0-1), higher = better",
+                               "Redundancy, lower = better",
                                "Time to choose (s), lower = better"]):
         vals = [R[m][key] for m in order]
         ax.barh(order, vals, color=cols)
         for i, v in enumerate(vals):
-            ax.text(v, i, f" {v:.2f}", va="center", fontsize=9)
+            ax.text(v, i, f" {v:.3f}" if key == "ssim" else f" {v:.2f}", va="center", fontsize=9)
         ax.set_title(label, fontsize=10)
-        ax.set_xlim(min(vals) * 0.9 if key == "psnr" else 0, max(vals) * 1.15 + 1e-9)
+        if key == "ssim":
+            ax.set_xlim(max(0, min(vals) - 0.1), min(1.1, max(vals) + 0.08))
+        else:
+            ax.set_xlim(min(vals) * 0.9 if key == "psnr" else 0, max(vals) * 1.15 + 1e-9)
         ax.grid(axis="x", alpha=0.3)
     axes[0].invert_yaxis()
     handles = [plt.Rectangle((0, 0), 1, 1, color=c) for f, c in COLOUR.items() if any(R[m]["family"] == f for m in R)]
@@ -219,7 +235,7 @@ if args.only in (None, "final"):
     fig.suptitle(f"SCOREBOARD   |   {DATASET}: every method, {K} of {C} channels", fontsize=12,
                  fontweight="bold")
     fig.tight_layout(rect=(0, 0.06, 1, 0.95))
-    fig.savefig(f"{OUT_DIR}/show_{DATASET}_K{K}_5_scoreboard.png", dpi=100)
+    fig.savefig(f"{OUT_DIR}/show_{DATASET}_K{K}_5_scoreboard.png", dpi=200)
     print(f"  saved {OUT_DIR}/show_{DATASET}_K{K}_5_scoreboard.png")
     if not args.no_show:
         plt.show()

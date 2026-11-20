@@ -47,15 +47,15 @@ for name, run in methods.items():
         print(f"  {name:10s} skipped: {n_groups(C, K):,} groups is too many to try")
         continue
     chosen[name], histories[name] = group, history
-    scores = evaluate(pixels01, raw, group, calib, test)
+    scores = evaluate(pixels01, raw, group, calib, test, (H, W))
     rows.append((name, scores, seconds))
     print(f"  {name:10s} sends {[names[c] for c in group]}")
 chosen["Uniform"] = uniform(C, K)
-rows.append(("Uniform", evaluate(pixels01, raw, chosen["Uniform"], calib, test), 0.0))
+rows.append(("Uniform", evaluate(pixels01, raw, chosen["Uniform"], calib, test, (H, W)), 0.0))
 
-print(f"\n  {'Method':10s} {'PSNR dB':>8s} {'SAM deg':>8s} {'Redund.':>8s} {'Time s':>7s}")
+print(f"\n  {'Method':10s} {'PSNR dB':>8s} {'SSIM':>8s} {'SAM deg':>8s} {'Redund.':>8s} {'Time s':>7s}")
 for name, s, sec in rows:
-    print(f"  {name:10s} {s['PSNR']:8.2f} {s['SAM']:8.2f} {s['Redundancy']:8.3f} {sec:7.2f}")
+    print(f"  {name:10s} {s['PSNR']:8.2f} {s['SSIM']:8.4f} {s['SAM']:8.2f} {s['Redundancy']:8.3f} {sec:7.2f}")
 if "Exhaustive" in chosen:
     print("\n  Exhaustive tried every group, so it is the true best. "
           "Same answer from GA / PSO = they found the optimum.")
@@ -81,5 +81,5 @@ axes[1].set_title("SFS: adding one best channel at a time")
 axes[1].grid(alpha=0.3)
 fig.suptitle(f"Search-based selection ({DATASET}, K = {K})", fontweight="bold")
 fig.tight_layout()
-fig.savefig(f"{OUT_DIR}/step4_convergence_{DATASET}.png", dpi=120)
+fig.savefig(f"{OUT_DIR}/step4_convergence_{DATASET}.png", dpi=200)
 print(f"\nSaved {OUT_DIR}/step4_convergence_{DATASET}.png")

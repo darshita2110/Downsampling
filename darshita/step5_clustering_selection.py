@@ -41,15 +41,15 @@ for name, run in [("WaLuDi", lambda: waludi(P, K)), ("WaLuMI", lambda: walumi(P,
     seconds = time.perf_counter() - t
     results[name] = out
     group = out[0]
-    rows.append((name, evaluate(pixels01, raw, group, calib, test), seconds))
+    rows.append((name, evaluate(pixels01, raw, group, calib, test, (H, W)), seconds))
     print(f"  {name:12s} sends {[names[c] for c in group]}")
 chosen = {name: out[0] for name, out in results.items()}
 chosen["Uniform"] = uniform(C, K)
-rows.append(("Uniform", evaluate(pixels01, raw, chosen["Uniform"], calib, test), 0.0))
+rows.append(("Uniform", evaluate(pixels01, raw, chosen["Uniform"], calib, test, (H, W)), 0.0))
 
-print(f"\n  {'Method':12s} {'PSNR dB':>8s} {'SAM deg':>8s} {'Redund.':>8s} {'Time s':>7s}")
+print(f"\n  {'Method':12s} {'PSNR dB':>8s} {'SSIM':>8s} {'SAM deg':>8s} {'Redund.':>8s} {'Time s':>7s}")
 for name, s, sec in rows:
-    print(f"  {name:12s} {s['PSNR']:8.2f} {s['SAM']:8.2f} {s['Redundancy']:8.3f} {sec:7.2f}")
+    print(f"  {name:12s} {s['PSNR']:8.2f} {s['SSIM']:8.4f} {s['SAM']:8.2f} {s['Redundancy']:8.3f} {sec:7.2f}")
 
 with open(f"{OUT_DIR}/step5_selected_{DATASET}.json", "w") as f:
     json.dump({"K": K, "selected": chosen}, f, indent=2)
@@ -66,7 +66,7 @@ ax.set_title(f"WaLuDi tree: channels that join low down are alike. Cutting at th
 ax.set_xlabel("channels")
 ax.set_ylabel("distance when merged")
 fig.tight_layout()
-fig.savefig(f"{OUT_DIR}/step5_tree_{DATASET}.png", dpi=120)
+fig.savefig(f"{OUT_DIR}/step5_tree_{DATASET}.png", dpi=200)
 print(f"\nSaved {OUT_DIR}/step5_tree_{DATASET}.png")
 
 # ---------------------------------------------------------- picture 2: similarity map + picks
@@ -89,5 +89,5 @@ if C <= 40:
     axes[1].set_xticklabels(names)
 axes[1].set_title("Channels sent by each clustering method: spread across the groups")
 fig.tight_layout()
-fig.savefig(f"{OUT_DIR}/step5_groups_{DATASET}.png", dpi=120)
+fig.savefig(f"{OUT_DIR}/step5_groups_{DATASET}.png", dpi=200)
 print(f"Saved {OUT_DIR}/step5_groups_{DATASET}.png")

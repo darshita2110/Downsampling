@@ -13,6 +13,7 @@ import urllib.request
 
 import numpy as np
 from scipy.io import loadmat
+from scipy.ndimage import uniform_filter
 
 IMAGE_FILE = "data/darshita/Indian_pines_corrected.mat"
 IMAGE_URL = "https://github.com/gokriznastic/HybridSN/raw/master/data/Indian_pines_corrected.mat"
@@ -217,6 +218,40 @@ def sam_degrees(original, rebuilt):
     return np.degrees(np.arccos(np.clip(dot / np.maximum(norms, 1e-12), -1, 1))).mean()
 
 
+def ssim(original, rebuilt, shape, test=None, win=7):
+    """Structural similarity (SSIM), averaged over all channels. Higher = better, 1 = identical.
+    Same definition as skimage.metrics.structural_similarity (7 x 7 window, K1 = 0.01, K2 = 0.03,
+    peak value 1 because every channel is scaled to 0..1). SSIM looks at small windows of the picture,
+    so both tables are put back into images of shape = (height, width) first. If `test` is given, only
+    those pixels are averaged (the same 90% test pixels PSNR is measured on)."""
+    h, w = shape
+    n_ch = original.shape[1]
+    a = original.reshape(h, w, n_ch)
+    b = rebuilt.reshape(h, w, n_ch)
+    np_win = win * win
+    cov_norm = np_win / (np_win - 1)                       # sample covariance, as in skimage
+    c1, c2 = 0.01 ** 2, 0.03 ** 2
+    keep = np.zeros(h * w, bool)
+    if test is None:
+        keep[:] = True
+    else:
+        keep[test] = True
+    total, count = 0.0, 0
+    for s in range(0, n_ch, 32):                           # 32 channels at a time keeps memory small
+        x = a[:, :, s:s + 32].astype(np.float64)
+        y = b[:, :, s:s + 32].astype(np.float64)
+        size = (win, win, 1)
+        ux, uy = uniform_filter(x, size=size), uniform_filter(y, size=size)
+        vx = cov_norm * (uniform_filter(x * x, size=size) - ux * ux)
+        vy = cov_norm * (uniform_filter(y * y, size=size) - uy * uy)
+        vxy = cov_norm * (uniform_filter(x * y, size=size) - ux * uy)
+        smap = ((2 * ux * uy + c1) * (2 * vxy + c2)) / ((ux ** 2 + uy ** 2 + c1) * (vx + vy + c2))
+        smap = smap.reshape(h * w, -1)
+        total += smap[keep].sum()
+        count += smap[keep].size
+    return total / count
+
+
 def redundancy(pixels, channels):
     """Mean |correlation| between the chosen channels. 1 = copies of each other. Lower = better."""
     k = len(channels)
@@ -229,9 +264,12 @@ def uniform(n_channels, k):
     return np.linspace(0, n_channels - 1, k).round().astype(int).tolist()
 
 
-def evaluate(pixels01, raw_pixels, channels, calib, test):
-    """All scores for one set of chosen channels."""
+def evaluate(pixels01, raw_pixels, channels, calib, test, shape=None):
+    """All scores for one set of chosen channels. Give shape = (height, width) to also get SSIM."""
     r = rebuild(pixels01, channels, calib)
-    return {"PSNR": psnr(pixels01[test], r[test]),
-            "SAM": sam_degrees(pixels01[test], r[test]),
-            "Redundancy": redundancy(raw_pixels, channels)}
+    scores = {"PSNR": psnr(pixels01[test], r[test]),
+              "SAM": sam_degrees(pixels01[test], r[test]),
+              "Redundancy": redundancy(raw_pixels, channels)}
+    if shape is not None:
+        scores["SSIM"] = ssim(pixels01, r, shape, test)
+    return scores

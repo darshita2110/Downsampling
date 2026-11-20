@@ -24,7 +24,7 @@ import sys
 import matplotlib.pyplot as plt
 import numpy as np
 
-from common import OUT_DIR, k_values as k_values_for, dataset_name, load_dataset           # our own files
+from common import OUT_DIR, k_values as k_values_for, dataset_name, load_dataset, ssim      # our own files
 from ranking import entropy_scores, mvpca_scores, top_k, variance_scores
 
 DATASET = sys.argv[1] if len(sys.argv) > 1 else "indian_pines"
@@ -68,12 +68,13 @@ with open(f"{OUT_DIR}/step2_selected_bands_{DATASET}.json") as f:
 K, selected = saved["K"], saved["selected"]
 
 print(f"Sending {K} of {n_bands} bands = {100 * K / n_bands:.0f}% of the data\n")
-print(f"  {'Method':9s} {'PSNR (dB)':>10s} {'SAM (deg)':>10s}")
+print(f"  {'Method':9s} {'PSNR (dB)':>10s} {'SAM (deg)':>10s} {'SSIM':>8s}")
 rebuilt_images = {}
 for name, bands in selected.items():
     rebuilt = rebuild(bands)
     rebuilt_images[name] = rebuilt
-    print(f"  {name:9s} {psnr(pixels[test], rebuilt[test]):10.2f} {sam_degrees(pixels[test], rebuilt[test]):10.2f}")
+    print(f"  {name:9s} {psnr(pixels[test], rebuilt[test]):10.2f} {sam_degrees(pixels[test], rebuilt[test]):10.2f} "
+          f"{ssim(pixels, rebuilt, (height, width), test):8.4f}")
 
 # Picture: one band that was NOT sent, original vs rebuilt by each method, plus error
 band = n_bands // 2 - 1                        # a band in the middle (99 of 200, B06 of 12)
@@ -90,12 +91,13 @@ for i, (name, rebuilt) in enumerate(rebuilt_images.items(), start=1):
 for ax in axes.ravel():
     ax.set_xticks([]), ax.set_yticks([])
 plt.tight_layout()
-plt.savefig(f"{OUT_DIR}/step3_rebuilt_band_{DATASET}.png", dpi=120)
+plt.savefig(f"{OUT_DIR}/step3_rebuilt_band_{DATASET}.png", dpi=200)
 print(f"\nSaved {OUT_DIR}/step3_rebuilt_band_{DATASET}.png")
 
 # ------------------------------------------------ part B: what if we send more bands?
 k_values = k_values_for(n_bands)              # 5..30 for 200 bands, 2..8 for 12 bands
 results = {name: [] for name in ["Variance", "Entropy", "MVPCA", "Uniform"]}
+ssim_results = {name: [] for name in results}
 var_s, ent_s = variance_scores(raw_pixels), entropy_scores(raw_pixels)  # these don't depend on k
 for k in k_values:
     picks = {
@@ -105,7 +107,9 @@ for k in k_values:
         "Uniform": np.linspace(0, n_bands - 1, k).round().astype(int).tolist(),
     }
     for name, bands in picks.items():
-        results[name].append(psnr(pixels[test], rebuild(bands)[test]))
+        rebuilt_k = rebuild(bands)
+        results[name].append(psnr(pixels[test], rebuilt_k[test]))
+        ssim_results[name].append(ssim(pixels, rebuilt_k, (height, width), test))
 
 plt.figure(figsize=(7, 4.5))
 for name, values in results.items():
@@ -116,10 +120,27 @@ plt.title(f"Ranking methods vs evenly spaced bands ({DATASET})")
 plt.legend()
 plt.grid(alpha=0.3)
 plt.tight_layout()
-plt.savefig(f"{OUT_DIR}/step3_psnr_vs_k_{DATASET}.png", dpi=120)
+plt.savefig(f"{OUT_DIR}/step3_psnr_vs_k_{DATASET}.png", dpi=200)
 print(f"Saved {OUT_DIR}/step3_psnr_vs_k_{DATASET}.png")
+
+plt.figure(figsize=(7, 4.5))
+for name, values in ssim_results.items():
+    plt.plot(k_values, values, marker="o", lw=2, ls="--" if name == "Uniform" else "-", label=name)
+plt.xlabel("Number of bands sent (K)")
+plt.ylabel("SSIM of rebuilt image (0-1)  - higher is better")
+plt.title(f"Ranking methods vs evenly spaced bands: SSIM ({DATASET})")
+plt.legend()
+plt.grid(alpha=0.3)
+plt.tight_layout()
+plt.savefig(f"{OUT_DIR}/step3_ssim_vs_k_{DATASET}.png", dpi=200)
+print(f"Saved {OUT_DIR}/step3_ssim_vs_k_{DATASET}.png")
 
 print("\nPSNR (dB) for each K:")
 print(f"  {'K':>3s} " + " ".join(f"{n:>9s}" for n in results))
 for i, k in enumerate(k_values):
     print(f"  {k:>3d} " + " ".join(f"{results[n][i]:9.2f}" for n in results))
+
+print("\nSSIM for each K:")
+print(f"  {'K':>3s} " + " ".join(f"{n:>9s}" for n in ssim_results))
+for i, k in enumerate(k_values):
+    print(f"  {k:>3d} " + " ".join(f"{ssim_results[n][i]:9.4f}" for n in ssim_results))
